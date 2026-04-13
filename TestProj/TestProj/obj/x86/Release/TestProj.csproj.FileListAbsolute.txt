@@ -1,0 +1,10 @@
+E:\WinCCReporter_Dev\TestProj\TestProj\bin\x86\Release\TestProj.dll
+E:\WinCCReporter_Dev\TestProj\TestProj\bin\x86\Release\TestProj.pdb
+E:\WinCCReporter_Dev\TestProj\TestProj\obj\x86\Release\TestProj.csproj.AssemblyReference.cache
+E:\WinCCReporter_Dev\TestProj\TestProj\obj\x86\Release\TestProj.UserControl1.resources
+E:\WinCCReporter_Dev\TestProj\TestProj\obj\x86\Release\TestProj.csproj.GenerateResource.cache
+E:\WinCCReporter_Dev\TestProj\TestProj\obj\x86\Release\TestProj.csproj.CoreCompileInputs.cache
+E:\WinCCReporter_Dev\TestProj\TestProj\obj\x86\Release\TestProj.dll
+E:\WinCCReporter_Dev\TestProj\TestProj\obj\x86\Release\TestProj.pdb
+E:\WinCCReporter_Dev\TestProj\TestProj\obj\x86\Release\Interop.CCHMIRUNTIME.dll
+E:\WinCCReporter_Dev\TestProj\TestProj\obj\x86\Release\TestProj.csproj.ResolveComReference.cache
