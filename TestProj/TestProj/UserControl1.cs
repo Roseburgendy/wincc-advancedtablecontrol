@@ -1,14 +1,15 @@
-﻿using System;
+﻿using CCHMIRUNTIME;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
+using System.Data.OleDb;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CCHMIRUNTIME;
-using System.Data.OleDb;
 
 namespace TestProj
 {
@@ -79,6 +80,44 @@ namespace TestProj
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string json = @"[
+        {
+            'tagName': 'tag1',
+            'displayName': 'Tag 1',
+            'normalMin': 0,
+            'normalMax': 100,
+            'decimalPlaces': 2,
+            'order': 1
+        },
+        {
+            'tagName': 'tag2',
+            'displayName': 'Tag 2',
+            'normalMin': -50,
+            'normalMax': 50,
+            'decimalPlaces': 1,
+            'order': 2
+        }
+    ]";
+
+            var list = ConfigManager.ParseFromJson(json);
+            // 结果拼成字符串显示
+            var sb = new StringBuilder();
+            foreach (var tag in list)
+            {
+                sb.AppendLine($"tagName: {tag.tagName}");
+                sb.AppendLine($"displayName: {tag.displayName}");
+                sb.AppendLine($"normalMin: {tag.normalMin}");
+                sb.AppendLine($"normalMax: {tag.normalMax}");
+                sb.AppendLine($"decimalPlaces: {tag.decimalPlaces}");
+                sb.AppendLine($"order: {tag.order}");
+                sb.AppendLine("---");
+            }
+
+            MessageBox.Show(sb.ToString(), "JSON 反序列化结果");
         }
     }
 }
