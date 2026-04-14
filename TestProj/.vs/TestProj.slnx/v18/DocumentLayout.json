@@ -3,16 +3,24 @@
   "WorkspaceRootPath": "E:\\WinCCReporter_Dev\\TestProj\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|E:\\WinCCReporter_Dev\\TestProj\\testproj\\models\\tagconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|solutionrelative:testproj\\models\\tagconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|E:\\WinCCReporter_Dev\\TestProj\\TestProj\\DbManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|solutionrelative:TestProj\\DbManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|e:\\winccreporter_dev\\testproj\\testproj\\configmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|solutionrelative:testproj\\configmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|E:\\WinCCReporter_Dev\\TestProj\\testproj\\usercontrol1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|e:\\winccreporter_dev\\testproj\\testproj\\usercontrol1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|solutionrelative:testproj\\usercontrol1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|e:\\winccreporter_dev\\testproj\\testproj\\tagconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|solutionrelative:testproj\\tagconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|E:\\WinCCReporter_Dev\\TestProj\\TestProj\\ConfigManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|solutionrelative:TestProj\\ConfigManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|E:\\WinCCReporter_Dev\\TestProj\\TestProj\\Models\\TagConfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|solutionrelative:TestProj\\Models\\TagConfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|E:\\WinCCReporter_Dev\\TestProj\\testproj\\usercontrol1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
@@ -26,17 +34,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "TagConfig.cs",
-              "DocumentMoniker": "E:\\WinCCReporter_Dev\\TestProj\\TestProj\\models\\TagConfig.cs",
-              "RelativeDocumentMoniker": "TestProj\\models\\TagConfig.cs",
-              "ToolTip": "E:\\WinCCReporter_Dev\\TestProj\\TestProj\\models\\TagConfig.cs",
-              "RelativeToolTip": "TestProj\\models\\TagConfig.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAAABAAAAAhAAAAAAAAAA==",
+              "DocumentMoniker": "E:\\WinCCReporter_Dev\\TestProj\\TestProj\\Models\\TagConfig.cs",
+              "RelativeDocumentMoniker": "TestProj\\Models\\TagConfig.cs",
+              "ToolTip": "E:\\WinCCReporter_Dev\\TestProj\\TestProj\\Models\\TagConfig.cs",
+              "RelativeToolTip": "TestProj\\Models\\TagConfig.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAYwBAAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-14T04:32:06.865Z",
               "IsPinned": true,
@@ -44,41 +52,66 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
+              "Title": "TagConfig.cs",
+              "DocumentMoniker": "E:\\WinCCReporter_Dev\\TestProj\\TestProj\\TagConfig.cs",
+              "RelativeDocumentMoniker": "TestProj\\TagConfig.cs",
+              "ToolTip": "E:\\WinCCReporter_Dev\\TestProj\\TestProj\\TagConfig.cs",
+              "RelativeToolTip": "TestProj\\TagConfig.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAADgvxsAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-14T06:56:16.204Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DbManager.cs",
+              "DocumentMoniker": "E:\\WinCCReporter_Dev\\TestProj\\TestProj\\DbManager.cs",
+              "RelativeDocumentMoniker": "TestProj\\DbManager.cs",
+              "ToolTip": "E:\\WinCCReporter_Dev\\TestProj\\TestProj\\DbManager.cs",
+              "RelativeToolTip": "TestProj\\DbManager.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAAqwD4AAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-14T06:36:22.034Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "ConfigManager.cs",
               "DocumentMoniker": "E:\\WinCCReporter_Dev\\TestProj\\TestProj\\ConfigManager.cs",
               "RelativeDocumentMoniker": "TestProj\\ConfigManager.cs",
               "ToolTip": "E:\\WinCCReporter_Dev\\TestProj\\TestProj\\ConfigManager.cs",
               "RelativeToolTip": "TestProj\\ConfigManager.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA4AAAAjAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABAAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-14T05:17:08.691Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "UserControl1.cs",
               "DocumentMoniker": "E:\\WinCCReporter_Dev\\TestProj\\TestProj\\UserControl1.cs",
               "RelativeDocumentMoniker": "TestProj\\UserControl1.cs",
               "ToolTip": "E:\\WinCCReporter_Dev\\TestProj\\TestProj\\UserControl1.cs",
               "RelativeToolTip": "TestProj\\UserControl1.cs",
-              "ViewState": "AgIAAFEAAAAAAAAAAAAswGIAAAAtAAAAAAAAAA==",
+              "ViewState": "AgIAABQAAAAAAAAAAAAMwB8AAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-10T02:40:38.1Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "UserControl1.cs [Design]",
               "DocumentMoniker": "E:\\WinCCReporter_Dev\\TestProj\\TestProj\\UserControl1.cs",
               "RelativeDocumentMoniker": "TestProj\\UserControl1.cs",
               "ToolTip": "E:\\WinCCReporter_Dev\\TestProj\\TestProj\\UserControl1.cs [Design]",
               "RelativeToolTip": "TestProj\\UserControl1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-10T01:55:47.21Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-04-10T01:55:47.21Z"
             }
           ]
         }

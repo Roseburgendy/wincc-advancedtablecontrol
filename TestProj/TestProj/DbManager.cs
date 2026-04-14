@@ -14,13 +14,15 @@ namespace TestProj
         private static OleDbConnection _conn;
         public static OleDbConnection GetConnection()
         {
+            if (_conn != null && _conn.State == ConnectionState.Open)
+                return _conn;
             // 读取WINCC系统变量
             HMIRuntime HMIRT = new HMIRuntime();
             IHMITag Catalog = HMIRT.Tags["@DatasourceNameRT"];
             IHMITag PCName = HMIRT.Tags["@LocalMachineName"];
 
             // 连接字符串
-            string ConnectionStr = @"Provider = WinCCOLEDBProvider.1;Catalog=" + Catalog.Read() + ";Data Source=" + PCName.Read() + "\\WINCC";
+            string ConnectionStr = @"Provider=WinCCOLEDBProvider.1;Catalog=" + Catalog.Read() + ";Data Source=" + PCName.Read() + "\\WINCC";
 
             // 打开连接
             _conn = new OleDbConnection(ConnectionStr);
@@ -43,16 +45,29 @@ namespace TestProj
             var list = new List<string>();
             try
             {
-                var conn = GetConnection();
-                var cmd = new OleDbCommand($"TAGLIST:'{archiveName}\\'", conn);
-                var da = new OleDbDataAdapter(cmd);
-                var ds = new DataSet();
-                da.Fill(ds);
+                // Use SQL connection to read tags from WINCC archive database
+                // OLEDB looks like it doesn't support reading schema info, so we have to use SQL connection directly
+                HMIRuntime hmirt = new HMIRuntime();
+                string pcName = hmirt.Tags["@LocalMachineName"].Read().ToString();
+                string catalog = hmirt.Tags["@DatasourceNameRT"].Read().ToString();
 
-                if (ds.Tables.Count > 0)
-                    foreach (DataRow row in ds.Tables[0].Rows)
-                        if (row[0] != DBNull.Value)
-                            list.Add(row[0].ToString());
+                string sqlConnStr = $"Server={pcName}\\WINCC;" +
+                                    $"Database={catalog};" +
+                                    "Integrated Security=SSPI;";
+
+                using (var sqlConn = new System.Data.SqlClient.SqlConnection(sqlConnStr))
+                {
+                    sqlConn.Open();
+
+                    var cmd = new System.Data.SqlClient.SqlCommand(
+                        "SELECT ValueID, ValueName FROM dbo.Archive " +
+                        "WHERE ValueName IS NOT NULL " +
+                        "ORDER BY ValueName", sqlConn);
+
+                    var reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                        list.Add(reader.GetString(1));
+                }
             }
             catch (Exception ex)
             {

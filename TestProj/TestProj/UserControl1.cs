@@ -38,6 +38,8 @@ namespace TestProj
             string endTime = DT_end.Value.ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss");
 
             // TODO:read tag with OLEDB
+            // TagConfig 面板用 DbManager.FetchAllTags() 读变量列表
+            // 用户勾选后，选中的变量存起来, datagridview1显示选中的变量列表，searchBtn_Click 用选中的变量查询
             cmd.CommandText = $"TAG:R,('Archive\\tag1';'Archive\\tag2'),'{startTime}','{endTime}'";
 
             da.SelectCommand = cmd;
