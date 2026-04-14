@@ -18,6 +18,7 @@ namespace TestProj
         public UserControl1()
         {
             InitializeComponent();
+            ConfigManager.LoadConfig();
         }
 
         private void searchBtn_Click(object sender, EventArgs e)
@@ -44,6 +45,8 @@ namespace TestProj
             // 查询数据
             string startTime = DT_begin.Value.ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss");
             string endTime = DT_end.Value.ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss");
+
+            // TODO:read tag with OLEDB
             cmd.CommandText = $"TAG:R,('Archive\\tag1';'Archive\\tag2'),'{startTime}','{endTime}'";
 
             da.SelectCommand = cmd;
@@ -84,40 +87,23 @@ namespace TestProj
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string json = @"[
-        {
-            'tagName': 'tag1',
-            'displayName': 'Tag 1',
-            'normalMin': 0,
-            'normalMax': 100,
-            'decimalPlaces': 2,
-            'order': 1
-        },
-        {
-            'tagName': 'tag2',
-            'displayName': 'Tag 2',
-            'normalMin': -50,
-            'normalMax': 50,
-            'decimalPlaces': 1,
-            'order': 2
-        }
-    ]";
+            var config = ConfigManager.Config;
 
-            var list = ConfigManager.ParseFromJson(json);
-            // 结果拼成字符串显示
-            var sb = new StringBuilder();
-            foreach (var tag in list)
+            if (config == null )
             {
-                sb.AppendLine($"tagName: {tag.tagName}");
-                sb.AppendLine($"displayName: {tag.displayName}");
-                sb.AppendLine($"normalMin: {tag.normalMin}");
-                sb.AppendLine($"normalMax: {tag.normalMax}");
-                sb.AppendLine($"decimalPlaces: {tag.decimalPlaces}");
-                sb.AppendLine($"order: {tag.order}");
-                sb.AppendLine("---");
+                MessageBox.Show("Config is null"); return;
             }
 
-            MessageBox.Show(sb.ToString(), "JSON 反序列化结果");
+            var sb = new StringBuilder();
+            sb.AppendLine($"归档名：{config.DataSource.ArchiveName}");
+            sb.AppendLine($"变量数量:{config.TagMeta.Count}");
+            sb.AppendLine("----");
+            foreach (var tag in config.TagMeta)
+            {
+                sb.AppendLine($"{tag.TagName} | {tag.DisplayName} | {tag.NormalMin}~{tag.NormalMax}");
+            }
+
+            MessageBox.Show(sb.ToString(), "JSON 读取结果");
         }
     }
 }

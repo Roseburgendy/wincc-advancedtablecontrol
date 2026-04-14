@@ -1,61 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-
+using TestProj.Models;
 namespace TestProj
 {
     internal class ConfigManager
     {
-        public class TagMeta
-        {
-            public string tagName { get; set; }
-            public string displayName { get; set; }
-            public double normalMin { get; set; }
-            public double normalMax { get; set; }
-            public int decimalPlaces { get; set; } = 2; // 2 by default
-            public int order { get; set; }
-        }
+        private static ProjectConfig _config;
+        public static ProjectConfig Config => _config;
 
-        // 供外部调用：传入 JSON 字符串，返回列表
-        public static List<TagMeta> ParseFromJson(string json)
+        public static void LoadConfig()
         {
-            return JsonConvert.DeserializeObject<List<TagMeta>>(json);
-        }
-        static void main(string[] args)
-        {
-            string json = @"[
-            {
-                'tagName': 'tag1',
-                'displayName': 'Tag 1',
-                'normalMin': 0,
-                'normalMax': 100,
-                'decimalPlaces': 2,
-                'order': 1
-            },
-            {
-                'tagName': 'tag2',
-                'displayName': 'Tag 2',
-                'normalMin': -50,
-                'normalMax': 50,
-                'decimalPlaces': 1,
-                'order': 2
-            }
-        ]";
-            List<TagMeta> deserialized = JsonConvert.DeserializeObject<List<TagMeta>>(json);
-            foreach (var tag in deserialized)
-            {
-                Console.WriteLine(tag.tagName);
-                Console.WriteLine(tag.displayName);
-                Console.WriteLine(tag.normalMin);
-                Console.WriteLine(tag.normalMax);
-                Console.WriteLine(tag.decimalPlaces);
-                Console.WriteLine(tag.order);
-            }
-
-            Console.ReadKey();
+            // search for json under Document Folder
+            // TODO : Specify config path on installation or first run
+            string path = @"C:\Users\Public\Documents\config.json";
+            string json = File.ReadAllText(path, new UTF8Encoding(false));
+            _config = JsonConvert.DeserializeObject<ProjectConfig>(json);
         }
     }
 }
