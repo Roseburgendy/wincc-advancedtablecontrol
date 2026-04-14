@@ -1,0 +1,9 @@
+# Visual Studio
+.vs/
+*.suo
+*.user
+
+# 编译输出
+obj/
+bin/
+*.cache
