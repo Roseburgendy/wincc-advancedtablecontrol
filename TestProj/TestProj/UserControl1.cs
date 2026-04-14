@@ -23,22 +23,13 @@ namespace TestProj
 
         private void searchBtn_Click(object sender, EventArgs e)
         {
-            // 读取WINCC系统变量
-            HMIRuntime HMIRT = new HMIRuntime();  
-            IHMITag Catalog = HMIRT.Tags["@DatasourceNameRT"];
-            IHMITag PCName = HMIRT.Tags["@LocalMachineName"];
-
             // 声明OLEDB对象
             DataSet ds = new DataSet();
             OleDbCommand cmd = new OleDbCommand();
             OleDbDataAdapter da = new OleDbDataAdapter();
 
-            // 连接字符串
-            string ConnectionStr = @"Provider = WinCCOLEDBProvider.1;Catalog=" + Catalog.Read() + ";Data Source=" + PCName.Read() + "\\WINCC";
-
             // 打开连接
-            OleDbConnection conn = new OleDbConnection(ConnectionStr);
-            conn.Open();
+            OleDbConnection conn = DbManager.GetConnection();
             cmd.Connection = conn;
             cmd.CommandType = CommandType.Text;
 
@@ -71,8 +62,6 @@ namespace TestProj
                 dataGridView1.DataSource = dt;
                 dataGridView1.Columns["Timestamp"].DefaultCellStyle.Format = "yyyy-MM-dd HH:mm:ss.fff";
             }
-
-            conn.Close();
         }
         // unused event handlers
         private void label1_Click(object sender, EventArgs e)
@@ -104,6 +93,22 @@ namespace TestProj
             }
 
             MessageBox.Show(sb.ToString(), "JSON 读取结果");
+        }
+
+        private void TagConfigBtn_Click(object sender, EventArgs e)
+        {
+            // TODO: Open tag config panel
+            var panel = new TagConfig();
+            var form = new Form
+            {
+                Text = "变量配置",
+                Width = 400,
+                Height = 500,
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            panel.Dock = DockStyle.Fill;
+            form.Controls.Add( panel );
+            form.ShowDialog();
         }
     }
 }

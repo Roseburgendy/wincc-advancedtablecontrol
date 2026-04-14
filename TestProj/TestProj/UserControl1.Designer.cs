@@ -35,7 +35,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.searchBtn = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.TagConfigBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -43,7 +43,7 @@
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(61, 116);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 72;
             this.dataGridView1.RowTemplate.Height = 33;
@@ -55,7 +55,7 @@
             this.DT_begin.CustomFormat = "yyyy-MM-dd HH:mm:ss";
             this.DT_begin.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.DT_begin.Location = new System.Drawing.Point(284, 1095);
-            this.DT_begin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DT_begin.Margin = new System.Windows.Forms.Padding(4);
             this.DT_begin.Name = "DT_begin";
             this.DT_begin.Size = new System.Drawing.Size(365, 38);
             this.DT_begin.TabIndex = 2;
@@ -65,7 +65,7 @@
             this.DT_end.CustomFormat = "yyyy-MM-dd HH:mm:ss";
             this.DT_end.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.DT_end.Location = new System.Drawing.Point(284, 1200);
-            this.DT_end.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DT_end.Margin = new System.Windows.Forms.Padding(4);
             this.DT_end.Name = "DT_end";
             this.DT_end.Size = new System.Drawing.Size(365, 38);
             this.DT_end.TabIndex = 3;
@@ -98,7 +98,7 @@
             // 
             this.searchBtn.Font = new System.Drawing.Font("Arial", 12F);
             this.searchBtn.Location = new System.Drawing.Point(1324, 1113);
-            this.searchBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.searchBtn.Margin = new System.Windows.Forms.Padding(4);
             this.searchBtn.Name = "searchBtn";
             this.searchBtn.Size = new System.Drawing.Size(476, 126);
             this.searchBtn.TabIndex = 6;
@@ -117,22 +117,21 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "Query Demo";
             // 
-            // button1
+            // TagConfigBtn
             // 
-            this.button1.Font = new System.Drawing.Font("Arial", 9F);
-            this.button1.Location = new System.Drawing.Point(1879, 448);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(204, 134);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "TestConfig";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.TagConfigBtn.Location = new System.Drawing.Point(1860, 174);
+            this.TagConfigBtn.Name = "TagConfigBtn";
+            this.TagConfigBtn.Size = new System.Drawing.Size(240, 71);
+            this.TagConfigBtn.TabIndex = 8;
+            this.TagConfigBtn.Text = "变量配置";
+            this.TagConfigBtn.UseVisualStyleBackColor = true;
+            this.TagConfigBtn.Click += new System.EventHandler(this.TagConfigBtn_Click);
             // 
             // UserControl1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.TagConfigBtn);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.searchBtn);
             this.Controls.Add(this.label2);
@@ -140,7 +139,7 @@
             this.Controls.Add(this.DT_end);
             this.Controls.Add(this.DT_begin);
             this.Controls.Add(this.dataGridView1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "UserControl1";
             this.Size = new System.Drawing.Size(2184, 1407);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -157,6 +156,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button searchBtn;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button TagConfigBtn;
     }
 }
