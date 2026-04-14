@@ -1,34 +1,31 @@
 {
-  "dataSource": {
-    "archiveName": "Archive"
+  "DataSource": {
+    "ArchiveName": "Archive"
   },
-  "tags": [
+  "TagMeta": [
     {
-      "tagName": "tag1",
-      "displayName": "1号反应釜温度",
-      "unit": "℃",
-      "normalMin": 80.0,
-      "normalMax": 95.0,
-      "decimalPlaces": 1,
-      "order": 1
+      "TagName": "tag1",
+      "DisplayName": "1号反应釜温度",
+      "NormalMin": 80.0,
+      "NormalMax": 95.0,
+      "DecimalPlaces": 1,
+      "Order": 1
     },
     {
-      "tagName": "tag2",
-      "displayName": "2号反应釜温度",
-      "unit": "℃",
-      "normalMin": 85.0,
-      "normalMax": 100.0,
-      "decimalPlaces": 1,
-      "order": 2
+      "TagName": "tag2",
+      "DisplayName": "2号反应釜温度",
+      "NormalMin": 80.0,
+      "NormalMax": 95.0,
+      "DecimalPlaces": 1,
+      "Order": 2
     },
     {
-      "tagName": "tag3",
-      "displayName": "进料管道压力",
-      "unit": "MPa",
-      "normalMin": 0.2,
-      "normalMax": 0.8,
-      "decimalPlaces": 3,
-      "order": 3
+      "TagName": "tag3",
+      "DisplayName": "3号反应釜温度",
+      "NormalMin": 80.0,
+      "NormalMax": 95.0,
+      "DecimalPlaces": 1,
+      "Order": 3
     }
   ]
 }

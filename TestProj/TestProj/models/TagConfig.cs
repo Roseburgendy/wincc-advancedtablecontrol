@@ -7,9 +7,10 @@ namespace TestProj.Models
     {
         public string TagName { get; set; }
         public string DisplayName { get; set; }
-        public string Unit { get; set; }
         public double NormalMin { get; set; }
         public double NormalMax { get; set; }
+        public int DecimalPlaces { get; set; }=2;
+        public int Order { get; set; }
     }
 
     // JSON 里 dataSource 节点
@@ -23,13 +24,5 @@ namespace TestProj.Models
     {
         public DataSourceConfig DataSource { get; set; }
         public List<TagConfig> TagMeta { get; set; }
-    }
-
-    // CheckedListBox 显示用，不对应 JSON
-    public class TagItem
-    {
-        public string TagName { get; set; }
-        public string DisplayName { get; set; }
-        public override string ToString() => DisplayName;
     }
 }
