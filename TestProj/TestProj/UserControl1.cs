@@ -15,6 +15,7 @@ namespace TestProj
 {
     public partial class UserControl1: UserControl
     {
+        private List<string> _selectedTags = new List<string>();
         public UserControl1()
         {
             InitializeComponent();
@@ -116,6 +117,18 @@ namespace TestProj
         private void label3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void selectTagBtn_Click(object sender, EventArgs e)
+        {
+            using (var form = new TagSelectionPanel(_selectedTags))
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    var selectedTags = form.SelectedTags;
+                    MessageBox.Show("Selected tags:\n" + string.Join("\n", selectedTags));
+                }
+            }
         }
     }
 }

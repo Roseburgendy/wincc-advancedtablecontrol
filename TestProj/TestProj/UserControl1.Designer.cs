@@ -125,6 +125,7 @@
             this.selectTagBtn.TabIndex = 9;
             this.selectTagBtn.Text = "选择变量";
             this.selectTagBtn.UseVisualStyleBackColor = true;
+            this.selectTagBtn.Click += new System.EventHandler(this.selectTagBtn_Click);
             // 
             // label3
             // 
