@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,11 @@ namespace TestProj
     public static class DbManager
     {
         private static OleDbConnection _conn;
+
+        /// <summary>
+        /// Get Connection with 
+        /// </summary>
+        /// <returns></returns>
         public static OleDbConnection GetConnection()
         {
             if (_conn != null && _conn.State == ConnectionState.Open)
@@ -30,6 +36,10 @@ namespace TestProj
             return _conn;
         }
 
+
+        /// <summary>
+        /// Close Connection
+        /// </summary>
         public static void CloseConnection()
         {
             if (_conn != null && _conn.State == System.Data.ConnectionState.Open)
@@ -39,10 +49,15 @@ namespace TestProj
             }
         }
 
-        // 从归档读取所有变量名,并返回list
-        public static List<string> FetchAllTags(string archiveName)
+        /// <summary>
+        /// Fetch all tags in the WINCC archive database
+        /// </summary>
+        /// <returns>
+        /// a list contains (ValueID, ValueName) of all tags in the WINCC archive database
+        /// </returns>
+        public static List<(long ValueID, string ValueName)> FetchAllTags()
         {
-            var list = new List<string>();
+            var list = new List<(long,string)>();
             try
             {
                 // Use SQL connection to read tags from WINCC archive database
@@ -55,18 +70,19 @@ namespace TestProj
                                     $"Database={catalog};" +
                                     "Integrated Security=SSPI;";
 
-                using (var sqlConn = new System.Data.SqlClient.SqlConnection(sqlConnStr))
+                // select value id, name from the database
+                using (var sqlConn = new SqlConnection(sqlConnStr))
                 {
                     sqlConn.Open();
 
-                    var cmd = new System.Data.SqlClient.SqlCommand(
+                    var cmd = new SqlCommand(
                         "SELECT ValueID, ValueName FROM dbo.Archive " +
                         "WHERE ValueName IS NOT NULL " +
                         "ORDER BY ValueName", sqlConn);
 
                     var reader = cmd.ExecuteReader();
                     while (reader.Read())
-                        list.Add(reader.GetString(1));
+                        list.Add((reader.GetInt64(0), reader.GetString(1)));
                 }
             }
             catch (Exception ex)

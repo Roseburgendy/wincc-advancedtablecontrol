@@ -3,8 +3,9 @@ using System.Collections.Generic;
 namespace TestProj.Models
 {
     // JSON 里 tagMeta 数组的单项
-    public class TagConfig
+    public class TagMeta
     {
+        public long ValueID { get; set; }
         public string TagName { get; set; }
         public string DisplayName { get; set; }
         public double NormalMin { get; set; }
@@ -23,6 +24,6 @@ namespace TestProj.Models
     public class ProjectConfig
     {
         public DataSourceConfig DataSource { get; set; }
-        public List<TagConfig> TagMeta { get; set; }
+        public List<TagMeta> TagMeta { get; set; }
     }
 }

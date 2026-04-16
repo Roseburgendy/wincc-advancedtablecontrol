@@ -34,27 +34,28 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.searchBtn = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
             this.TagConfigBtn = new System.Windows.Forms.Button();
+            this.selectTagBtn = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(61, 116);
+            this.dataGridView1.Location = new System.Drawing.Point(66, 270);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 72;
             this.dataGridView1.RowTemplate.Height = 33;
-            this.dataGridView1.Size = new System.Drawing.Size(1739, 908);
+            this.dataGridView1.Size = new System.Drawing.Size(1788, 1108);
             this.dataGridView1.TabIndex = 1;
             // 
             // DT_begin
             // 
             this.DT_begin.CustomFormat = "yyyy-MM-dd HH:mm:ss";
             this.DT_begin.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DT_begin.Location = new System.Drawing.Point(284, 1095);
+            this.DT_begin.Location = new System.Drawing.Point(767, 79);
             this.DT_begin.Margin = new System.Windows.Forms.Padding(4);
             this.DT_begin.Name = "DT_begin";
             this.DT_begin.Size = new System.Drawing.Size(365, 38);
@@ -64,7 +65,7 @@
             // 
             this.DT_end.CustomFormat = "yyyy-MM-dd HH:mm:ss";
             this.DT_end.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DT_end.Location = new System.Drawing.Point(284, 1200);
+            this.DT_end.Location = new System.Drawing.Point(767, 125);
             this.DT_end.Margin = new System.Windows.Forms.Padding(4);
             this.DT_end.Name = "DT_end";
             this.DT_end.Size = new System.Drawing.Size(365, 38);
@@ -73,53 +74,42 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 12F);
-            this.label1.Location = new System.Drawing.Point(69, 1094);
+            this.label1.Font = new System.Drawing.Font("Arial", 9F);
+            this.label1.Location = new System.Drawing.Point(621, 79);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(181, 41);
+            this.label1.Size = new System.Drawing.Size(126, 32);
             this.label1.TabIndex = 4;
-            this.label1.Text = "Start Time";
+            this.label1.Text = "开始时间";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial", 12F);
-            this.label2.Location = new System.Drawing.Point(69, 1198);
+            this.label2.Font = new System.Drawing.Font("Arial", 9F);
+            this.label2.Location = new System.Drawing.Point(621, 126);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(168, 41);
+            this.label2.Size = new System.Drawing.Size(126, 32);
             this.label2.TabIndex = 5;
-            this.label2.Text = "End Time";
+            this.label2.Text = "结束时间";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // searchBtn
             // 
-            this.searchBtn.Font = new System.Drawing.Font("Arial", 12F);
-            this.searchBtn.Location = new System.Drawing.Point(1324, 1113);
+            this.searchBtn.Font = new System.Drawing.Font("Arial", 9F);
+            this.searchBtn.Location = new System.Drawing.Point(1614, 88);
             this.searchBtn.Margin = new System.Windows.Forms.Padding(4);
             this.searchBtn.Name = "searchBtn";
-            this.searchBtn.Size = new System.Drawing.Size(476, 126);
+            this.searchBtn.Size = new System.Drawing.Size(240, 71);
             this.searchBtn.TabIndex = 6;
-            this.searchBtn.Text = "Search";
+            this.searchBtn.Text = "搜索";
             this.searchBtn.UseVisualStyleBackColor = true;
             this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial", 21.85714F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(678, 23);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(405, 74);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Query Demo";
-            // 
             // TagConfigBtn
             // 
-            this.TagConfigBtn.Location = new System.Drawing.Point(1860, 174);
+            this.TagConfigBtn.Location = new System.Drawing.Point(1230, 156);
             this.TagConfigBtn.Name = "TagConfigBtn";
             this.TagConfigBtn.Size = new System.Drawing.Size(240, 71);
             this.TagConfigBtn.TabIndex = 8;
@@ -127,12 +117,33 @@
             this.TagConfigBtn.UseVisualStyleBackColor = true;
             this.TagConfigBtn.Click += new System.EventHandler(this.TagConfigBtn_Click);
             // 
+            // selectTagBtn
+            // 
+            this.selectTagBtn.Location = new System.Drawing.Point(1230, 46);
+            this.selectTagBtn.Name = "selectTagBtn";
+            this.selectTagBtn.Size = new System.Drawing.Size(240, 71);
+            this.selectTagBtn.TabIndex = 9;
+            this.selectTagBtn.Text = "选择变量";
+            this.selectTagBtn.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Arial", 12F);
+            this.label3.Location = new System.Drawing.Point(59, 79);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(480, 41);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "AdvancedTableControl Demo";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
             // UserControl1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.TagConfigBtn);
             this.Controls.Add(this.label3);
+            this.Controls.Add(this.selectTagBtn);
+            this.Controls.Add(this.TagConfigBtn);
             this.Controls.Add(this.searchBtn);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -141,7 +152,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "UserControl1";
-            this.Size = new System.Drawing.Size(2184, 1407);
+            this.Size = new System.Drawing.Size(1940, 1407);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -155,7 +166,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button searchBtn;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button TagConfigBtn;
+        private System.Windows.Forms.Button selectTagBtn;
+        private System.Windows.Forms.Label label3;
     }
 }

@@ -100,17 +100,22 @@ namespace TestProj
         private void TagConfigBtn_Click(object sender, EventArgs e)
         {
             // TODO: Open tag config panel
-            var panel = new TagConfig();
+            var panel = new TagConfigPanel();
             var form = new Form
             {
                 Text = "变量配置",
-                Width = 400,
-                Height = 500,
+                Width = 1300,
+                Height = 1000,
                 StartPosition = FormStartPosition.CenterScreen
             };
             panel.Dock = DockStyle.Fill;
             form.Controls.Add( panel );
             form.ShowDialog();
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
