@@ -5,16 +5,16 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TestProj
 {
     public partial class UserControl1: UserControl
     {
+        /// <summary>
+        /// 存储已选择的变量
+        /// </summary>
         private List<string> _selectedTags = new List<string>();
         public UserControl1()
         {
@@ -22,112 +22,124 @@ namespace TestProj
             ConfigManager.LoadConfig();
         }
 
+        /// <summary>
+        /// 搜索按钮点击事件
+        /// </summary>
         private void searchBtn_Click(object sender, EventArgs e)
         {
-            // 声明OLEDB对象
-            DataSet ds = new DataSet();
-            OleDbCommand cmd = new OleDbCommand();
-            OleDbDataAdapter da = new OleDbDataAdapter();
-
-            // 打开连接
-            OleDbConnection conn = DbManager.GetConnection();
-            cmd.Connection = conn;
-            cmd.CommandType = CommandType.Text;
-
-            // 查询数据
-            string startTime = DT_begin.Value.ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss");
-            string endTime = DT_end.Value.ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss");
-
-            // TODO:read tag with OLEDB
-            // TagConfig 面板用 DbManager.FetchAllTags() 读变量列表
-            // 用户勾选后，选中的变量存起来, datagridview1显示选中的变量列表，searchBtn_Click 用选中的变量查询
-            cmd.CommandText = $"TAG:R,('Archive\\tag1';'Archive\\tag2'),'{startTime}','{endTime}'";
-
-            da.SelectCommand = cmd;
-            da.Fill(ds);
-
-            if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+            if(_selectedTags == null || _selectedTags.Count == 0)
             {
-                DataTable dt = ds.Tables[0];
-                dt.Columns["Timestamp"].ReadOnly = false;
+                MessageBox.Show("请先选择变量", "提示");
+                return;
+            }
+            try
+            {
+                // 声明OLEDB对象
+                DataSet ds = new DataSet();
+                OleDbCommand cmd = new OleDbCommand();
+                OleDbDataAdapter da = new OleDbDataAdapter();
 
-                foreach (DataRow row in dt.Rows)
+                // 打开连接
+                OleDbConnection conn = DbManager.GetConnection();
+                cmd.Connection = conn;
+                cmd.CommandType = CommandType.Text;
+
+                // 查询数据
+                string startTime = DT_begin.Value.ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss");
+                string endTime = DT_end.Value.ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss");
+                string tagList = string.Join(";",_selectedTags.Select(t => $"'{t}'"));
+                // TODO:read tag with OLEDB
+                // TagConfig 面板用 DbManager.FetchAllTags() 读变量列表
+                // 用户勾选后，选中的变量存起来, datagridview1显示选中的变量列表，searchBtn_Click 用选中的变量查询
+
+                cmd.CommandText = $"TAG:R,({tagList}),'{startTime}','{endTime}'";
+
+                da.SelectCommand = cmd;
+                da.Fill(ds);
+
+                if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
                 {
-                    if (row["Timestamp"] != DBNull.Value)
+                    DataTable dt = ds.Tables[0];
+                    dt.Columns["Timestamp"].ReadOnly = false;
+
+                    foreach (DataRow row in dt.Rows)
                     {
-                        DateTime utcTime = (DateTime)row["Timestamp"];
-                        // 将 UTC 时间转换为本地时间（北京时间）
-                        row["Timestamp"] = utcTime.ToLocalTime();
+                        if (row["Timestamp"] != DBNull.Value)
+                        {
+                            DateTime utcTime = (DateTime)row["Timestamp"];
+                            // 将 UTC 时间转换为本地时间（北京时间）
+                            row["Timestamp"] = utcTime.ToLocalTime();
+                        }
                     }
+
+                    // 绑定到 DataGridView 显示结果
+                    dataGridView1.DataSource = dt;
+                    dataGridView1.Columns["Timestamp"].DefaultCellStyle.Format = "yyyy-MM-dd HH:mm:ss.fff";
                 }
-
-                // 绑定到 DataGridView 显示结果
-                dataGridView1.DataSource = dt;
-                dataGridView1.Columns["Timestamp"].DefaultCellStyle.Format = "yyyy-MM-dd HH:mm:ss.fff";
+                else
+                {
+                    MessageBox.Show("没有查询到数据", "提示");
+                }
             }
-        }
-        // unused event handlers
-        private void label1_Click(object sender, EventArgs e)
-        {
+            catch(Exception ex) {
+                MessageBox.Show($"查询失败: {ex.Message}", "错误");
 
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            var config = ConfigManager.Config;
-
-            if (config == null )
-            {
-                MessageBox.Show("Config is null"); return;
             }
-
-            var sb = new StringBuilder();
-            sb.AppendLine($"归档名：{config.DataSource.ArchiveName}");
-            sb.AppendLine($"变量数量:{config.TagMeta.Count}");
-            sb.AppendLine("----");
-            foreach (var tag in config.TagMeta)
-            {
-                sb.AppendLine($"{tag.TagName} | {tag.DisplayName} | {tag.NormalMin}~{tag.NormalMax}");
-            }
-
-            MessageBox.Show(sb.ToString(), "JSON 读取结果");
+            
         }
 
+        /// <summary>
+        /// 变量配置按钮点击事件，弹出TagConfig Panel
+        /// </summary>
         private void TagConfigBtn_Click(object sender, EventArgs e)
         {
-            // TODO: Open tag config panel
-            var panel = new TagConfigPanel();
+            if (_selectedTags == null || _selectedTags.Count == 0)
+            {
+                MessageBox.Show("请先选择变量", "提示");
+                return;
+            }
+
+            var panel = new TagConfigPanel(_selectedTags);
             var form = new Form
             {
                 Text = "变量配置",
                 Width = 1300,
-                Height = 1000,
+                Height = 1200,
                 StartPosition = FormStartPosition.CenterScreen
             };
             panel.Dock = DockStyle.Fill;
-            form.Controls.Add( panel );
+            form.Controls.Add(panel);
+
+            // 关闭时检查未保存修改
+            form.FormClosing += (s, args) =>
+            {
+                if (panel.HasUnsavedChanges())
+                {
+                    var result = MessageBox.Show(
+                        "有未保存的修改，是否保存？",
+                        "提示", MessageBoxButtons.YesNoCancel);
+
+                    if (result == DialogResult.Yes)
+                        panel.SaveAll();
+                    else if (result == DialogResult.Cancel)
+                        args.Cancel = true;
+                }
+            };
+
             form.ShowDialog();
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        /// <summary>
+        /// 变量选择按钮点击事件，弹出TagSelection Panel
+        /// </summary>
         private void selectTagBtn_Click(object sender, EventArgs e)
         {
-            using (var form = new TagSelectionPanel(_selectedTags))
+            var form = new TagSelectionPanel(_selectedTags);
+            if (form.ShowDialog() == DialogResult.OK)
             {
-                if (form.ShowDialog() == DialogResult.OK)
-                {
-                    var selectedTags = form.SelectedTags;
-                    MessageBox.Show("Selected tags:\n" + string.Join("\n", selectedTags));
-                }
+                // 已选变量
+                MessageBox.Show("Selected tags:\n" + string.Join("\n", _selectedTags));
+
             }
         }
     }

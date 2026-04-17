@@ -8,6 +8,7 @@ namespace TestProj.Models
         public long ValueID { get; set; }
         public string TagName { get; set; }
         public string DisplayName { get; set; }
+        public string DataType { get; set; }  // ← 新增，从SQL读
         public double NormalMin { get; set; }
         public double NormalMax { get; set; }
         public int DecimalPlaces { get; set; }=2;

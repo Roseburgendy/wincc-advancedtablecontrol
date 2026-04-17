@@ -15,7 +15,7 @@ namespace TestProj
         private static OleDbConnection _conn;
 
         /// <summary>
-        /// Get Connection with 
+        /// 获取与OLEDB Provider链接
         /// </summary>
         /// <returns></returns>
         public static OleDbConnection GetConnection()
@@ -38,7 +38,7 @@ namespace TestProj
 
 
         /// <summary>
-        /// Close Connection
+        /// 关闭链接
         /// </summary>
         public static void CloseConnection()
         {
@@ -50,10 +50,10 @@ namespace TestProj
         }
 
         /// <summary>
-        /// Fetch all tags in the WINCC archive database
+        /// 获取SQL所有归档变量
         /// </summary>
         /// <returns>
-        /// a list contains (ValueID, ValueName) of all tags in the WINCC archive database
+        /// 返回 含（ValueID, ValueName)的元组列表
         /// </returns>
         public static List<(long ValueID, string ValueName)> FetchAllTags()
         {
@@ -90,6 +90,26 @@ namespace TestProj
                 MessageBox.Show($"读取变量列表失败: {ex.Message}", "错误");
             }
             return list;
+        }
+
+        /// <summary>
+        /// 映射变量类型
+        /// </summary>
+        /// <param name="varType"></param>
+        /// <returns></returns>
+        public static string MapVarType(int varType)
+        {
+            switch (varType)
+            {
+                case 19: return "Float";
+                case 20: return "Double";
+                case 6: return "Int16";
+                case 7: return "Int32";
+                case 8: return "UInt16";
+                case 9: return "UInt32";
+                case 11: return "Bool";
+                default: return $"Unknown({varType})";
+            }
         }
     }
 }

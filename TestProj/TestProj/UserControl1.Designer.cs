@@ -48,7 +48,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 72;
             this.dataGridView1.RowTemplate.Height = 33;
-            this.dataGridView1.Size = new System.Drawing.Size(1788, 1108);
+            this.dataGridView1.Size = new System.Drawing.Size(1788, 954);
             this.dataGridView1.TabIndex = 1;
             // 
             // DT_begin
@@ -81,7 +81,6 @@
             this.label1.Size = new System.Drawing.Size(126, 32);
             this.label1.TabIndex = 4;
             this.label1.Text = "开始时间";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -93,7 +92,6 @@
             this.label2.Size = new System.Drawing.Size(126, 32);
             this.label2.TabIndex = 5;
             this.label2.Text = "结束时间";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // searchBtn
             // 
@@ -136,7 +134,6 @@
             this.label3.Size = new System.Drawing.Size(480, 41);
             this.label3.TabIndex = 10;
             this.label3.Text = "AdvancedTableControl Demo";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // UserControl1
             // 
