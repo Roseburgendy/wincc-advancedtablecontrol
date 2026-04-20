@@ -1,0 +1,31 @@
+{
+  "DataSource": {
+    "ArchiveName": "Archive"
+  },
+  "TagMeta": [
+    {
+      "TagName": "tag1",
+      "DisplayName": "1号反应釜温度",
+      "NormalMin": 80.0,
+      "NormalMax": 95.0,
+      "DecimalPlaces": 1,
+      "Order": 1
+    },
+    {
+      "TagName": "tag2",
+      "DisplayName": "2号反应釜温度",
+      "NormalMin": 80.0,
+      "NormalMax": 95.0,
+      "DecimalPlaces": 1,
+      "Order": 2
+    },
+    {
+      "TagName": "tag3",
+      "DisplayName": "3号反应釜温度",
+      "NormalMin": 80.0,
+      "NormalMax": 95.0,
+      "DecimalPlaces": 1,
+      "Order": 3
+    }
+  ]
+}

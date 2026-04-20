@@ -64,6 +64,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigManager.cs" />
+    <Compile Include="DbManager.cs" />
+    <Compile Include="Models\TagMeta.cs" />
+    <Compile Include="TagConfigPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TagConfigPanel.Designer.cs">
+      <DependentUpon>TagConfigPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TagSelectionPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TagSelectionPanel.Designer.cs">
+      <DependentUpon>TagSelectionPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControl1.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -74,6 +88,12 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="TagConfigPanel.resx">
+      <DependentUpon>TagConfigPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TagSelectionPanel.resx">
+      <DependentUpon>TagSelectionPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControl1.resx">
       <DependentUpon>UserControl1.cs</DependentUpon>
     </EmbeddedResource>
@@ -90,11 +110,9 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="exampleconfig.json" />
+    <None Include="config.json" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
