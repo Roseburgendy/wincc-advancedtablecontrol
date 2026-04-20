@@ -98,7 +98,7 @@
             this.searchBtn.TabIndex = 6;
             this.searchBtn.Text = "搜索";
             this.searchBtn.UseVisualStyleBackColor = true;
-            this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
+            this.searchBtn.Click += new System.EventHandler(this.SearchBtn_Click);
             // 
             // TagConfigBtn
             // 
@@ -120,7 +120,7 @@
             this.selectTagBtn.TabIndex = 9;
             this.selectTagBtn.Text = "选择变量";
             this.selectTagBtn.UseVisualStyleBackColor = true;
-            this.selectTagBtn.Click += new System.EventHandler(this.selectTagBtn_Click);
+            this.selectTagBtn.Click += new System.EventHandler(this.SelectTagBtn_Click);
             // 
             // label3
             // 

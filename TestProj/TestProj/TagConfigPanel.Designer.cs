@@ -54,91 +54,82 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(27, 51);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(34, 66);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(94, 21);
+            this.label3.Size = new System.Drawing.Size(120, 27);
             this.label3.TabIndex = 4;
             this.label3.Text = "变量名称";
             // 
             // txtTagName
             // 
-            this.txtTagName.Location = new System.Drawing.Point(149, 49);
-            this.txtTagName.Margin = new System.Windows.Forms.Padding(24, 2, 2, 2);
+            this.txtTagName.Location = new System.Drawing.Point(190, 63);
+            this.txtTagName.Margin = new System.Windows.Forms.Padding(31, 3, 3, 3);
             this.txtTagName.Name = "txtTagName";
             this.txtTagName.ReadOnly = true;
-            this.txtTagName.Size = new System.Drawing.Size(219, 31);
+            this.txtTagName.Size = new System.Drawing.Size(278, 38);
             this.txtTagName.TabIndex = 5;
             // 
             // txtDisplayName
             // 
-            this.txtDisplayName.Location = new System.Drawing.Point(151, 96);
-            this.txtDisplayName.Margin = new System.Windows.Forms.Padding(2);
+            this.txtDisplayName.Location = new System.Drawing.Point(192, 123);
             this.txtDisplayName.Name = "txtDisplayName";
-            this.txtDisplayName.Size = new System.Drawing.Size(219, 31);
+            this.txtDisplayName.Size = new System.Drawing.Size(278, 38);
             this.txtDisplayName.TabIndex = 7;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(27, 96);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(34, 123);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(94, 21);
+            this.label4.Size = new System.Drawing.Size(120, 27);
             this.label4.TabIndex = 6;
             this.label4.Text = "变量别名";
             // 
             // txtDataType
             // 
-            this.txtDataType.Location = new System.Drawing.Point(151, 146);
-            this.txtDataType.Margin = new System.Windows.Forms.Padding(2);
+            this.txtDataType.Location = new System.Drawing.Point(192, 188);
             this.txtDataType.Name = "txtDataType";
-            this.txtDataType.Size = new System.Drawing.Size(219, 31);
+            this.txtDataType.Size = new System.Drawing.Size(278, 38);
             this.txtDataType.TabIndex = 9;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(27, 146);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(34, 188);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(94, 21);
+            this.label5.Size = new System.Drawing.Size(120, 27);
             this.label5.TabIndex = 8;
             this.label5.Text = "数据类型";
             // 
             // txtMax
             // 
-            this.txtMax.Location = new System.Drawing.Point(149, 300);
-            this.txtMax.Margin = new System.Windows.Forms.Padding(2);
+            this.txtMax.Location = new System.Drawing.Point(673, 389);
             this.txtMax.Name = "txtMax";
-            this.txtMax.Size = new System.Drawing.Size(219, 31);
+            this.txtMax.Size = new System.Drawing.Size(278, 38);
             this.txtMax.TabIndex = 11;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(46, 305);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Location = new System.Drawing.Point(542, 395);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(73, 21);
+            this.label6.Size = new System.Drawing.Size(93, 27);
             this.label6.TabIndex = 10;
             this.label6.Text = "上限值";
             // 
             // txtMin
             // 
-            this.txtMin.Location = new System.Drawing.Point(522, 303);
-            this.txtMin.Margin = new System.Windows.Forms.Padding(2);
+            this.txtMin.Location = new System.Drawing.Point(190, 387);
             this.txtMin.Name = "txtMin";
-            this.txtMin.Size = new System.Drawing.Size(219, 31);
+            this.txtMin.Size = new System.Drawing.Size(278, 38);
             this.txtMin.TabIndex = 13;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(412, 305);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Location = new System.Drawing.Point(50, 389);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(73, 21);
+            this.label7.Size = new System.Drawing.Size(93, 27);
             this.label7.TabIndex = 12;
             this.label7.Text = "下限值";
             // 
@@ -158,11 +149,9 @@
             this.groupBox1.Controls.Add(this.txtMax);
             this.groupBox1.Controls.Add(this.txtDataType);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Location = new System.Drawing.Point(42, 437);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Location = new System.Drawing.Point(53, 562);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(877, 385);
+            this.groupBox1.Size = new System.Drawing.Size(1116, 465);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "变量配置";
@@ -170,47 +159,41 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(27, 197);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(34, 253);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(94, 21);
+            this.label2.Size = new System.Drawing.Size(120, 27);
             this.label2.TabIndex = 16;
             this.label2.Text = "精确位数";
             // 
             // txtDecimalPlaces
             // 
-            this.txtDecimalPlaces.Location = new System.Drawing.Point(151, 197);
-            this.txtDecimalPlaces.Margin = new System.Windows.Forms.Padding(2);
+            this.txtDecimalPlaces.Location = new System.Drawing.Point(192, 253);
             this.txtDecimalPlaces.Name = "txtDecimalPlaces";
-            this.txtDecimalPlaces.Size = new System.Drawing.Size(219, 31);
+            this.txtDecimalPlaces.Size = new System.Drawing.Size(278, 38);
             this.txtDecimalPlaces.TabIndex = 17;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(69, 247);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(88, 318);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 21);
+            this.label1.Size = new System.Drawing.Size(66, 27);
             this.label1.TabIndex = 14;
             this.label1.Text = "顺序";
             // 
             // txtOrder
             // 
-            this.txtOrder.Location = new System.Drawing.Point(151, 245);
-            this.txtOrder.Margin = new System.Windows.Forms.Padding(2);
+            this.txtOrder.Location = new System.Drawing.Point(192, 315);
             this.txtOrder.Name = "txtOrder";
-            this.txtOrder.Size = new System.Drawing.Size(219, 31);
+            this.txtOrder.Size = new System.Drawing.Size(278, 38);
             this.txtOrder.TabIndex = 15;
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.dgvTags);
-            this.groupBox2.Location = new System.Drawing.Point(42, 44);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox2.Location = new System.Drawing.Point(53, 57);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox2.Size = new System.Drawing.Size(877, 376);
+            this.groupBox2.Size = new System.Drawing.Size(1116, 483);
             this.groupBox2.TabIndex = 17;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "变量列表";
@@ -221,37 +204,35 @@
             this.dgvTags.AllowUserToDeleteRows = false;
             this.dgvTags.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTags.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dgvTags.Location = new System.Drawing.Point(3, 26);
-            this.dgvTags.Margin = new System.Windows.Forms.Padding(2);
+            this.dgvTags.Location = new System.Drawing.Point(4, 33);
             this.dgvTags.Name = "dgvTags";
             this.dgvTags.RowHeadersWidth = 92;
             this.dgvTags.RowTemplate.Height = 40;
             this.dgvTags.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTags.Size = new System.Drawing.Size(869, 349);
+            this.dgvTags.Size = new System.Drawing.Size(1106, 449);
             this.dgvTags.TabIndex = 0;
             // 
             // saveConfigBtn
             // 
-            this.saveConfigBtn.Location = new System.Drawing.Point(775, 835);
-            this.saveConfigBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.saveConfigBtn.Location = new System.Drawing.Point(986, 1055);
             this.saveConfigBtn.Name = "saveConfigBtn";
-            this.saveConfigBtn.Size = new System.Drawing.Size(139, 39);
+            this.saveConfigBtn.Size = new System.Drawing.Size(177, 50);
             this.saveConfigBtn.TabIndex = 18;
             this.saveConfigBtn.Text = "保存配置";
             this.saveConfigBtn.UseVisualStyleBackColor = true;
-            this.saveConfigBtn.Click += new System.EventHandler(this.saveConfigBtn_Click_1);
+            this.saveConfigBtn.Click += new System.EventHandler(this.SaveConfigBtn_Click_1);
             // 
             // TagConfigPanel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(997, 869);
+            this.ClientSize = new System.Drawing.Size(1269, 1117);
             this.Controls.Add(this.saveConfigBtn);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "TagConfigPanel";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "变量配置";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

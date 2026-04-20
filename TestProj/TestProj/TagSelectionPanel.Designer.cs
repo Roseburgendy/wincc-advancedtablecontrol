@@ -35,33 +35,31 @@
             // tagTreeView
             // 
             this.tagTreeView.CheckBoxes = true;
-            this.tagTreeView.Location = new System.Drawing.Point(20, 9);
-            this.tagTreeView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tagTreeView.Location = new System.Drawing.Point(25, 12);
             this.tagTreeView.Name = "tagTreeView";
-            this.tagTreeView.Size = new System.Drawing.Size(582, 597);
+            this.tagTreeView.Size = new System.Drawing.Size(740, 766);
             this.tagTreeView.TabIndex = 0;
-            this.tagTreeView.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.tagTreeView_AfterCheck);
+            this.tagTreeView.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.TagTreeView_AfterCheck);
             // 
             // confirmBtn
             // 
-            this.confirmBtn.Location = new System.Drawing.Point(228, 622);
-            this.confirmBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.confirmBtn.Location = new System.Drawing.Point(290, 800);
             this.confirmBtn.Name = "confirmBtn";
-            this.confirmBtn.Size = new System.Drawing.Size(167, 44);
+            this.confirmBtn.Size = new System.Drawing.Size(213, 57);
             this.confirmBtn.TabIndex = 1;
             this.confirmBtn.Text = "保存选择";
             this.confirmBtn.UseVisualStyleBackColor = true;
-            this.confirmBtn.Click += new System.EventHandler(this.confirmBtn_Click);
+            this.confirmBtn.Click += new System.EventHandler(this.ConfirmBtn_Click);
             // 
             // TagSelectionPanel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(629, 689);
+            this.ClientSize = new System.Drawing.Size(801, 886);
             this.Controls.Add(this.confirmBtn);
             this.Controls.Add(this.tagTreeView);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "TagSelectionPanel";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "变量选择";
             this.ResumeLayout(false);
 

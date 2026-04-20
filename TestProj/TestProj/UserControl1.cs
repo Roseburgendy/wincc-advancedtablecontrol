@@ -25,7 +25,7 @@ namespace TestProj
         /// <summary>
         /// 搜索按钮点击事件
         /// </summary>
-        private void searchBtn_Click(object sender, EventArgs e)
+        private void SearchBtn_Click(object sender, EventArgs e)
         {
             if(_selectedTags == null || _selectedTags.Count == 0)
             {
@@ -99,9 +99,6 @@ namespace TestProj
                 return;
             }
             var panel = new TagConfigPanel(_selectedTags);
-            panel.Width = 1021;
-            panel.Height = 933;
-            panel.StartPosition = FormStartPosition.CenterScreen;
 
             // 关闭时检查未保存修改
             panel.FormClosing += (s, args) =>
@@ -109,13 +106,16 @@ namespace TestProj
                 if (panel.HasUnsavedChanges())
                 {
                     var result = MessageBox.Show(
-                        "有未保存的修改，是否保存？",
-                        "提示", MessageBoxButtons.OKCancel);
+                        "有未保存的修改，是否在关闭前保存？",
+                        "提示",
+                        MessageBoxButtons.YesNoCancel,
+                        MessageBoxIcon.Question);
 
-                    if (result == DialogResult.OK)
-                        panel.SaveAll();
+                    if (result == DialogResult.Yes)
+                        panel.SaveAll();          // 保存后继续关闭
                     else if (result == DialogResult.Cancel)
-                        args.Cancel = true;
+                        args.Cancel = true;       // 取消关闭，回到界面
+                                                  // No → 直接关闭，不保存
                 }
             };
 
@@ -125,12 +125,9 @@ namespace TestProj
         /// <summary>
         /// 变量选择按钮点击事件，弹出TagSelection Panel
         /// </summary>
-        private void selectTagBtn_Click(object sender, EventArgs e)
+        private void SelectTagBtn_Click(object sender, EventArgs e)
         {
             var panel = new TagSelectionPanel(_selectedTags);
-            panel.Width = 500;
-            panel.Height = 700;
-            panel.StartPosition = FormStartPosition.CenterScreen;
 
             if (panel.ShowDialog() == DialogResult.OK)
             {

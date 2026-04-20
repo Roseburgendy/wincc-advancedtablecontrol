@@ -9,7 +9,7 @@ namespace TestProj
     {
         /// <summary>
         /// 用户确认后，外部通过这个属性拿到选中的变量列表
-        /// 格式：ValueID 的字符串形式（后续用于 TAG:R 查询）
+        /// ValueName（后续用于 TAG:R 查询）
         /// </summary>
         public List<string> SelectedTags { get; private set; }
             = new List<string>();
@@ -81,13 +81,13 @@ namespace TestProj
             }
 
             // 注册勾选事件（在树建完之后注册，避免构建时触发）
-            tagTreeView.AfterCheck += tagTreeView_AfterCheck;
+            tagTreeView.AfterCheck += TagTreeView_AfterCheck;
         }
 
         /// <summary>
         /// 点击确定按钮：收集所有勾选的子节点，存入 SelectedTags
         /// </summary>
-        private void confirmBtn_Click(object sender, EventArgs e)
+        private void ConfirmBtn_Click(object sender, EventArgs e)
         {
             SelectedTags.Clear();
 
@@ -113,7 +113,7 @@ namespace TestProj
         /// - 勾选/取消父节点 → 所有子节点跟随
         /// - 勾选/取消子节点 → 更新父节点状态（全选才勾父节点）
         /// </summary>
-        private void tagTreeView_AfterCheck(object sender, TreeViewEventArgs e)
+        private void TagTreeView_AfterCheck(object sender, TreeViewEventArgs e)
         {
             // 防止父子节点互相触发形成死循环
             if (_isUpdating || e.Action == TreeViewAction.Unknown)

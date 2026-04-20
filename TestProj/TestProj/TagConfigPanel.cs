@@ -202,7 +202,7 @@ namespace TestProj
         }
 
         // 保存配置按钮
-        private void saveConfigBtn_Click_1(object sender, EventArgs e)
+        private void SaveConfigBtn_Click_1(object sender, EventArgs e)
         {
             SaveAll();
             MessageBox.Show("保存成功", "提示");
