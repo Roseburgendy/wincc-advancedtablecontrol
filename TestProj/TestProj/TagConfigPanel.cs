@@ -151,9 +151,6 @@ namespace TestProj
             if (_isSyncing) return; 
             var meta = GetSelectedMeta();
             if (meta == null) return;
-            if (_currentEditing == null) return;
-
-
             if(!_editingBackups.ContainsKey(meta.TagName))
             {
                     _editingBackups[meta.TagName] = new TagMeta
@@ -170,7 +167,7 @@ namespace TestProj
             }
             _currentEditing = meta;
             _isSyncing = true;
-            LoadToForm(_currentEditing);
+            LoadToForm(meta);
             _isSyncing = false;
         }
 
