@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.OleDb;
 using System.Linq;
 using System.Windows.Forms;
+using TestProj.Models;
 
 namespace TestProj
 {
@@ -60,21 +61,36 @@ namespace TestProj
                 if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
                 {
                     DataTable dt = ds.Tables[0];
-                    dt.Columns["Timestamp"].ReadOnly = false;
 
+                    var dbTags = DbManager.FetchAllTags();
+                    var idToName = dbTags.ToDictionary(t => t.ValueID, t => t.ValueName);
+
+                    dt.Columns.Add("TagName", typeof(string));
+                    // tagname
+                    foreach(DataRow row in dt.Rows)
+                    {
+                       long vid = Convert.ToInt64(row["ValueID"]);
+                       row["TagName"] = idToName.TryGetValue(vid, out string name) ? name : vid.ToString();
+                    }
+                    // 日期时间
+                    dt.Columns["Timestamp"].ReadOnly = false;
                     foreach (DataRow row in dt.Rows)
                     {
                         if (row["Timestamp"] != DBNull.Value)
                         {
-                            DateTime utcTime = (DateTime)row["Timestamp"];
                             // 将 UTC 时间转换为本地时间（北京时间）
-                            row["Timestamp"] = utcTime.ToLocalTime();
+                            row["Timestamp"] = ((DateTime)row["Timestamp"]).ToLocalTime();
                         }
                     }
+                    DataTable wide = PivotToWide(dt, _selectedTags);
+
+                    foreach(var col in new[] {"Quality", "Flags","ValueID"})
+                        if(wide.Columns.Contains(col))
+                            wide.Columns.Remove(col);
 
                     // 绑定到 DataGridView 显示结果
-                    dataGridView1.DataSource = dt;
-                    dataGridView1.Columns["Timestamp"].DefaultCellStyle.Format = "yyyy-MM-dd HH:mm:ss.fff";
+                    dataGridView1.DataSource = wide;
+                    dataGridView1.Columns["Timestamp"].DefaultCellStyle.Format = "yyyy-MM-dd HH:mm:ss";
                 }
                 else
                 {
@@ -88,6 +104,48 @@ namespace TestProj
             
         }
 
+        private DataTable PivotToWide(DataTable raw, List<string> tags)
+        {
+            var wide = new DataTable();
+            // 添加时间戳列
+            wide.Columns.Add("Timestamp", typeof(DateTime));
+
+            var allMeta = ConfigManager.Config?.TagMeta ?? new List<TagMeta>();
+            var nameMap = allMeta.ToDictionary(t => t.TagName, t=> t.DisplayName);
+
+            // 添加变量列
+            foreach (var tag in tags)
+            {
+                // 有displayName就用，没有就用TagName
+                string colName = nameMap.TryGetValue(tag, out string display) ? display : tag;
+                wide.Columns.Add(colName, typeof(double));
+            }
+
+            // 从TagName - ColName 映射
+            var tagToCol = tags.ToDictionary(tag => tag,
+                tag => nameMap.TryGetValue(tag, out string display) ? display : tag);
+
+            var groups = raw.AsEnumerable().GroupBy(r => r["Timestamp"]);
+
+            // pivot to wide table
+            foreach(var group in groups)
+            {
+                var row = wide.NewRow();
+                row["Timestamp"] = group.Key;
+                foreach(var item in group)
+                {
+                    string tagName = item["TagName"].ToString();
+                    if (tagToCol.TryGetValue(tagName, out string colName) 
+                        && row["RealValue"] != DBNull.Value)
+                    {
+                        if(double.TryParse(item["RealValue"].ToString(), out double value))
+                            row[colName] = value;
+                    }
+                }
+                wide.Rows.Add(row);
+            }
+            return wide.DefaultView.ToTable();
+        }
         /// <summary>
         /// 变量配置按钮点击事件，弹出TagConfig Panel
         /// </summary>
