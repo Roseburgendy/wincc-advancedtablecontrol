@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace TestProj.Models
@@ -5,10 +6,9 @@ namespace TestProj.Models
     // JSON 里 tagMeta 数组的单项
     public class TagMeta
     {
-        public long ValueID { get; set; }
         public string TagName { get; set; }
         public string DisplayName { get; set; }
-        public string DataType { get; set; }  // ← 新增，从SQL读
+        [JsonIgnore] public string DataType { get; set; }
         public double NormalMin { get; set; }
         public double NormalMax { get; set; }
         public int DecimalPlaces { get; set; }=2;

@@ -46,6 +46,13 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvTags = new System.Windows.Forms.DataGridView();
             this.saveConfigBtn = new System.Windows.Forms.Button();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTags)).BeginInit();
@@ -89,6 +96,7 @@
             // 
             this.txtDataType.Location = new System.Drawing.Point(192, 188);
             this.txtDataType.Name = "txtDataType";
+            this.txtDataType.ReadOnly = true;
             this.txtDataType.Size = new System.Drawing.Size(278, 38);
             this.txtDataType.TabIndex = 9;
             // 
@@ -149,9 +157,9 @@
             this.groupBox1.Controls.Add(this.txtMax);
             this.groupBox1.Controls.Add(this.txtDataType);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Location = new System.Drawing.Point(53, 562);
+            this.groupBox1.Location = new System.Drawing.Point(53, 602);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1116, 465);
+            this.groupBox1.Size = new System.Drawing.Size(1322, 492);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "变量配置";
@@ -191,9 +199,9 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.dgvTags);
-            this.groupBox2.Location = new System.Drawing.Point(53, 57);
+            this.groupBox2.Location = new System.Drawing.Point(53, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1116, 483);
+            this.groupBox2.Size = new System.Drawing.Size(1580, 571);
             this.groupBox2.TabIndex = 17;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "变量列表";
@@ -203,18 +211,26 @@
             this.dgvTags.AllowUserToAddRows = false;
             this.dgvTags.AllowUserToDeleteRows = false;
             this.dgvTags.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTags.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column5,
+            this.Column3,
+            this.Column4,
+            this.Column6,
+            this.Column7});
             this.dgvTags.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgvTags.Location = new System.Drawing.Point(4, 33);
             this.dgvTags.Name = "dgvTags";
             this.dgvTags.RowHeadersWidth = 92;
             this.dgvTags.RowTemplate.Height = 40;
             this.dgvTags.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTags.Size = new System.Drawing.Size(1106, 449);
+            this.dgvTags.Size = new System.Drawing.Size(1570, 532);
             this.dgvTags.TabIndex = 0;
             // 
             // saveConfigBtn
             // 
-            this.saveConfigBtn.Location = new System.Drawing.Point(986, 1055);
+            this.saveConfigBtn.Location = new System.Drawing.Point(1430, 1046);
             this.saveConfigBtn.Name = "saveConfigBtn";
             this.saveConfigBtn.Size = new System.Drawing.Size(177, 50);
             this.saveConfigBtn.TabIndex = 18;
@@ -222,12 +238,72 @@
             this.saveConfigBtn.UseVisualStyleBackColor = true;
             this.saveConfigBtn.Click += new System.EventHandler(this.SaveConfigBtn_Click_1);
             // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "TagName";
+            this.Column1.HeaderText = "变量名称";
+            this.Column1.MinimumWidth = 11;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 225;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "DisplayName";
+            this.Column2.HeaderText = "别名";
+            this.Column2.MinimumWidth = 11;
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 225;
+            // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "DecimalPlaces";
+            this.Column5.HeaderText = "小数位";
+            this.Column5.MinimumWidth = 11;
+            this.Column5.Name = "Column5";
+            this.Column5.Width = 225;
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "DataType";
+            this.Column3.HeaderText = "数据类型";
+            this.Column3.MinimumWidth = 11;
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 225;
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "Order";
+            this.Column4.HeaderText = "顺序";
+            this.Column4.MinimumWidth = 11;
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Width = 225;
+            // 
+            // Column6
+            // 
+            this.Column6.DataPropertyName = "NormalMax";
+            this.Column6.HeaderText = "上限值";
+            this.Column6.MinimumWidth = 11;
+            this.Column6.Name = "Column6";
+            this.Column6.Width = 225;
+            // 
+            // Column7
+            // 
+            this.Column7.DataPropertyName = "NormalMin";
+            this.Column7.HeaderText = "下限值";
+            this.Column7.MinimumWidth = 11;
+            this.Column7.Name = "Column7";
+            this.Column7.Width = 225;
+            // 
             // TagConfigPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1269, 1117);
+            this.ClientSize = new System.Drawing.Size(1663, 1192);
             this.Controls.Add(this.saveConfigBtn);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -261,5 +337,12 @@
         private System.Windows.Forms.TextBox txtOrder;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtDecimalPlaces;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
     }
 }

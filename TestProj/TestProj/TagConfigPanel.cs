@@ -10,19 +10,18 @@ namespace TestProj
 {
     public partial class TagConfigPanel : Form
     {
-        private List<string> _selectedTags;
+        private readonly List<string> _selectedTags;
         private BindingList<TagMeta> _bindingList;
         private bool _isDirty = false;
-        private bool _isSyncing = false; // 防止双向同步时互相触发
+        private bool _isSyncing = false;
         public Dictionary<string,TagMeta> _editingBackups = new Dictionary<string, TagMeta>(); // 备份
         private TagMeta _currentEditing;
         public TagConfigPanel(List<string> selectedTags)
         {
             InitializeComponent();
             _selectedTags = selectedTags;
-            InitGrid();
             LoadData();
-
+            dgvTags.CellValueChanged += DgvTags_CellValueChanged;
             // 选中行 → 填入下方表单
             dgvTags.SelectionChanged += DgvTags_SelectionChanged;
 
@@ -34,59 +33,6 @@ namespace TestProj
             txtMin.TextChanged += FormField_Changed;
         }
 
-        // 初始化 DataGridView
-        private void InitGrid()
-        {
-            dgvTags.Columns.Clear();
-
-            dgvTags.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                HeaderText = "变量名称",
-                DataPropertyName = "TagName",
-                Width = 180,
-                ReadOnly = true
-            });
-            dgvTags.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                HeaderText = "别名",
-                DataPropertyName = "DisplayName",
-                Width = 140
-            });
-            dgvTags.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                HeaderText = "数据类型",
-                DataPropertyName = "DataType",
-                Width = 80,
-                ReadOnly = true
-            });
-            dgvTags.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                HeaderText = "小数位",
-                DataPropertyName = "DecimalPlaces",
-                Width = 60
-            });
-            dgvTags.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                HeaderText = "顺序",
-                DataPropertyName = "Order",
-                Width = 50
-            });
-            dgvTags.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                HeaderText = "下限值",
-                DataPropertyName = "NormalMin",
-                Width = 70
-            });
-            dgvTags.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                HeaderText = "上限值",
-                DataPropertyName = "NormalMax",
-                Width = 70
-            });
-
-            // 表格直接编辑后同步到下方表单
-            dgvTags.CellValueChanged += DgvTags_CellValueChanged;
-        }
 
         // 加载数据
         public void LoadData()
@@ -96,22 +42,17 @@ namespace TestProj
             // 同时从数据库拿 DataType
             var dbTags = DbManager.FetchAllTags();
             var dbDict = dbTags.ToDictionary(
-                t => t.ValueName.Contains("\\")
-                    ? t.ValueName.Split('\\').Last()
-                    : t.ValueName,
+                t => t.ValueName,
                 t => t.DataType); // tagName → DataType
 
             var toShow = new List<TagMeta>();
             foreach (var fullName in _selectedTags)
             {
-                string tagName = fullName.Contains("\\")
-                    ? fullName.Split('\\').Last() : fullName; //to get "tag1" in Archive/tag1
-
                 var existing = allMeta.FirstOrDefault(
-                    t => t.TagName == tagName); // find existing config in json
+                    t => t.TagName == fullName); // find existing config in json
 
                 // 取数据库里的 DataType
-                dbDict.TryGetValue(tagName, out string dataType);
+                dbDict.TryGetValue(fullName, out string dataType);
 
                 if (existing != null)
                 {
@@ -123,8 +64,8 @@ namespace TestProj
                 {
                     toShow.Add(new TagMeta
                     {
-                        TagName = tagName,
-                        DisplayName = tagName,
+                        TagName = fullName,
+                        DisplayName = fullName,
                         DataType = dataType ?? "",
                         NormalMin = 0,
                         NormalMax = 100,
@@ -141,6 +82,7 @@ namespace TestProj
             if (dgvTags.Rows.Count > 0)
                 dgvTags.Rows[0].Selected = true;
         }
+
         /// <summary>
         /// 选中表格中一行
         /// </summary>
@@ -151,6 +93,7 @@ namespace TestProj
             if (_isSyncing) return; 
             var meta = GetSelectedMeta();
             if (meta == null) return;
+            // 将当前行存档
             if(!_editingBackups.ContainsKey(meta.TagName))
             {
                     _editingBackups[meta.TagName] = new TagMeta
@@ -250,7 +193,6 @@ namespace TestProj
             txtMax.Text = meta.NormalMax.ToString();
             txtMin.Text = meta.NormalMin.ToString();
         }
-        // 把编辑结果合并回全量配置并写入 JSON
         public void SaveAll()
         {
             var allMeta = ConfigManager.Config?.TagMeta
