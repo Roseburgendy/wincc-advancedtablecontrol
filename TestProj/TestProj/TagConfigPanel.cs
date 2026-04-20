@@ -14,7 +14,8 @@ namespace TestProj
         private BindingList<TagMeta> _bindingList;
         private bool _isDirty = false;
         private bool _isSyncing = false; // 防止双向同步时互相触发
-
+        public Dictionary<string,TagMeta> _editingBackups = new Dictionary<string, TagMeta>(); // 备份
+        private TagMeta _currentEditing;
         public TagConfigPanel(List<string> selectedTags)
         {
             InitializeComponent();
@@ -33,7 +34,7 @@ namespace TestProj
             txtMin.TextChanged += FormField_Changed;
         }
 
-        // 初始化 DataGridView 列
+        // 初始化 DataGridView
         private void InitGrid()
         {
             dgvTags.Columns.Clear();
@@ -87,7 +88,7 @@ namespace TestProj
             dgvTags.CellValueChanged += DgvTags_CellValueChanged;
         }
 
-        // 加载数据：已选变量 + JSON 已有配置合并
+        // 加载数据
         public void LoadData()
         {
             var allMeta = ConfigManager.Config?.TagMeta ?? new List<TagMeta>();
@@ -140,26 +141,52 @@ namespace TestProj
             if (dgvTags.Rows.Count > 0)
                 dgvTags.Rows[0].Selected = true;
         }
-
-        // 选中行 → 填入下方表单
+        /// <summary>
+        /// 选中表格中一行
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DgvTags_SelectionChanged(object sender, EventArgs e)
         {
-            if (_isSyncing) return;
+            if (_isSyncing) return; 
             var meta = GetSelectedMeta();
             if (meta == null) return;
+            if (_currentEditing == null) return;
 
+
+            if(!_editingBackups.ContainsKey(meta.TagName))
+            {
+                    _editingBackups[meta.TagName] = new TagMeta
+                    {
+                        TagName = meta.TagName,
+                        DisplayName = meta.DisplayName,
+                        DataType = meta.DataType,
+                        NormalMin = meta.NormalMin,
+                        NormalMax = meta.NormalMax,
+                        DecimalPlaces = meta.DecimalPlaces,
+                        Order = meta.Order
+                    };
+
+            }
+            _currentEditing = meta;
             _isSyncing = true;
-            txtTagName.Text = meta.TagName;
-            txtDisplayName.Text = meta.DisplayName;
-            txtDataType.Text = meta.DataType;
-            txtDecimalPlaces.Text = meta.DecimalPlaces.ToString();
-            txtOrder.Text = meta.Order.ToString();
-            txtMax.Text = meta.NormalMax.ToString();
-            txtMin.Text = meta.NormalMin.ToString();
+            LoadToForm(_currentEditing);
             _isSyncing = false;
         }
 
-        // 下方表单修改 → 同步回 DataGridView 选中行
+        // 保存配置按钮
+        private void SaveConfigBtn_Click_1(object sender, EventArgs e)
+        {
+            SaveAll();
+            MessageBox.Show("保存成功", "提示");
+            _editingBackups.Clear();
+        }
+
+        /// <summary>
+        /// 下方表单修改订阅事件
+        /// </summary>
+        /// <param name="sender">The source of the event, typically a form field control.</param>
+        /// <param name="e">An EventArgs object that contains the event data.</param>
         private void FormField_Changed(object sender, EventArgs e)
         {
             if (_isSyncing) return;
@@ -182,7 +209,11 @@ namespace TestProj
             MarkDirty();
         }
 
-        // DataGridView 直接编辑后同步到下方表单
+       /// <summary>
+       /// 表格数据修改同步下方表单
+       /// </summary>
+       /// <param name="sender"></param>
+       /// <param name="e"></param>
         private void DgvTags_CellValueChanged(object sender,
             DataGridViewCellEventArgs e)
         {
@@ -191,6 +222,7 @@ namespace TestProj
             MarkDirty();
         }
 
+        #region Utilities
         // 标记有未保存修改，当前行变黄
         private void MarkDirty()
         {
@@ -200,15 +232,27 @@ namespace TestProj
                 dgvTags.Rows[idx].DefaultCellStyle.BackColor =
                     Color.LightYellow;
         }
-
-        // 保存配置按钮
-        private void SaveConfigBtn_Click_1(object sender, EventArgs e)
+        private TagMeta GetSelectedMeta()
         {
-            SaveAll();
-            MessageBox.Show("保存成功", "提示");
+            if (dgvTags.CurrentRow?.DataBoundItem is TagMeta meta)
+                return meta;
+            return null;
         }
-        public bool HasUnsavedChanges() => _isDirty;
 
+        #endregion
+
+        #region 外部接口
+        public bool HasUnsavedChanges() => _isDirty;
+        public void LoadToForm(TagMeta meta)
+        {
+            txtTagName.Text = meta.TagName;
+            txtDisplayName.Text = meta.DisplayName;
+            txtDataType.Text = meta.DataType;
+            txtDecimalPlaces.Text = meta.DecimalPlaces.ToString();
+            txtOrder.Text = meta.Order.ToString();
+            txtMax.Text = meta.NormalMax.ToString();
+            txtMin.Text = meta.NormalMin.ToString();
+        }
         // 把编辑结果合并回全量配置并写入 JSON
         public void SaveAll()
         {
@@ -243,12 +287,31 @@ namespace TestProj
                 row.DefaultCellStyle.BackColor = Color.Empty;
         }
 
-        private TagMeta GetSelectedMeta()
+        public void DiscardAllChanges()
         {
-            if (dgvTags.CurrentRow?.DataBoundItem is TagMeta meta)
-                return meta;
-            return null;
+            foreach(var backup in _editingBackups)
+            {
+                var meta = _bindingList.FirstOrDefault(t => t.TagName == backup.Key);
+                if (meta != null)
+                {
+                    meta.DisplayName = backup.Value.DisplayName;
+                    meta.DataType = backup.Value.DataType;
+                    meta.NormalMin = backup.Value.NormalMin;
+                    meta.NormalMax = backup.Value.NormalMax;
+                    meta.DecimalPlaces = backup.Value.DecimalPlaces;
+                    meta.Order = backup.Value.Order;
+                }
+            }
+
+            _editingBackups.Clear();
+
+            dgvTags.Refresh();
+            if (_currentEditing != null)
+             {
+                    LoadToForm(_currentEditing);
+            }
         }
- 
+        #endregion
+
     }
 }

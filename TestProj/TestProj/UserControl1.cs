@@ -115,7 +115,8 @@ namespace TestProj
                         panel.SaveAll();          // 保存后继续关闭
                     else if (result == DialogResult.Cancel)
                         args.Cancel = true;       // 取消关闭，回到界面
-                                                  // No → 直接关闭，不保存
+                    else if (result == DialogResult.No)
+                        panel.DiscardAllChanges();
                 }
             };
 
