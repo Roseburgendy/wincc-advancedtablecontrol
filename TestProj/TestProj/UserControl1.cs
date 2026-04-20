@@ -91,6 +91,13 @@ namespace TestProj
                     // 绑定到 DataGridView 显示结果
                     dataGridView1.DataSource = wide;
                     dataGridView1.Columns["Timestamp"].DefaultCellStyle.Format = "yyyy-MM-dd HH:mm:ss";
+                    foreach (DataGridViewColumn col in dataGridView1.Columns)
+                    {
+                        if (col.Name == "Timestamp")
+                            col.Width = 300;
+                        else
+                            col.Width = 100; // 数据列统一宽度
+                    }
                 }
                 else
                 {
@@ -136,7 +143,7 @@ namespace TestProj
                 {
                     string tagName = item["TagName"].ToString();
                     if (tagToCol.TryGetValue(tagName, out string colName) 
-                        && row["RealValue"] != DBNull.Value)
+                        && item["RealValue"] != DBNull.Value)
                     {
                         if(double.TryParse(item["RealValue"].ToString(), out double value))
                             row[colName] = value;
