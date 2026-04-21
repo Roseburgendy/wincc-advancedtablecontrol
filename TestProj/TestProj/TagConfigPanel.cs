@@ -67,8 +67,8 @@ namespace TestProj
                         TagName = fullName,
                         DisplayName = fullName,
                         DataType = dataType ?? "",
-                        NormalMin = 0,
-                        NormalMax = 100,
+                        NormalMin = null,
+                        NormalMax = null,
                         DecimalPlaces = 2,
                         Order = toShow.Count + 1
                     });

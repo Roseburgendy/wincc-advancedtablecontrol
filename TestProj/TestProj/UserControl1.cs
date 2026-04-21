@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using TestProj.Models;
@@ -17,6 +18,7 @@ namespace TestProj
         /// 存储已选择的变量,format: <ArchiveName>//<TagName>
         /// </summary>
         private List<string> _selectedTags = new List<string>();
+        private List<TagMeta> _tagMetaList = new List<TagMeta>();
         public UserControl1()
         {
             InitializeComponent();
@@ -84,13 +86,19 @@ namespace TestProj
                     }
                     DataTable wide = PivotToWide(dt, _selectedTags);
 
+                    // 删除不用的列
                     foreach(var col in new[] {"Quality", "Flags","ValueID"})
                         if(wide.Columns.Contains(col))
                             wide.Columns.Remove(col);
 
+                    _tagMetaList = ConfigManager.Config?.TagMeta ??new List<TagMeta>();
                     // 绑定到 DataGridView 显示结果
                     dataGridView1.DataSource = wide;
                     dataGridView1.Columns["Timestamp"].DefaultCellStyle.Format = "yyyy-MM-dd HH:mm:ss";
+
+                    dataGridView1.CellFormatting -= DataGridView1_CellFormatting;
+                    dataGridView1.CellFormatting += DataGridView1_CellFormatting;
+
                 }
                 else
                 {
@@ -104,12 +112,48 @@ namespace TestProj
             
         }
 
+        private void DataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+            string colName = dataGridView1.Columns[e.ColumnIndex].Name;
+            if (colName == "Timestamp") return;
+            if(e.Value == null || e.Value == DBNull.Value) return;
+
+            var meta = _tagMetaList.FirstOrDefault(t => t.DisplayName == colName
+            || t.TagName == colName);
+
+            if(!double.TryParse(e.Value.ToString(), out double val)) return;
+
+            // 超限定义
+            bool outOfRange = (meta.NormalMin.HasValue && val < meta.NormalMin.Value)||
+               (meta.NormalMax.HasValue && val > meta.NormalMax.Value);
+
+            // 如果超限，字体变红加粗，否则恢复默认
+            if (outOfRange)
+            {
+                e.CellStyle.ForeColor = Color.Red;
+                e.CellStyle.Font = new Font(dataGridView1.Font, FontStyle.Bold);
+
+            }
+            else
+            {
+                e.CellStyle.ForeColor = dataGridView1.DefaultCellStyle.ForeColor;
+                e.CellStyle.Font = dataGridView1.Font;
+            }
+        }
+
+        /// <summary>
+        /// 将原本OLEDB自带数据源格式转换成以时间戳为行，变量为列的宽表格式，方便在DataGridView中显示
+        /// </summary>
+        /// <param name="raw"> 自带数据源</param>
+        /// <param name="tags"> 变量信息</param>
+        /// <returns></returns>
         private DataTable PivotToWide(DataTable raw, List<string> tags)
         {
             var wide = new DataTable();
+
             // 添加时间戳列
             wide.Columns.Add("Timestamp", typeof(DateTime));
-
             var allMeta = ConfigManager.Config?.TagMeta ?? new List<TagMeta>();
             var nameMap = allMeta.ToDictionary(t => t.TagName, t=> t.DisplayName);
 

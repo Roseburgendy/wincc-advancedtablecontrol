@@ -9,8 +9,8 @@ namespace TestProj.Models
         public string TagName { get; set; }
         public string DisplayName { get; set; }
         [JsonIgnore] public string DataType { get; set; }
-        public double NormalMin { get; set; }
-        public double NormalMax { get; set; }
+        public double? NormalMin { get; set; }
+        public double? NormalMax { get; set; }
         public int DecimalPlaces { get; set; }=2;
         public int Order { get; set; }
     }
