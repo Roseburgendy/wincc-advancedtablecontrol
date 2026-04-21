@@ -169,8 +169,15 @@ namespace TestProj
             var allMeta = ConfigManager.Config?.TagMeta ?? new List<TagMeta>();
             var nameMap = allMeta.ToDictionary(t => t.TagName, t=> t.DisplayName);
 
+            var sortedTags = tags.OrderBy(t => 
+            {
+                var meta = allMeta.FirstOrDefault(m => m.TagName == t);
+                return meta != null ? meta.Order : int.MaxValue;
+            }).ToList();
+
+
             // 添加变量列
-            foreach (var tag in tags)
+            foreach (var tag in sortedTags)
             {
                 // 有displayName就用，没有就用TagName
                 string colName = nameMap.TryGetValue(tag, out string display) ? display : tag;
@@ -178,7 +185,7 @@ namespace TestProj
             }
 
             // 从TagName - ColName 映射
-            var tagToCol = tags.ToDictionary(tag => tag,
+            var tagToCol = sortedTags.ToDictionary(tag => tag,
                 tag => nameMap.TryGetValue(tag, out string display) ? display : tag);
 
             var groups = raw.AsEnumerable().GroupBy(r => r["Timestamp"]);

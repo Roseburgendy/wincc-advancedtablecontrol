@@ -45,7 +45,6 @@
             this.txtOrder = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvTags = new System.Windows.Forms.DataGridView();
-            this.saveConfigBtn = new System.Windows.Forms.Button();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,6 +52,7 @@
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.saveConfigBtn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTags)).BeginInit();
@@ -208,6 +208,7 @@
             // 
             // dgvTags
             // 
+            this.dgvTags.AllowDrop = true;
             this.dgvTags.AllowUserToAddRows = false;
             this.dgvTags.AllowUserToDeleteRows = false;
             this.dgvTags.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -227,16 +228,6 @@
             this.dgvTags.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvTags.Size = new System.Drawing.Size(1570, 532);
             this.dgvTags.TabIndex = 0;
-            // 
-            // saveConfigBtn
-            // 
-            this.saveConfigBtn.Location = new System.Drawing.Point(1430, 1046);
-            this.saveConfigBtn.Name = "saveConfigBtn";
-            this.saveConfigBtn.Size = new System.Drawing.Size(177, 50);
-            this.saveConfigBtn.TabIndex = 18;
-            this.saveConfigBtn.Text = "保存配置";
-            this.saveConfigBtn.UseVisualStyleBackColor = true;
-            this.saveConfigBtn.Click += new System.EventHandler(this.SaveConfigBtn_Click_1);
             // 
             // Column1
             // 
@@ -297,6 +288,16 @@
             this.Column7.MinimumWidth = 11;
             this.Column7.Name = "Column7";
             this.Column7.Width = 225;
+            // 
+            // saveConfigBtn
+            // 
+            this.saveConfigBtn.Location = new System.Drawing.Point(1430, 1046);
+            this.saveConfigBtn.Name = "saveConfigBtn";
+            this.saveConfigBtn.Size = new System.Drawing.Size(177, 50);
+            this.saveConfigBtn.TabIndex = 18;
+            this.saveConfigBtn.Text = "保存配置";
+            this.saveConfigBtn.UseVisualStyleBackColor = true;
+            this.saveConfigBtn.Click += new System.EventHandler(this.SaveConfigBtn_Click_1);
             // 
             // TagConfigPanel
             // 
