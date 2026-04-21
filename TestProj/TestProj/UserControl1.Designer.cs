@@ -41,25 +41,26 @@
             this.BtnToday = new System.Windows.Forms.Button();
             this.BtnThisWeek = new System.Windows.Forms.Button();
             this.BtnThisMonth = new System.Windows.Forms.Button();
+            this.ExportExcelBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(66, 270);
+            this.dataGridView1.Location = new System.Drawing.Point(255, 270);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 72;
             this.dataGridView1.RowTemplate.Height = 33;
-            this.dataGridView1.Size = new System.Drawing.Size(1788, 954);
+            this.dataGridView1.Size = new System.Drawing.Size(1599, 954);
             this.dataGridView1.TabIndex = 1;
             // 
             // DT_begin
             // 
             this.DT_begin.CustomFormat = "yyyy-MM-dd HH:mm:ss";
             this.DT_begin.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DT_begin.Location = new System.Drawing.Point(258, 125);
+            this.DT_begin.Location = new System.Drawing.Point(278, 133);
             this.DT_begin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.DT_begin.Name = "DT_begin";
             this.DT_begin.Size = new System.Drawing.Size(365, 38);
@@ -69,7 +70,7 @@
             // 
             this.DT_end.CustomFormat = "yyyy-MM-dd HH:mm:ss";
             this.DT_end.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DT_end.Location = new System.Drawing.Point(258, 171);
+            this.DT_end.Location = new System.Drawing.Point(278, 179);
             this.DT_end.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.DT_end.Name = "DT_end";
             this.DT_end.Size = new System.Drawing.Size(365, 38);
@@ -79,7 +80,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial", 9F);
-            this.label1.Location = new System.Drawing.Point(112, 125);
+            this.label1.Location = new System.Drawing.Point(132, 133);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(126, 32);
@@ -90,7 +91,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 9F);
-            this.label2.Location = new System.Drawing.Point(112, 172);
+            this.label2.Location = new System.Drawing.Point(132, 180);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(126, 32);
@@ -100,7 +101,7 @@
             // searchBtn
             // 
             this.searchBtn.Font = new System.Drawing.Font("Arial", 9F);
-            this.searchBtn.Location = new System.Drawing.Point(1613, 153);
+            this.searchBtn.Location = new System.Drawing.Point(1602, 133);
             this.searchBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.searchBtn.Name = "searchBtn";
             this.searchBtn.Size = new System.Drawing.Size(241, 71);
@@ -111,9 +112,9 @@
             // 
             // TagConfigBtn
             // 
-            this.TagConfigBtn.Location = new System.Drawing.Point(1300, 56);
+            this.TagConfigBtn.Location = new System.Drawing.Point(1401, 138);
             this.TagConfigBtn.Name = "TagConfigBtn";
-            this.TagConfigBtn.Size = new System.Drawing.Size(241, 71);
+            this.TagConfigBtn.Size = new System.Drawing.Size(166, 60);
             this.TagConfigBtn.TabIndex = 8;
             this.TagConfigBtn.Text = "变量配置";
             this.TagConfigBtn.UseVisualStyleBackColor = true;
@@ -121,9 +122,9 @@
             // 
             // selectTagBtn
             // 
-            this.selectTagBtn.Location = new System.Drawing.Point(1036, 56);
+            this.selectTagBtn.Location = new System.Drawing.Point(1401, 68);
             this.selectTagBtn.Name = "selectTagBtn";
-            this.selectTagBtn.Size = new System.Drawing.Size(241, 71);
+            this.selectTagBtn.Size = new System.Drawing.Size(166, 60);
             this.selectTagBtn.TabIndex = 9;
             this.selectTagBtn.Text = "选择变量";
             this.selectTagBtn.UseVisualStyleBackColor = true;
@@ -142,7 +143,7 @@
             // lblSelectedTags
             // 
             this.lblSelectedTags.AutoSize = true;
-            this.lblSelectedTags.Location = new System.Drawing.Point(722, 67);
+            this.lblSelectedTags.Location = new System.Drawing.Point(1077, 78);
             this.lblSelectedTags.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSelectedTags.Name = "lblSelectedTags";
             this.lblSelectedTags.Size = new System.Drawing.Size(278, 27);
@@ -151,9 +152,9 @@
             // 
             // BtnToday
             // 
-            this.BtnToday.Location = new System.Drawing.Point(720, 171);
+            this.BtnToday.Location = new System.Drawing.Point(53, 292);
             this.BtnToday.Name = "BtnToday";
-            this.BtnToday.Size = new System.Drawing.Size(174, 60);
+            this.BtnToday.Size = new System.Drawing.Size(166, 60);
             this.BtnToday.TabIndex = 12;
             this.BtnToday.Text = "今日";
             this.BtnToday.UseVisualStyleBackColor = true;
@@ -161,9 +162,9 @@
             // 
             // BtnThisWeek
             // 
-            this.BtnThisWeek.Location = new System.Drawing.Point(941, 171);
+            this.BtnThisWeek.Location = new System.Drawing.Point(53, 379);
             this.BtnThisWeek.Name = "BtnThisWeek";
-            this.BtnThisWeek.Size = new System.Drawing.Size(186, 60);
+            this.BtnThisWeek.Size = new System.Drawing.Size(166, 60);
             this.BtnThisWeek.TabIndex = 13;
             this.BtnThisWeek.Text = "本周";
             this.BtnThisWeek.UseVisualStyleBackColor = true;
@@ -171,7 +172,7 @@
             // 
             // BtnThisMonth
             // 
-            this.BtnThisMonth.Location = new System.Drawing.Point(1178, 171);
+            this.BtnThisMonth.Location = new System.Drawing.Point(53, 467);
             this.BtnThisMonth.Name = "BtnThisMonth";
             this.BtnThisMonth.Size = new System.Drawing.Size(166, 60);
             this.BtnThisMonth.TabIndex = 14;
@@ -179,10 +180,22 @@
             this.BtnThisMonth.UseVisualStyleBackColor = true;
             this.BtnThisMonth.Click += new System.EventHandler(this.BtnThisMonth_Click);
             // 
+            // ExportExcelBtn
+            // 
+            this.ExportExcelBtn.Font = new System.Drawing.Font("SimSun", 7F);
+            this.ExportExcelBtn.Location = new System.Drawing.Point(53, 560);
+            this.ExportExcelBtn.Name = "ExportExcelBtn";
+            this.ExportExcelBtn.Size = new System.Drawing.Size(166, 60);
+            this.ExportExcelBtn.TabIndex = 15;
+            this.ExportExcelBtn.Text = "导出到EXCEL";
+            this.ExportExcelBtn.UseVisualStyleBackColor = true;
+            this.ExportExcelBtn.Click += new System.EventHandler(this.ExportExcelBtn_Click);
+            // 
             // UserControl1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.ExportExcelBtn);
             this.Controls.Add(this.BtnThisMonth);
             this.Controls.Add(this.BtnThisWeek);
             this.Controls.Add(this.BtnToday);
@@ -219,5 +232,6 @@
         private System.Windows.Forms.Button BtnToday;
         private System.Windows.Forms.Button BtnThisWeek;
         private System.Windows.Forms.Button BtnThisMonth;
+        private System.Windows.Forms.Button ExportExcelBtn;
     }
 }

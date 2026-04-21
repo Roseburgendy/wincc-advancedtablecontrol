@@ -1,5 +1,6 @@
 ﻿using CCHMIRUNTIME;
 using Newtonsoft.Json;
+using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,7 +10,6 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using TestProj.Models;
-
 namespace TestProj
 {
     public partial class UserControl1: UserControl
@@ -286,6 +286,109 @@ namespace TestProj
         {
             DT_begin.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
             DT_end.Value = DateTime.Today.AddDays(1).AddSeconds(-1);
+        }
+
+        private void ExportExcelBtn_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.DataSource == null)
+            {
+                MessageBox.Show("请先查询数据", "提示");
+                return;
+            }
+
+            using (var dlg = new SaveFileDialog())
+            {
+                dlg.Filter = "Excel 文件|*.xlsx";
+                dlg.FileName = $"报表_{DateTime.Now:yyyyMMdd_HHmmss}";
+                if (dlg.ShowDialog() != DialogResult.OK) return;
+
+                ExportToExcel(dlg.FileName);
+                MessageBox.Show("导出成功", "提示");
+            }
+        }
+        private void ExportToExcel(string filePath)
+        {
+            var dt = (dataGridView1.DataSource as DataTable);
+            if (dt == null) return;
+
+            var cfg = ConfigManager.Config;
+
+            using (var package = new ExcelPackage())
+            {
+                var ws = package.Workbook.Worksheets.Add("数据报表");
+
+                // ── 抬头 ──
+                int headerRow = 1;
+                ws.Cells[headerRow, 1].Value = cfg?.CompanyName ?? "";
+                ws.Cells[headerRow, 1].Style.Font.Bold = true;
+                ws.Cells[headerRow, 1].Style.Font.Size = 14;
+                ws.Cells[headerRow, 1, headerRow, dt.Columns.Count].Merge = true;
+                ws.Cells[headerRow, 1].Style.HorizontalAlignment =
+                    OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+
+                ws.Cells[headerRow + 1, 1].Value = $"导出时间：{DateTime.Now:yyyy-MM-dd HH:mm:ss}";
+                ws.Cells[headerRow + 1, 1].Style.Font.Italic = true;
+
+                // ── 列标题 ──
+                int colHeaderRow = headerRow + 3;
+                for (int c = 0; c < dt.Columns.Count; c++)
+                {
+                    var cell = ws.Cells[colHeaderRow, c + 1];
+                    cell.Value = dt.Columns[c].ColumnName;
+                    cell.Style.Font.Bold = true;
+                    cell.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                    cell.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(68, 114, 196));
+                    cell.Style.Font.Color.SetColor(Color.White);
+                    cell.Style.HorizontalAlignment =
+                        OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+                }
+
+                // ── 数据行 ──
+                for (int r = 0; r < dt.Rows.Count; r++)
+                {
+                    for (int c = 0; c < dt.Columns.Count; c++)
+                    {
+                        var cell = ws.Cells[colHeaderRow + 1 + r, c + 1];
+                        var val = dt.Rows[r][c];
+                        cell.Value = val == DBNull.Value ? null : val;
+
+                        // Timestamp 列格式
+                        if (dt.Columns[c].ColumnName == "Timestamp")
+                        {
+                            cell.Style.Numberformat.Format = "yyyy-mm-dd hh:mm:ss";
+                            continue;
+                        }
+
+                        // 超限标红
+                        var meta = _tagMetaList.FirstOrDefault(
+                            t => t.DisplayName == dt.Columns[c].ColumnName
+                              || t.TagName == dt.Columns[c].ColumnName);
+
+                        if (meta != null && val != DBNull.Value
+                            && double.TryParse(val.ToString(), out double dval))
+                        {
+                            // 小数位
+                            cell.Style.Numberformat.Format =
+                                "0." + new string('0', meta.DecimalPlaces);
+
+                            bool outOfRange =
+                                (meta.NormalMin.HasValue && dval < meta.NormalMin.Value) ||
+                                (meta.NormalMax.HasValue && dval > meta.NormalMax.Value);
+
+                            if (outOfRange)
+                            {
+                                cell.Style.Font.Color.SetColor(Color.Red);
+                                cell.Style.Font.Bold = true;
+                            }
+                        }
+                    }
+                }
+
+                // ── 列宽自适应 ──
+                ws.Cells[ws.Dimension.Address].AutoFitColumns();
+
+                package.SaveAs(new System.IO.FileInfo(filePath));
+            }
         }
     }
 }
