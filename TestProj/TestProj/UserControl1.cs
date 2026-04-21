@@ -252,5 +252,40 @@ namespace TestProj
                         ? t.Split('\\').Last() : t));
             }
         }
+
+        /// <summary>
+        /// 今日快捷查询按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnToday_Click(object sender, EventArgs e)
+        {
+            DT_begin.Value = DateTime.Today;
+            DT_end.Value = DateTime.Today.AddDays(1).AddSeconds(-1);
+        }
+
+        /// <summary>
+        /// 本周快捷查询按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnThisWeek_Click(object sender, EventArgs e)
+        {
+            int diff = (int)DateTime.Today.DayOfWeek - (int)DayOfWeek.Monday;
+            if (diff<0) diff += 7;
+            DT_begin.Value = DateTime.Today.AddDays(-diff);
+            DT_end.Value = DateTime.Today.AddDays(1).AddSeconds(-1);
+        }
+
+        /// <summary>
+        /// 本月快捷查询按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnThisMonth_Click(object sender, EventArgs e)
+        {
+            DT_begin.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+            DT_end.Value = DateTime.Today.AddDays(1).AddSeconds(-1);
+        }
     }
 }
