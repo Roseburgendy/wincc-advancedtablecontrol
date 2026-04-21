@@ -130,6 +130,12 @@ namespace TestProj
 
             if(!double.TryParse(e.Value.ToString(), out double val)) return;
 
+
+            // 小数位
+            string format = "F" + (meta?.DecimalPlaces ?? 2);
+            e.Value = val.ToString(format);
+            e.FormattingApplied = true; 
+
             // 超限定义
             bool outOfRange = (meta.NormalMin.HasValue && val < meta.NormalMin.Value)||
                (meta.NormalMax.HasValue && val > meta.NormalMax.Value);
