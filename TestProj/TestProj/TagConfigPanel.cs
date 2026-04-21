@@ -140,9 +140,9 @@ namespace TestProj
             meta.Order = int.TryParse(
                 txtOrder.Text, out int ord) ? ord : 1;
             meta.NormalMax = double.TryParse(
-                txtMax.Text, out double mx) ? mx : 100;
+                txtMax.Text, out double mx) ? mx : (double?)null;
             meta.NormalMin = double.TryParse(
-                txtMin.Text, out double mn) ? mn : 0;
+                txtMin.Text, out double mn) ? mn : (double?)null;
 
             dgvTags.Refresh();
             _isSyncing = false;
