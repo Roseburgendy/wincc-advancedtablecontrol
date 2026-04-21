@@ -31,10 +31,6 @@ namespace TestProj
             txtOrder.TextChanged += FormField_Changed;
             txtMax.TextChanged += FormField_Changed;
             txtMin.TextChanged += FormField_Changed;
-
-            dgvTags.MouseMove += Dgv_MouseMove;
-            dgvTags.DragOver += Dgv_DragOver;
-            dgvTags.DragDrop += Dgv_DragDrop;
         }
 
 
@@ -118,44 +114,9 @@ namespace TestProj
             _isSyncing = false;
         }
 
-        private void Dgv_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left && dgvTags.SelectedRows.Count > 0)
-                dgvTags.DoDragDrop(dgvTags.SelectedRows[0], DragDropEffects.Move);
-        }
-
-        private void Dgv_DragOver(object sender, DragEventArgs e)
-        {
-            e.Effect = DragDropEffects.Move;
-        }
-
-        private void Dgv_DragDrop(object sender, DragEventArgs e)
-        {
-            // 找到拖放目标行
-            Point clientPoint = dgvTags.PointToClient(new Point(e.X, e.Y));
-            int targetIndex = dgvTags.HitTest(clientPoint.X, clientPoint.Y).RowIndex;
-            if (targetIndex < 0) return;
-
-            // 取出源行数据
-            var draggedRow = e.Data.GetData(typeof(DataGridViewRow)) as DataGridViewRow;
-            if (draggedRow == null) return;
-            int sourceIndex = draggedRow.Index;
-            if (sourceIndex == targetIndex) return;
-
-            // 移动 _tagList 里的元素
-            var item = _bindingList[sourceIndex];
-            _bindingList.RemoveAt(sourceIndex);
-            _bindingList.Insert(targetIndex, item);
-
-            // 刷新显示
-            dgvTags.DataSource = null;
-            dgvTags.DataSource = _bindingList;
-        }
         // 保存配置按钮
         private void SaveConfigBtn_Click_1(object sender, EventArgs e)
         {
-            for (int i = 0; i < _bindingList.Count; i++)
-                _bindingList[i].Order = i + 1;
             SaveAll();
             MessageBox.Show("保存成功", "提示");
             _editingBackups.Clear();
