@@ -263,6 +263,8 @@ namespace TestProj
             };
 
             panel.ShowDialog();
+            // 当配置面板关闭后，重新加载最新的标签元数据，确保顺序等配置已更新
+            _tagMetaList = ConfigManager.Config?.TagMeta ?? new List<TagMeta>();
         }
 
         /// <summary>
