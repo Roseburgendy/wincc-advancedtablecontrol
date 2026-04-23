@@ -263,8 +263,25 @@ namespace TestProj
             };
 
             panel.ShowDialog();
-            // 当配置面板关闭后，重新加载最新的标签元数据，确保顺序等配置已更新
+            ConfigManager.LoadConfig(); // ← 重新从文件加载，确保拿到最新配置
             _tagMetaList = ConfigManager.Config?.TagMeta ?? new List<TagMeta>();
+
+            // 如果当前有数据，重新查询刷新顺序
+            if (_selectedTags?.Count > 0 && dataGridView1.DataSource != null)
+            {
+                try
+                {
+                    var ds = ExecuteTagQuery(_selectedTags, DT_begin.Value, DT_end.Value);
+                    var raw = PrepareResultTable(ds);
+                    if (raw != null && raw.Rows.Count > 0)
+                    {
+                        var wide = PivotToWide(raw, _selectedTags);
+                        CleanUnusedColumns(wide, new[] { "Quality", "Flags", "ValueID" });
+                        BindResultTable(wide);
+                    }
+                }
+                catch { }
+            }
         }
 
         /// <summary>
