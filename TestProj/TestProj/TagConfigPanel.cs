@@ -191,7 +191,7 @@ namespace TestProj
             int count = _bindingList.Count;
             // clamp desiredOrder to [1, count]
             desiredOrder = Math.Max(1, Math.Min(desiredOrder, count));
-            int oldOrder = target.Order;
+            int oldOrder = (int)target.Order;
             if (desiredOrder == oldOrder)
                 return;
 

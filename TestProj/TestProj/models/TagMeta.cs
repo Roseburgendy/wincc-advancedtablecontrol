@@ -13,7 +13,7 @@ namespace TestProj.Models
         public double? NormalMin { get; set; }
         public double? NormalMax { get; set; }
         public int DecimalPlaces { get; set; }=2;
-        public int Order { get; set; }
+        public int? Order { get; set; }
     }
 
     // JSON 里 dataSource 节点

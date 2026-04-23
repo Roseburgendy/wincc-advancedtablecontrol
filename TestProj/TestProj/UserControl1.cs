@@ -118,6 +118,8 @@ namespace TestProj
 
         private void BindResultTable(DataTable table)
         {
+            dataGridView1.DataSource = null;  // 强制清除旧列
+            dataGridView1.Columns.Clear();
             dataGridView1.DataSource = table;
             if (dataGridView1.Columns.Contains("Timestamp"))
                 dataGridView1.Columns["Timestamp"].DefaultCellStyle.Format = "yyyy-MM-dd HH:mm:ss";
@@ -193,7 +195,7 @@ namespace TestProj
 
             var sortedTags = tags.OrderBy(t => {
                 var meta = allMeta.FirstOrDefault(m => m.TagName == t);
-                return meta?.Order ?? int.MaxValue;
+                return meta?.Order.HasValue == true ? meta.Order.Value : int.MaxValue;
             }).ToList();
             // 添加变量列
             foreach (var tag in sortedTags)
@@ -226,7 +228,7 @@ namespace TestProj
                 }
                 wide.Rows.Add(row);
             }
-            return wide.DefaultView.ToTable();
+            return wide;
         }
 
 
@@ -263,25 +265,6 @@ namespace TestProj
             };
 
             panel.ShowDialog();
-            ConfigManager.LoadConfig(); // ← 重新从文件加载，确保拿到最新配置
-            _tagMetaList = ConfigManager.Config?.TagMeta ?? new List<TagMeta>();
-
-            // 如果当前有数据，重新查询刷新顺序
-            if (_selectedTags?.Count > 0 && dataGridView1.DataSource != null)
-            {
-                try
-                {
-                    var ds = ExecuteTagQuery(_selectedTags, DT_begin.Value, DT_end.Value);
-                    var raw = PrepareResultTable(ds);
-                    if (raw != null && raw.Rows.Count > 0)
-                    {
-                        var wide = PivotToWide(raw, _selectedTags);
-                        CleanUnusedColumns(wide, new[] { "Quality", "Flags", "ValueID" });
-                        BindResultTable(wide);
-                    }
-                }
-                catch { }
-            }
         }
 
         /// <summary>
