@@ -48,12 +48,12 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(255, 270);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Location = new System.Drawing.Point(255, 268);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 72;
             this.dataGridView1.RowTemplate.Height = 33;
-            this.dataGridView1.Size = new System.Drawing.Size(1599, 954);
+            this.dataGridView1.Size = new System.Drawing.Size(1599, 956);
             this.dataGridView1.TabIndex = 1;
             // 
             // DT_begin
@@ -61,7 +61,7 @@
             this.DT_begin.CustomFormat = "yyyy-MM-dd HH:mm:ss";
             this.DT_begin.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.DT_begin.Location = new System.Drawing.Point(278, 133);
-            this.DT_begin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DT_begin.Margin = new System.Windows.Forms.Padding(4);
             this.DT_begin.Name = "DT_begin";
             this.DT_begin.Size = new System.Drawing.Size(365, 38);
             this.DT_begin.TabIndex = 2;
@@ -71,7 +71,7 @@
             this.DT_end.CustomFormat = "yyyy-MM-dd HH:mm:ss";
             this.DT_end.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.DT_end.Location = new System.Drawing.Point(278, 179);
-            this.DT_end.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DT_end.Margin = new System.Windows.Forms.Padding(4);
             this.DT_end.Name = "DT_end";
             this.DT_end.Size = new System.Drawing.Size(365, 38);
             this.DT_end.TabIndex = 3;
@@ -102,7 +102,7 @@
             // 
             this.searchBtn.Font = new System.Drawing.Font("Arial", 9F);
             this.searchBtn.Location = new System.Drawing.Point(1602, 133);
-            this.searchBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.searchBtn.Margin = new System.Windows.Forms.Padding(4);
             this.searchBtn.Name = "searchBtn";
             this.searchBtn.Size = new System.Drawing.Size(241, 71);
             this.searchBtn.TabIndex = 6;
@@ -152,7 +152,7 @@
             // 
             // BtnToday
             // 
-            this.BtnToday.Location = new System.Drawing.Point(53, 292);
+            this.BtnToday.Location = new System.Drawing.Point(55, 268);
             this.BtnToday.Name = "BtnToday";
             this.BtnToday.Size = new System.Drawing.Size(166, 60);
             this.BtnToday.TabIndex = 12;
@@ -162,7 +162,7 @@
             // 
             // BtnThisWeek
             // 
-            this.BtnThisWeek.Location = new System.Drawing.Point(53, 379);
+            this.BtnThisWeek.Location = new System.Drawing.Point(55, 355);
             this.BtnThisWeek.Name = "BtnThisWeek";
             this.BtnThisWeek.Size = new System.Drawing.Size(166, 60);
             this.BtnThisWeek.TabIndex = 13;
@@ -172,7 +172,7 @@
             // 
             // BtnThisMonth
             // 
-            this.BtnThisMonth.Location = new System.Drawing.Point(53, 467);
+            this.BtnThisMonth.Location = new System.Drawing.Point(55, 443);
             this.BtnThisMonth.Name = "BtnThisMonth";
             this.BtnThisMonth.Size = new System.Drawing.Size(166, 60);
             this.BtnThisMonth.TabIndex = 14;
@@ -183,7 +183,7 @@
             // ExportExcelBtn
             // 
             this.ExportExcelBtn.Font = new System.Drawing.Font("SimSun", 7F);
-            this.ExportExcelBtn.Location = new System.Drawing.Point(53, 560);
+            this.ExportExcelBtn.Location = new System.Drawing.Point(55, 536);
             this.ExportExcelBtn.Name = "ExportExcelBtn";
             this.ExportExcelBtn.Size = new System.Drawing.Size(166, 60);
             this.ExportExcelBtn.TabIndex = 15;
@@ -209,7 +209,7 @@
             this.Controls.Add(this.DT_end);
             this.Controls.Add(this.DT_begin);
             this.Controls.Add(this.dataGridView1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "UserControl1";
             this.Size = new System.Drawing.Size(1940, 1407);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

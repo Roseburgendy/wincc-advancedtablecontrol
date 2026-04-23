@@ -137,8 +137,9 @@ namespace TestProj
             meta.DisplayName = txtDisplayName.Text.Trim();
             meta.DecimalPlaces = int.TryParse(
                 txtDecimalPlaces.Text, out int dp) ? dp : 2;
-            meta.Order = int.TryParse(
+            int newOrder = int.TryParse(
                 txtOrder.Text, out int ord) ? ord : 1;
+            AdjustOrders(meta, newOrder);
             meta.NormalMax = double.TryParse(
                 txtMax.Text, out double mx) ? mx : 100;
             meta.NormalMin = double.TryParse(
@@ -180,6 +181,57 @@ namespace TestProj
         }
 
         #endregion
+
+        // 调整排序：将 target 放到 desiredOrder，其他元素自动前移/后移以保持连续唯一的序号
+        private void AdjustOrders(TagMeta target, int desiredOrder)
+        {
+            if (target == null || _bindingList == null || _bindingList.Count == 0)
+                return;
+
+            int count = _bindingList.Count;
+            // clamp desiredOrder to [1, count]
+            desiredOrder = Math.Max(1, Math.Min(desiredOrder, count));
+            int oldOrder = target.Order;
+            if (desiredOrder == oldOrder)
+                return;
+
+            // shift others
+            if (desiredOrder < oldOrder)
+            {
+                foreach (var m in _bindingList.Where(t => t != target && t.Order >= desiredOrder && t.Order < oldOrder))
+                {
+                    m.Order = m.Order + 1;
+                }
+            }
+            else // desiredOrder > oldOrder
+            {
+                foreach (var m in _bindingList.Where(t => t != target && t.Order <= desiredOrder && t.Order > oldOrder))
+                {
+                    m.Order = m.Order - 1;
+                }
+            }
+
+            target.Order = desiredOrder;
+
+            // Rebind list sorted by Order to refresh grid ordering
+            var sorted = _bindingList.OrderBy(t => t.Order).ToList();
+            _bindingList = new BindingList<TagMeta>(sorted);
+            dgvTags.DataSource = _bindingList;
+
+            // restore current editing reference to the moved item
+            _currentEditing = _bindingList.FirstOrDefault(t => t.TagName == target.TagName);
+            // select the moved row
+            for (int i = 0; i < dgvTags.Rows.Count; i++)
+            {
+                if ((dgvTags.Rows[i].DataBoundItem as TagMeta)?.TagName == target.TagName)
+                {
+                    dgvTags.ClearSelection();
+                    dgvTags.Rows[i].Selected = true;
+                    dgvTags.CurrentCell = dgvTags.Rows[i].Cells[0];
+                    break;
+                }
+            }
+        }
 
         #region 外部接口
         public bool HasUnsavedChanges() => _isDirty;

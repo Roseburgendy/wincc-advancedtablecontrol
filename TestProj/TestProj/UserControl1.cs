@@ -30,92 +30,105 @@ namespace TestProj
         /// </summary>
         private void SearchBtn_Click(object sender, EventArgs e)
         {
-            if(_selectedTags == null || _selectedTags.Count == 0)
+            if (_selectedTags == null || _selectedTags.Count == 0)
             {
                 MessageBox.Show("请先选择变量", "提示");
                 return;
             }
+
             try
             {
-                // 声明OLEDB对象
-                DataSet ds = new DataSet();
-                OleDbCommand cmd = new OleDbCommand();
-                OleDbDataAdapter da = new OleDbDataAdapter();
+                var ds = ExecuteTagQuery(_selectedTags, DT_begin.Value, DT_end.Value);
+                var raw = PrepareResultTable(ds);
 
-                // 打开连接
-                OleDbConnection conn = DbManager.GetConnection();
-                cmd.Connection = conn;
-                cmd.CommandType = CommandType.Text;
-
-                // 查询数据
-                string startTime = DT_begin.Value.ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss");
-                string endTime = DT_end.Value.ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss");
-                string tagList = string.Join(";",_selectedTags.Select(t => $"'{t}'"));
-                // TODO:read tag with OLEDB
-                // TagConfig 面板用 DbManager.FetchAllTags() 读变量列表
-                // 用户勾选后，选中的变量存起来, datagridview1显示选中的变量列表，searchBtn_Click 用选中的变量查询
-
-                cmd.CommandText = $"TAG:R,({tagList}),'{startTime}','{endTime}'";
-
-                da.SelectCommand = cmd;
-                da.Fill(ds);
-
-                if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
-                {
-                    DataTable dt = ds.Tables[0];
-
-                    var dbTags = DbManager.FetchAllTags();
-                    var idToName = dbTags.ToDictionary(t => t.ValueID, t => t.ValueName);
-
-                    dt.Columns.Add("TagName", typeof(string));
-                    // tagname
-                    foreach(DataRow row in dt.Rows)
-                    {
-                       long vid = Convert.ToInt64(row["ValueID"]);
-                       row["TagName"] = idToName.TryGetValue(vid, out string name) ? name : vid.ToString();
-                    }
-                    // 日期时间
-                    dt.Columns["Timestamp"].ReadOnly = false;
-                    foreach (DataRow row in dt.Rows)
-                    {
-                        if (row["Timestamp"] != DBNull.Value)
-                        {
-                            // 将 UTC 时间转换为本地时间（北京时间）
-                            row["Timestamp"] = ((DateTime)row["Timestamp"]).ToLocalTime();
-                        }
-                    }
-                    DataTable wide = PivotToWide(dt, _selectedTags);
-
-                    // 删除不用的列
-                    foreach(var col in new[] {"Quality", "Flags","ValueID"})
-                        if(wide.Columns.Contains(col))
-                            wide.Columns.Remove(col);
-
-                    _tagMetaList = ConfigManager.Config?.TagMeta ??new List<TagMeta>();
-                    // 绑定到 DataGridView 显示结果
-                    dataGridView1.DataSource = wide;
-                    dataGridView1.Columns["Timestamp"].DefaultCellStyle.Format = "yyyy-MM-dd HH:mm:ss";
-                     foreach (DataGridViewColumn col in dataGridView1.Columns)
-                    {
-                        if (col.Name == "Timestamp")
-                            col.Width = 300;
-                        else
-                            col.Width = 200; // 数据列统一宽度
-                    }
-                    dataGridView1.CellFormatting -= DataGridView1_CellFormatting;
-                    dataGridView1.CellFormatting += DataGridView1_CellFormatting;
-
-                }
-                else
+                if (raw == null || raw.Rows.Count == 0)
                 {
                     MessageBox.Show("没有查询到数据", "提示");
+                    return;
+                }
+
+                var wide = PivotToWide(raw, _selectedTags);
+                CleanUnusedColumns(wide, new[] { "Quality", "Flags", "ValueID" });
+
+                _tagMetaList = ConfigManager.Config?.TagMeta ?? new List<TagMeta>();
+                BindResultTable(wide);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"查询失败: {ex.Message}", "错误");
+            }
+        }
+
+        private DataSet ExecuteTagQuery(List<string> tags, DateTime begin, DateTime end)
+        {
+            var ds = new DataSet();
+            string startTime = begin.ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss");
+            string endTime = end.ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss");
+            string tagList = string.Join(";", tags.Select(t => $"'{t}'"));
+
+            using (var conn = DbManager.GetConnection())
+            using (var cmd = conn.CreateCommand())
+            using (var da = new OleDbDataAdapter())
+            {
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = $"TAG:R,({tagList}),'{startTime}','{endTime}'";
+                da.SelectCommand = (OleDbCommand)cmd;
+                da.Fill(ds);
+            }
+
+            return ds;
+        }
+
+        private DataTable PrepareResultTable(DataSet ds)
+        {
+            if (ds == null || ds.Tables.Count == 0) return null;
+            var dt = ds.Tables[0];
+
+            var dbTags = DbManager.FetchAllTags();
+            var idToName = dbTags.ToDictionary(t => t.ValueID, t => t.ValueName);
+
+            if (!dt.Columns.Contains("TagName"))
+                dt.Columns.Add("TagName", typeof(string));
+
+            foreach (DataRow row in dt.Rows)
+            {
+                if (dt.Columns.Contains("ValueID") && row["ValueID"] != DBNull.Value)
+                {
+                    long vid = Convert.ToInt64(row["ValueID"]);
+                    row["TagName"] = idToName.TryGetValue(vid, out string name) ? name : vid.ToString();
+                }
+
+                if (dt.Columns.Contains("Timestamp") && row["Timestamp"] != DBNull.Value)
+                {
+                    row["Timestamp"] = ((DateTime)row["Timestamp"]).ToLocalTime();
                 }
             }
-            catch(Exception ex) {
-                MessageBox.Show($"查询失败: {ex.Message}", "错误");
 
+            return dt;
+        }
+
+        private void CleanUnusedColumns(DataTable table, IEnumerable<string> cols)
+        {
+            foreach (var col in cols)
+            {
+                if (table.Columns.Contains(col))
+                    table.Columns.Remove(col);
             }
-            
+        }
+
+        private void BindResultTable(DataTable table)
+        {
+            dataGridView1.DataSource = table;
+            if (dataGridView1.Columns.Contains("Timestamp"))
+                dataGridView1.Columns["Timestamp"].DefaultCellStyle.Format = "yyyy-MM-dd HH:mm:ss";
+
+            foreach (DataGridViewColumn col in dataGridView1.Columns)
+            {
+                col.Width = col.Name == "Timestamp" ? 300 : 200;
+            }
+
+            dataGridView1.CellFormatting -= DataGridView1_CellFormatting;
+            dataGridView1.CellFormatting += DataGridView1_CellFormatting;
         }
 
         private void DataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -137,19 +150,28 @@ namespace TestProj
             e.FormattingApplied = true; 
 
             // 超限定义
-            bool outOfRange = (meta.NormalMin.HasValue && val < meta.NormalMin.Value)||
-               (meta.NormalMax.HasValue && val > meta.NormalMax.Value);
+            bool exceedMax = (meta.NormalMax.HasValue && val > meta.NormalMax.Value);
 
-            // 如果超限，字体变红加粗，否则恢复默认
-            if (outOfRange)
+            bool belowMin = (meta.NormalMin.HasValue && val < meta.NormalMin.Value);
+
+            // 超过最大值： 加粗变红
+            // 低于最小值 ： 加粗变黄
+            // TODO: 自定义超限颜色
+            if (exceedMax)
             {
-                e.CellStyle.ForeColor = Color.Red;
+                e.CellStyle.BackColor = Color.Red;
+                e.CellStyle.Font = new Font(dataGridView1.Font, FontStyle.Bold);
+
+            }
+            else if (belowMin)
+            {
+                e.CellStyle.BackColor = Color.Yellow;
                 e.CellStyle.Font = new Font(dataGridView1.Font, FontStyle.Bold);
 
             }
             else
             {
-                e.CellStyle.ForeColor = dataGridView1.DefaultCellStyle.ForeColor;
+                e.CellStyle.BackColor = dataGridView1.DefaultCellStyle.BackColor;
                 e.CellStyle.Font = dataGridView1.Font;
             }
         }
@@ -169,8 +191,12 @@ namespace TestProj
             var allMeta = ConfigManager.Config?.TagMeta ?? new List<TagMeta>();
             var nameMap = allMeta.ToDictionary(t => t.TagName, t=> t.DisplayName);
 
+            var sortedTags = tags.OrderBy(t => {
+                var meta = allMeta.FirstOrDefault(m => m.TagName == t);
+                return meta?.Order ?? int.MaxValue;
+            }).ToList();
             // 添加变量列
-            foreach (var tag in tags)
+            foreach (var tag in sortedTags)
             {
                 // 有displayName就用，没有就用TagName
                 string colName = nameMap.TryGetValue(tag, out string display) ? display : tag;
@@ -178,7 +204,7 @@ namespace TestProj
             }
 
             // 从TagName - ColName 映射
-            var tagToCol = tags.ToDictionary(tag => tag,
+            var tagToCol = sortedTags.ToDictionary(tag => tag,
                 tag => nameMap.TryGetValue(tag, out string display) ? display : tag);
 
             var groups = raw.AsEnumerable().GroupBy(r => r["Timestamp"]);
@@ -202,6 +228,8 @@ namespace TestProj
             }
             return wide.DefaultView.ToTable();
         }
+
+
         /// <summary>
         /// 变量配置按钮点击事件，弹出TagConfig Panel
         /// </summary>
@@ -253,22 +281,11 @@ namespace TestProj
             }
         }
 
-        /// <summary>
-        /// 今日快捷查询按钮
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void BtnToday_Click(object sender, EventArgs e)
         {
             DT_begin.Value = DateTime.Today;
             DT_end.Value = DateTime.Today.AddDays(1).AddSeconds(-1);
         }
-
-        /// <summary>
-        /// 本周快捷查询按钮
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void BtnThisWeek_Click(object sender, EventArgs e)
         {
             int diff = (int)DateTime.Today.DayOfWeek - (int)DayOfWeek.Monday;
@@ -276,12 +293,6 @@ namespace TestProj
             DT_begin.Value = DateTime.Today.AddDays(-diff);
             DT_end.Value = DateTime.Today.AddDays(1).AddSeconds(-1);
         }
-
-        /// <summary>
-        /// 本月快捷查询按钮
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void BtnThisMonth_Click(object sender, EventArgs e)
         {
             DT_begin.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
