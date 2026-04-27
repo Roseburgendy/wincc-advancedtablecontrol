@@ -105,20 +105,17 @@ namespace TestProj
         /// <param name="maxCount">mode=2 时的最大返回条数</param>
         /// <returns>原始 DataTable，列为 TagName / RealValue / TimeStamp</returns>
         public static DataTable FetchData(
-            List<string> tagNames,
-            DateTime start,
-            DateTime end,
-            int mode = 1,
-            int timeStepSeconds = 3600,
-            int aggregationType = 5,
-            int maxCount = 100)
+     List<string> tagNames,
+     DateTime start,
+     DateTime end,
+     int mode = 1,
+     int timeStepSeconds = 3600,
+     int aggregationType = 261)
         {
             var result = new DataTable();
-
             if (tagNames == null || tagNames.Count == 0)
                 return result;
 
-            // OLE DB 单次查询最多 20 个变量，分批处理
             const int batchSize = 20;
             var batches = tagNames
                 .Select((tag, idx) => new { tag, idx })
@@ -133,22 +130,34 @@ namespace TestProj
                 foreach (var batch in batches)
                 {
                     string query = BuildQuery(batch, start, end, mode,
-                                              timeStepSeconds, aggregationType,
-                                              maxCount);
+                                              timeStepSeconds, aggregationType);
                     var cmd = new OleDbCommand(query, conn);
                     var adapter = new OleDbDataAdapter(cmd);
                     var batchTable = new DataTable();
                     adapter.Fill(batchTable);
 
-                    // 第一批直接用，后续批次追加行
                     if (result.Columns.Count == 0)
-                    {
                         result = batchTable;
-                    }
                     else
-                    {
                         foreach (DataRow row in batchTable.Rows)
                             result.ImportRow(row);
+                }
+
+                // ── ValueID → TagName 映射 ───────────────────
+                var dbTags = FetchAllTags();
+                var idToName = dbTags.ToDictionary(t => t.ValueID, t => t.ValueName);
+
+                if (!result.Columns.Contains("TagName"))
+                    result.Columns.Add("TagName", typeof(string));
+
+                foreach (DataRow row in result.Rows)
+                {
+                    if (result.Columns.Contains("ValueID")
+                        && row["ValueID"] != DBNull.Value)
+                    {
+                        long vid = Convert.ToInt64(row["ValueID"]);
+                        row["TagName"] = idToName.TryGetValue(vid, out string name)
+                                         ? name : vid.ToString();
                     }
                 }
             }
@@ -169,8 +178,7 @@ namespace TestProj
             DateTime end,
             int mode,
             int timeStepSeconds,
-            int aggregationType,
-            int maxCount)
+            int aggregationType)
         {
             // 变量列表格式：('归档名\变量名';'归档名\变量名')
             string tagList = tagNames.Count == 1
@@ -183,7 +191,8 @@ namespace TestProj
 
             switch (mode)
             {
-                case 0: // 时间范围：带 TIMESTEP，聚合均值
+                case 0:
+                case 3:// 时间范围：带 TIMESTEP，聚合均值
                     timeEnd = end.ToString("yyyy-MM-dd HH:mm:ss.fff");
                     timeStep = $",'TIMESTEP={timeStepSeconds},{aggregationType}'";
                     break;

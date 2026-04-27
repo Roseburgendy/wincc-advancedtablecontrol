@@ -144,34 +144,6 @@ namespace TestProj
 
         #region 表格显示Utils
 
-        private DataTable PrepareResultTable(DataSet ds)
-        {
-            if (ds == null || ds.Tables.Count == 0) return null;
-            var dt = ds.Tables[0];
-
-            var dbTags = DbManager.FetchAllTags();
-            var idToName = dbTags.ToDictionary(t => t.ValueID, t => t.ValueName);
-
-            if (!dt.Columns.Contains("TagName"))
-                dt.Columns.Add("TagName", typeof(string));
-
-            foreach (DataRow row in dt.Rows)
-            {
-                if (dt.Columns.Contains("ValueID") && row["ValueID"] != DBNull.Value)
-                {
-                    long vid = Convert.ToInt64(row["ValueID"]);
-                    row["TagName"] = idToName.TryGetValue(vid, out string name) ? name : vid.ToString();
-                }
-
-                if (dt.Columns.Contains("Timestamp") && row["Timestamp"] != DBNull.Value)
-                {
-                    row["Timestamp"] = ((DateTime)row["Timestamp"]).ToLocalTime();
-                }
-            }
-
-            return dt;
-        }
-
         private void CleanUnusedColumns(DataTable table, IEnumerable<string> cols)
         {
             foreach (var col in cols)

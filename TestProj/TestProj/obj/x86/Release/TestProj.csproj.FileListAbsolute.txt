@@ -15,3 +15,5 @@ E:\WinCCReporter_Dev\TestProj\TestProj\obj\x86\Release\TestProj.TagConfigPanel.r
 E:\WinCCReporter_Dev\TestProj\TestProj\obj\x86\Release\TestProj.TagSelectionPanel.resources
 E:\WinCCReporter_Dev\TestProj\TestProj\bin\x86\Release\EPPlus.dll
 E:\WinCCReporter_Dev\TestProj\TestProj\bin\x86\Release\EPPlus.xml
+E:\WinCCReporter_Dev\TestProj\TestProj\obj\x86\Release\TestProj.TemplateConfigPanel.resources
+E:\WinCCReporter_Dev\TestProj\TestProj\obj\x86\Release\TestProj.TimeRangeSelectorPanel.resources
