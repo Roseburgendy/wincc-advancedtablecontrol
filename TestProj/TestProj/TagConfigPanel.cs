@@ -10,22 +10,36 @@ namespace TestProj
 {
     public partial class TagConfigPanel : Form
     {
+        private class TagRow
+        {
+            public string TagName { get; set; }
+            public string DisplayName { get; set; }
+            public string DataType { get; set; }
+            public int DecimalPlaces { get; set; }
+            public double? NormalMin { get; set; }
+            public double? NormalMax { get; set; }
+            public int Order { get; set; }
+        }
+
         private readonly List<string> _selectedTags;
-        private BindingList<TagMeta> _bindingList;
+        private readonly List<TemplateTagEntry> _templateEntries;
+        private BindingList<TagRow> _bindingList;
         private bool _isDirty = false;
         private bool _isSyncing = false;
-        public Dictionary<string,TagMeta> _editingBackups = new Dictionary<string, TagMeta>(); // 备份
-        private TagMeta _currentEditing;
-        public TagConfigPanel(List<string> selectedTags)
+        private Dictionary<string, TagRow> _editingBackups = new Dictionary<string, TagRow>();
+        private TagRow _currentEditing;
+
+        public TagConfigPanel(List<string> selectedTags, List<TemplateTagEntry> templateEntries)
         {
             InitializeComponent();
             _selectedTags = selectedTags;
+            _templateEntries = templateEntries;
+
             LoadData();
+
             dgvTags.CellValueChanged += DgvTags_CellValueChanged;
-            // 选中行 → 填入下方表单
             dgvTags.SelectionChanged += DgvTags_SelectionChanged;
 
-            // 下方表单修改 → 同步回选中行
             txtDisplayName.TextChanged += FormField_Changed;
             txtDecimalPlaces.TextChanged += FormField_Changed;
             txtOrder.TextChanged += FormField_Changed;
@@ -33,197 +47,125 @@ namespace TestProj
             txtMin.TextChanged += FormField_Changed;
         }
 
-
-        // 加载数据
         public void LoadData()
         {
             var allMeta = ConfigManager.Config?.TagMeta ?? new List<TagMeta>();
-
-            // 同时从数据库拿 DataType
             var dbTags = DbManager.FetchAllTags();
-            var dbDict = dbTags.ToDictionary(
-                t => t.ValueName,
-                t => t.DataType); // tagName → DataType
+            var dbDict = dbTags.ToDictionary(t => t.ValueName, t => t.DataType);
 
-            var toShow = new List<TagMeta>();
+            var toShow = new List<TagRow>();
             foreach (var fullName in _selectedTags)
             {
-                var existing = allMeta.FirstOrDefault(
-                    t => t.TagName == fullName); // find existing config in json
-
-                // 取数据库里的 DataType
+                var meta = allMeta.FirstOrDefault(t => t.TagName == fullName);
+                var entry = _templateEntries.FirstOrDefault(e => e.TagName == fullName);
                 dbDict.TryGetValue(fullName, out string dataType);
 
-                if (existing != null)
+                toShow.Add(new TagRow
                 {
-                    // 更新 DataType（可能变过）
-                    existing.DataType = dataType ?? existing.DataType;
-                    toShow.Add(existing);
-                }
-                else
-                {
-                    toShow.Add(new TagMeta
-                    {
-                        TagName = fullName,
-                        DisplayName = fullName,
-                        DataType = dataType ?? "",
-                        NormalMin = null,
-                        NormalMax = null,
-                        DecimalPlaces = 2,
-                        Order = toShow.Count + 1
-                    });
-                }
+                    TagName = fullName,
+                    DisplayName = meta?.DisplayName ?? fullName,
+                    DataType = dataType ?? meta?.DataType ?? "",
+                    DecimalPlaces = meta?.DecimalPlaces ?? 2,
+                    NormalMin = meta?.NormalMin,
+                    NormalMax = meta?.NormalMax,
+                    Order = entry?.Order ?? (toShow.Count + 1)
+                });
             }
 
-            _bindingList = new BindingList<TagMeta>(toShow.OrderBy(t => t.Order).ToList());
+            _bindingList = new BindingList<TagRow>(
+                                    toShow.OrderBy(t => t.Order).ToList());
             dgvTags.DataSource = _bindingList;
 
-            // 默认选中第一行
             if (dgvTags.Rows.Count > 0)
                 dgvTags.Rows[0].Selected = true;
         }
 
-        /// <summary>
-        /// 选中表格中一行
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void DgvTags_SelectionChanged(object sender, EventArgs e)
         {
-            if (_isSyncing) return; 
-            var meta = GetSelectedMeta();
-            if (meta == null) return;
-            // 将当前行存档
-            if(!_editingBackups.ContainsKey(meta.TagName))
-            {
-                    _editingBackups[meta.TagName] = new TagMeta
-                    {
-                        TagName = meta.TagName,
-                        DisplayName = meta.DisplayName,
-                        DataType = meta.DataType,
-                        NormalMin = meta.NormalMin,
-                        NormalMax = meta.NormalMax,
-                        DecimalPlaces = meta.DecimalPlaces,
-                        Order = meta.Order
-                    };
+            if (_isSyncing) return;
+            var row = GetSelectedRow();
+            if (row == null) return;
 
+            if (!_editingBackups.ContainsKey(row.TagName))
+            {
+                _editingBackups[row.TagName] = new TagRow
+                {
+                    TagName = row.TagName,
+                    DisplayName = row.DisplayName,
+                    DataType = row.DataType,
+                    NormalMin = row.NormalMin,
+                    NormalMax = row.NormalMax,
+                    DecimalPlaces = row.DecimalPlaces,
+                    Order = row.Order
+                };
             }
-            _currentEditing = meta;
+
+            _currentEditing = row;
             _isSyncing = true;
-            LoadToForm(meta);
+            LoadToForm(row);
             _isSyncing = false;
         }
 
-        // 保存配置按钮
-        private void SaveConfigBtn_Click_1(object sender, EventArgs e)
-        {
-            SaveAll();
-            MessageBox.Show("保存成功", "提示");
-            _editingBackups.Clear();
-        }
-
-        /// <summary>
-        /// 下方表单修改订阅事件
-        /// </summary>
-        /// <param name="sender">The source of the event, typically a form field control.</param>
-        /// <param name="e">An EventArgs object that contains the event data.</param>
         private void FormField_Changed(object sender, EventArgs e)
         {
             if (_isSyncing) return;
-            var meta = GetSelectedMeta();
-            if (meta == null) return;
+            var row = GetSelectedRow();
+            if (row == null) return;
 
             _isSyncing = true;
-            meta.DisplayName = txtDisplayName.Text.Trim();
-            meta.DecimalPlaces = int.TryParse(
-                txtDecimalPlaces.Text, out int dp) ? dp : 2;
-            int newOrder = int.TryParse(
-                txtOrder.Text, out int ord) ? ord : 1;
-            AdjustOrders(meta, newOrder);
-            meta.NormalMax = double.TryParse(
-                txtMax.Text, out double mx) ? mx : 100;
-            meta.NormalMin = double.TryParse(
-                txtMin.Text, out double mn) ? mn : 0;
+            row.DisplayName = txtDisplayName.Text.Trim();
+            row.DecimalPlaces = int.TryParse(txtDecimalPlaces.Text, out int dp) ? dp : 2;
+            row.NormalMax = double.TryParse(txtMax.Text, out double mx) ? mx : (double?)null;
+            row.NormalMin = double.TryParse(txtMin.Text, out double mn) ? mn : (double?)null;
+
+            int newOrder = int.TryParse(txtOrder.Text, out int ord) ? ord : 1;
+            AdjustOrders(row, newOrder);
 
             dgvTags.Refresh();
             _isSyncing = false;
             MarkDirty();
         }
 
-       /// <summary>
-       /// 表格数据修改同步下方表单
-       /// </summary>
-       /// <param name="sender"></param>
-       /// <param name="e"></param>
-        private void DgvTags_CellValueChanged(object sender,
-            DataGridViewCellEventArgs e)
+        private void DgvTags_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             if (_isSyncing || e.RowIndex < 0) return;
             DgvTags_SelectionChanged(sender, e);
             MarkDirty();
         }
 
-        #region Utilities
-        // 标记有未保存修改，当前行变黄
-        private void MarkDirty()
+        private void AdjustOrders(TagRow target, int desiredOrder)
         {
-            _isDirty = true;
-            int idx = dgvTags.CurrentRow?.Index ?? -1;
-            if (idx >= 0)
-                dgvTags.Rows[idx].DefaultCellStyle.BackColor =
-                    Color.LightYellow;
-        }
-        private TagMeta GetSelectedMeta()
-        {
-            if (dgvTags.CurrentRow?.DataBoundItem is TagMeta meta)
-                return meta;
-            return null;
-        }
-
-        #endregion
-
-        // 调整排序：将 target 放到 desiredOrder，其他元素自动前移/后移以保持连续唯一的序号
-        private void AdjustOrders(TagMeta target, int desiredOrder)
-        {
-            if (target == null || _bindingList == null || _bindingList.Count == 0)
-                return;
+            if (target == null || _bindingList == null || _bindingList.Count == 0) return;
 
             int count = _bindingList.Count;
-            // clamp desiredOrder to [1, count]
             desiredOrder = Math.Max(1, Math.Min(desiredOrder, count));
-            int oldOrder = (int)target.Order;
-            if (desiredOrder == oldOrder)
-                return;
+            int oldOrder = target.Order;
+            if (desiredOrder == oldOrder) return;
 
-            // shift others
             if (desiredOrder < oldOrder)
             {
-                foreach (var m in _bindingList.Where(t => t != target && t.Order >= desiredOrder && t.Order < oldOrder))
-                {
-                    m.Order = m.Order + 1;
-                }
+                foreach (var r in _bindingList.Where(
+                    t => t != target && t.Order >= desiredOrder && t.Order < oldOrder))
+                    r.Order++;
             }
-            else // desiredOrder > oldOrder
+            else
             {
-                foreach (var m in _bindingList.Where(t => t != target && t.Order <= desiredOrder && t.Order > oldOrder))
-                {
-                    m.Order = m.Order - 1;
-                }
+                foreach (var r in _bindingList.Where(
+                    t => t != target && t.Order <= desiredOrder && t.Order > oldOrder))
+                    r.Order--;
             }
 
             target.Order = desiredOrder;
 
-            // Rebind list sorted by Order to refresh grid ordering
             var sorted = _bindingList.OrderBy(t => t.Order).ToList();
-            _bindingList = new BindingList<TagMeta>(sorted);
+            _bindingList = new BindingList<TagRow>(sorted);
             dgvTags.DataSource = _bindingList;
 
-            // restore current editing reference to the moved item
             _currentEditing = _bindingList.FirstOrDefault(t => t.TagName == target.TagName);
-            // select the moved row
+
             for (int i = 0; i < dgvTags.Rows.Count; i++)
             {
-                if ((dgvTags.Rows[i].DataBoundItem as TagMeta)?.TagName == target.TagName)
+                if ((dgvTags.Rows[i].DataBoundItem as TagRow)?.TagName == target.TagName)
                 {
                     dgvTags.ClearSelection();
                     dgvTags.Rows[i].Selected = true;
@@ -233,76 +175,116 @@ namespace TestProj
             }
         }
 
+        #region Utilities
+        private void MarkDirty()
+        {
+            _isDirty = true;
+            int idx = dgvTags.CurrentRow?.Index ?? -1;
+            if (idx >= 0)
+                dgvTags.Rows[idx].DefaultCellStyle.BackColor = Color.LightYellow;
+        }
+
+        private TagRow GetSelectedRow()
+        {
+            if (dgvTags.CurrentRow?.DataBoundItem is TagRow row)
+                return row;
+            return null;
+        }
+
+        private void LoadToForm(TagRow row)
+        {
+            txtTagName.Text = row.TagName;
+            txtDisplayName.Text = row.DisplayName;
+            txtDataType.Text = row.DataType;
+            txtDecimalPlaces.Text = row.DecimalPlaces.ToString();
+            txtOrder.Text = row.Order.ToString();
+            txtMax.Text = row.NormalMax?.ToString() ?? "";
+            txtMin.Text = row.NormalMin?.ToString() ?? "";
+        }
+        #endregion
+
         #region 外部接口
         public bool HasUnsavedChanges() => _isDirty;
-        public void LoadToForm(TagMeta meta)
-        {
-            txtTagName.Text = meta.TagName;
-            txtDisplayName.Text = meta.DisplayName;
-            txtDataType.Text = meta.DataType;
-            txtDecimalPlaces.Text = meta.DecimalPlaces.ToString();
-            txtOrder.Text = meta.Order.ToString();
-            txtMax.Text = meta.NormalMax.ToString();
-            txtMin.Text = meta.NormalMin.ToString();
-        }
+
+
+
+
         public void SaveAll()
         {
-            var allMeta = ConfigManager.Config?.TagMeta
-                          ?? new List<TagMeta>();
+            var allMeta = ConfigManager.Config?.TagMeta ?? new List<TagMeta>();
 
-            foreach (var edited in _bindingList)
+            foreach (var row in _bindingList)
             {
-                var existing = allMeta.FirstOrDefault(
-                    t => t.TagName == edited.TagName);
-
+                // TagMeta 只存显示属性，不存 Order
+                var existing = allMeta.FirstOrDefault(t => t.TagName == row.TagName);
                 if (existing != null)
                 {
-                    existing.DisplayName = edited.DisplayName;
-                    existing.DataType = edited.DataType;
-                    existing.NormalMin = edited.NormalMin;
-                    existing.NormalMax = edited.NormalMax;
-                    existing.DecimalPlaces = edited.DecimalPlaces;
-                    existing.Order = edited.Order;
+                    existing.DisplayName = row.DisplayName;
+                    existing.DataType = row.DataType;
+                    existing.NormalMin = row.NormalMin;
+                    existing.NormalMax = row.NormalMax;
+                    existing.DecimalPlaces = row.DecimalPlaces;
                 }
                 else
                 {
-                    allMeta.Add(edited);
+                    allMeta.Add(new TagMeta
+                    {
+                        TagName = row.TagName,
+                        DisplayName = row.DisplayName,
+                        DataType = row.DataType,
+                        NormalMin = row.NormalMin,
+                        NormalMax = row.NormalMax,
+                        DecimalPlaces = row.DecimalPlaces
+                    });
                 }
+
+                // Order 写回 templateEntries
+                var entry = _templateEntries.FirstOrDefault(e => e.TagName == row.TagName);
+                if (entry != null)
+                    entry.Order = row.Order;
             }
 
             ConfigManager.Config.TagMeta = allMeta;
             ConfigManager.SaveConfig();
             _isDirty = false;
 
-            foreach (DataGridViewRow row in dgvTags.Rows)
-                row.DefaultCellStyle.BackColor = Color.Empty;
+            foreach (DataGridViewRow r in dgvTags.Rows)
+                r.DefaultCellStyle.BackColor = Color.Empty;
         }
 
         public void DiscardAllChanges()
         {
-            foreach(var backup in _editingBackups)
+            foreach (var backup in _editingBackups)
             {
-                var meta = _bindingList.FirstOrDefault(t => t.TagName == backup.Key);
-                if (meta != null)
+                var row = _bindingList.FirstOrDefault(t => t.TagName == backup.Key);
+                if (row != null)
                 {
-                    meta.DisplayName = backup.Value.DisplayName;
-                    meta.DataType = backup.Value.DataType;
-                    meta.NormalMin = backup.Value.NormalMin;
-                    meta.NormalMax = backup.Value.NormalMax;
-                    meta.DecimalPlaces = backup.Value.DecimalPlaces;
-                    meta.Order = backup.Value.Order;
+                    row.DisplayName = backup.Value.DisplayName;
+                    row.DataType = backup.Value.DataType;
+                    row.NormalMin = backup.Value.NormalMin;
+                    row.NormalMax = backup.Value.NormalMax;
+                    row.DecimalPlaces = backup.Value.DecimalPlaces;
+                    row.Order = backup.Value.Order;
+
+                    // 还原 templateEntries
+                    var entry = _templateEntries.FirstOrDefault(e => e.TagName == backup.Key);
+                    if (entry != null)
+                        entry.Order = backup.Value.Order;
                 }
             }
 
             _editingBackups.Clear();
-
             dgvTags.Refresh();
             if (_currentEditing != null)
-             {
-                    LoadToForm(_currentEditing);
-            }
+                LoadToForm(_currentEditing);
+        }
+
+        private void SaveConfigBtn_Click_1(object sender, EventArgs e)
+        {
+            SaveAll();
+            MessageBox.Show("保存成功", "提示");
+            _editingBackups.Clear();
         }
         #endregion
-
     }
 }

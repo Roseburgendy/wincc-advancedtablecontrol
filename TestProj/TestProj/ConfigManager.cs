@@ -20,7 +20,6 @@ namespace TestProj
                 Directory.CreateDirectory(Path.GetDirectoryName(ConfigPath));
                 _config = new ProjectConfig
                 {
-                    DataSource = new DataSourceConfig(),
                     TagMeta = new List<TagMeta>()
                 };
                 SaveConfig();

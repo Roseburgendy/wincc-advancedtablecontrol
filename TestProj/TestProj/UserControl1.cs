@@ -1,9 +1,7 @@
 ﻿using CCHMIRUNTIME;
-using Newtonsoft.Json;
 using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
 using System.Drawing;
@@ -14,15 +12,25 @@ namespace TestProj
 {
     public partial class UserControl1: UserControl
     {
-        /// <summary>
-        /// 存储已选择的变量,format: <ArchiveName>//<TagName>
-        /// </summary>
-        private List<string> _selectedTags = new List<string>();
-        private List<TagMeta> _tagMetaList = new List<TagMeta>();
+        private List<TagMeta> _tagMetaList = new List<TagMeta>(); // 变量信息
+        private ReportTemplate _currentTemplate; // 模板对应选中变量名称和顺序
         public UserControl1()
         {
             InitializeComponent();
             ConfigManager.LoadConfig();
+            InitializeTemplateList();
+           
+        }
+
+        private void InitializeTemplateList()
+        {
+            cmbTemplate.DisplayMember = "DisplayName";
+            cmbTemplate.ValueMember = "Id";
+            cmbTemplate.DataSource = ConfigManager.Config?.Template
+                                        ?? new List<ReportTemplate>();
+
+            if (cmbTemplate.Items.Count > 0)
+                cmbTemplate.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -30,16 +38,52 @@ namespace TestProj
         /// </summary>
         private void SearchBtn_Click(object sender, EventArgs e)
         {
-            if (_selectedTags == null || _selectedTags.Count == 0)
+            if (_currentTemplate == null)
             {
-                MessageBox.Show("请先选择变量", "提示");
+                MessageBox.Show("请先选择报表模板", "提示");
                 return;
             }
 
+            var sortedTagNames = _currentTemplate.SelectedTags
+                .OrderBy(entry => entry.Order)
+                .Select(entry => entry.TagName)
+                .ToList();
+
+            if (sortedTagNames.Count == 0)
+            {
+                MessageBox.Show("当前模板没有配置变量", "提示",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            using (var dlg = new TimeRangeSelectorPanel())
+            {
+                dlg.Applied += (start, end, mode, timeStep) =>
+                {
+                    RunQuery(sortedTagNames, start, end, mode, timeStep, dlg.SelectedCount);
+                };
+
+                if (dlg.ShowDialog() != DialogResult.OK) return;
+
+                RunQuery(sortedTagNames,
+                         dlg.SelectedStartTime,
+                         dlg.SelectedEndTime,
+                         dlg.SelectedMode,
+                         dlg.SelectedTimeStep,
+                         dlg.SelectedCount);
+            }
+        }
+
+        private void RunQuery(List<string> tags,
+                              DateTime start, DateTime end,
+                              int mode, int timeStep, int count)
+        {
             try
             {
-                var ds = ExecuteTagQuery(_selectedTags, DT_begin.Value, DT_end.Value);
-                var raw = PrepareResultTable(ds);
+                var raw = DbManager.FetchData(
+                    tags, start, end,
+                    mode: mode,
+                    timeStepSeconds: timeStep);
 
                 if (raw == null || raw.Rows.Count == 0)
                 {
@@ -47,7 +91,22 @@ namespace TestProj
                     return;
                 }
 
-                var wide = PivotToWide(raw, _selectedTags);
+                // mode=2 截取点数
+                if (mode == 2 && count > 0)
+                {
+                    var limited = raw.AsEnumerable().Take(count);
+                    raw = limited.Any() ? limited.CopyToDataTable() : raw;
+                }
+
+                // Timestamp UTC → 本地时间
+                foreach (DataRow row in raw.Rows)
+                {
+                    if (raw.Columns.Contains("Timestamp")
+                        && row["Timestamp"] != DBNull.Value)
+                        row["Timestamp"] = ((DateTime)row["Timestamp"]).ToLocalTime();
+                }
+
+                var wide = PivotToWide(raw, tags);
                 CleanUnusedColumns(wide, new[] { "Quality", "Flags", "ValueID" });
 
                 _tagMetaList = ConfigManager.Config?.TagMeta ?? new List<TagMeta>();
@@ -59,25 +118,31 @@ namespace TestProj
             }
         }
 
-        private DataSet ExecuteTagQuery(List<string> tags, DateTime begin, DateTime end)
+        /// <summary>
+        /// 配置按钮点击事件
+        /// </summary>
+        private void BtnConfig_Click(object sender, EventArgs e)
         {
-            var ds = new DataSet();
-            string startTime = begin.ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss");
-            string endTime = end.ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss");
-            string tagList = string.Join(";", tags.Select(t => $"'{t}'"));
-
-            using (var conn = DbManager.GetConnection())
-            using (var cmd = conn.CreateCommand())
-            using (var da = new OleDbDataAdapter())
+            using (var panel = new TemplateConfigPanel(
+                ConfigManager.Config.Template, 
+                ConfigManager.Config.TagMeta))
             {
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = $"TAG:R,({tagList}),'{startTime}','{endTime}'";
-                da.SelectCommand = (OleDbCommand)cmd;
-                da.Fill(ds);
+                panel.ShowDialog();
             }
+            // 关闭配置窗口后
+            var selectedId = _currentTemplate?.Id;
+            cmbTemplate.DataSource = null;
+            cmbTemplate.DataSource = ConfigManager.Config?.Template;
+            cmbTemplate.DisplayMember = "DisplayName";
+            cmbTemplate.ValueMember = "Id";
 
-            return ds;
+            // 恢复之前选中的模板
+            if (selectedId != null)
+                cmbTemplate.SelectedValue = selectedId;
         }
+
+
+        #region 表格显示Utils
 
         private DataTable PrepareResultTable(DataSet ds)
         {
@@ -184,7 +249,7 @@ namespace TestProj
         /// <param name="raw"> 自带数据源</param>
         /// <param name="tags"> 变量信息</param>
         /// <returns></returns>
-        private DataTable PivotToWide(DataTable raw, List<string> tags)
+        private DataTable PivotToWide(DataTable raw, List<string> sortedTags)
         {
             var wide = new DataTable();
 
@@ -192,11 +257,6 @@ namespace TestProj
             wide.Columns.Add("Timestamp", typeof(DateTime));
             var allMeta = ConfigManager.Config?.TagMeta ?? new List<TagMeta>();
             var nameMap = allMeta.ToDictionary(t => t.TagName, t=> t.DisplayName);
-
-            var sortedTags = tags.OrderBy(t => {
-                var meta = allMeta.FirstOrDefault(m => m.TagName == t);
-                return meta?.Order.HasValue == true ? meta.Order.Value : int.MaxValue;
-            }).ToList();
             // 添加变量列
             foreach (var tag in sortedTags)
             {
@@ -232,75 +292,9 @@ namespace TestProj
         }
 
 
-        /// <summary>
-        /// 变量配置按钮点击事件，弹出TagConfig Panel
-        /// </summary>
-        private void TagConfigBtn_Click(object sender, EventArgs e)
-        {
-            if (_selectedTags == null || _selectedTags.Count == 0)
-            {
-                MessageBox.Show("请先选择变量", "提示");
-                return;
-            }
-            var panel = new TagConfigPanel(_selectedTags);
+        #endregion
 
-            // 关闭时检查未保存修改
-            panel.FormClosing += (s, args) =>
-            {
-                if (panel.HasUnsavedChanges())
-                {
-                    var result = MessageBox.Show(
-                        "有未保存的修改，是否在关闭前保存？",
-                        "提示",
-                        MessageBoxButtons.YesNoCancel,
-                        MessageBoxIcon.Question);
-
-                    if (result == DialogResult.Yes)
-                        panel.SaveAll();          // 保存后继续关闭
-                    else if (result == DialogResult.Cancel)
-                        args.Cancel = true;       // 取消关闭，回到界面
-                    else if (result == DialogResult.No)
-                        panel.DiscardAllChanges();
-                }
-            };
-
-            panel.ShowDialog();
-        }
-
-        /// <summary>
-        /// 变量选择按钮点击事件，弹出TagSelection Panel
-        /// </summary>
-        private void SelectTagBtn_Click(object sender, EventArgs e)
-        {
-            var panel = new TagSelectionPanel(_selectedTags);
-
-            if (panel.ShowDialog() == DialogResult.OK)
-            {
-                _selectedTags = panel.SelectedTags;
-                lblSelectedTags.Text = string.Join(";  ",
-                    _selectedTags.Select(t => t.Contains("\\")
-                        ? t.Split('\\').Last() : t));
-            }
-        }
-
-        private void BtnToday_Click(object sender, EventArgs e)
-        {
-            DT_begin.Value = DateTime.Today;
-            DT_end.Value = DateTime.Today.AddDays(1).AddSeconds(-1);
-        }
-        private void BtnThisWeek_Click(object sender, EventArgs e)
-        {
-            int diff = (int)DateTime.Today.DayOfWeek - (int)DayOfWeek.Monday;
-            if (diff<0) diff += 7;
-            DT_begin.Value = DateTime.Today.AddDays(-diff);
-            DT_end.Value = DateTime.Today.AddDays(1).AddSeconds(-1);
-        }
-        private void BtnThisMonth_Click(object sender, EventArgs e)
-        {
-            DT_begin.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
-            DT_end.Value = DateTime.Today.AddDays(1).AddSeconds(-1);
-        }
-
+        #region 导出相关功能
         private void ExportExcelBtn_Click(object sender, EventArgs e)
         {
             if (dataGridView1.DataSource == null)
@@ -403,5 +397,13 @@ namespace TestProj
                 package.SaveAs(new System.IO.FileInfo(filePath));
             }
         }
+
+        #endregion
+
+        private void CmbTemplate_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _currentTemplate = cmbTemplate.SelectedItem as ReportTemplate;
+        }
+
     }
 }

@@ -13,20 +13,14 @@ namespace TestProj.Models
         public double? NormalMin { get; set; }
         public double? NormalMax { get; set; }
         public int DecimalPlaces { get; set; }=2;
-        public int? Order { get; set; }
     }
 
-    // JSON 里 dataSource 节点
-    public class DataSourceConfig
-    {
-        public string ArchiveName { get; set; }
-    }
 
     // JSON 根节点
     public class ProjectConfig
     {
         public string CompanyName { get; set; } = "";
-        public DataSourceConfig DataSource { get; set; }
         public List<TagMeta> TagMeta { get; set; }
+        public List<ReportTemplate> Template { get; set; }
     }
 }
