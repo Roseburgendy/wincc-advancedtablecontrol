@@ -17,6 +17,7 @@ namespace TestProj
         public UserControl1()
         {
             InitializeComponent();
+            DbManager.GetConnection(); // 确保连接在界面打开时就建立
             ConfigManager.LoadConfig();
             InitializeTemplateList();
            

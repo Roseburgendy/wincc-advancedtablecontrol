@@ -28,13 +28,12 @@ namespace TestProj
             HMIRuntime hmirt = new HMIRuntime();
             string catalog = hmirt.Tags["@DatasourceNameRT"].Read().ToString();
             string pcName = hmirt.Tags["@LocalMachineName"].Read().ToString();
-            // 只在 Config 未初始化时才 Init
+
             if (ConfigManager.Config == null)
             {
-                string projectName = hmirt.Tags["@CurrentProjectName"].Read().ToString();
-                ConfigManager.Init(projectName);
+                string dtname = hmirt.Tags["@DatasourceNameRT"].Read().ToString();
+                ConfigManager.Init(dtname);
             }
-
             string connStr = $"Provider=WinCCOLEDBProvider.1;" +
                              $"Catalog={catalog};" +
                              $"Data Source={pcName}\\WINCC";
@@ -213,7 +212,7 @@ namespace TestProj
                 var tagMap = new Dictionary<string, string>();
                 using (var package = new ExcelPackage(new FileInfo(excelPath)))
                 {
-                    var sheet = package.Workbook.Worksheets[0];
+                    var sheet = package.Workbook.Worksheets[1];
                     int rowCount = sheet.Dimension.End.Row;
 
                     for (int row = 2; row <= rowCount; row++)
