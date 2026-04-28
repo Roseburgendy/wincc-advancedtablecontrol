@@ -85,7 +85,6 @@
             this.label3.Size = new System.Drawing.Size(126, 32);
             this.label3.TabIndex = 10;
             this.label3.Text = "选择模板";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // ExportExcelBtn
             // 

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using TestProj.Models;
-
+using AutoScaleHelper;
 namespace TestProj
 {
     public partial class TemplateConfigPanel : Form
@@ -14,9 +14,15 @@ namespace TestProj
         private readonly List<TagMeta> _allTags;
         private ReportTemplate _editing;
 
+        AutoScale autoScale = new AutoScale();
+
+
         public TemplateConfigPanel(List<ReportTemplate> templates, List<TagMeta> allTags)
         {
             InitializeComponent();
+            autoScale.SetContainer(this);
+            autoScale.AutoFont = true;
+
             _allTags = allTags ?? new List<TagMeta>();
             templates = templates ?? new List<ReportTemplate>();
 
@@ -28,6 +34,7 @@ namespace TestProj
         }
 
 
+        
         /// <summary>
         /// 选择一个模板
         /// </summary>
@@ -265,5 +272,12 @@ namespace TestProj
         }
 
         #endregion
+
+        private void TemplateConfigPanel_SizeChanged(object sender, EventArgs e)
+        {
+            this.SuspendLayout();
+            autoScale.UpdateControlsLayout();
+            this.ResumeLayout();
+        }
     }
 }

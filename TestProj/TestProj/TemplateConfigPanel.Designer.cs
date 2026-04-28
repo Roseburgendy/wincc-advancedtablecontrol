@@ -316,12 +316,12 @@
             // 
             // TemplateConfigPanel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 27F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1420, 738);
             this.Controls.Add(this.splitMain);
             this.Name = "TemplateConfigPanel";
             this.Text = "模板配置";
+            this.SizeChanged += new System.EventHandler(this.TemplateConfigPanel_SizeChanged);
             this.splitMain.Panel1.ResumeLayout(false);
             this.splitMain.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitMain)).EndInit();

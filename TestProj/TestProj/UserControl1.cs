@@ -72,7 +72,7 @@ namespace TestProj
 
         private int GetTimeStepSeconds()
         {
-            switch (cmbTimeStep.SelectedIndex)
+            switch (cmbTimestep.SelectedIndex)
             {
                 case 0: return 0;      // N/A，原始点
                 case 1: return 1;      // 1秒
@@ -143,7 +143,6 @@ namespace TestProj
 
 
         #region 表格显示Utils
-
         private void CleanUnusedColumns(DataTable table, IEnumerable<string> cols)
         {
             foreach (var col in cols)
@@ -155,7 +154,8 @@ namespace TestProj
 
         private void BindResultTable(DataTable table)
         {
-            dataGridView1.DataSource = null;  // 强制清除旧列
+            // 强制清除旧列
+            dataGridView1.DataSource = null;
             dataGridView1.Columns.Clear();
             dataGridView1.DataSource = table;
             if (dataGridView1.Columns.Contains("Timestamp"))
@@ -187,32 +187,6 @@ namespace TestProj
             string format = "F" + (meta?.DecimalPlaces ?? 2);
             e.Value = val.ToString(format);
             e.FormattingApplied = true; 
-
-            // 超限定义
-            bool exceedMax = (meta.NormalMax.HasValue && val > meta.NormalMax.Value);
-
-            bool belowMin = (meta.NormalMin.HasValue && val < meta.NormalMin.Value);
-
-            // 超过最大值： 加粗变红
-            // 低于最小值 ： 加粗变黄
-            // TODO: 自定义超限颜色
-            if (exceedMax)
-            {
-                e.CellStyle.BackColor = Color.Red;
-                e.CellStyle.Font = new Font(dataGridView1.Font, FontStyle.Bold);
-
-            }
-            else if (belowMin)
-            {
-                e.CellStyle.BackColor = Color.Yellow;
-                e.CellStyle.Font = new Font(dataGridView1.Font, FontStyle.Bold);
-
-            }
-            else
-            {
-                e.CellStyle.BackColor = dataGridView1.DefaultCellStyle.BackColor;
-                e.CellStyle.Font = dataGridView1.Font;
-            }
         }
 
         /// <summary>
@@ -375,11 +349,6 @@ namespace TestProj
         private void CmbTemplate_SelectedIndexChanged(object sender, EventArgs e)
         {
             _currentTemplate = cmbTemplate.SelectedItem as ReportTemplate;
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
