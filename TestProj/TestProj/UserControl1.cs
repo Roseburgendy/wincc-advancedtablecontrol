@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using TestProj.Models;
@@ -71,19 +72,6 @@ namespace TestProj
             RunQuery(sortedTagNames, start, end, timeStep);
         }
 
-        private int GetTimeStepSeconds()
-        {
-            switch (cmbTimestep.SelectedIndex)
-            {
-                case 0: return 0;      // N/A，原始点
-                case 1: return 1;      // 1秒
-                case 2: return 60;     // 1分钟
-                case 3: return 3600;   // 1小时
-                case 4: return 86400;  // 1天
-                default: return 0;
-            }
-        }
-
         private void RunQuery(List<string> tags, DateTime start, DateTime end, int timeStep)
         {
             try
@@ -143,7 +131,7 @@ namespace TestProj
         }
 
 
-        #region 表格显示Utils
+        #region Utils
         private void CleanUnusedColumns(DataTable table, IEnumerable<string> cols)
         {
             foreach (var col in cols)
@@ -238,6 +226,19 @@ namespace TestProj
             return wide;
         }
 
+
+        private int GetTimeStepSeconds()
+        {
+            switch (cmbTimestep.SelectedIndex)
+            {
+                case 0: return 0;      // N/A，原始点
+                case 1: return 1;      // 1秒
+                case 2: return 60;     // 1分钟
+                case 3: return 3600;   // 1小时
+                case 4: return 86400;  // 1天
+                default: return 0;
+            }
+        }
 
         #endregion
 
@@ -352,14 +353,92 @@ namespace TestProj
             _currentTemplate = cmbTemplate.SelectedItem as ReportTemplate;
         }
 
-        private void btnImportExcel_Click(object sender, EventArgs e)
+        private void BtnImportFromExcel_Click(object sender, EventArgs e)
         {
             using (var dlg = new OpenFileDialog())
             {
                 dlg.Filter = "Excel 文件|*.xlsx";
                 dlg.Title = "选择变量别名表";
-                if (dlg.ShowDialog() == DialogResult.OK)
-                    DbManager.ImportDisplayNamesFromExcel(dlg.FileName);
+                if (dlg.ShowDialog() != DialogResult.OK) return;
+
+                try
+                {
+                    int updatedTags = 0;
+                    int importedTemplates = 0;
+
+                    using (var package = new ExcelPackage(new FileInfo(dlg.FileName)))
+                    {
+                        foreach (var sheet in package.Workbook.Worksheets)
+                        {
+                            if (sheet.Dimension == null) continue;
+                            int rowCount = sheet.Dimension.End.Row;
+                            var selectedTags = new List<TemplateTagEntry>();
+
+                            for (int row = 2; row <= rowCount; row++)
+                            {
+                                string tagName = sheet.Cells[row, 1].Text?.Trim();
+                                string displayName = sheet.Cells[row, 2].Text?.Trim();
+                                if (string.IsNullOrEmpty(tagName)) continue;
+
+                                // 更新 TagMeta DisplayName
+                                var meta = ConfigManager.Config.TagMeta
+                                    .FirstOrDefault(m =>
+                                    {
+                                        string shortName = m.TagName.Contains("\\")
+                                            ? m.TagName.Split('\\')[1] : m.TagName;
+                                        return shortName == tagName;
+                                    });
+
+                                if (meta != null && !string.IsNullOrEmpty(displayName))
+                                {
+                                    meta.DisplayName = displayName;
+                                    updatedTags++;
+                                }
+
+                                // 用完整 TagName（带归档前缀），找不到就用原名
+                                string fullTagName = meta?.TagName ?? tagName;
+                                selectedTags.Add(new TemplateTagEntry
+                                {
+                                    TagName = fullTagName,
+                                    Order = selectedTags.Count + 1
+                                });
+                            }
+
+                            if (selectedTags.Count == 0) continue;
+
+                            // 写入 Template：同名则更新，否则新增
+                            var existing = ConfigManager.Config.Template
+                                .FirstOrDefault(t => t.DisplayName == sheet.Name);
+
+                            // 写入template selected tags
+                            if (existing != null)
+                            {
+                                existing.SelectedTags = selectedTags;
+                            }
+                            else
+                            {
+                                ConfigManager.Config.Template.Add(new ReportTemplate
+                                {
+                                    Id = "tpl_" + DateTime.Now.Ticks + importedTemplates,
+                                    DisplayName = sheet.Name,
+                                    Description = "",
+                                    SelectedTags = selectedTags
+                                });
+                            }
+
+                            importedTemplates++;
+                        }
+                    }
+
+                    ConfigManager.SaveConfig();
+                    MessageBox.Show(
+                        $"导入完成：{importedTemplates} 个模板，更新 {updatedTags} 个变量别名。",
+                        "成功");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"导入失败: {ex.Message}", "错误");
+                }
             }
         }
     }

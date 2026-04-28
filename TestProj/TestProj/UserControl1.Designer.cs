@@ -68,10 +68,10 @@
             // searchBtn
             // 
             this.searchBtn.Font = new System.Drawing.Font("Arial", 9F);
-            this.searchBtn.Location = new System.Drawing.Point(1325, 163);
+            this.searchBtn.Location = new System.Drawing.Point(1325, 174);
             this.searchBtn.Margin = new System.Windows.Forms.Padding(4);
             this.searchBtn.Name = "searchBtn";
-            this.searchBtn.Size = new System.Drawing.Size(176, 71);
+            this.searchBtn.Size = new System.Drawing.Size(176, 60);
             this.searchBtn.TabIndex = 6;
             this.searchBtn.Text = "搜索";
             this.searchBtn.UseVisualStyleBackColor = true;
@@ -90,9 +90,9 @@
             // ExportExcelBtn
             // 
             this.ExportExcelBtn.Font = new System.Drawing.Font("SimSun", 9F);
-            this.ExportExcelBtn.Location = new System.Drawing.Point(1710, 163);
+            this.ExportExcelBtn.Location = new System.Drawing.Point(1710, 174);
             this.ExportExcelBtn.Name = "ExportExcelBtn";
-            this.ExportExcelBtn.Size = new System.Drawing.Size(176, 71);
+            this.ExportExcelBtn.Size = new System.Drawing.Size(176, 60);
             this.ExportExcelBtn.TabIndex = 15;
             this.ExportExcelBtn.Text = "导出到EXCEL";
             this.ExportExcelBtn.UseVisualStyleBackColor = true;
@@ -100,9 +100,9 @@
             // 
             // btnConfig
             // 
-            this.btnConfig.Location = new System.Drawing.Point(1519, 163);
+            this.btnConfig.Location = new System.Drawing.Point(1519, 174);
             this.btnConfig.Name = "btnConfig";
-            this.btnConfig.Size = new System.Drawing.Size(176, 71);
+            this.btnConfig.Size = new System.Drawing.Size(176, 60);
             this.btnConfig.TabIndex = 16;
             this.btnConfig.Text = "配置";
             this.btnConfig.UseVisualStyleBackColor = true;
@@ -111,7 +111,7 @@
             // cmbTemplate
             // 
             this.cmbTemplate.FormattingEnabled = true;
-            this.cmbTemplate.Location = new System.Drawing.Point(1325, 87);
+            this.cmbTemplate.Location = new System.Drawing.Point(1451, 34);
             this.cmbTemplate.Name = "cmbTemplate";
             this.cmbTemplate.Size = new System.Drawing.Size(439, 35);
             this.cmbTemplate.TabIndex = 18;
@@ -255,13 +255,13 @@
             // 
             // btnImportExcel
             // 
-            this.btnImportExcel.Location = new System.Drawing.Point(107, 157);
+            this.btnImportExcel.Location = new System.Drawing.Point(1451, 95);
             this.btnImportExcel.Name = "btnImportExcel";
-            this.btnImportExcel.Size = new System.Drawing.Size(342, 65);
+            this.btnImportExcel.Size = new System.Drawing.Size(319, 60);
             this.btnImportExcel.TabIndex = 31;
-            this.btnImportExcel.Text = "批量导入变量名称";
+            this.btnImportExcel.Text = "批量导入模板";
             this.btnImportExcel.UseVisualStyleBackColor = true;
-            this.btnImportExcel.Click += new System.EventHandler(this.btnImportExcel_Click);
+            this.btnImportExcel.Click += new System.EventHandler(this.BtnImportFromExcel_Click);
             // 
             // UserControl1
             // 
