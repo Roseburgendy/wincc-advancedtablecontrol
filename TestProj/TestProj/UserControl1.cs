@@ -80,6 +80,9 @@ namespace TestProj
             var start = dtpStartDate.Value.Date + dtpStartTime.Value.TimeOfDay;
             var end = dtpEndDate.Value.Date + dtpEndTime.Value.TimeOfDay;
 
+            var startUTC = start.ToUniversalTime();
+            var endUTC = end.ToUniversalTime();
+
             if (start >= end)
             {
                 MessageBox.Show("开始时间不能晚于结束时间", "提示",
@@ -87,8 +90,8 @@ namespace TestProj
                 return;
             }
 
-            int timeStep = GetTimeStepSeconds();
-            RunQuery(sortedTagNames, start, end, timeStep);
+            int timeStep = (int)numValue.Value * GetTimeStepSeconds();
+            RunQuery(sortedTagNames, startUTC, endUTC, timeStep);
         }
 
         private void RunQuery(List<string> tags, DateTime start, DateTime end, int timeStep)

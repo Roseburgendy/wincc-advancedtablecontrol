@@ -76,6 +76,12 @@
   <ItemGroup>
     <Compile Include="ConfigManager.cs" />
     <Compile Include="DbManager.cs" />
+    <Compile Include="ExcelImportConfigForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExcelImportConfigForm.Designer.cs">
+      <DependentUpon>ExcelImportConfigForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\ReportTemplate.cs" />
     <Compile Include="Models\TagMeta.cs" />
     <Compile Include="TagConfigPanel.cs">
@@ -112,6 +118,9 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ExcelImportConfigForm.resx">
+      <DependentUpon>ExcelImportConfigForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TagConfigPanel.resx">
       <DependentUpon>TagConfigPanel.cs</DependentUpon>
     </EmbeddedResource>

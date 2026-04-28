@@ -19,3 +19,4 @@ E:\WinCCReporter_Dev\TestProj\TestProj\obj\x86\Release\TestProj.csproj.CoreCompi
 E:\WinCCReporter_Dev\TestProj\TestProj\obj\x86\Release\TestProj.csproj.Up2Date
 E:\WinCCReporter_Dev\TestProj\TestProj\obj\x86\Release\TestProj.dll
 E:\WinCCReporter_Dev\TestProj\TestProj\obj\x86\Release\TestProj.pdb
+E:\WinCCReporter_Dev\TestProj\TestProj\obj\x86\Release\TestProj.ExcelImportConfigForm.resources
