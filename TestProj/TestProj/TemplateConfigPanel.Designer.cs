@@ -38,26 +38,26 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.pnlDetail = new System.Windows.Forms.Panel();
             this.tlpFields = new System.Windows.Forms.TableLayoutPanel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.txtTagSummary = new System.Windows.Forms.TextBox();
-            this.btnSelectTags = new System.Windows.Forms.Button();
-            this.btnConfigTag = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtDesc = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtDesc = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.btnConfigTag = new System.Windows.Forms.Button();
+            this.btnSelectTags = new System.Windows.Forms.Button();
+            this.txtTagSummary = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitMain)).BeginInit();
             this.splitMain.Panel1.SuspendLayout();
             this.splitMain.Panel2.SuspendLayout();
             this.splitMain.SuspendLayout();
             this.pnlLeftHeader.SuspendLayout();
             this.pnlFooter.SuspendLayout();
+            this.pnlDetail.SuspendLayout();
             this.tlpFields.SuspendLayout();
             this.panel4.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitMain
@@ -74,9 +74,9 @@
             // splitMain.Panel2
             // 
             this.splitMain.Panel2.Controls.Add(this.pnlFooter);
-            this.splitMain.Panel2.Controls.Add(this.panel1);
+            this.splitMain.Panel2.Controls.Add(this.pnlDetail);
             this.splitMain.Size = new System.Drawing.Size(1764, 1049);
-            this.splitMain.SplitterDistance = 417;
+            this.splitMain.SplitterDistance = 416;
             this.splitMain.TabIndex = 0;
             // 
             // lstTemplates
@@ -97,7 +97,7 @@
             this.pnlLeftHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlLeftHeader.Location = new System.Drawing.Point(0, 0);
             this.pnlLeftHeader.Name = "pnlLeftHeader";
-            this.pnlLeftHeader.Size = new System.Drawing.Size(417, 111);
+            this.pnlLeftHeader.Size = new System.Drawing.Size(416, 111);
             this.pnlLeftHeader.TabIndex = 0;
             // 
             // btnAdd
@@ -130,14 +130,14 @@
             this.pnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlFooter.Location = new System.Drawing.Point(0, 877);
             this.pnlFooter.Name = "pnlFooter";
-            this.pnlFooter.Size = new System.Drawing.Size(1343, 172);
+            this.pnlFooter.Size = new System.Drawing.Size(1344, 172);
             this.pnlFooter.TabIndex = 1;
             // 
             // btnClone
             // 
             this.btnClone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClone.Font = new System.Drawing.Font("SimSun", 14F);
-            this.btnClone.Location = new System.Drawing.Point(575, 50);
+            this.btnClone.Location = new System.Drawing.Point(576, 50);
             this.btnClone.Name = "btnClone";
             this.btnClone.Size = new System.Drawing.Size(385, 88);
             this.btnClone.TabIndex = 3;
@@ -149,7 +149,7 @@
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDelete.Font = new System.Drawing.Font("SimSun", 14F);
-            this.btnDelete.Location = new System.Drawing.Point(1014, 50);
+            this.btnDelete.Location = new System.Drawing.Point(1015, 50);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(278, 88);
             this.btnDelete.TabIndex = 2;
@@ -161,7 +161,7 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.Font = new System.Drawing.Font("SimSun", 14F);
-            this.btnCancel.Location = new System.Drawing.Point(279, 50);
+            this.btnCancel.Location = new System.Drawing.Point(280, 50);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(222, 88);
             this.btnCancel.TabIndex = 1;
@@ -173,13 +173,22 @@
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.Font = new System.Drawing.Font("SimSun", 14F);
-            this.btnSave.Location = new System.Drawing.Point(34, 50);
+            this.btnSave.Location = new System.Drawing.Point(35, 50);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(210, 88);
             this.btnSave.TabIndex = 0;
             this.btnSave.Text = "保存";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
+            // 
+            // pnlDetail
+            // 
+            this.pnlDetail.Controls.Add(this.tlpFields);
+            this.pnlDetail.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlDetail.Location = new System.Drawing.Point(0, 0);
+            this.pnlDetail.Name = "pnlDetail";
+            this.pnlDetail.Size = new System.Drawing.Size(1344, 1049);
+            this.pnlDetail.TabIndex = 9;
             // 
             // tlpFields
             // 
@@ -201,79 +210,15 @@
             this.tlpFields.Size = new System.Drawing.Size(1350, 812);
             this.tlpFields.TabIndex = 8;
             // 
-            // label2
+            // txtName
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("SimSun", 14F);
-            this.label2.Location = new System.Drawing.Point(3, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(186, 42);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "模板名称";
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.btnConfigTag);
-            this.panel4.Controls.Add(this.btnSelectTags);
-            this.panel4.Controls.Add(this.txtTagSummary);
-            this.panel4.Location = new System.Drawing.Point(195, 433);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1134, 137);
-            this.panel4.TabIndex = 5;
-            // 
-            // txtTagSummary
-            // 
-            this.txtTagSummary.Font = new System.Drawing.Font("SimSun", 14F);
-            this.txtTagSummary.Location = new System.Drawing.Point(3, 3);
-            this.txtTagSummary.Name = "txtTagSummary";
-            this.txtTagSummary.Size = new System.Drawing.Size(446, 55);
-            this.txtTagSummary.TabIndex = 0;
-            // 
-            // btnSelectTags
-            // 
-            this.btnSelectTags.Font = new System.Drawing.Font("SimSun", 14F);
-            this.btnSelectTags.Location = new System.Drawing.Point(471, 3);
-            this.btnSelectTags.Name = "btnSelectTags";
-            this.btnSelectTags.Size = new System.Drawing.Size(161, 55);
-            this.btnSelectTags.TabIndex = 1;
-            this.btnSelectTags.Text = "...";
-            this.btnSelectTags.UseVisualStyleBackColor = true;
-            this.btnSelectTags.Click += new System.EventHandler(this.BtnSelectTags_Click);
-            // 
-            // btnConfigTag
-            // 
-            this.btnConfigTag.Font = new System.Drawing.Font("SimSun", 14F);
-            this.btnConfigTag.Location = new System.Drawing.Point(735, 0);
-            this.btnConfigTag.Name = "btnConfigTag";
-            this.btnConfigTag.Size = new System.Drawing.Size(262, 71);
-            this.btnConfigTag.TabIndex = 2;
-            this.btnConfigTag.Text = "变量配置";
-            this.btnConfigTag.UseVisualStyleBackColor = true;
-            this.btnConfigTag.Click += new System.EventHandler(this.BtnConfigTag_Click);
-            // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("SimSun", 14F);
-            this.label4.Location = new System.Drawing.Point(3, 430);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(186, 42);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "选择变量";
-            // 
-            // txtDesc
-            // 
-            this.txtDesc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDesc.Font = new System.Drawing.Font("SimSun", 14F);
-            this.txtDesc.Location = new System.Drawing.Point(195, 220);
-            this.txtDesc.Name = "txtDesc";
-            this.txtDesc.Size = new System.Drawing.Size(1222, 55);
-            this.txtDesc.TabIndex = 3;
+            this.txtName.Font = new System.Drawing.Font("SimSun", 14F);
+            this.txtName.Location = new System.Drawing.Point(195, 3);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(1222, 55);
+            this.txtName.TabIndex = 1;
             // 
             // label3
             // 
@@ -287,24 +232,79 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "备注说明";
             // 
-            // txtName
+            // txtDesc
             // 
-            this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtDesc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtName.Font = new System.Drawing.Font("SimSun", 14F);
-            this.txtName.Location = new System.Drawing.Point(195, 3);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(1222, 55);
-            this.txtName.TabIndex = 1;
+            this.txtDesc.Font = new System.Drawing.Font("SimSun", 14F);
+            this.txtDesc.Location = new System.Drawing.Point(195, 220);
+            this.txtDesc.Name = "txtDesc";
+            this.txtDesc.Size = new System.Drawing.Size(1222, 55);
+            this.txtDesc.TabIndex = 3;
             // 
-            // panel1
+            // label4
             // 
-            this.panel1.Controls.Add(this.tlpFields);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1343, 1049);
-            this.panel1.TabIndex = 9;
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("SimSun", 14F);
+            this.label4.Location = new System.Drawing.Point(3, 430);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(186, 42);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "选择变量";
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.btnConfigTag);
+            this.panel4.Controls.Add(this.btnSelectTags);
+            this.panel4.Controls.Add(this.txtTagSummary);
+            this.panel4.Location = new System.Drawing.Point(195, 433);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(1134, 137);
+            this.panel4.TabIndex = 5;
+            // 
+            // btnConfigTag
+            // 
+            this.btnConfigTag.Font = new System.Drawing.Font("SimSun", 14F);
+            this.btnConfigTag.Location = new System.Drawing.Point(735, 0);
+            this.btnConfigTag.Name = "btnConfigTag";
+            this.btnConfigTag.Size = new System.Drawing.Size(262, 71);
+            this.btnConfigTag.TabIndex = 2;
+            this.btnConfigTag.Text = "变量配置";
+            this.btnConfigTag.UseVisualStyleBackColor = true;
+            this.btnConfigTag.Click += new System.EventHandler(this.BtnConfigTag_Click);
+            // 
+            // btnSelectTags
+            // 
+            this.btnSelectTags.Font = new System.Drawing.Font("SimSun", 14F);
+            this.btnSelectTags.Location = new System.Drawing.Point(471, 3);
+            this.btnSelectTags.Name = "btnSelectTags";
+            this.btnSelectTags.Size = new System.Drawing.Size(161, 55);
+            this.btnSelectTags.TabIndex = 1;
+            this.btnSelectTags.Text = "...";
+            this.btnSelectTags.UseVisualStyleBackColor = true;
+            this.btnSelectTags.Click += new System.EventHandler(this.BtnSelectTags_Click);
+            // 
+            // txtTagSummary
+            // 
+            this.txtTagSummary.Font = new System.Drawing.Font("SimSun", 14F);
+            this.txtTagSummary.Location = new System.Drawing.Point(3, 3);
+            this.txtTagSummary.Name = "txtTagSummary";
+            this.txtTagSummary.Size = new System.Drawing.Size(446, 55);
+            this.txtTagSummary.TabIndex = 0;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("SimSun", 14F);
+            this.label2.Location = new System.Drawing.Point(3, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(186, 42);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "模板名称";
             // 
             // TemplateConfigPanel
             // 
@@ -322,11 +322,11 @@
             this.pnlLeftHeader.ResumeLayout(false);
             this.pnlLeftHeader.PerformLayout();
             this.pnlFooter.ResumeLayout(false);
+            this.pnlDetail.ResumeLayout(false);
             this.tlpFields.ResumeLayout(false);
             this.tlpFields.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -353,6 +353,6 @@
         private System.Windows.Forms.Button btnSelectTags;
         private System.Windows.Forms.TextBox txtTagSummary;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pnlDetail;
     }
 }
