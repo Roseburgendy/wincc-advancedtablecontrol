@@ -1,39 +1,46 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using Newtonsoft.Json;
 using TestProj.Models;
 
-namespace TestProj
+internal class ConfigManager
 {
-    internal class ConfigManager
+    private static ProjectConfig _config;
+    public static ProjectConfig Config => _config;
+
+    private static string _configPath;
+
+    /// <summary>
+    /// 根据项目名称初始化，每个项目对应一个独立的 config.json
+    /// </summary>
+    public static void Init(string projectName)
     {
-        private static ProjectConfig _config;
-        public static ProjectConfig Config => _config;
+        string dir = @"C:\Users\Public\Documents\WinCCReporter";
+        _configPath = Path.Combine(dir, $"{projectName}.json");
+        LoadConfig();
+    }
 
-        private static readonly string ConfigPath = @"C:\Users\Public\Documents\config.json";
-
-        public static void LoadConfig()
+    public static void LoadConfig()
+    {
+        if (!File.Exists(_configPath))
         {
-            if (!File.Exists(ConfigPath))
+            Directory.CreateDirectory(Path.GetDirectoryName(_configPath));
+            _config = new ProjectConfig
             {
-                Directory.CreateDirectory(Path.GetDirectoryName(ConfigPath));
-                _config = new ProjectConfig
-                {
-                    TagMeta = new List<TagMeta>()
-                };
-                SaveConfig();
-                return;
-            }
-
-            string json = File.ReadAllText(ConfigPath, new UTF8Encoding(false));
-            _config = JsonConvert.DeserializeObject<ProjectConfig>(json);
+                TagMeta = new List<TagMeta>()
+            };
+            SaveConfig();
+            return;
         }
 
-        public static void SaveConfig()
-        {
-            string json = JsonConvert.SerializeObject(_config, Formatting.Indented);
-            File.WriteAllText(ConfigPath, json, new UTF8Encoding(false));
-        }
+        string json = File.ReadAllText(_configPath, new UTF8Encoding(false));
+        _config = JsonConvert.DeserializeObject<ProjectConfig>(json);
+    }
+
+    public static void SaveConfig()
+    {
+        string json = JsonConvert.SerializeObject(_config, Formatting.Indented);
+        File.WriteAllText(_configPath, json, new UTF8Encoding(false));
     }
 }

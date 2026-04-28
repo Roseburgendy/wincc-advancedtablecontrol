@@ -350,5 +350,16 @@ namespace TestProj
         {
             _currentTemplate = cmbTemplate.SelectedItem as ReportTemplate;
         }
+
+        private void btnImportExcel_Click(object sender, EventArgs e)
+        {
+            using (var dlg = new OpenFileDialog())
+            {
+                dlg.Filter = "Excel 文件|*.xlsx";
+                dlg.Title = "选择变量别名表";
+                if (dlg.ShowDialog() == DialogResult.OK)
+                    DbManager.ImportDisplayNamesFromExcel(dlg.FileName);
+            }
+        }
     }
 }

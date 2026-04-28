@@ -48,6 +48,7 @@
             this.txtDesc = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.splitMain)).BeginInit();
             this.splitMain.Panel1.SuspendLayout();
             this.splitMain.Panel2.SuspendLayout();
@@ -56,6 +57,7 @@
             this.pnlFooter.SuspendLayout();
             this.tlpFields.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitMain
@@ -71,10 +73,10 @@
             // 
             // splitMain.Panel2
             // 
-            this.splitMain.Panel2.Controls.Add(this.tlpFields);
             this.splitMain.Panel2.Controls.Add(this.pnlFooter);
+            this.splitMain.Panel2.Controls.Add(this.panel1);
             this.splitMain.Size = new System.Drawing.Size(1764, 1049);
-            this.splitMain.SplitterDistance = 401;
+            this.splitMain.SplitterDistance = 417;
             this.splitMain.TabIndex = 0;
             // 
             // lstTemplates
@@ -84,7 +86,7 @@
             this.lstTemplates.ItemHeight = 42;
             this.lstTemplates.Location = new System.Drawing.Point(12, 137);
             this.lstTemplates.Name = "lstTemplates";
-            this.lstTemplates.Size = new System.Drawing.Size(386, 886);
+            this.lstTemplates.Size = new System.Drawing.Size(402, 886);
             this.lstTemplates.TabIndex = 1;
             this.lstTemplates.SelectedIndexChanged += new System.EventHandler(this.LstTemplates_SelectedIndexChanged);
             // 
@@ -95,14 +97,15 @@
             this.pnlLeftHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlLeftHeader.Location = new System.Drawing.Point(0, 0);
             this.pnlLeftHeader.Name = "pnlLeftHeader";
-            this.pnlLeftHeader.Size = new System.Drawing.Size(401, 111);
+            this.pnlLeftHeader.Size = new System.Drawing.Size(417, 111);
             this.pnlLeftHeader.TabIndex = 0;
             // 
             // btnAdd
             // 
+            this.btnAdd.Font = new System.Drawing.Font("SimSun", 14F);
             this.btnAdd.Location = new System.Drawing.Point(293, 20);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 54);
+            this.btnAdd.Size = new System.Drawing.Size(100, 71);
             this.btnAdd.TabIndex = 1;
             this.btnAdd.Text = "+";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -127,14 +130,14 @@
             this.pnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlFooter.Location = new System.Drawing.Point(0, 877);
             this.pnlFooter.Name = "pnlFooter";
-            this.pnlFooter.Size = new System.Drawing.Size(1359, 172);
+            this.pnlFooter.Size = new System.Drawing.Size(1343, 172);
             this.pnlFooter.TabIndex = 1;
             // 
             // btnClone
             // 
             this.btnClone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClone.Font = new System.Drawing.Font("SimSun", 14F);
-            this.btnClone.Location = new System.Drawing.Point(591, 50);
+            this.btnClone.Location = new System.Drawing.Point(575, 50);
             this.btnClone.Name = "btnClone";
             this.btnClone.Size = new System.Drawing.Size(385, 88);
             this.btnClone.TabIndex = 3;
@@ -146,7 +149,7 @@
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDelete.Font = new System.Drawing.Font("SimSun", 14F);
-            this.btnDelete.Location = new System.Drawing.Point(1030, 50);
+            this.btnDelete.Location = new System.Drawing.Point(1014, 50);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(278, 88);
             this.btnDelete.TabIndex = 2;
@@ -158,7 +161,7 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.Font = new System.Drawing.Font("SimSun", 14F);
-            this.btnCancel.Location = new System.Drawing.Point(295, 50);
+            this.btnCancel.Location = new System.Drawing.Point(279, 50);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(222, 88);
             this.btnCancel.TabIndex = 1;
@@ -170,7 +173,7 @@
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.Font = new System.Drawing.Font("SimSun", 14F);
-            this.btnSave.Location = new System.Drawing.Point(50, 50);
+            this.btnSave.Location = new System.Drawing.Point(34, 50);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(210, 88);
             this.btnSave.TabIndex = 0;
@@ -189,13 +192,13 @@
             this.tlpFields.Controls.Add(this.label4, 0, 2);
             this.tlpFields.Controls.Add(this.panel4, 1, 2);
             this.tlpFields.Controls.Add(this.label2, 0, 0);
-            this.tlpFields.Location = new System.Drawing.Point(13, 62);
+            this.tlpFields.Location = new System.Drawing.Point(6, 49);
             this.tlpFields.Name = "tlpFields";
             this.tlpFields.RowCount = 3;
             this.tlpFields.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.42735F));
             this.tlpFields.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49.57265F));
             this.tlpFields.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 381F));
-            this.tlpFields.Size = new System.Drawing.Size(1329, 809);
+            this.tlpFields.Size = new System.Drawing.Size(1350, 812);
             this.tlpFields.TabIndex = 8;
             // 
             // label2
@@ -215,7 +218,7 @@
             this.panel4.Controls.Add(this.btnConfigTag);
             this.panel4.Controls.Add(this.btnSelectTags);
             this.panel4.Controls.Add(this.txtTagSummary);
-            this.panel4.Location = new System.Drawing.Point(195, 430);
+            this.panel4.Location = new System.Drawing.Point(195, 433);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1134, 137);
             this.panel4.TabIndex = 5;
@@ -256,7 +259,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("SimSun", 14F);
-            this.label4.Location = new System.Drawing.Point(3, 427);
+            this.label4.Location = new System.Drawing.Point(3, 430);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(186, 42);
             this.label4.TabIndex = 4;
@@ -267,7 +270,7 @@
             this.txtDesc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDesc.Font = new System.Drawing.Font("SimSun", 14F);
-            this.txtDesc.Location = new System.Drawing.Point(195, 218);
+            this.txtDesc.Location = new System.Drawing.Point(195, 220);
             this.txtDesc.Name = "txtDesc";
             this.txtDesc.Size = new System.Drawing.Size(1222, 55);
             this.txtDesc.TabIndex = 3;
@@ -278,7 +281,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("SimSun", 14F);
-            this.label3.Location = new System.Drawing.Point(3, 215);
+            this.label3.Location = new System.Drawing.Point(3, 217);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(186, 42);
             this.label3.TabIndex = 2;
@@ -294,12 +297,22 @@
             this.txtName.Size = new System.Drawing.Size(1222, 55);
             this.txtName.TabIndex = 1;
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.tlpFields);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1343, 1049);
+            this.panel1.TabIndex = 9;
+            // 
             // TemplateConfigPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(216F, 216F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(1764, 1049);
             this.Controls.Add(this.splitMain);
+            this.Font = new System.Drawing.Font("SimSun", 12F);
             this.Name = "TemplateConfigPanel";
             this.Text = "模板配置";
             this.splitMain.Panel1.ResumeLayout(false);
@@ -313,6 +326,7 @@
             this.tlpFields.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -339,5 +353,6 @@
         private System.Windows.Forms.Button btnSelectTags;
         private System.Windows.Forms.TextBox txtTagSummary;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panel1;
     }
 }
