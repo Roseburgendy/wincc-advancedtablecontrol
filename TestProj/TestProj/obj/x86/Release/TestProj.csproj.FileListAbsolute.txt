@@ -1,8 +1,8 @@
 E:\WinCCReporter_Dev\TestProj\TestProj\bin\x86\Release\TestProj.dll
 E:\WinCCReporter_Dev\TestProj\TestProj\bin\x86\Release\TestProj.pdb
-E:\WinCCReporter_Dev\TestProj\TestProj\bin\x86\Release\Newtonsoft.Json.dll
 E:\WinCCReporter_Dev\TestProj\TestProj\bin\x86\Release\AutoScaleHelper.dll
 E:\WinCCReporter_Dev\TestProj\TestProj\bin\x86\Release\EPPlus.dll
+E:\WinCCReporter_Dev\TestProj\TestProj\bin\x86\Release\Newtonsoft.Json.dll
 E:\WinCCReporter_Dev\TestProj\TestProj\bin\x86\Release\AutoScaleHelper.xml
 E:\WinCCReporter_Dev\TestProj\TestProj\bin\x86\Release\EPPlus.xml
 E:\WinCCReporter_Dev\TestProj\TestProj\bin\x86\Release\Newtonsoft.Json.xml

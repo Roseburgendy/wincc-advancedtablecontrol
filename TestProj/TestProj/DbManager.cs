@@ -197,58 +197,5 @@ namespace TestProj
                 default: return $"Unknown({varType})";
             }
         }
-
-
-        /// <summary>
-        /// 从 Excel 导入 Tag 别名到 JSON 配置
-        /// A列: 变量名称(TagName)  B列: 别名(DisplayName)
-        /// 第一行为表头，跳过
-        /// </summary>
-        public static void ImportDisplayNamesFromExcel(string excelPath)
-        {
-            try
-            {
-                // 1. 读取 Excel：tagName(纯变量名) -> displayName
-                var tagMap = new Dictionary<string, string>();
-                using (var package = new ExcelPackage(new FileInfo(excelPath)))
-                {
-                    var sheet = package.Workbook.Worksheets[1];
-                    int rowCount = sheet.Dimension.End.Row;
-
-                    for (int row = 2; row <= rowCount; row++)
-                    {
-                        string tagName = sheet.Cells[row, 1].Text?.Trim();
-                        string displayName = sheet.Cells[row, 2].Text?.Trim();
-                        if (!string.IsNullOrEmpty(tagName))
-                            tagMap[tagName] = displayName ?? "";
-                    }
-                }
-
-                // 2. 遍历现有 TagMeta，用反斜杠后面的部分匹配 Excel 里的 key
-                var config = ConfigManager.Config;
-                int matched = 0;
-
-                foreach (var meta in config.TagMeta)
-                {
-                    // "Temp\TT_1" -> "TT_1"
-                    string shortName = meta.TagName.Contains("\\")
-                        ? meta.TagName.Split('\\')[1]
-                        : meta.TagName;
-
-                    if (tagMap.TryGetValue(shortName, out string displayName))
-                    {
-                        meta.DisplayName = displayName;
-                        matched++;
-                    }
-                }
-
-                ConfigManager.SaveConfig();
-                MessageBox.Show($"导入完成，匹配 {matched} / {config.TagMeta.Count} 个变量。", "成功");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"导入失败: {ex.Message}", "错误");
-            }
-        }
     }
 }

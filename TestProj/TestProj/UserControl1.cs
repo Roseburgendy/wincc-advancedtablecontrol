@@ -3,7 +3,6 @@ using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.OleDb;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -18,13 +17,33 @@ namespace TestProj
         public UserControl1()
         {
             InitializeComponent();
-            DbManager.GetConnection(); // 确保连接在界面打开时就建立
-            ConfigManager.LoadConfig();
+
+            try
+            {
+                DbManager.GetConnection(); // 内部会触发 ConfigManager.Init
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"初始化连接失败: {ex.Message}", "错误");
+                return;
+            }
+
+            // 不需要再单独 LoadConfig，GetConnection 里已经 Init 过了
+            // 如果 TagMeta 是空的，自动从数据库填充一次
+            if (ConfigManager.Config.TagMeta == null || ConfigManager.Config.TagMeta.Count == 0)
+            {
+                var tags = DbManager.FetchAllTags();
+                ConfigManager.Config.TagMeta = tags.Select(t => new TagMeta
+                {
+                    TagName = t.ValueName
+                }).ToList();
+                ConfigManager.SaveConfig();
+            }
+
             InitializeTemplateList();
-           
         }
 
-        private void InitializeTemplateList()
+        public void InitializeTemplateList()
         {
             cmbTemplate.DisplayMember = "DisplayName";
             cmbTemplate.ValueMember = "Id";
@@ -355,6 +374,7 @@ namespace TestProj
 
         private void BtnImportFromExcel_Click(object sender, EventArgs e)
         {
+           
             using (var dlg = new OpenFileDialog())
             {
                 dlg.Filter = "Excel 文件|*.xlsx";
@@ -405,6 +425,8 @@ namespace TestProj
                             }
 
                             if (selectedTags.Count == 0) continue;
+                            if (ConfigManager.Config.Template == null)
+                                ConfigManager.Config.Template = new List<ReportTemplate>();
 
                             // 写入 Template：同名则更新，否则新增
                             var existing = ConfigManager.Config.Template
@@ -434,6 +456,8 @@ namespace TestProj
                     MessageBox.Show(
                         $"导入完成：{importedTemplates} 个模板，更新 {updatedTags} 个变量别名。",
                         "成功");
+
+                    InitializeTemplateList();
                 }
                 catch (Exception ex)
                 {

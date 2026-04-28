@@ -38,6 +38,12 @@ namespace TestProj
 
             string json = File.ReadAllText(_configPath, new UTF8Encoding(false));
             _config = JsonConvert.DeserializeObject<ProjectConfig>(json);
+
+            // 防御 null
+            if (_config.TagMeta == null)
+                _config.TagMeta = new List<TagMeta>();
+            if (_config.Template == null)
+                _config.Template = new List<ReportTemplate>();
         }
 
         public static void SaveConfig()
