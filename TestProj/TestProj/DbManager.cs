@@ -84,33 +84,18 @@ namespace TestProj
             }
             return list;
         }
-
         /// <summary>
         /// 查询过程值归档数据
         /// </summary>
-        /// <param name="tagNames">变量全名列表，格式 "归档名\变量名"</param>
+        /// <param name="tagNames">变量全名列表</param>
         /// <param name="start">开始时间</param>
         /// <param name="end">结束时间</param>
-        /// <param name="mode">
-        /// 0 = 显示从开始时间起某个定义时间范围（例如，从开始时间起 30 分钟）内的表格值
-        /// 1 = 显示某个定义时间间隔内的表格值.
-        /// 2 = 显示从开始时间起的某个定义数量的值，例如从开始时间起的 100 个值
-        /// </param>
-        /// <param name="timeStepSeconds">mode=0 时的聚合粒度（秒）</param>
-        /// <param name="aggregationType">
-        /// 聚合类型，仅 mode=0 有效：
-        /// 5=无插补均值, 261=有插补均值,
-        /// 3=无插补最小值, 4=无插补最大值
-        /// </param>
-        /// <param name="maxCount">mode=2 时的最大返回条数</param>
-        /// <returns>原始 DataTable，列为 TagName / RealValue / TimeStamp</returns>
+        /// <param name="timeStepSeconds">0=原始点，>0=按秒聚合均值</param>
         public static DataTable FetchData(
-     List<string> tagNames,
-     DateTime start,
-     DateTime end,
-     int mode = 1,
-     int timeStepSeconds = 3600,
-     int aggregationType = 261)
+            List<string> tagNames,
+            DateTime start,
+            DateTime end,
+            int timeStepSeconds = 0)
         {
             var result = new DataTable();
             if (tagNames == null || tagNames.Count == 0)
@@ -129,8 +114,7 @@ namespace TestProj
 
                 foreach (var batch in batches)
                 {
-                    string query = BuildQuery(batch, start, end, mode,
-                                              timeStepSeconds, aggregationType);
+                    string query = BuildQuery(batch, start, end, timeStepSeconds);
                     var cmd = new OleDbCommand(query, conn);
                     var adapter = new OleDbDataAdapter(cmd);
                     var batchTable = new DataTable();
@@ -143,7 +127,7 @@ namespace TestProj
                             result.ImportRow(row);
                 }
 
-                // ── ValueID → TagName 映射 ───────────────────
+                // ValueID → TagName
                 var dbTags = FetchAllTags();
                 var idToName = dbTags.ToDictionary(t => t.ValueID, t => t.ValueName);
 
@@ -169,55 +153,28 @@ namespace TestProj
             return result;
         }
 
-        /// <summary>
-        /// 构建 TAG:R 查询字符串
-        /// </summary>
         private static string BuildQuery(
             List<string> tagNames,
             DateTime start,
             DateTime end,
-            int mode,
-            int timeStepSeconds,
-            int aggregationType)
+            int timeStepSeconds)
         {
-            // 变量列表格式：('归档名\变量名';'归档名\变量名')
             string tagList = tagNames.Count == 1
                 ? $"'{tagNames[0]}'"
                 : $"({string.Join(";", tagNames.Select(t => $"'{t}'"))})";
 
             string timeBegin = start.ToString("yyyy-MM-dd HH:mm:ss.fff");
-            string timeEnd;
-            string timeStep = "";
+            string timeEnd = end.ToString("yyyy-MM-dd HH:mm:ss.fff");
 
-            switch (mode)
-            {
-                case 0:
-                case 3:// 时间范围：带 TIMESTEP，聚合均值
-                    timeEnd = end.ToString("yyyy-MM-dd HH:mm:ss.fff");
-                    timeStep = $",'TIMESTEP={timeStepSeconds},{aggregationType}'";
-                    break;
+            // timeStepSeconds=0 → 原始点，不带 TIMESTEP
+            // timeStepSeconds>0 → 聚合均值，type=5
+            string timeStep = timeStepSeconds > 0
+                ? $",'TIMESTEP={timeStepSeconds},5'"
+                : "";
 
-                case 1: // 开始到结束：所有原始点
-                    timeEnd = end.ToString("yyyy-MM-dd HH:mm:ss.fff");
-                    break;
-
-                case 2: // 测量点数量：原始点，从 start 到记录末尾，结果截取
-                    // TimeEnd = 0000... 表示读到归档最后一条
-                    timeEnd = "0000-00-00 00:00:00.000";
-                    break;
-
-                default:
-                    timeEnd = end.ToString("yyyy-MM-dd HH:mm:ss.fff");
-                    break;
-            }
-
-            string query = $"TAG:R,{tagList}," +
-                           $"'{timeBegin}'," +
-                           $"'{timeEnd}'" +
-                           timeStep;
-
-            return query;
+            return $"TAG:R,{tagList},'{timeBegin}','{timeEnd}'{timeStep}";
         }
+        
 
         /// <summary>
         /// 映射变量类型

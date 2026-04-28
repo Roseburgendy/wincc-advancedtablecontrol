@@ -56,46 +56,46 @@ namespace TestProj
                 return;
             }
 
-            using (var dlg = new TimeRangeSelectorPanel())
+            var start = dtpStartDate.Value.Date + dtpStartTime.Value.TimeOfDay;
+            var end = dtpEndDate.Value.Date + dtpEndTime.Value.TimeOfDay;
+
+            if (start >= end)
             {
-                dlg.Applied += (start, end, mode, timeStep) =>
-                {
-                    RunQuery(sortedTagNames, start, end, mode, timeStep, dlg.SelectedCount);
-                };
+                MessageBox.Show("开始时间不能晚于结束时间", "提示",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-                if (dlg.ShowDialog() != DialogResult.OK) return;
+            int timeStep = GetTimeStepSeconds();
+            RunQuery(sortedTagNames, start, end, timeStep);
+        }
 
-                RunQuery(sortedTagNames,
-                         dlg.SelectedStartTime,
-                         dlg.SelectedEndTime,
-                         dlg.SelectedMode,
-                         dlg.SelectedTimeStep,
-                         dlg.SelectedCount);
+        private int GetTimeStepSeconds()
+        {
+            switch (cmbTimeStep.SelectedIndex)
+            {
+                case 0: return 0;      // N/A，原始点
+                case 1: return 1;      // 1秒
+                case 2: return 60;     // 1分钟
+                case 3: return 3600;   // 1小时
+                case 4: return 86400;  // 1天
+                default: return 0;
             }
         }
 
-        private void RunQuery(List<string> tags,
-                              DateTime start, DateTime end,
-                              int mode, int timeStep, int count)
+        private void RunQuery(List<string> tags, DateTime start, DateTime end, int timeStep)
         {
             try
             {
-                var raw = DbManager.FetchData(
-                    tags, start, end,
-                    mode: mode,
-                    timeStepSeconds: timeStep);
+                // timeStep=0 → mode=1 原始点，否则 mode=3 聚合
+                int mode = timeStep == 0 ? 1 : 3;
+
+                var raw = DbManager.FetchData(tags, start, end, timeStep);
 
                 if (raw == null || raw.Rows.Count == 0)
                 {
                     MessageBox.Show("没有查询到数据", "提示");
                     return;
-                }
-
-                // mode=2 截取点数
-                if (mode == 2 && count > 0)
-                {
-                    var limited = raw.AsEnumerable().Take(count);
-                    raw = limited.Any() ? limited.CopyToDataTable() : raw;
                 }
 
                 // Timestamp UTC → 本地时间
@@ -377,5 +377,9 @@ namespace TestProj
             _currentTemplate = cmbTemplate.SelectedItem as ReportTemplate;
         }
 
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
