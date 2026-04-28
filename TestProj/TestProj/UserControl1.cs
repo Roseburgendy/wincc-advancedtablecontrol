@@ -381,6 +381,16 @@ namespace TestProj
                 dlg.Title = "选择变量别名表";
                 if (dlg.ShowDialog() != DialogResult.OK) return;
 
+                int dataStartRow, tagNameCol, displayNameCol;
+
+                using(var cfg = new ExcelImportConfigForm())
+                {
+                    if(cfg.ShowDialog() != DialogResult.OK) return;
+                    dataStartRow = cfg.DataStartRow;
+                    tagNameCol = cfg.TagNameCol;
+                    displayNameCol = cfg.DisplayNameCol;
+                }
+
                 try
                 {
                     int updatedTags = 0;
@@ -394,10 +404,10 @@ namespace TestProj
                             int rowCount = sheet.Dimension.End.Row;
                             var selectedTags = new List<TemplateTagEntry>();
 
-                            for (int row = 2; row <= rowCount; row++)
+                            for (int row = dataStartRow; row <= rowCount; row++)
                             {
-                                string tagName = sheet.Cells[row, 1].Text?.Trim();
-                                string displayName = sheet.Cells[row, 2].Text?.Trim();
+                                string tagName = sheet.Cells[row, tagNameCol].Text?.Trim();
+                                string displayName = sheet.Cells[row, displayNameCol].Text?.Trim();
                                 if (string.IsNullOrEmpty(tagName)) continue;
 
                                 // 更新 TagMeta DisplayName
