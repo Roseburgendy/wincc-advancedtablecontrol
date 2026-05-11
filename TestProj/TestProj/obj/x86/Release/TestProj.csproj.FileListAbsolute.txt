@@ -20,3 +20,15 @@ E:\WinCCReporter_Dev\TestProj\TestProj\obj\x86\Release\TestProj.csproj.Up2Date
 E:\WinCCReporter_Dev\TestProj\TestProj\obj\x86\Release\TestProj.dll
 E:\WinCCReporter_Dev\TestProj\TestProj\obj\x86\Release\TestProj.pdb
 E:\WinCCReporter_Dev\TestProj\TestProj\obj\x86\Release\TestProj.ExcelImportConfigForm.resources
+D:\WinCCReport_Dev\wincc-advancedtablecontrol\TestProj\TestProj\obj\x86\Release\TestProj.csproj.AssemblyReference.cache
+D:\WinCCReport_Dev\wincc-advancedtablecontrol\TestProj\TestProj\obj\x86\Release\TestProj.csproj.ResolveComReference.cache
+D:\WinCCReport_Dev\wincc-advancedtablecontrol\TestProj\TestProj\obj\x86\Release\TestProj.ExcelImportConfigForm.resources
+D:\WinCCReport_Dev\wincc-advancedtablecontrol\TestProj\TestProj\obj\x86\Release\TestProj.TagConfigPanel.resources
+D:\WinCCReport_Dev\wincc-advancedtablecontrol\TestProj\TestProj\obj\x86\Release\TestProj.TagSelectionPanel.resources
+D:\WinCCReport_Dev\wincc-advancedtablecontrol\TestProj\TestProj\obj\x86\Release\TestProj.TemplateConfigPanel.resources
+D:\WinCCReport_Dev\wincc-advancedtablecontrol\TestProj\TestProj\obj\x86\Release\TestProj.TimeRangeSelectorPanel.resources
+D:\WinCCReport_Dev\wincc-advancedtablecontrol\TestProj\TestProj\obj\x86\Release\TestProj.UserControl1.resources
+D:\WinCCReport_Dev\wincc-advancedtablecontrol\TestProj\TestProj\obj\x86\Release\TestProj.csproj.GenerateResource.cache
+D:\WinCCReport_Dev\wincc-advancedtablecontrol\TestProj\TestProj\obj\x86\Release\TestProj.csproj.CoreCompileInputs.cache
+D:\WinCCReport_Dev\wincc-advancedtablecontrol\TestProj\TestProj\obj\x86\Release\TestProj.dll
+D:\WinCCReport_Dev\wincc-advancedtablecontrol\TestProj\TestProj\obj\x86\Release\TestProj.pdb

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -293,25 +294,26 @@ namespace TestProj
             {
                 var ws = package.Workbook.Worksheets.Add("数据报表");
 
-                // ── 报表标题（合并居中） ──
+                // 报表标题（合并居中）
                 ws.Cells[1, 1, 1, colCount].Merge = true;
                 ws.Cells[1, 1].Value = reportTitle;
                 ws.Cells[1, 1].Style.Font.Bold = true;
                 ws.Cells[1, 1].Style.Font.Size = 14;
                 ws.Cells[1, 1].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
 
-                // ── 列标题（加粗居中，带表格线） ──
+                // 列标题（加粗居中，带表格线）
                 int colHeaderRow = 2;
                 for (int c = 0; c < colCount; c++)
                 {
                     var cell = ws.Cells[colHeaderRow, c + 1];
-                    cell.Value = dt.Columns[c].ColumnName;
+                    string colName = dt.Columns[c].ColumnName;
+                    cell.Value = colName == "Timestamp" ? "日期" : colName;
                     cell.Style.Font.Bold = true;
                     cell.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
                     SetThinBorder(cell);
                 }
 
-                // ── 数据行 ──
+                // 数据行 
                 for (int r = 0; r < dt.Rows.Count; r++)
                 {
                     for (int c = 0; c < colCount; c++)
@@ -351,7 +353,7 @@ namespace TestProj
                 }
 
                 // 紧凑自适应列宽（minimumWidth=0 去掉额外 padding）
-                ws.Cells[ws.Dimension.Address].AutoFitColumns(0);
+                ws.Cells[ws.Dimension.Address].AutoFitColumns();
 
                 package.SaveAs(new System.IO.FileInfo(filePath));
             }
@@ -475,5 +477,198 @@ namespace TestProj
                 }
             }
         }
+
+        #region 打印功能
+
+        private DataTable _printData;
+        private float[]   _printColWidths;
+        private List<List<int>> _printColGroups;
+        private int    _printCurrentGroup;
+        private int    _printCurrentRow;
+        private string _printTitle;
+        private bool   _printLayoutReady;
+
+        public void PrintBtn_Click(object sender, EventArgs e)
+        {
+            _printData = dataGridView1.DataSource as DataTable;
+            if (_printData == null || _printData.Rows.Count == 0)
+            {
+                MessageBox.Show("请先查询数据", "提示");
+                return;
+            }
+
+            _printTitle = _currentTemplate?.DisplayName ?? "数据报表";
+
+            var doc = new PrintDocument();
+
+            using (var setup = new PageSetupDialog
+            {
+                PageSettings   = doc.DefaultPageSettings,
+                AllowOrientation = true,
+                AllowMargins   = true
+            })
+            {
+                if (setup.ShowDialog() != DialogResult.OK) return;
+                doc.DefaultPageSettings = setup.PageSettings;
+            }
+
+            doc.BeginPrint += (s, ev) =>
+            {
+                _printCurrentRow   = 0;
+                _printCurrentGroup = 0;
+                _printColGroups    = null;
+                _printLayoutReady  = false;
+            };
+            doc.PrintPage += PrintDoc_PrintPage;
+
+            using (var preview = new PrintPreviewDialog
+            {
+                Document    = doc,
+                WindowState = FormWindowState.Maximized
+            })
+                preview.ShowDialog();
+        }
+
+        private void PrintDoc_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            var g      = e.Graphics;
+            var bounds = e.MarginBounds;
+
+            using (var titleFont  = new Font("Arial", 14f, FontStyle.Bold))
+            using (var headerFont = new Font("Arial",  9f, FontStyle.Bold))
+            using (var dataFont   = new Font("Arial",  8f))
+            {
+                if (!_printLayoutReady)
+                {
+                    BuildPrintLayout(g, bounds.Width, headerFont);
+                    _printLayoutReady = true;
+                }
+
+                var   colIndices = _printColGroups[_printCurrentGroup];
+                float groupW     = colIndices.Sum(c => _printColWidths[c]);
+                float scale      = groupW <= bounds.Width ? 1f : bounds.Width / groupW;
+                var   scaledW    = colIndices.Select(c => _printColWidths[c] * scale).ToArray();
+
+                float x0         = bounds.Left;
+                float y          = bounds.Top;
+                float pageBottom = bounds.Bottom;
+                float titleH     = titleFont.GetHeight(g)  + 6f;
+                float hdrH       = headerFont.GetHeight(g) + 6f;
+                float rowH       = dataFont.GetHeight(g)   + 4f;
+
+                // ── 标题（每组列的首页显示一次） ──
+                if (_printCurrentRow == 0)
+                {
+                    using (var sf = new StringFormat
+                    {
+                        Alignment     = StringAlignment.Center,
+                        LineAlignment = StringAlignment.Center
+                    })
+                        g.DrawString(_printTitle, titleFont, Brushes.Black,
+                            new RectangleF(x0, y, bounds.Width, titleH), sf);
+                    y += titleH + 6f;
+                }
+
+                // ── 列标题行（灰底加粗居中） ──
+                float hx = x0;
+                for (int i = 0; i < colIndices.Count; i++)
+                {
+                    int    c    = colIndices[i];
+                    string hdr  = _printData.Columns[c].ColumnName == "Timestamp"
+                                  ? "日期" : _printData.Columns[c].ColumnName;
+                    var rect = new RectangleF(hx, y, scaledW[i], hdrH);
+                    g.FillRectangle(Brushes.LightGray, rect);
+                    g.DrawRectangle(Pens.Black, rect.X, rect.Y, rect.Width, rect.Height);
+                    using (var sf = new StringFormat
+                    {
+                        Alignment     = StringAlignment.Center,
+                        LineAlignment = StringAlignment.Center
+                    })
+                        g.DrawString(hdr, headerFont, Brushes.Black, rect, sf);
+                    hx += scaledW[i];
+                }
+                y += hdrH;
+
+                // ── 数据行（间隔底色 + 灰色边框） ──
+                bool alt = false;
+                while (_printCurrentRow < _printData.Rows.Count && y + rowH <= pageBottom)
+                {
+                    hx = x0;
+                    for (int i = 0; i < colIndices.Count; i++)
+                    {
+                        int    c   = colIndices[i];
+                        var    val = _printData.Rows[_printCurrentRow][c];
+                        string txt = val == DBNull.Value ? "" : val.ToString();
+
+                        if (_printData.Columns[c].ColumnName == "Timestamp" && val is DateTime dt)
+                            txt = dt.ToString("yyyy-MM-dd HH:mm:ss");
+
+                        var rect = new RectangleF(hx, y, scaledW[i], rowH);
+                        if (alt) g.FillRectangle(Brushes.WhiteSmoke, rect);
+                        g.DrawRectangle(Pens.Gray, rect.X, rect.Y, rect.Width, rect.Height);
+                        using (var sf = new StringFormat
+                        {
+                            Alignment     = StringAlignment.Center,
+                            LineAlignment = StringAlignment.Center,
+                            FormatFlags   = StringFormatFlags.NoWrap
+                        })
+                            g.DrawString(txt, dataFont, Brushes.Black, rect, sf);
+                        hx += scaledW[i];
+                    }
+                    y += rowH;
+                    _printCurrentRow++;
+                    alt = !alt;
+                }
+
+                // ── 分页判断 ──
+                if (_printCurrentRow < _printData.Rows.Count)
+                {
+                    e.HasMorePages = true;  // 当前列组还有剩余行，继续下一页
+                }
+                else if (_printCurrentGroup < _printColGroups.Count - 1)
+                {
+                    _printCurrentGroup++;   // 列超宽，切换到下一列组
+                    _printCurrentRow = 0;
+                    e.HasMorePages   = true;
+                }
+                else
+                {
+                    e.HasMorePages = false;
+                }
+            }
+        }
+
+        private void BuildPrintLayout(Graphics g, float printableWidth, Font headerFont)
+        {
+            int colCount    = _printData.Columns.Count;
+            _printColWidths = new float[colCount];
+
+            for (int c = 0; c < colCount; c++)
+            {
+                string hdr = _printData.Columns[c].ColumnName == "Timestamp"
+                             ? "日期" : _printData.Columns[c].ColumnName;
+                float w = g.MeasureString(hdr, headerFont).Width + 16f;
+                _printColWidths[c] = Math.Max(w, 60f);
+            }
+
+            // 按可打印宽度分组，超宽则强制新建一组（新页）
+            _printColGroups = new List<List<int>>();
+            var   group = new List<int>();
+            float gw    = 0f;
+            for (int c = 0; c < colCount; c++)
+            {
+                if (group.Count > 0 && gw + _printColWidths[c] > printableWidth)
+                {
+                    _printColGroups.Add(group);
+                    group = new List<int>();
+                    gw    = 0f;
+                }
+                group.Add(c);
+                gw += _printColWidths[c];
+            }
+            if (group.Count > 0) _printColGroups.Add(group);
+        }
+
+        #endregion
     }
 }

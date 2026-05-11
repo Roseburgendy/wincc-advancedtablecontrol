@@ -47,6 +47,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnImportExcel = new System.Windows.Forms.Button();
+            this.PrintBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numValue)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -263,10 +264,21 @@
             this.btnImportExcel.UseVisualStyleBackColor = true;
             this.btnImportExcel.Click += new System.EventHandler(this.BtnImportFromExcel_Click);
             // 
+            // PrintBtn
+            // 
+            this.PrintBtn.Location = new System.Drawing.Point(1673, 95);
+            this.PrintBtn.Name = "PrintBtn";
+            this.PrintBtn.Size = new System.Drawing.Size(213, 60);
+            this.PrintBtn.TabIndex = 32;
+            this.PrintBtn.Text = "打印";
+            this.PrintBtn.UseVisualStyleBackColor = true;
+            this.PrintBtn.Click += new System.EventHandler(this.PrintBtn_Click);
+            // 
             // UserControl1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.PrintBtn);
             this.Controls.Add(this.btnImportExcel);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.groupBox1);
@@ -309,5 +321,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnImportExcel;
+        private System.Windows.Forms.Button PrintBtn;
     }
 }
