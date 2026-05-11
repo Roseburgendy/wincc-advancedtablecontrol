@@ -1,57 +1,57 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "E:\\WinCCReporter_Dev\\TestProj\\",
+  "WorkspaceRootPath": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|E:\\WinCCReporter_Dev\\TestProj\\testproj\\usercontrol1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|d:\\winccreport_dev\\wincc-advancedtablecontrol\\testproj\\testproj\\usercontrol1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|solutionrelative:testproj\\usercontrol1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|E:\\WinCCReporter_Dev\\TestProj\\testproj\\templateconfigpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\testproj\\templateconfigpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|solutionrelative:testproj\\templateconfigpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|E:\\WinCCReporter_Dev\\TestProj\\testproj\\models\\tagmeta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\testproj\\models\\tagmeta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|solutionrelative:testproj\\models\\tagmeta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|e:\\winccreporter_dev\\testproj\\testproj\\dbmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\testproj\\dbmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|solutionrelative:testproj\\dbmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|E:\\WinCCReporter_Dev\\TestProj\\testproj\\configmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\testproj\\configmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|solutionrelative:testproj\\configmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|E:\\WinCCReporter_Dev\\TestProj\\testproj\\usercontrol1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\testproj\\usercontrol1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|solutionrelative:testproj\\usercontrol1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|E:\\WinCCReporter_Dev\\TestProj\\testproj\\templateconfigpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\testproj\\templateconfigpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|solutionrelative:testproj\\templateconfigpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|E:\\WinCCReporter_Dev\\TestProj\\testproj\\models\\reporttemplate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\testproj\\models\\reporttemplate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|solutionrelative:testproj\\models\\reporttemplate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|E:\\WinCCReporter_Dev\\TestProj\\testproj\\templateconfigpanel.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\testproj\\templateconfigpanel.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|solutionrelative:testproj\\templateconfigpanel.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|E:\\WinCCReporter_Dev\\TestProj\\testproj\\tagconfigpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\testproj\\tagconfigpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|solutionrelative:testproj\\tagconfigpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|E:\\WinCCReporter_Dev\\TestProj\\testproj\\timerangeselectorpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\testproj\\timerangeselectorpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|solutionrelative:testproj\\timerangeselectorpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|E:\\WinCCReporter_Dev\\TestProj\\testproj\\tagconfigpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\testproj\\tagconfigpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|solutionrelative:testproj\\tagconfigpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|E:\\WinCCReporter_Dev\\TestProj\\testproj\\timerangeselectorpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\testproj\\timerangeselectorpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|solutionrelative:testproj\\timerangeselectorpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
@@ -61,16 +61,16 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 200,
+          "DockedWidth": 1200,
           "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 11,
               "Title": "TagConfigPanel.cs",
-              "DocumentMoniker": "E:\\WinCCReporter_Dev\\TestProj\\TestProj\\TagConfigPanel.cs",
+              "DocumentMoniker": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\TagConfigPanel.cs",
               "RelativeDocumentMoniker": "TestProj\\TagConfigPanel.cs",
-              "ToolTip": "E:\\WinCCReporter_Dev\\TestProj\\TestProj\\TagConfigPanel.cs",
+              "ToolTip": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\TagConfigPanel.cs",
               "RelativeToolTip": "TestProj\\TagConfigPanel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAABAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003525|",
@@ -81,15 +81,14 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "TemplateConfigPanel.cs",
-              "DocumentMoniker": "E:\\WinCCReporter_Dev\\TestProj\\TestProj\\TemplateConfigPanel.cs",
+              "DocumentMoniker": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\TemplateConfigPanel.cs",
               "RelativeDocumentMoniker": "TestProj\\TemplateConfigPanel.cs",
-              "ToolTip": "E:\\WinCCReporter_Dev\\TestProj\\TestProj\\TemplateConfigPanel.cs",
+              "ToolTip": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\TemplateConfigPanel.cs",
               "RelativeToolTip": "TestProj\\TemplateConfigPanel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-28T02:33:25.773Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Bookmark",
@@ -103,11 +102,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "UserControl1.cs",
-              "DocumentMoniker": "E:\\WinCCReporter_Dev\\TestProj\\TestProj\\UserControl1.cs",
+              "DocumentMoniker": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\UserControl1.cs",
               "RelativeDocumentMoniker": "TestProj\\UserControl1.cs",
-              "ToolTip": "E:\\WinCCReporter_Dev\\TestProj\\TestProj\\UserControl1.cs",
+              "ToolTip": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\UserControl1.cs",
               "RelativeToolTip": "TestProj\\UserControl1.cs",
-              "ViewState": "AgIAAEcAAAAAAAAAAAAQwKkAAAAqAAAAAAAAAA==",
+              "ViewState": "AgIAAIQBAAAAAAAAAAAgwAIAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-28T02:33:25.774Z",
               "EditorCaption": ""
@@ -116,22 +115,21 @@
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "TagMeta.cs",
-              "DocumentMoniker": "E:\\WinCCReporter_Dev\\TestProj\\TestProj\\models\\TagMeta.cs",
+              "DocumentMoniker": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\models\\TagMeta.cs",
               "RelativeDocumentMoniker": "TestProj\\models\\TagMeta.cs",
-              "ToolTip": "E:\\WinCCReporter_Dev\\TestProj\\TestProj\\models\\TagMeta.cs",
+              "ToolTip": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\models\\TagMeta.cs",
               "RelativeToolTip": "TestProj\\models\\TagMeta.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-28T02:33:26.126Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-28T02:33:26.126Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
               "Title": "ConfigManager.cs",
-              "DocumentMoniker": "E:\\WinCCReporter_Dev\\TestProj\\TestProj\\ConfigManager.cs",
+              "DocumentMoniker": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\ConfigManager.cs",
               "RelativeDocumentMoniker": "TestProj\\ConfigManager.cs",
-              "ToolTip": "E:\\WinCCReporter_Dev\\TestProj\\TestProj\\ConfigManager.cs",
+              "ToolTip": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\ConfigManager.cs",
               "RelativeToolTip": "TestProj\\ConfigManager.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAABMAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -141,46 +139,41 @@
               "$type": "Document",
               "DocumentIndex": 5,
               "Title": "UserControl1.cs [Design]",
-              "DocumentMoniker": "E:\\WinCCReporter_Dev\\TestProj\\TestProj\\UserControl1.cs",
+              "DocumentMoniker": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\UserControl1.cs",
               "RelativeDocumentMoniker": "TestProj\\UserControl1.cs",
               "ToolTip": "E:\\WinCCReporter_Dev\\TestProj\\TestProj\\UserControl1.cs [Design]",
-              "RelativeToolTip": "TestProj\\UserControl1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-28T02:33:25.775Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-04-28T02:33:25.775Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "DbManager.cs",
-              "DocumentMoniker": "E:\\WinCCReporter_Dev\\TestProj\\TestProj\\DbManager.cs",
+              "DocumentMoniker": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\DbManager.cs",
               "RelativeDocumentMoniker": "TestProj\\DbManager.cs",
-              "ToolTip": "E:\\WinCCReporter_Dev\\TestProj\\TestProj\\DbManager.cs",
+              "ToolTip": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\DbManager.cs",
               "RelativeToolTip": "TestProj\\DbManager.cs",
               "ViewState": "AgIAABYAAAAAAAAAAAAywMMAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-28T02:33:26.123Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-28T02:33:26.123Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
               "Title": "TemplateConfigPanel.cs [Design]",
-              "DocumentMoniker": "E:\\WinCCReporter_Dev\\TestProj\\TestProj\\TemplateConfigPanel.cs",
+              "DocumentMoniker": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\TemplateConfigPanel.cs",
               "RelativeDocumentMoniker": "TestProj\\TemplateConfigPanel.cs",
               "ToolTip": "E:\\WinCCReporter_Dev\\TestProj\\TestProj\\TemplateConfigPanel.cs [Design]",
-              "RelativeToolTip": "TestProj\\TemplateConfigPanel.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-28T02:33:26.116Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-04-28T02:33:26.116Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
               "Title": "ReportTemplate.cs",
-              "DocumentMoniker": "E:\\WinCCReporter_Dev\\TestProj\\TestProj\\models\\ReportTemplate.cs",
+              "DocumentMoniker": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\models\\ReportTemplate.cs",
               "RelativeDocumentMoniker": "TestProj\\models\\ReportTemplate.cs",
-              "ToolTip": "E:\\WinCCReporter_Dev\\TestProj\\TestProj\\models\\ReportTemplate.cs",
+              "ToolTip": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\models\\ReportTemplate.cs",
               "RelativeToolTip": "TestProj\\models\\ReportTemplate.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -190,23 +183,21 @@
               "$type": "Document",
               "DocumentIndex": 8,
               "Title": "TemplateConfigPanel.Designer.cs",
-              "DocumentMoniker": "E:\\WinCCReporter_Dev\\TestProj\\TestProj\\TemplateConfigPanel.Designer.cs",
+              "DocumentMoniker": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\TemplateConfigPanel.Designer.cs",
               "RelativeDocumentMoniker": "TestProj\\TemplateConfigPanel.Designer.cs",
-              "ToolTip": "E:\\WinCCReporter_Dev\\TestProj\\TestProj\\TemplateConfigPanel.Designer.cs",
+              "ToolTip": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\TemplateConfigPanel.Designer.cs",
               "RelativeToolTip": "TestProj\\TemplateConfigPanel.Designer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-28T02:33:25.774Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-28T02:33:25.774Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 9,
               "Title": "TagConfigPanel.cs [Design]",
-              "DocumentMoniker": "E:\\WinCCReporter_Dev\\TestProj\\TestProj\\TagConfigPanel.cs",
+              "DocumentMoniker": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\TagConfigPanel.cs",
               "RelativeDocumentMoniker": "TestProj\\TagConfigPanel.cs",
               "ToolTip": "E:\\WinCCReporter_Dev\\TestProj\\TestProj\\TagConfigPanel.cs [Design]",
-              "RelativeToolTip": "TestProj\\TagConfigPanel.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003525|",
               "WhenOpened": "2026-04-28T02:33:26.122Z"
             },
@@ -214,9 +205,9 @@
               "$type": "Document",
               "DocumentIndex": 10,
               "Title": "TimeRangeSelectorPanel.cs",
-              "DocumentMoniker": "E:\\WinCCReporter_Dev\\TestProj\\TestProj\\TimeRangeSelectorPanel.cs",
+              "DocumentMoniker": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\TimeRangeSelectorPanel.cs",
               "RelativeDocumentMoniker": "TestProj\\TimeRangeSelectorPanel.cs",
-              "ToolTip": "E:\\WinCCReporter_Dev\\TestProj\\TestProj\\TimeRangeSelectorPanel.cs",
+              "ToolTip": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\TimeRangeSelectorPanel.cs",
               "RelativeToolTip": "TestProj\\TimeRangeSelectorPanel.cs",
               "ViewState": "AgIAAEQAAAAAAAAAAAAkwA4AAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -226,11 +217,22 @@
               "$type": "Document",
               "DocumentIndex": 12,
               "Title": "TimeRangeSelectorPanel.cs [Design]",
-              "DocumentMoniker": "E:\\WinCCReporter_Dev\\TestProj\\TestProj\\TimeRangeSelectorPanel.cs",
+              "DocumentMoniker": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\TimeRangeSelectorPanel.cs",
               "RelativeDocumentMoniker": "TestProj\\TimeRangeSelectorPanel.cs",
               "ToolTip": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\TimeRangeSelectorPanel.cs [Design]",
+              "RelativeToolTip": "TestProj\\TimeRangeSelectorPanel.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-28T02:33:26.124Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 524,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
             }
           ]
         }

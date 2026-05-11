@@ -103,7 +103,7 @@ namespace TestProj
             List<string> tagNames,
             DateTime start,
             DateTime end,
-            int timeStepSeconds = 0)
+            int timeStepSeconds)
         {
             var result = new DataTable();
             if (tagNames == null || tagNames.Count == 0)
@@ -171,9 +171,9 @@ namespace TestProj
             string timeEnd = end.ToString("yyyy-MM-dd HH:mm:ss.fff");
 
             // timeStepSeconds=0 → 原始点，不带 TIMESTEP
-            // timeStepSeconds>0 → 聚合均值，type=5
+            // timeStepSeconds>0 → 聚合均值，261 (AVG_INTERPOLATED)
             string timeStep = timeStepSeconds > 0
-                ? $",'TIMESTEP={timeStepSeconds},5'"
+                ? $",'TIMESTEP={timeStepSeconds},261'"
                 : "";
 
             return $"TAG:R,{tagList},'{timeBegin}','{timeEnd}'{timeStep}";

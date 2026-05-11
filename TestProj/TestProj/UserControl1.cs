@@ -98,9 +98,6 @@ namespace TestProj
         {
             try
             {
-                // timeStep=0 → mode=1 原始点，否则 mode=3 聚合
-                int mode = timeStep == 0 ? 1 : 3;
-
                 var raw = DbManager.FetchData(tags, start, end, timeStep);
 
                 if (raw == null || raw.Rows.Count == 0)
