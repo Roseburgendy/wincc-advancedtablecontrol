@@ -255,7 +255,7 @@
             // 
             // btnImportExcel
             // 
-            this.btnImportExcel.Location = new System.Drawing.Point(1451, 95);
+            this.btnImportExcel.Location = new System.Drawing.Point(1325, 95);
             this.btnImportExcel.Name = "btnImportExcel";
             this.btnImportExcel.Size = new System.Drawing.Size(319, 60);
             this.btnImportExcel.TabIndex = 31;
