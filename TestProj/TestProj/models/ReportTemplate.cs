@@ -15,9 +15,5 @@ namespace TestProj.Models
     {
         public long ValueID { get; set; }
         public int Order { get; set; }
-
-        // 仅用于从旧 config 迁移，迁移完成后为 null，不写入新 JSON
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string TagName { get; set; }
     }
 }

@@ -165,7 +165,11 @@ namespace TestProj
             dataGridView1.Columns.Clear();
             dataGridView1.DataSource = table;
             if (dataGridView1.Columns.Contains("Timestamp"))
-                dataGridView1.Columns["Timestamp"].DefaultCellStyle.Format = "yyyy-MM-dd HH:mm:ss";
+            {
+                var tsCol = dataGridView1.Columns["Timestamp"];
+                tsCol.HeaderText = "日期";
+                tsCol.DefaultCellStyle.Format = "yyyy-MM-dd HH:mm:ss";
+            }
 
             foreach (DataGridViewColumn col in dataGridView1.Columns)
             {
