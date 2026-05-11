@@ -293,28 +293,25 @@ namespace TestProj
             {
                 var ws = package.Workbook.Worksheets.Add("数据报表");
 
-                //报表标题（合并居中
+                // ── 报表标题（合并居中） ──
                 ws.Cells[1, 1, 1, colCount].Merge = true;
                 ws.Cells[1, 1].Value = reportTitle;
                 ws.Cells[1, 1].Style.Font.Bold = true;
                 ws.Cells[1, 1].Style.Font.Size = 14;
                 ws.Cells[1, 1].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
 
-                // 导出时间
-                //ws.Cells[2, 1].Value = $"导出时间：{DateTime.Now:yyyy-MM-dd HH:mm:ss}";
-                //ws.Cells[2, 1].Style.Font.Italic = true;
-
-                // 列标题（加粗居中，无背景色）
-                int colHeaderRow = 4;
+                // ── 列标题（加粗居中，带表格线） ──
+                int colHeaderRow = 2;
                 for (int c = 0; c < colCount; c++)
                 {
                     var cell = ws.Cells[colHeaderRow, c + 1];
                     cell.Value = dt.Columns[c].ColumnName;
                     cell.Style.Font.Bold = true;
                     cell.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+                    SetThinBorder(cell);
                 }
 
-                // 数据行
+                // ── 数据行 ──
                 for (int r = 0; r < dt.Rows.Count; r++)
                 {
                     for (int c = 0; c < colCount; c++)
@@ -323,6 +320,7 @@ namespace TestProj
                         var val = dt.Rows[r][c];
                         cell.Value = val == DBNull.Value ? null : val;
                         cell.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+                        SetThinBorder(cell);
 
                         if (dt.Columns[c].ColumnName == "Timestamp")
                         {
@@ -352,10 +350,20 @@ namespace TestProj
                     }
                 }
 
-                ws.Cells[ws.Dimension.Address].AutoFitColumns();
+                // 紧凑自适应列宽（minimumWidth=0 去掉额外 padding）
+                ws.Cells[ws.Dimension.Address].AutoFitColumns(0);
 
                 package.SaveAs(new System.IO.FileInfo(filePath));
             }
+        }
+
+        private static void SetThinBorder(ExcelRange cell)
+        {
+            var border = cell.Style.Border;
+            border.Top.Style    = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+            border.Bottom.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+            border.Left.Style   = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+            border.Right.Style  = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
         }
 
         #endregion
