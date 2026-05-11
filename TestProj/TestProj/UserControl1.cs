@@ -28,13 +28,12 @@ namespace TestProj
                 return;
             }
 
-            // 不需要再单独 LoadConfig，GetConnection 里已经 Init 过了
-            // 如果 TagMeta 是空的，自动从数据库填充一次
             if (ConfigManager.Config.TagMeta == null || ConfigManager.Config.TagMeta.Count == 0)
             {
                 var tags = DbManager.FetchAllTags();
                 ConfigManager.Config.TagMeta = tags.Select(t => new TagMeta
                 {
+                    ValueID = t.ValueID,
                     TagName = t.ValueName
                 }).ToList();
                 ConfigManager.SaveConfig();
@@ -65,12 +64,11 @@ namespace TestProj
                 return;
             }
 
-            var sortedTagNames = _currentTemplate.SelectedTags
+            var sortedEntries = _currentTemplate.SelectedTags
                 .OrderBy(entry => entry.Order)
-                .Select(entry => entry.TagName)
                 .ToList();
 
-            if (sortedTagNames.Count == 0)
+            if (sortedEntries.Count == 0)
             {
                 MessageBox.Show("当前模板没有配置变量", "提示",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -78,10 +76,7 @@ namespace TestProj
             }
 
             var start = dtpStartDate.Value.Date + dtpStartTime.Value.TimeOfDay;
-            var end = dtpEndDate.Value.Date + dtpEndTime.Value.TimeOfDay;
-
-            var startUTC = start.ToUniversalTime();
-            var endUTC = end.ToUniversalTime();
+            var end   = dtpEndDate.Value.Date   + dtpEndTime.Value.TimeOfDay;
 
             if (start >= end)
             {
@@ -90,15 +85,19 @@ namespace TestProj
                 return;
             }
 
+            var startUTC = start.ToUniversalTime();
+            var endUTC   = end.ToUniversalTime();
+
             int timeStep = (int)numValue.Value * GetTimeStepSeconds();
-            RunQuery(sortedTagNames, startUTC, endUTC, timeStep);
+            RunQuery(sortedEntries, startUTC, endUTC, timeStep);
         }
 
-        private void RunQuery(List<string> tags, DateTime start, DateTime end, int timeStep)
+        private void RunQuery(List<TemplateTagEntry> entries, DateTime start, DateTime end, int timeStep)
         {
             try
             {
-                var raw = DbManager.FetchData(tags, start, end, timeStep);
+                var valueIds = entries.Select(e => e.ValueID).ToList();
+                var raw = DbManager.FetchData(valueIds, start, end, timeStep);
 
                 if (raw == null || raw.Rows.Count == 0)
                 {
@@ -106,7 +105,6 @@ namespace TestProj
                     return;
                 }
 
-                // Timestamp UTC → 本地时间
                 foreach (DataRow row in raw.Rows)
                 {
                     if (raw.Columns.Contains("Timestamp")
@@ -114,7 +112,7 @@ namespace TestProj
                         row["Timestamp"] = ((DateTime)row["Timestamp"]).ToLocalTime();
                 }
 
-                var wide = PivotToWide(raw, tags);
+                var wide = PivotToWide(raw, entries);
                 CleanUnusedColumns(wide, new[] { "Quality", "Flags", "ValueID" });
 
                 _tagMetaList = ConfigManager.Config?.TagMeta ?? new List<TagMeta>();
@@ -198,46 +196,40 @@ namespace TestProj
         }
 
         /// <summary>
-        /// 将原本OLEDB自带数据源格式转换成以时间戳为行，变量为列的宽表格式，方便在DataGridView中显示
+        /// 将 OLEDB 原始格式转换为宽表（以时间戳为行、变量为列）
         /// </summary>
-        /// <param name="raw"> 自带数据源</param>
-        /// <param name="tags"> 变量信息</param>
-        /// <returns></returns>
-        private DataTable PivotToWide(DataTable raw, List<string> sortedTags)
+        private DataTable PivotToWide(DataTable raw, List<TemplateTagEntry> sortedEntries)
         {
             var wide = new DataTable();
-
-            // 添加时间戳列
             wide.Columns.Add("Timestamp", typeof(DateTime));
-            var allMeta = ConfigManager.Config?.TagMeta ?? new List<TagMeta>();
-            var nameMap = allMeta.ToDictionary(t => t.TagName, t=> t.DisplayName);
-            // 添加变量列
-            foreach (var tag in sortedTags)
-            {
-                // 有displayName就用，没有就用TagName
-                string colName = nameMap.TryGetValue(tag, out string display) ? display : tag;
-                wide.Columns.Add(colName, typeof(double));
-            }
 
-            // 从TagName - ColName 映射
-            var tagToCol = sortedTags.ToDictionary(tag => tag,
-                tag => nameMap.TryGetValue(tag, out string display) ? display : tag);
+            var allMeta = ConfigManager.Config?.TagMeta ?? new List<TagMeta>();
+
+            // ValueID → 列名（优先 DisplayName，fallback TagName，再 fallback ValueID）
+            var idToCol = sortedEntries.ToDictionary(e => e.ValueID, e =>
+            {
+                var meta = allMeta.FirstOrDefault(m => m.ValueID == e.ValueID);
+                return meta?.DisplayName ?? meta?.TagName ?? e.ValueID.ToString();
+            });
+
+            foreach (var colName in idToCol.Values)
+                wide.Columns.Add(colName, typeof(double));
 
             var groups = raw.AsEnumerable().GroupBy(r => r["Timestamp"]);
 
-            // pivot to wide table
-            foreach(var group in groups)
+            foreach (var group in groups)
             {
                 var row = wide.NewRow();
                 row["Timestamp"] = group.Key;
-                foreach(var item in group)
+                foreach (var item in group)
                 {
-                    string tagName = item["TagName"].ToString();
-                    if (tagToCol.TryGetValue(tagName, out string colName) 
-                        && item["RealValue"] != DBNull.Value)
+                    if (item["ValueID"] == DBNull.Value) continue;
+                    long vid = Convert.ToInt64(item["ValueID"]);
+                    if (idToCol.TryGetValue(vid, out string colName)
+                        && item["RealValue"] != DBNull.Value
+                        && double.TryParse(item["RealValue"].ToString(), out double val))
                     {
-                        if(double.TryParse(item["RealValue"].ToString(), out double value))
-                            row[colName] = value;
+                        row[colName] = val;
                     }
                 }
                 wide.Rows.Add(row);
@@ -425,12 +417,11 @@ namespace TestProj
                                     updatedTags++;
                                 }
 
-                                // 用完整 TagName（带归档前缀），找不到就用原名
-                                string fullTagName = meta?.TagName ?? tagName;
+                                if (meta == null || meta.ValueID == 0) continue;
                                 selectedTags.Add(new TemplateTagEntry
                                 {
-                                    TagName = fullTagName,
-                                    Order = selectedTags.Count + 1
+                                    ValueID = meta.ValueID,
+                                    Order   = selectedTags.Count + 1
                                 });
                             }
 

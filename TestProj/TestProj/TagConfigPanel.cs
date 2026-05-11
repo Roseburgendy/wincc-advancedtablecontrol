@@ -12,6 +12,7 @@ namespace TestProj
     {
         private class TagRow
         {
+            public long ValueID { get; set; }
             public string TagName { get; set; }
             public string DisplayName { get; set; }
             public string DataType { get; set; }
@@ -21,18 +22,16 @@ namespace TestProj
             public int Order { get; set; }
         }
 
-        private readonly List<string> _selectedTags;
         private readonly List<TemplateTagEntry> _templateEntries;
         private BindingList<TagRow> _bindingList;
         private bool _isDirty = false;
         private bool _isSyncing = false;
-        private Dictionary<string, TagRow> _editingBackups = new Dictionary<string, TagRow>();
+        private Dictionary<long, TagRow> _editingBackups = new Dictionary<long, TagRow>();
         private TagRow _currentEditing;
 
-        public TagConfigPanel(List<string> selectedTags, List<TemplateTagEntry> templateEntries)
+        public TagConfigPanel(List<TemplateTagEntry> templateEntries)
         {
             InitializeComponent();
-            _selectedTags = selectedTags;
             _templateEntries = templateEntries;
 
             LoadData();
@@ -51,29 +50,30 @@ namespace TestProj
         {
             var allMeta = ConfigManager.Config?.TagMeta ?? new List<TagMeta>();
             var dbTags = DbManager.FetchAllTags();
-            var dbDict = dbTags.ToDictionary(t => t.ValueName, t => t.DataType);
+            var idToDataType = dbTags.ToDictionary(t => t.ValueID, t => t.DataType);
 
             var toShow = new List<TagRow>();
-            foreach (var fullName in _selectedTags)
+            foreach (var entry in _templateEntries)
             {
-                var meta = allMeta.FirstOrDefault(t => t.TagName == fullName);
-                var entry = _templateEntries.FirstOrDefault(e => e.TagName == fullName);
-                dbDict.TryGetValue(fullName, out string dataType);
+                var meta = allMeta.FirstOrDefault(m => m.ValueID == entry.ValueID);
+                idToDataType.TryGetValue(entry.ValueID, out string dataType);
+
+                string tagName = meta?.TagName ?? entry.ValueID.ToString();
 
                 toShow.Add(new TagRow
                 {
-                    TagName = fullName,
-                    DisplayName = meta?.DisplayName ?? fullName,
-                    DataType = dataType ?? meta?.DataType ?? "",
+                    ValueID      = entry.ValueID,
+                    TagName      = tagName,
+                    DisplayName  = meta?.DisplayName ?? tagName,
+                    DataType     = dataType ?? meta?.DataType ?? "",
                     DecimalPlaces = meta?.DecimalPlaces ?? 2,
-                    NormalMin = meta?.NormalMin,
-                    NormalMax = meta?.NormalMax,
-                    Order = entry?.Order ?? (toShow.Count + 1)
+                    NormalMin    = meta?.NormalMin,
+                    NormalMax    = meta?.NormalMax,
+                    Order        = entry.Order
                 });
             }
 
-            _bindingList = new BindingList<TagRow>(
-                                    toShow.OrderBy(t => t.Order).ToList());
+            _bindingList = new BindingList<TagRow>(toShow.OrderBy(t => t.Order).ToList());
             dgvTags.DataSource = _bindingList;
 
             if (dgvTags.Rows.Count > 0)
@@ -86,17 +86,18 @@ namespace TestProj
             var row = GetSelectedRow();
             if (row == null) return;
 
-            if (!_editingBackups.ContainsKey(row.TagName))
+            if (!_editingBackups.ContainsKey(row.ValueID))
             {
-                _editingBackups[row.TagName] = new TagRow
+                _editingBackups[row.ValueID] = new TagRow
                 {
-                    TagName = row.TagName,
-                    DisplayName = row.DisplayName,
-                    DataType = row.DataType,
-                    NormalMin = row.NormalMin,
-                    NormalMax = row.NormalMax,
+                    ValueID       = row.ValueID,
+                    TagName       = row.TagName,
+                    DisplayName   = row.DisplayName,
+                    DataType      = row.DataType,
+                    NormalMin     = row.NormalMin,
+                    NormalMax     = row.NormalMax,
                     DecimalPlaces = row.DecimalPlaces,
-                    Order = row.Order
+                    Order         = row.Order
                 };
             }
 
@@ -161,11 +162,11 @@ namespace TestProj
             _bindingList = new BindingList<TagRow>(sorted);
             dgvTags.DataSource = _bindingList;
 
-            _currentEditing = _bindingList.FirstOrDefault(t => t.TagName == target.TagName);
+            _currentEditing = _bindingList.FirstOrDefault(t => t.ValueID == target.ValueID);
 
             for (int i = 0; i < dgvTags.Rows.Count; i++)
             {
-                if ((dgvTags.Rows[i].DataBoundItem as TagRow)?.TagName == target.TagName)
+                if ((dgvTags.Rows[i].DataBoundItem as TagRow)?.ValueID == target.ValueID)
                 {
                     dgvTags.ClearSelection();
                     dgvTags.Rows[i].Selected = true;
@@ -215,31 +216,30 @@ namespace TestProj
 
             foreach (var row in _bindingList)
             {
-                // TagMeta 只存显示属性，不存 Order
-                var existing = allMeta.FirstOrDefault(t => t.TagName == row.TagName);
+                var existing = allMeta.FirstOrDefault(m => m.ValueID == row.ValueID);
                 if (existing != null)
                 {
-                    existing.DisplayName = row.DisplayName;
-                    existing.DataType = row.DataType;
-                    existing.NormalMin = row.NormalMin;
-                    existing.NormalMax = row.NormalMax;
+                    existing.DisplayName  = row.DisplayName;
+                    existing.DataType     = row.DataType;
+                    existing.NormalMin    = row.NormalMin;
+                    existing.NormalMax    = row.NormalMax;
                     existing.DecimalPlaces = row.DecimalPlaces;
                 }
                 else
                 {
                     allMeta.Add(new TagMeta
                     {
-                        TagName = row.TagName,
-                        DisplayName = row.DisplayName,
-                        DataType = row.DataType,
-                        NormalMin = row.NormalMin,
-                        NormalMax = row.NormalMax,
+                        ValueID       = row.ValueID,
+                        TagName       = row.TagName,
+                        DisplayName   = row.DisplayName,
+                        DataType      = row.DataType,
+                        NormalMin     = row.NormalMin,
+                        NormalMax     = row.NormalMax,
                         DecimalPlaces = row.DecimalPlaces
                     });
                 }
 
-                // Order 写回 templateEntries
-                var entry = _templateEntries.FirstOrDefault(e => e.TagName == row.TagName);
+                var entry = _templateEntries.FirstOrDefault(e => e.ValueID == row.ValueID);
                 if (entry != null)
                     entry.Order = row.Order;
             }
@@ -256,18 +256,17 @@ namespace TestProj
         {
             foreach (var backup in _editingBackups)
             {
-                var row = _bindingList.FirstOrDefault(t => t.TagName == backup.Key);
+                var row = _bindingList.FirstOrDefault(t => t.ValueID == backup.Key);
                 if (row != null)
                 {
-                    row.DisplayName = backup.Value.DisplayName;
-                    row.DataType = backup.Value.DataType;
-                    row.NormalMin = backup.Value.NormalMin;
-                    row.NormalMax = backup.Value.NormalMax;
+                    row.DisplayName   = backup.Value.DisplayName;
+                    row.DataType      = backup.Value.DataType;
+                    row.NormalMin     = backup.Value.NormalMin;
+                    row.NormalMax     = backup.Value.NormalMax;
                     row.DecimalPlaces = backup.Value.DecimalPlaces;
-                    row.Order = backup.Value.Order;
+                    row.Order         = backup.Value.Order;
 
-                    // 还原 templateEntries
-                    var entry = _templateEntries.FirstOrDefault(e => e.TagName == backup.Key);
+                    var entry = _templateEntries.FirstOrDefault(e => e.ValueID == backup.Key);
                     if (entry != null)
                         entry.Order = backup.Value.Order;
                 }

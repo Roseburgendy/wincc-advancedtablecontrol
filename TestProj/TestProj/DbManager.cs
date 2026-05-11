@@ -95,25 +95,25 @@ namespace TestProj
         /// <summary>
         /// 查询过程值归档数据
         /// </summary>
-        /// <param name="tagNames">变量全名列表</param>
-        /// <param name="start">开始时间</param>
-        /// <param name="end">结束时间</param>
+        /// <param name="valueIds">ValueID 列表</param>
+        /// <param name="start">开始时间（UTC）</param>
+        /// <param name="end">结束时间（UTC）</param>
         /// <param name="timeStepSeconds">0=原始点，>0=按秒聚合均值</param>
         public static DataTable FetchData(
-            List<string> tagNames,
+            List<long> valueIds,
             DateTime start,
             DateTime end,
             int timeStepSeconds)
         {
             var result = new DataTable();
-            if (tagNames == null || tagNames.Count == 0)
+            if (valueIds == null || valueIds.Count == 0)
                 return result;
 
             const int batchSize = 20;
-            var batches = tagNames
-                .Select((tag, idx) => new { tag, idx })
+            var batches = valueIds
+                .Select((id, idx) => new { id, idx })
                 .GroupBy(x => x.idx / batchSize)
-                .Select(g => g.Select(x => x.tag).ToList())
+                .Select(g => g.Select(x => x.id).ToList())
                 .ToList();
 
             try
@@ -134,24 +134,6 @@ namespace TestProj
                         foreach (DataRow row in batchTable.Rows)
                             result.ImportRow(row);
                 }
-
-                // ValueID → TagName
-                var dbTags = FetchAllTags();
-                var idToName = dbTags.ToDictionary(t => t.ValueID, t => t.ValueName);
-
-                if (!result.Columns.Contains("TagName"))
-                    result.Columns.Add("TagName", typeof(string));
-
-                foreach (DataRow row in result.Rows)
-                {
-                    if (result.Columns.Contains("ValueID")
-                        && row["ValueID"] != DBNull.Value)
-                    {
-                        long vid = Convert.ToInt64(row["ValueID"]);
-                        row["TagName"] = idToName.TryGetValue(vid, out string name)
-                                         ? name : vid.ToString();
-                    }
-                }
             }
             catch (Exception ex)
             {
@@ -161,17 +143,16 @@ namespace TestProj
             return result;
         }
 
-        private static string BuildQuery(List<string> tagNames,DateTime start,DateTime end,int timeStepSeconds)
+        private static string BuildQuery(List<long> valueIds, DateTime start, DateTime end, int timeStepSeconds)
         {
-            string tagList = tagNames.Count == 1
-                ? $"'{tagNames[0]}'"
-                : $"({string.Join(";", tagNames.Select(t => $"'{t}'"))})";
+            // ValueID 查询不加引号
+            string tagList = valueIds.Count == 1
+                ? valueIds[0].ToString()
+                : $"({string.Join(";", valueIds)})";
 
             string timeBegin = start.ToString("yyyy-MM-dd HH:mm:ss.fff");
-            string timeEnd = end.ToString("yyyy-MM-dd HH:mm:ss.fff");
+            string timeEnd   = end.ToString("yyyy-MM-dd HH:mm:ss.fff");
 
-            // timeStepSeconds=0 → 原始点，不带 TIMESTEP
-            // timeStepSeconds>0 → 聚合均值，261 (AVG_INTERPOLATED)
             string timeStep = timeStepSeconds > 0
                 ? $",'TIMESTEP={timeStepSeconds},261'"
                 : "";

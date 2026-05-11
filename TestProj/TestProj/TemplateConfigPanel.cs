@@ -70,28 +70,27 @@ namespace TestProj
         /// </summary>
         private void BtnSelectTags_Click(object sender, EventArgs e)
         {
-            // TagSelectionPanel 需要传 List<string>，从 entries 里取
             var previousSelected = _editing.SelectedTags
-                .Select(entry => entry.TagName)
+                .Select(entry => entry.ValueID)
                 .ToList();
 
             using (var panel = new TagSelectionPanel(previousSelected))
             {
                 if (panel.ShowDialog() == DialogResult.OK)
                 {
-                    // 保留已有 Order，新增的从末尾续编
                     var existingDict = _editing.SelectedTags
-                        .ToDictionary(entry => entry.TagName, entry => entry.Order);
+                        .ToDictionary(entry => entry.ValueID, entry => entry.Order);
 
                     int maxOrder = existingDict.Count > 0 ? existingDict.Values.Max() : 0;
+                    int newIdx = 0;
 
-                    _editing.SelectedTags = panel.SelectedTags.Select((tagName, idx) =>
+                    _editing.SelectedTags = panel.SelectedTags.Select(entry =>
                         new TemplateTagEntry
                         {
-                            TagName = tagName,
-                            Order = existingDict.TryGetValue(tagName, out int o)
+                            ValueID = entry.ValueID,
+                            Order = existingDict.TryGetValue(entry.ValueID, out int o)
                                       ? o
-                                      : maxOrder + idx + 1
+                                      : maxOrder + (++newIdx)
                         }).ToList();
 
                     UpdateTagSummary();
@@ -111,11 +110,7 @@ namespace TestProj
                 return;
             }
 
-            var selectedTagNames = _editing.SelectedTags
-                .Select(entry => entry.TagName)
-                .ToList();
-
-            using (var panel = new TagConfigPanel(selectedTagNames, _editing.SelectedTags))
+            using (var panel = new TagConfigPanel(_editing.SelectedTags))
             {
                 panel.FormClosing += (s, args) =>
                 {
@@ -201,8 +196,9 @@ namespace TestProj
                 DisplayName = _editing.DisplayName + "_副本",
                 Description = _editing.Description,
                 // 改后
-                SelectedTags = _editing.SelectedTags.Select(entry => new TemplateTagEntry{
-                    TagName = entry.TagName,
+                SelectedTags = _editing.SelectedTags.Select(entry => new TemplateTagEntry
+                {
+                    ValueID = entry.ValueID,
                     Order = entry.Order
                 }).ToList()
             };
@@ -252,7 +248,7 @@ namespace TestProj
             pnlDetail.Visible = true;
         }
 
-        // 展示已选变量的数量和名称（优先显示 DisplayName）
+        // 展示已选变量的数量和名称（优先显示 DisplayName，fallback TagName）
         private void UpdateTagSummary()
         {
             if (_editing == null || _editing.SelectedTags.Count == 0)
@@ -262,8 +258,11 @@ namespace TestProj
             }
             var names = _editing.SelectedTags
                 .OrderBy(entry => entry.Order)
-                .Select(entry => _allTags.FirstOrDefault(m => m.TagName == entry.TagName)
-                                 ?.DisplayName ?? entry.TagName)
+                .Select(entry =>
+                {
+                    var meta = _allTags.FirstOrDefault(m => m.ValueID == entry.ValueID);
+                    return meta?.DisplayName ?? meta?.TagName ?? entry.ValueID.ToString();
+                })
                 .ToList();
             txtTagSummary.Text = $"已选 {names.Count} 个：{string.Join("、", names)}";
         }

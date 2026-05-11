@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace TestProj.Models
 {
@@ -12,7 +13,11 @@ namespace TestProj.Models
 
     public class TemplateTagEntry
     {
-        public string TagName { get; set; }
+        public long ValueID { get; set; }
         public int Order { get; set; }
+
+        // 仅用于从旧 config 迁移，迁移完成后为 null，不写入新 JSON
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public string TagName { get; set; }
     }
 }

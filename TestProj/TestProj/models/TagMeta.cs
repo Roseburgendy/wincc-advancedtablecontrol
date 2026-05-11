@@ -6,13 +6,13 @@ namespace TestProj.Models
     // JSON 里 tagMeta 数组的单项
     public class TagMeta
     {
-
+        public long ValueID { get; set; }
         public string TagName { get; set; }
         public string DisplayName { get; set; }
         [JsonIgnore] public string DataType { get; set; }
         public double? NormalMin { get; set; }
         public double? NormalMax { get; set; }
-        public int DecimalPlaces { get; set; }=2;
+        public int DecimalPlaces { get; set; } = 2;
     }
 
 
