@@ -51,6 +51,9 @@
     <Reference Include="AutoScaleHelper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoScaleHelper.1.0.6\lib\net472\AutoScaleHelper.dll</HintPath>
     </Reference>
+    <Reference Include="Krypton.Toolkit">
+      <HintPath>..\packages\Krypton.Toolkit.105.26.4.110\lib\net48\Krypton.Toolkit.dll</HintPath>
+    </Reference>
     <Reference Include="EPPlus, Version=4.5.3.3, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
       <HintPath>..\packages\EPPlus.4.5.3.3\lib\net40\EPPlus.dll</HintPath>
     </Reference>

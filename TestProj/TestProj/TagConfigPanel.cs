@@ -8,7 +8,7 @@ using TestProj.Models;
 
 namespace TestProj
 {
-    public partial class TagConfigPanel : Form
+    public partial class TagConfigPanel : Krypton.Toolkit.KryptonForm
     {
         private class TagRow
         {

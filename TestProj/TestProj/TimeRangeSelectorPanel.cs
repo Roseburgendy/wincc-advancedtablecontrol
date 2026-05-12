@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace TestProj
 {
-    public partial class TimeRangeSelectorPanel : Form
+    public partial class TimeRangeSelectorPanel : Krypton.Toolkit.KryptonForm
     {
         public DateTime SelectedStartTime { get; private set; }
         public DateTime SelectedEndTime { get; private set; }

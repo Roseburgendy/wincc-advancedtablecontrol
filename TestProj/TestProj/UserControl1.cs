@@ -14,6 +14,24 @@ namespace TestProj
     {
         private List<TagMeta> _tagMetaList = new List<TagMeta>(); // 变量信息
         private ReportTemplate _currentTemplate; // 模板对应选中变量名称和顺序
+
+        // 可选主题：显示名 → PaletteMode
+        private static readonly Dictionary<string, Krypton.Toolkit.PaletteMode> _themes =
+            new Dictionary<string, Krypton.Toolkit.PaletteMode>
+        {
+            { "Microsoft 365 Blue",   Krypton.Toolkit.PaletteMode.Microsoft365Blue   },
+            { "Microsoft 365 Black",  Krypton.Toolkit.PaletteMode.Microsoft365Black  },
+            { "Microsoft 365 Silver", Krypton.Toolkit.PaletteMode.Microsoft365Silver },
+            { "Office 2010 Blue",     Krypton.Toolkit.PaletteMode.Office2010Blue     },
+            { "Office 2010 Silver",   Krypton.Toolkit.PaletteMode.Office2010Silver   },
+            { "Office 2010 Black",    Krypton.Toolkit.PaletteMode.Office2010Black    },
+            { "Office 2013",          Krypton.Toolkit.PaletteMode.Office2013         },
+            { "Sparkle Blue",         Krypton.Toolkit.PaletteMode.SparkleBlue        },
+            { "Sparkle Blue Dark",    Krypton.Toolkit.PaletteMode.SparkleBlueDarkMode },
+            { "Sparkle Orange",       Krypton.Toolkit.PaletteMode.SparkleOrange      },
+            { "Sparkle Purple",       Krypton.Toolkit.PaletteMode.SparklePurple      },
+            { "Professional",         Krypton.Toolkit.PaletteMode.ProfessionalSystem },
+        };
         public UserControl1()
         {
             InitializeComponent();
@@ -40,6 +58,7 @@ namespace TestProj
             }
 
             InitializeTemplateList();
+            InitializeThemeSelector();
         }
 
         public void InitializeTemplateList()
@@ -51,6 +70,51 @@ namespace TestProj
 
             if (cmbTemplate.Items.Count > 0)
                 cmbTemplate.SelectedIndex = 0;
+        }
+
+        private void InitializeThemeSelector()
+        {
+            cmbTheme.Items.Clear();
+            foreach (var name in _themes.Keys)
+                cmbTheme.Items.Add(name);
+
+            // 从配置读取已保存主题，找不到则用默认
+            string savedTheme = ConfigManager.Config?.Theme ?? "Microsoft365Blue";
+            string displayName = null;
+            foreach (var kv in _themes)
+            {
+                if (kv.Value.ToString() == savedTheme)
+                {
+                    displayName = kv.Key;
+                    break;
+                }
+            }
+            // 订阅前先设置选中项（避免触发保存）
+            cmbTheme.SelectedIndexChanged -= CmbTheme_SelectedIndexChanged;
+            cmbTheme.SelectedItem = displayName ?? "Microsoft 365 Blue";
+            cmbTheme.SelectedIndexChanged += CmbTheme_SelectedIndexChanged;
+
+            ApplyTheme(savedTheme);
+        }
+
+        private void CmbTheme_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string name = cmbTheme.SelectedItem as string;
+            if (name == null || !_themes.TryGetValue(name, out var mode)) return;
+
+            ApplyTheme(mode.ToString());
+
+            if (ConfigManager.Config != null)
+            {
+                ConfigManager.Config.Theme = mode.ToString();
+                ConfigManager.SaveConfig();
+            }
+        }
+
+        private void ApplyTheme(string modeName)
+        {
+            if (System.Enum.TryParse<Krypton.Toolkit.PaletteMode>(modeName, out var mode))
+                kryptonManager.GlobalPaletteMode = mode;
         }
 
         private void SearchBtn_Click(object sender, EventArgs e) { }
@@ -697,5 +761,10 @@ namespace TestProj
         }
 
         #endregion
+
+        private void panelTop_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

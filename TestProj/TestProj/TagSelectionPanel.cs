@@ -6,7 +6,7 @@ using TestProj.Models;
 
 namespace TestProj
 {
-    public partial class TagSelectionPanel : Form
+    public partial class TagSelectionPanel : Krypton.Toolkit.KryptonForm
     {
         public List<TemplateTagEntry> SelectedTags { get; private set; }
             = new List<TemplateTagEntry>();

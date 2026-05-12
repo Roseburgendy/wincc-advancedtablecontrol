@@ -20,6 +20,7 @@ namespace TestProj.Models
     public class ProjectConfig
     {
         public string CompanyName { get; set; } = "";
+        public string Theme { get; set; } = "Microsoft365Blue";
         public List<TagMeta> TagMeta { get; set; } = new List<TagMeta>();
         public List<ReportTemplate> Template { get; set; } = new List<ReportTemplate>();
     }

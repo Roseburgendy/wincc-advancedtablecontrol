@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace TestProj
 {
-    public partial class ExcelImportConfigForm : Form
+    public partial class ExcelImportConfigForm : Krypton.Toolkit.KryptonForm
     {
         public int DataStartRow => (int)numStartRow.Value;
         public int TagNameCol => (int)numTagCol.Value;

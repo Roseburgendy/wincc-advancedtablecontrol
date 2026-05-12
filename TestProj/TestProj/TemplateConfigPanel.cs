@@ -8,7 +8,7 @@ using TestProj.Models;
 using AutoScaleHelper;
 namespace TestProj
 {
-    public partial class TemplateConfigPanel : Form
+    public partial class TemplateConfigPanel : Krypton.Toolkit.KryptonForm
     {
         private readonly BindingList<ReportTemplate> _bindingList;
         private readonly List<TagMeta> _allTags;
