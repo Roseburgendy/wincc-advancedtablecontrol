@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 
 namespace TestProj
@@ -25,7 +25,6 @@ namespace TestProj
 
             cmbUnit.SelectedIndex = 2; // 默认 1小时
             cmbMode.SelectedIndex = 0;
-
 
             UpdateEnabledState();
         }
@@ -162,10 +161,10 @@ namespace TestProj
         {
             var (start, end) = GetCurrentRange();
             SelectedStartTime = start;
-            SelectedEndTime = end;
-            SelectedMode = cmbMode.SelectedIndex;
-            SelectedCount = (int)numCount.Value;
-            SelectedTimeStep = GetTimeStepSeconds();
+            SelectedEndTime   = end;
+            SelectedMode      = cmbMode.SelectedIndex;
+            SelectedCount     = (int)numCount.Value;
+            SelectedTimeStep  = GetTimeStepSeconds();
 
             Applied?.Invoke(start, end, SelectedMode, SelectedTimeStep);
         }

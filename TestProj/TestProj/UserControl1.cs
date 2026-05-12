@@ -1,5 +1,4 @@
-﻿using CCHMIRUNTIME;
-using OfficeOpenXml;
+﻿using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -615,12 +614,21 @@ namespace TestProj
                     hx = x0;
                     for (int i = 0; i < colIndices.Count; i++)
                     {
-                        int    c   = colIndices[i];
-                        var    val = _printData.Rows[_printCurrentRow][c];
-                        string txt = val == DBNull.Value ? "" : val.ToString();
+                        int    c       = colIndices[i];
+                        var    val     = _printData.Rows[_printCurrentRow][c];
+                        string colName = _printData.Columns[c].ColumnName;
+                        string txt     = val == DBNull.Value ? "" : val.ToString();
 
-                        if (_printData.Columns[c].ColumnName == "Timestamp" && val is DateTime dt)
+                        if (colName == "Timestamp" && val is DateTime dt)
+                        {
                             txt = dt.ToString("yyyy-MM-dd HH:mm:ss");
+                        }
+                        else if (val != DBNull.Value && double.TryParse(txt, out double dval))
+                        {
+                            var meta = _tagMetaList.FirstOrDefault(
+                                t => t.DisplayName == colName || t.TagName == colName);
+                            txt = dval.ToString("F" + (meta?.DecimalPlaces ?? 2));
+                        }
 
                         var rect = new RectangleF(hx, y, scaledW[i], rowH);
                         if (alt) g.FillRectangle(Brushes.WhiteSmoke, rect);
@@ -689,7 +697,5 @@ namespace TestProj
         }
 
         #endregion
-
-     
     }
 }

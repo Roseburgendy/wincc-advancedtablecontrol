@@ -230,7 +230,7 @@ namespace TestProj
             string timeEnd   = end.ToString("yyyy-MM-dd HH:mm:ss.fff");
 
             string timeStep = timeStepSeconds > 0
-                ? $",'TIMESTEP={timeStepSeconds},5'"
+                ? $",'TIMESTEP={timeStepSeconds},1'"
                 : "";
 
             return $"TAG:R,{tagList},'{timeBegin}','{timeEnd}'{timeStep}";
