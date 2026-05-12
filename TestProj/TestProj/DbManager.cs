@@ -144,31 +144,76 @@ namespace TestProj
         }
 
         /// <summary>
-        /// 查询从 start 开始，每个变量最多取 count 条原始数据点
+        /// 查询从 start 开始，每个变量最多取 count 条原始数据点。
+        /// 采用渐进式窗口策略：先查小窗口，数据不足再逐步扩大，
+        /// 避免一次性拉取全量归档数据导致的性能问题。
         /// </summary>
         public static DataTable FetchDataByCount(List<long> valueIds, DateTime start, int count)
         {
-            // 结束时间取当前时间（UTC），保证能覆盖到最新数据
-            DateTime end = DateTime.UtcNow;
-            if (end <= start) end = start.AddDays(365);
+            if (valueIds == null || valueIds.Count == 0 || count <= 0)
+                return new DataTable();
 
-            var all = FetchData(valueIds, start, end, 0);
+            DateTime utcNow = DateTime.UtcNow;
+            // 如果 start 在未来，则以 start 为基准向后延伸
+            if (utcNow <= start) utcNow = start.AddDays(365);
 
-            if (all.Rows.Count == 0 || !all.Columns.Contains("ValueID"))
-                return all;
-
-            // 按时间戳升序排列，每个 ValueID 保留前 count 条
-            var limited  = all.Clone();
-            var tagCount = new Dictionary<long, int>();
-
-            foreach (DataRow row in all.AsEnumerable().OrderBy(r => r["Timestamp"]))
+            // 渐进窗口：依次尝试 1h → 6h → 1d → 7d → 30d → 365d
+            var windows = new[]
             {
-                long vid = Convert.ToInt64(row["ValueID"]);
-                tagCount.TryGetValue(vid, out int c);
+                TimeSpan.FromHours(1),
+                TimeSpan.FromHours(6),
+                TimeSpan.FromDays(1),
+                TimeSpan.FromDays(7),
+                TimeSpan.FromDays(30),
+                TimeSpan.FromDays(365)
+            };
+
+            foreach (var window in windows)
+            {
+                DateTime end        = start + window;
+                bool isLastWindow   = end >= utcNow;
+                if (isLastWindow) end = utcNow;
+
+                var data = FetchData(valueIds, start, end, 0);
+
+                if (data.Rows.Count > 0)
+                {
+                    // 检查是否至少有一个变量已积累到 count 条
+                    bool satisfied = !data.Columns.Contains("ValueID") || data
+                        .AsEnumerable()
+                        .GroupBy(r => Convert.ToInt64(r["ValueID"]))
+                        .Any(g => g.Count() >= count);
+
+                    if (satisfied || isLastWindow)
+                        return TrimByCount(data, count);
+                }
+                else if (isLastWindow)
+                {
+                    return data; // 到最大窗口仍无数据，直接返回空表
+                }
+                // 数据不足且窗口未到上限，继续扩大
+            }
+
+            return new DataTable();
+        }
+
+        /// <summary>
+        /// 将 DataTable 按 ValueID 分组，每组保留时间最早的 count 条
+        /// </summary>
+        private static DataTable TrimByCount(DataTable data, int count)
+        {
+            var limited     = data.Clone();
+            var perTagCount = new Dictionary<long, int>();
+            bool hasVidCol  = data.Columns.Contains("ValueID");
+
+            foreach (DataRow row in data.AsEnumerable().OrderBy(r => r["Timestamp"]))
+            {
+                long vid = hasVidCol ? Convert.ToInt64(row["ValueID"]) : 0;
+                perTagCount.TryGetValue(vid, out int c);
                 if (c < count)
                 {
                     limited.ImportRow(row);
-                    tagCount[vid] = c + 1;
+                    perTagCount[vid] = c + 1;
                 }
             }
             return limited;
