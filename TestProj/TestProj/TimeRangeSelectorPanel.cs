@@ -5,7 +5,6 @@ namespace TestProj
 {
     public partial class TimeRangeSelectorPanel : Form
     {
-        // ── 对外暴露的结果 ────────────────────────────────
         public DateTime SelectedStartTime { get; private set; }
         public DateTime SelectedEndTime { get; private set; }
         public int SelectedMode { get; private set; }
@@ -31,7 +30,7 @@ namespace TestProj
             UpdateEnabledState();
         }
 
-        // ── 模式切换 ─────────────────────────────────────
+        // 模式切换
 
         private void CmbMode_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -62,7 +61,7 @@ namespace TestProj
             numCount.Enabled = mode == 2;
         }
 
-        // ── mode=0: 推算结束时间 ──────────────────────────
+        // mode=0: 推算结束时间
 
         private void RangeInput_Changed(object sender, EventArgs e)
         {
@@ -103,7 +102,7 @@ namespace TestProj
             }
         }
 
-        // ── 读取当前 Start / End ─────────────────────────
+        // 读取当前 Start / End
 
         private DateTime GetStart()
         {
@@ -149,7 +148,7 @@ namespace TestProj
             return true;
         }
 
-        // ── 填充对外属性 ─────────────────────────────────
+        // 填充对外属性
 
         private void ApplySelection()
         {
@@ -163,7 +162,7 @@ namespace TestProj
             Applied?.Invoke(start, end, SelectedMode, SelectedTimeStep);
         }
 
-        // ── 按钮事件 ─────────────────────────────────────
+        // 按钮事件
 
         private void BtnOK_Click(object sender, EventArgs e)
         {

@@ -76,7 +76,7 @@
             // 
             // numCount
             // 
-            this.numCount.Location = new System.Drawing.Point(518, 485);
+            this.numCount.Location = new System.Drawing.Point(518, 481);
             this.numCount.Maximum = new decimal(new int[] {
             99999,
             0,

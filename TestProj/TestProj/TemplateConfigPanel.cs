@@ -14,8 +14,6 @@ namespace TestProj
         private readonly List<TagMeta> _allTags;
         private ReportTemplate _editing;
 
-
-
         public TemplateConfigPanel(List<ReportTemplate> templates, List<TagMeta> allTags)
         {
             InitializeComponent();

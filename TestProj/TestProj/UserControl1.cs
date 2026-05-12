@@ -54,10 +54,9 @@ namespace TestProj
                 cmbTemplate.SelectedIndex = 0;
         }
 
-        /// <summary>
-        /// 搜索按钮点击事件
-        /// </summary>
-        private void SearchBtn_Click(object sender, EventArgs e)
+        private void SearchBtn_Click(object sender, EventArgs e) { }
+
+        private void TimeSelectBtn_Click(object sender, EventArgs e)
         {
             if (_currentTemplate == null)
             {
@@ -76,21 +75,18 @@ namespace TestProj
                 return;
             }
 
-            var start = dtpStartDate.Value.Date + dtpStartTime.Value.TimeOfDay;
-            var end   = dtpEndDate.Value.Date   + dtpEndTime.Value.TimeOfDay;
-
-            if (start >= end)
+            using (var panel = new TimeRangeSelectorPanel())
             {
-                MessageBox.Show("开始时间不能晚于结束时间", "提示",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                // 必须在 ShowDialog 之前订阅，否则事件永远不触发
+                panel.Applied += (start, end, mode, timeStep) =>
+                {
+                    RunQuery(sortedEntries,
+                             start.ToUniversalTime(),
+                             end.ToUniversalTime(),
+                             timeStep);
+                };
+                panel.ShowDialog();
             }
-
-            var startUTC = start.ToUniversalTime();
-            var endUTC   = end.ToUniversalTime();
-
-            int timeStep = (int)numValue.Value * GetTimeStepSeconds();
-            RunQuery(sortedEntries, startUTC, endUTC, timeStep);
         }
 
         private void RunQuery(List<TemplateTagEntry> entries, DateTime start, DateTime end, int timeStep)
@@ -670,5 +666,7 @@ namespace TestProj
         }
 
         #endregion
+
+     
     }
 }
