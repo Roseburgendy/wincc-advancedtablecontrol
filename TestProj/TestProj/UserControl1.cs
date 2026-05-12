@@ -80,10 +80,18 @@ namespace TestProj
                 // 必须在 ShowDialog 之前订阅，否则事件永远不触发
                 panel.Applied += (start, end, mode, timeStep) =>
                 {
-                    RunQuery(sortedEntries,
-                             start.ToUniversalTime(),
-                             end.ToUniversalTime(),
-                             timeStep);
+                    var startUTC = start.ToUniversalTime();
+                    var endUTC   = end.ToUniversalTime();
+
+                    switch (mode)
+                    {
+                        case 2: // 测量点数量：从 start 取前 N 条原始点
+                            RunQueryByCount(sortedEntries, startUTC, panel.SelectedCount);
+                            break;
+                        default: // 0-时间范围 / 1-开始到结束 / 3-自定义聚类
+                            RunQuery(sortedEntries, startUTC, endUTC, timeStep);
+                            break;
+                    }
                 };
                 panel.ShowDialog();
             }
@@ -112,6 +120,34 @@ namespace TestProj
                 var wide = PivotToWide(raw, entries);
                 CleanUnusedColumns(wide, new[] { "Quality", "Flags", "ValueID" });
 
+                _tagMetaList = ConfigManager.Config?.TagMeta ?? new List<TagMeta>();
+                BindResultTable(wide);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"查询失败: {ex.Message}", "错误");
+            }
+        }
+
+        private void RunQueryByCount(List<TemplateTagEntry> entries, DateTime startUTC, int count)
+        {
+            try
+            {
+                var valueIds = entries.Select(e => e.ValueID).ToList();
+                var raw = DbManager.FetchDataByCount(valueIds, startUTC, count);
+
+                if (raw == null || raw.Rows.Count == 0)
+                {
+                    MessageBox.Show("没有查询到数据", "提示");
+                    return;
+                }
+
+                foreach (DataRow row in raw.Rows)
+                    if (raw.Columns.Contains("Timestamp") && row["Timestamp"] != DBNull.Value)
+                        row["Timestamp"] = ((DateTime)row["Timestamp"]).ToLocalTime();
+
+                var wide = PivotToWide(raw, entries);
+                CleanUnusedColumns(wide, new[] { "Quality", "Flags", "ValueID" });
                 _tagMetaList = ConfigManager.Config?.TagMeta ?? new List<TagMeta>();
                 BindResultTable(wide);
             }
@@ -238,19 +274,6 @@ namespace TestProj
             return wide;
         }
 
-
-        private int GetTimeStepSeconds()
-        {
-            switch (cmbTimestep.SelectedIndex)
-            {
-                case 0: return 0;      // N/A，原始点
-                case 1: return 1;      // 1秒
-                case 2: return 60;     // 1分钟
-                case 3: return 3600;   // 1小时
-                case 4: return 86400;  // 1天
-                default: return 0;
-            }
-        }
 
         #endregion
 

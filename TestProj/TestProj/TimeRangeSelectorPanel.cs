@@ -47,17 +47,22 @@ namespace TestProj
             dtpStartDate.Enabled = true;
             dtpStartTime.Enabled = true;
 
-            // 结束时间：mode=1 和 mode=3 启用
+            // 结束时间：mode 1（开始到结束）和 mode 3（自定义聚类）启用
             dtpEndDate.Enabled = mode == 1 || mode == 3;
             dtpEndTime.Enabled = mode == 1 || mode == 3;
 
-            // 时间范围条数：mode=0
+            // 时间范围条数 numValue 和 "X" 标签：仅 mode 0（时间范围）
+            numValue.Visible = mode == 0;
             numValue.Enabled = mode == 0;
+            label5.Visible   = mode == 0; // "X" 乘号
 
-            // 粒度下拉：mode=0 和 mode=3
+            // 粒度下拉：mode 0（计算区间）和 mode 3（聚类步长）
             cmbUnit.Enabled = mode == 0 || mode == 3;
 
-            // 测量点数量：mode=2
+            // label4 语义：mode 3 时改为"聚合粒度："，其他为"时间范围："
+            label4.Text = mode == 3 ? "聚合粒度：" : "时间范围：";
+
+            // 测量点数量：mode 2
             numCount.Enabled = mode == 2;
         }
 
@@ -92,6 +97,9 @@ namespace TestProj
 
         private int GetTimeStepSeconds()
         {
+            // 只有 mode 3（自定义聚类）才使用聚合步长；其他 mode 返回原始点（0）
+            if (cmbMode.SelectedIndex != 3) return 0;
+
             switch (cmbUnit.SelectedIndex)
             {
                 case 0: return 1;

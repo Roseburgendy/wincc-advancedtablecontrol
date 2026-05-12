@@ -221,10 +221,10 @@
             // 
             this.cmbMode.FormattingEnabled = true;
             this.cmbMode.Items.AddRange(new object[] {
-            "0- 时间范围",
-            "1- 开始到结束的时间",
-            "2- 测量点数量",
-            "3- 自定义区间聚合"});
+            "1 - 时间范围",
+            "2 - 开始到结束的时间",
+            "3 - 测量点数量",
+            "4 - 自定义聚类"});
             this.cmbMode.Location = new System.Drawing.Point(11, 153);
             this.cmbMode.Name = "cmbMode";
             this.cmbMode.Size = new System.Drawing.Size(261, 35);

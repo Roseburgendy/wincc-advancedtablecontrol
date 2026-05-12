@@ -143,6 +143,37 @@ namespace TestProj
             return result;
         }
 
+        /// <summary>
+        /// 查询从 start 开始，每个变量最多取 count 条原始数据点
+        /// </summary>
+        public static DataTable FetchDataByCount(List<long> valueIds, DateTime start, int count)
+        {
+            // 结束时间取当前时间（UTC），保证能覆盖到最新数据
+            DateTime end = DateTime.UtcNow;
+            if (end <= start) end = start.AddDays(365);
+
+            var all = FetchData(valueIds, start, end, 0);
+
+            if (all.Rows.Count == 0 || !all.Columns.Contains("ValueID"))
+                return all;
+
+            // 按时间戳升序排列，每个 ValueID 保留前 count 条
+            var limited  = all.Clone();
+            var tagCount = new Dictionary<long, int>();
+
+            foreach (DataRow row in all.AsEnumerable().OrderBy(r => r["Timestamp"]))
+            {
+                long vid = Convert.ToInt64(row["ValueID"]);
+                tagCount.TryGetValue(vid, out int c);
+                if (c < count)
+                {
+                    limited.ImportRow(row);
+                    tagCount[vid] = c + 1;
+                }
+            }
+            return limited;
+        }
+
         private static string BuildQuery(List<long> valueIds, DateTime start, DateTime end, int timeStepSeconds)
         {
             // ValueID 查询不加引号
