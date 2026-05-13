@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -12,19 +12,20 @@ namespace TestProj
     {
         private class TagRow
         {
-            public long ValueID { get; set; }
-            public string TagName { get; set; }
-            public string DisplayName { get; set; }
-            public string DataType { get; set; }
-            public int DecimalPlaces { get; set; }
-            public double? NormalMin { get; set; }
-            public double? NormalMax { get; set; }
-            public int Order { get; set; }
+            public long   ValueID       { get; set; }
+            public string TagName       { get; set; }
+            public string DisplayName   { get; set; }
+            public string DisplayNameEn { get; set; }
+            public string DataType      { get; set; }
+            public int    DecimalPlaces { get; set; }
+            public double? NormalMin    { get; set; }
+            public double? NormalMax    { get; set; }
+            public int    Order         { get; set; }
         }
 
         private readonly List<TemplateTagEntry> _templateEntries;
         private BindingList<TagRow> _bindingList;
-        private bool _isDirty = false;
+        private bool _isDirty   = false;
         private bool _isSyncing = false;
         private Dictionary<long, TagRow> _editingBackups = new Dictionary<long, TagRow>();
         private TagRow _currentEditing;
@@ -36,20 +37,56 @@ namespace TestProj
 
             LoadData();
 
-            dgvTags.CellValueChanged += DgvTags_CellValueChanged;
-            dgvTags.SelectionChanged += DgvTags_SelectionChanged;
+            dgvTags.CellValueChanged  += DgvTags_CellValueChanged;
+            dgvTags.SelectionChanged  += DgvTags_SelectionChanged;
 
-            txtDisplayName.TextChanged += FormField_Changed;
+            txtDisplayName.TextChanged   += FormField_Changed;
+            txtDisplayNameEn.TextChanged += FormField_Changed;
             txtDecimalPlaces.TextChanged += FormField_Changed;
-            txtOrder.TextChanged += FormField_Changed;
-            txtMax.TextChanged += FormField_Changed;
-            txtMin.TextChanged += FormField_Changed;
+            txtOrder.TextChanged         += FormField_Changed;
+            txtMax.TextChanged           += FormField_Changed;
+            txtMin.TextChanged           += FormField_Changed;
+
+            ApplyLanguage();
+        }
+
+        /// <summary>刷新窗体所有 UI 文字为当前语言。</summary>
+        public void ApplyLanguage()
+        {
+            this.Text = LangHelper.Get("TCP_Title");
+
+            // GroupBox headings
+            groupBox1.Values.Heading = LangHelper.Get("TCP_GroupConfig");
+            groupBox2.Values.Heading = LangHelper.Get("TCP_GroupList");
+
+            // Form field labels
+            label3.Values.Text = LangHelper.Get("TCP_TagName");
+            label4.Values.Text = LangHelper.Get("TCP_DisplayName");
+            label8.Values.Text = LangHelper.Get("TCP_DisplayNameEn");
+            label5.Values.Text = LangHelper.Get("TCP_DataType");
+            label2.Values.Text = LangHelper.Get("TCP_DecimalPlaces");
+            label1.Values.Text = LangHelper.Get("TCP_Order");
+            label7.Values.Text = LangHelper.Get("TCP_MinValue");
+            label6.Values.Text = LangHelper.Get("TCP_MaxValue");
+
+            // Button
+            saveConfigBtn.Values.Text = LangHelper.Get("TCP_BtnSave");
+
+            // DataGridView column headers
+            Column1.HeaderText = LangHelper.Get("TCP_ColTagName");
+            Column2.HeaderText = LangHelper.Get("TCP_ColDisplayName");
+            Column8.HeaderText = LangHelper.Get("TCP_ColDisplayNameEn");
+            Column5.HeaderText = LangHelper.Get("TCP_ColDecimalPlaces");
+            Column3.HeaderText = LangHelper.Get("TCP_ColDataType");
+            Column4.HeaderText = LangHelper.Get("TCP_ColOrder");
+            Column6.HeaderText = LangHelper.Get("TCP_ColMaxValue");
+            Column7.HeaderText = LangHelper.Get("TCP_ColMinValue");
         }
 
         public void LoadData()
         {
-            var allMeta = ConfigManager.Config?.TagMeta ?? new List<TagMeta>();
-            var dbTags = DbManager.FetchAllTags();
+            var allMeta      = ConfigManager.Config?.TagMeta ?? new List<TagMeta>();
+            var dbTags       = DbManager.FetchAllTags();
             var idToDataType = dbTags.ToDictionary(t => t.ValueID, t => t.DataType);
 
             var toShow = new List<TagRow>();
@@ -62,14 +99,15 @@ namespace TestProj
 
                 toShow.Add(new TagRow
                 {
-                    ValueID      = entry.ValueID,
-                    TagName      = tagName,
-                    DisplayName  = meta?.DisplayName ?? tagName,
-                    DataType     = dataType ?? meta?.DataType ?? "",
+                    ValueID       = entry.ValueID,
+                    TagName       = tagName,
+                    DisplayName   = meta?.DisplayName   ?? tagName,
+                    DisplayNameEn = meta?.DisplayNameEn ?? "",
+                    DataType      = dataType ?? meta?.DataType ?? "",
                     DecimalPlaces = meta?.DecimalPlaces ?? 2,
-                    NormalMin    = meta?.NormalMin,
-                    NormalMax    = meta?.NormalMax,
-                    Order        = entry.Order
+                    NormalMin     = meta?.NormalMin,
+                    NormalMax     = meta?.NormalMax,
+                    Order         = entry.Order
                 });
             }
 
@@ -93,6 +131,7 @@ namespace TestProj
                     ValueID       = row.ValueID,
                     TagName       = row.TagName,
                     DisplayName   = row.DisplayName,
+                    DisplayNameEn = row.DisplayNameEn,
                     DataType      = row.DataType,
                     NormalMin     = row.NormalMin,
                     NormalMax     = row.NormalMax,
@@ -114,10 +153,11 @@ namespace TestProj
             if (row == null) return;
 
             _isSyncing = true;
-            row.DisplayName = txtDisplayName.Text.Trim();
-            row.DecimalPlaces = int.TryParse(txtDecimalPlaces.Text, out int dp) ? dp : 2;
-            row.NormalMax = double.TryParse(txtMax.Text, out double mx) ? mx : (double?)null;
-            row.NormalMin = double.TryParse(txtMin.Text, out double mn) ? mn : (double?)null;
+            row.DisplayName   = txtDisplayName.Text.Trim();
+            row.DisplayNameEn = txtDisplayNameEn.Text.Trim();
+            row.DecimalPlaces = int.TryParse(txtDecimalPlaces.Text,   out int dp) ? dp : 2;
+            row.NormalMax     = double.TryParse(txtMax.Text, out double mx) ? mx : (double?)null;
+            row.NormalMin     = double.TryParse(txtMin.Text, out double mn) ? mn : (double?)null;
 
             int newOrder = int.TryParse(txtOrder.Text, out int ord) ? ord : 1;
             AdjustOrders(row, newOrder);
@@ -177,6 +217,7 @@ namespace TestProj
         }
 
         #region Utilities
+
         private void MarkDirty()
         {
             _isDirty = true;
@@ -194,21 +235,21 @@ namespace TestProj
 
         private void LoadToForm(TagRow row)
         {
-            txtTagName.Text = row.TagName;
-            txtDisplayName.Text = row.DisplayName;
-            txtDataType.Text = row.DataType;
+            txtTagName.Text       = row.TagName;
+            txtDisplayName.Text   = row.DisplayName;
+            txtDisplayNameEn.Text = row.DisplayNameEn;
+            txtDataType.Text      = row.DataType;
             txtDecimalPlaces.Text = row.DecimalPlaces.ToString();
-            txtOrder.Text = row.Order.ToString();
-            txtMax.Text = row.NormalMax?.ToString() ?? "";
-            txtMin.Text = row.NormalMin?.ToString() ?? "";
+            txtOrder.Text         = row.Order.ToString();
+            txtMax.Text           = row.NormalMax?.ToString() ?? "";
+            txtMin.Text           = row.NormalMin?.ToString() ?? "";
         }
+
         #endregion
 
         #region 外部接口
+
         public bool HasUnsavedChanges() => _isDirty;
-
-
-
 
         public void SaveAll()
         {
@@ -219,10 +260,11 @@ namespace TestProj
                 var existing = allMeta.FirstOrDefault(m => m.ValueID == row.ValueID);
                 if (existing != null)
                 {
-                    existing.DisplayName  = row.DisplayName;
-                    existing.DataType     = row.DataType;
-                    existing.NormalMin    = row.NormalMin;
-                    existing.NormalMax    = row.NormalMax;
+                    existing.DisplayName   = row.DisplayName;
+                    existing.DisplayNameEn = row.DisplayNameEn;
+                    existing.DataType      = row.DataType;
+                    existing.NormalMin     = row.NormalMin;
+                    existing.NormalMax     = row.NormalMax;
                     existing.DecimalPlaces = row.DecimalPlaces;
                 }
                 else
@@ -232,6 +274,7 @@ namespace TestProj
                         ValueID       = row.ValueID,
                         TagName       = row.TagName,
                         DisplayName   = row.DisplayName,
+                        DisplayNameEn = row.DisplayNameEn,
                         DataType      = row.DataType,
                         NormalMin     = row.NormalMin,
                         NormalMax     = row.NormalMax,
@@ -260,6 +303,7 @@ namespace TestProj
                 if (row != null)
                 {
                     row.DisplayName   = backup.Value.DisplayName;
+                    row.DisplayNameEn = backup.Value.DisplayNameEn;
                     row.DataType      = backup.Value.DataType;
                     row.NormalMin     = backup.Value.NormalMin;
                     row.NormalMax     = backup.Value.NormalMax;
@@ -281,9 +325,10 @@ namespace TestProj
         private void SaveConfigBtn_Click_1(object sender, EventArgs e)
         {
             SaveAll();
-            MessageBox.Show("保存成功", "提示");
+            MessageBox.Show(LangHelper.Get("TCP_SaveSuccess"), LangHelper.Get("Msg_Info"));
             _editingBackups.Clear();
         }
+
         #endregion
     }
 }

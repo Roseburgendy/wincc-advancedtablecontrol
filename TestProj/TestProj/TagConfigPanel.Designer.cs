@@ -15,274 +15,294 @@ namespace TestProj
 
         private void InitializeComponent()
         {
-            this.label3           = new Krypton.Toolkit.KryptonLabel();
-            this.txtTagName       = new Krypton.Toolkit.KryptonTextBox();
-            this.txtDisplayName   = new Krypton.Toolkit.KryptonTextBox();
-            this.label4           = new Krypton.Toolkit.KryptonLabel();
-            this.txtDataType      = new Krypton.Toolkit.KryptonTextBox();
-            this.label5           = new Krypton.Toolkit.KryptonLabel();
-            this.txtMax           = new Krypton.Toolkit.KryptonTextBox();
-            this.label6           = new Krypton.Toolkit.KryptonLabel();
-            this.txtMin           = new Krypton.Toolkit.KryptonTextBox();
-            this.label7           = new Krypton.Toolkit.KryptonLabel();
-            this.groupBox1        = new Krypton.Toolkit.KryptonGroupBox();
-            this.label2           = new Krypton.Toolkit.KryptonLabel();
-            this.txtDecimalPlaces = new Krypton.Toolkit.KryptonTextBox();
-            this.label1           = new Krypton.Toolkit.KryptonLabel();
-            this.txtOrder         = new Krypton.Toolkit.KryptonTextBox();
-            this.groupBox2        = new Krypton.Toolkit.KryptonGroupBox();
-            this.dgvTags          = new Krypton.Toolkit.KryptonDataGridView();
-            this.Column1          = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2          = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5          = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3          = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4          = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6          = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7          = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.saveConfigBtn    = new Krypton.Toolkit.KryptonButton();
+            this.label3            = new Krypton.Toolkit.KryptonLabel();
+            this.txtTagName        = new Krypton.Toolkit.KryptonTextBox();
+            this.label4            = new Krypton.Toolkit.KryptonLabel();
+            this.txtDisplayName    = new Krypton.Toolkit.KryptonTextBox();
+            this.label8            = new Krypton.Toolkit.KryptonLabel();   // 英文别名
+            this.txtDisplayNameEn  = new Krypton.Toolkit.KryptonTextBox(); // 英文别名
+            this.label5            = new Krypton.Toolkit.KryptonLabel();
+            this.txtDataType       = new Krypton.Toolkit.KryptonTextBox();
+            this.label2            = new Krypton.Toolkit.KryptonLabel();
+            this.txtDecimalPlaces  = new Krypton.Toolkit.KryptonTextBox();
+            this.label1            = new Krypton.Toolkit.KryptonLabel();
+            this.txtOrder          = new Krypton.Toolkit.KryptonTextBox();
+            this.label7            = new Krypton.Toolkit.KryptonLabel();
+            this.txtMin            = new Krypton.Toolkit.KryptonTextBox();
+            this.label6            = new Krypton.Toolkit.KryptonLabel();
+            this.txtMax            = new Krypton.Toolkit.KryptonTextBox();
+            this.groupBox1         = new Krypton.Toolkit.KryptonGroupBox();
+            this.groupBox2         = new Krypton.Toolkit.KryptonGroupBox();
+            this.dgvTags           = new Krypton.Toolkit.KryptonDataGridView();
+            this.Column1           = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2           = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8           = new System.Windows.Forms.DataGridViewTextBoxColumn(); // DisplayNameEn
+            this.Column5           = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3           = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4           = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6           = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7           = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.saveConfigBtn     = new Krypton.Toolkit.KryptonButton();
+            ((System.ComponentModel.ISupportInitialize)(this.groupBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupBox1.Panel)).BeginInit();
             this.groupBox1.Panel.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupBox2.Panel)).BeginInit();
             this.groupBox2.Panel.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTags)).BeginInit();
             this.SuspendLayout();
-            //
-            // label3
-            //
+
+            // ── label3  变量名称 ──────────────────────────────────────────────
             this.label3.Location = new System.Drawing.Point(34, 66);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(120, 27);
-            this.label3.TabIndex = 4;
+            this.label3.Size = new System.Drawing.Size(132, 42);
+            this.label3.TabIndex = 0;
             this.label3.Values.Text = "变量名称";
-            //
+
             // txtTagName
-            //
             this.txtTagName.Location = new System.Drawing.Point(190, 63);
             this.txtTagName.Name = "txtTagName";
             this.txtTagName.ReadOnly = true;
-            this.txtTagName.Size = new System.Drawing.Size(278, 38);
-            this.txtTagName.TabIndex = 5;
-            //
-            // txtDisplayName
-            //
-            this.txtDisplayName.Location = new System.Drawing.Point(192, 123);
-            this.txtDisplayName.Name = "txtDisplayName";
-            this.txtDisplayName.Size = new System.Drawing.Size(278, 38);
-            this.txtDisplayName.TabIndex = 7;
-            //
-            // label4
-            //
+            this.txtTagName.Size = new System.Drawing.Size(278, 43);
+            this.txtTagName.TabIndex = 1;
+
+            // ── label4  变量别名 (中文) ───────────────────────────────────────
             this.label4.Location = new System.Drawing.Point(34, 123);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(120, 27);
-            this.label4.TabIndex = 6;
-            this.label4.Values.Text = "变量别名";
-            //
+            this.label4.Size = new System.Drawing.Size(150, 42);
+            this.label4.TabIndex = 2;
+            this.label4.Values.Text = "中文别名";
+
+            // txtDisplayName
+            this.txtDisplayName.Location = new System.Drawing.Point(192, 123);
+            this.txtDisplayName.Name = "txtDisplayName";
+            this.txtDisplayName.Size = new System.Drawing.Size(278, 43);
+            this.txtDisplayName.TabIndex = 3;
+
+            // ── label8  英文别名 ──────────────────────────────────────────────
+            this.label8.Location = new System.Drawing.Point(34, 188);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(150, 42);
+            this.label8.TabIndex = 4;
+            this.label8.Values.Text = "英文别名";
+
+            // txtDisplayNameEn
+            this.txtDisplayNameEn.Location = new System.Drawing.Point(192, 188);
+            this.txtDisplayNameEn.Name = "txtDisplayNameEn";
+            this.txtDisplayNameEn.Size = new System.Drawing.Size(278, 43);
+            this.txtDisplayNameEn.TabIndex = 5;
+
+            // ── label5  数据类型 ──────────────────────────────────────────────
+            this.label5.Location = new System.Drawing.Point(34, 253);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(132, 42);
+            this.label5.TabIndex = 6;
+            this.label5.Values.Text = "数据类型";
+
             // txtDataType
-            //
-            this.txtDataType.Location = new System.Drawing.Point(192, 188);
+            this.txtDataType.Location = new System.Drawing.Point(192, 253);
             this.txtDataType.Name = "txtDataType";
             this.txtDataType.ReadOnly = true;
-            this.txtDataType.Size = new System.Drawing.Size(278, 38);
-            this.txtDataType.TabIndex = 9;
-            //
-            // label5
-            //
-            this.label5.Location = new System.Drawing.Point(34, 188);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(120, 27);
-            this.label5.TabIndex = 8;
-            this.label5.Values.Text = "数据类型";
-            //
-            // txtMax
-            //
-            this.txtMax.Location = new System.Drawing.Point(673, 389);
-            this.txtMax.Name = "txtMax";
-            this.txtMax.Size = new System.Drawing.Size(278, 38);
-            this.txtMax.TabIndex = 11;
-            //
-            // label6
-            //
-            this.label6.Location = new System.Drawing.Point(542, 395);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(93, 27);
-            this.label6.TabIndex = 10;
-            this.label6.Values.Text = "上限值";
-            //
-            // txtMin
-            //
-            this.txtMin.Location = new System.Drawing.Point(190, 387);
-            this.txtMin.Name = "txtMin";
-            this.txtMin.Size = new System.Drawing.Size(278, 38);
-            this.txtMin.TabIndex = 13;
-            //
-            // label7
-            //
-            this.label7.Location = new System.Drawing.Point(50, 389);
+            this.txtDataType.Size = new System.Drawing.Size(278, 43);
+            this.txtDataType.TabIndex = 7;
+
+            // ── label2  精确位数 ──────────────────────────────────────────────
+            this.label2.Location = new System.Drawing.Point(34, 318);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(132, 42);
+            this.label2.TabIndex = 8;
+            this.label2.Values.Text = "精确位数";
+
+            // txtDecimalPlaces
+            this.txtDecimalPlaces.Location = new System.Drawing.Point(192, 318);
+            this.txtDecimalPlaces.Name = "txtDecimalPlaces";
+            this.txtDecimalPlaces.Size = new System.Drawing.Size(278, 43);
+            this.txtDecimalPlaces.TabIndex = 9;
+
+            // ── label1  顺序 ──────────────────────────────────────────────────
+            this.label1.Location = new System.Drawing.Point(88, 383);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(74, 42);
+            this.label1.TabIndex = 10;
+            this.label1.Values.Text = "顺序";
+
+            // txtOrder
+            this.txtOrder.Location = new System.Drawing.Point(192, 380);
+            this.txtOrder.Name = "txtOrder";
+            this.txtOrder.Size = new System.Drawing.Size(278, 43);
+            this.txtOrder.TabIndex = 11;
+
+            // ── label7  下限值 ────────────────────────────────────────────────
+            this.label7.Location = new System.Drawing.Point(50, 454);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(93, 27);
+            this.label7.Size = new System.Drawing.Size(103, 42);
             this.label7.TabIndex = 12;
             this.label7.Values.Text = "下限值";
-            //
-            // groupBox1
-            //
+
+            // txtMin
+            this.txtMin.Location = new System.Drawing.Point(190, 452);
+            this.txtMin.Name = "txtMin";
+            this.txtMin.Size = new System.Drawing.Size(278, 43);
+            this.txtMin.TabIndex = 13;
+
+            // ── label6  上限值 ────────────────────────────────────────────────
+            this.label6.Location = new System.Drawing.Point(542, 460);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(103, 42);
+            this.label6.TabIndex = 14;
+            this.label6.Values.Text = "上限值";
+
+            // txtMax
+            this.txtMax.Location = new System.Drawing.Point(673, 454);
+            this.txtMax.Name = "txtMax";
+            this.txtMax.Size = new System.Drawing.Size(278, 43);
+            this.txtMax.TabIndex = 15;
+
+            // ── groupBox1  变量配置 ───────────────────────────────────────────
+            this.groupBox1.Location = new System.Drawing.Point(53, 602);
+            this.groupBox1.Panel.Controls.Add(this.label3);
+            this.groupBox1.Panel.Controls.Add(this.txtTagName);
+            this.groupBox1.Panel.Controls.Add(this.label4);
+            this.groupBox1.Panel.Controls.Add(this.txtDisplayName);
+            this.groupBox1.Panel.Controls.Add(this.label8);
+            this.groupBox1.Panel.Controls.Add(this.txtDisplayNameEn);
+            this.groupBox1.Panel.Controls.Add(this.label5);
+            this.groupBox1.Panel.Controls.Add(this.txtDataType);
             this.groupBox1.Panel.Controls.Add(this.label2);
             this.groupBox1.Panel.Controls.Add(this.txtDecimalPlaces);
             this.groupBox1.Panel.Controls.Add(this.label1);
             this.groupBox1.Panel.Controls.Add(this.txtOrder);
-            this.groupBox1.Panel.Controls.Add(this.label3);
-            this.groupBox1.Panel.Controls.Add(this.txtTagName);
-            this.groupBox1.Panel.Controls.Add(this.label4);
-            this.groupBox1.Panel.Controls.Add(this.txtMin);
-            this.groupBox1.Panel.Controls.Add(this.txtDisplayName);
             this.groupBox1.Panel.Controls.Add(this.label7);
-            this.groupBox1.Panel.Controls.Add(this.label5);
-            this.groupBox1.Panel.Controls.Add(this.txtMax);
-            this.groupBox1.Panel.Controls.Add(this.txtDataType);
+            this.groupBox1.Panel.Controls.Add(this.txtMin);
             this.groupBox1.Panel.Controls.Add(this.label6);
-            this.groupBox1.Location = new System.Drawing.Point(53, 602);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1322, 492);
+            this.groupBox1.Panel.Controls.Add(this.txtMax);
+            this.groupBox1.Size = new System.Drawing.Size(1322, 560);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.Values.Heading = "变量配置";
-            //
-            // label2
-            //
-            this.label2.Location = new System.Drawing.Point(34, 253);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(120, 27);
-            this.label2.TabIndex = 16;
-            this.label2.Values.Text = "精确位数";
-            //
-            // txtDecimalPlaces
-            //
-            this.txtDecimalPlaces.Location = new System.Drawing.Point(192, 253);
-            this.txtDecimalPlaces.Name = "txtDecimalPlaces";
-            this.txtDecimalPlaces.Size = new System.Drawing.Size(278, 38);
-            this.txtDecimalPlaces.TabIndex = 17;
-            //
-            // label1
-            //
-            this.label1.Location = new System.Drawing.Point(88, 318);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 27);
-            this.label1.TabIndex = 14;
-            this.label1.Values.Text = "顺序";
-            //
-            // txtOrder
-            //
-            this.txtOrder.Location = new System.Drawing.Point(192, 315);
-            this.txtOrder.Name = "txtOrder";
-            this.txtOrder.Size = new System.Drawing.Size(278, 38);
-            this.txtOrder.TabIndex = 15;
-            //
-            // groupBox2
-            //
-            this.groupBox2.Panel.Controls.Add(this.dgvTags);
+
+            // ── groupBox2  变量列表 ───────────────────────────────────────────
             this.groupBox2.Location = new System.Drawing.Point(53, 12);
-            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Panel.Controls.Add(this.dgvTags);
             this.groupBox2.Size = new System.Drawing.Size(1580, 571);
             this.groupBox2.TabIndex = 17;
             this.groupBox2.Values.Heading = "变量列表";
-            //
-            // dgvTags
-            //
+
+            // ── dgvTags ───────────────────────────────────────────────────────
             this.dgvTags.AllowUserToAddRows = false;
             this.dgvTags.AllowUserToDeleteRows = false;
+            this.dgvTags.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvTags.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTags.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-                this.Column1, this.Column2, this.Column5,
-                this.Column3, this.Column4, this.Column6, this.Column7 });
+                this.Column1,
+                this.Column2,
+                this.Column8,
+                this.Column5,
+                this.Column3,
+                this.Column4,
+                this.Column6,
+                this.Column7 });
             this.dgvTags.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvTags.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.dgvTags.Location = new System.Drawing.Point(0, 0);
             this.dgvTags.Name = "dgvTags";
             this.dgvTags.RowHeadersWidth = 92;
             this.dgvTags.RowTemplate.Height = 40;
             this.dgvTags.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvTags.Size = new System.Drawing.Size(1576, 525);
             this.dgvTags.TabIndex = 0;
-            //
-            // Column1
-            //
+
+            // Column1  变量名称
             this.Column1.DataPropertyName = "TagName";
             this.Column1.HeaderText = "变量名称";
             this.Column1.MinimumWidth = 11;
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
-            this.Column1.Width = 225;
-            //
-            // Column2
-            //
+            this.Column1.Width = 200;
+
+            // Column2  中文别名
             this.Column2.DataPropertyName = "DisplayName";
-            this.Column2.HeaderText = "别名";
+            this.Column2.HeaderText = "中文别名";
             this.Column2.MinimumWidth = 11;
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
-            this.Column2.Width = 225;
-            //
-            // Column5
-            //
+            this.Column2.Width = 200;
+
+            // Column8  英文别名
+            this.Column8.DataPropertyName = "DisplayNameEn";
+            this.Column8.HeaderText = "英文别名";
+            this.Column8.MinimumWidth = 11;
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            this.Column8.Width = 200;
+
+            // Column5  小数位
             this.Column5.DataPropertyName = "DecimalPlaces";
             this.Column5.HeaderText = "小数位";
             this.Column5.MinimumWidth = 11;
             this.Column5.Name = "Column5";
-            this.Column5.Width = 225;
-            //
-            // Column3
-            //
+            this.Column5.Width = 120;
+
+            // Column3  数据类型
             this.Column3.DataPropertyName = "DataType";
             this.Column3.HeaderText = "数据类型";
             this.Column3.MinimumWidth = 11;
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
-            this.Column3.Width = 225;
-            //
-            // Column4
-            //
+            this.Column3.Width = 160;
+
+            // Column4  顺序
             this.Column4.DataPropertyName = "Order";
             this.Column4.HeaderText = "顺序";
             this.Column4.MinimumWidth = 11;
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
-            this.Column4.Width = 225;
-            //
-            // Column6
-            //
+            this.Column4.Width = 100;
+
+            // Column6  上限值
             this.Column6.DataPropertyName = "NormalMax";
             this.Column6.HeaderText = "上限值";
             this.Column6.MinimumWidth = 11;
             this.Column6.Name = "Column6";
-            this.Column6.Width = 225;
-            //
-            // Column7
-            //
+            this.Column6.Width = 160;
+
+            // Column7  下限值
             this.Column7.DataPropertyName = "NormalMin";
             this.Column7.HeaderText = "下限值";
             this.Column7.MinimumWidth = 11;
             this.Column7.Name = "Column7";
-            this.Column7.Width = 225;
-            //
-            // saveConfigBtn
-            //
-            this.saveConfigBtn.Location = new System.Drawing.Point(1430, 1046);
+            this.Column7.Width = 160;
+
+            // ── saveConfigBtn ─────────────────────────────────────────────────
+            this.saveConfigBtn.Location = new System.Drawing.Point(1430, 1112);
             this.saveConfigBtn.Name = "saveConfigBtn";
             this.saveConfigBtn.Size = new System.Drawing.Size(177, 50);
             this.saveConfigBtn.TabIndex = 18;
+            this.saveConfigBtn.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.saveConfigBtn.Values.Text = "保存配置";
             this.saveConfigBtn.Click += new System.EventHandler(this.SaveConfigBtn_Click_1);
-            //
-            // TagConfigPanel
-            //
+
+            // ── TagConfigPanel (Form) ─────────────────────────────────────────
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1663, 1205);
+            this.ClientSize = new System.Drawing.Size(1663, 1280);
             this.Controls.Add(this.saveConfigBtn);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "TagConfigPanel";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "变量配置";
+            ((System.ComponentModel.ISupportInitialize)(this.groupBox1.Panel)).EndInit();
             this.groupBox1.Panel.ResumeLayout(false);
             this.groupBox1.Panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupBox1)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupBox2.Panel)).EndInit();
             this.groupBox2.Panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupBox2)).EndInit();
+            this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTags)).EndInit();
             this.ResumeLayout(false);
         }
@@ -291,24 +311,27 @@ namespace TestProj
 
         private Krypton.Toolkit.KryptonLabel label3;
         private Krypton.Toolkit.KryptonTextBox txtTagName;
-        private Krypton.Toolkit.KryptonTextBox txtDisplayName;
         private Krypton.Toolkit.KryptonLabel label4;
-        private Krypton.Toolkit.KryptonTextBox txtDataType;
+        private Krypton.Toolkit.KryptonTextBox txtDisplayName;
+        private Krypton.Toolkit.KryptonLabel label8;
+        private Krypton.Toolkit.KryptonTextBox txtDisplayNameEn;
         private Krypton.Toolkit.KryptonLabel label5;
-        private Krypton.Toolkit.KryptonTextBox txtMax;
-        private Krypton.Toolkit.KryptonLabel label6;
-        private Krypton.Toolkit.KryptonTextBox txtMin;
+        private Krypton.Toolkit.KryptonTextBox txtDataType;
+        private Krypton.Toolkit.KryptonLabel label2;
+        private Krypton.Toolkit.KryptonTextBox txtDecimalPlaces;
+        private Krypton.Toolkit.KryptonLabel label1;
+        private Krypton.Toolkit.KryptonTextBox txtOrder;
         private Krypton.Toolkit.KryptonLabel label7;
+        private Krypton.Toolkit.KryptonTextBox txtMin;
+        private Krypton.Toolkit.KryptonLabel label6;
+        private Krypton.Toolkit.KryptonTextBox txtMax;
         private Krypton.Toolkit.KryptonGroupBox groupBox1;
         private Krypton.Toolkit.KryptonGroupBox groupBox2;
         private Krypton.Toolkit.KryptonButton saveConfigBtn;
         private Krypton.Toolkit.KryptonDataGridView dgvTags;
-        private Krypton.Toolkit.KryptonLabel label1;
-        private Krypton.Toolkit.KryptonTextBox txtOrder;
-        private Krypton.Toolkit.KryptonLabel label2;
-        private Krypton.Toolkit.KryptonTextBox txtDecimalPlaces;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;

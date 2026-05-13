@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+
+  <!-- ── Common ─────────────────────────────────────────────────────── -->
+  <data name="Msg_Info" xml:space="preserve"><value>提示</value></data>
+  <data name="Msg_Error" xml:space="preserve"><value>错误</value></data>
+  <data name="Msg_Warning" xml:space="preserve"><value>警告</value></data>
+
+  <!-- ── UserControl1 toolbar ───────────────────────────────────────── -->
+  <data name="UC_TimeSelect" xml:space="preserve"><value>时间选择</value></data>
+  <data name="UC_Language" xml:space="preserve"><value>语言：</value></data>
+  <data name="UC_SelectTemplate" xml:space="preserve"><value>选择模板</value></data>
+  <data name="UC_ImportExcel" xml:space="preserve"><value>批量导入模板</value></data>
+  <data name="UC_Print" xml:space="preserve"><value>打印</value></data>
+  <data name="UC_Config" xml:space="preserve"><value>配置</value></data>
+  <data name="UC_ExportExcel" xml:space="preserve"><value>导出到EXCEL</value></data>
+
+  <!-- ── GeneralConfigPanel ─────────────────────────────────────────── -->
+  <data name="GCP_Title" xml:space="preserve"><value>系统配置</value></data>
+  <data name="GCP_Tab_Templates" xml:space="preserve"><value>模板配置</value></data>
+  <data name="GCP_Tab_General" xml:space="preserve"><value>通用设置</value></data>
+  <data name="GCP_Tab_Export" xml:space="preserve"><value>导出设置</value></data>
+  <data name="GCP_TemplatesHeader" xml:space="preserve"><value>报表模板</value></data>
+  <data name="GCP_BtnAdd" xml:space="preserve"><value>+ 新建</value></data>
+  <data name="GCP_BtnSave" xml:space="preserve"><value>保存</value></data>
+  <data name="GCP_BtnCancel" xml:space="preserve"><value>取消</value></data>
+  <data name="GCP_BtnClone" xml:space="preserve"><value>复制并创建新模板</value></data>
+  <data name="GCP_BtnDelete" xml:space="preserve"><value>删除模板</value></data>
+  <data name="GCP_LblName" xml:space="preserve"><value>模板名称</value></data>
+  <data name="GCP_LblDesc" xml:space="preserve"><value>备注说明</value></data>
+  <data name="GCP_LblVars" xml:space="preserve"><value>选择变量</value></data>
+  <data name="GCP_NoVars" xml:space="preserve"><value>未选择任何变量</value></data>
+  <data name="GCP_BtnSelectVars" xml:space="preserve"><value>选择变量…</value></data>
+  <data name="GCP_BtnConfigVars" xml:space="preserve"><value>变量配置…</value></data>
+  <data name="GCP_LblCompany" xml:space="preserve"><value>公司名称：</value></data>
+  <data name="GCP_LblLanguage" xml:space="preserve"><value>显示语言：</value></data>
+  <data name="GCP_LblTheme" xml:space="preserve"><value>界面主题：</value></data>
+  <data name="GCP_LblExportPath" xml:space="preserve"><value>默认导出路径：</value></data>
+  <data name="GCP_BtnBrowse" xml:space="preserve"><value>浏览…</value></data>
+  <data name="GCP_LblFilePattern" xml:space="preserve"><value>文件名格式：</value></data>
+  <data name="GCP_LblAutoExport" xml:space="preserve"><value>查询后自动导出：</value></data>
+  <data name="GCP_VarsSelected" xml:space="preserve"><value>已选 {0} 个：{1}</value></data>
+  <data name="GCP_NameSep" xml:space="preserve"><value>、</value></data>
+  <data name="GCP_NoVarsSelected" xml:space="preserve"><value>请先选择变量</value></data>
+  <data name="GCP_UnsavedChanges" xml:space="preserve"><value>有未保存的修改，是否在关闭前保存？</value></data>
+  <data name="GCP_TemplateNameEmpty" xml:space="preserve"><value>模板名称不能为空</value></data>
+  <data name="GCP_ConfirmDelete" xml:space="preserve"><value>确认删除模板「{0}」？</value></data>
+  <data name="GCP_DeleteTitle" xml:space="preserve"><value>删除确认</value></data>
+  <data name="GCP_GeneralSaved" xml:space="preserve"><value>通用设置已保存</value></data>
+  <data name="GCP_ExportSaved" xml:space="preserve"><value>导出设置已保存</value></data>
+  <data name="GCP_BrowseExportPath" xml:space="preserve"><value>选择默认导出路径</value></data>
+
+  <!-- ── TagConfigPanel ─────────────────────────────────────────────── -->
+  <data name="TCP_Title" xml:space="preserve"><value>变量配置</value></data>
+  <data name="TCP_GroupConfig" xml:space="preserve"><value>变量配置</value></data>
+  <data name="TCP_GroupList" xml:space="preserve"><value>变量列表</value></data>
+  <data name="TCP_TagName" xml:space="preserve"><value>变量名称</value></data>
+  <data name="TCP_DisplayName" xml:space="preserve"><value>中文别名</value></data>
+  <data name="TCP_DisplayNameEn" xml:space="preserve"><value>英文别名</value></data>
+  <data name="TCP_DataType" xml:space="preserve"><value>数据类型</value></data>
+  <data name="TCP_DecimalPlaces" xml:space="preserve"><value>精确位数</value></data>
+  <data name="TCP_Order" xml:space="preserve"><value>顺序</value></data>
+  <data name="TCP_MinValue" xml:space="preserve"><value>下限值</value></data>
+  <data name="TCP_MaxValue" xml:space="preserve"><value>上限值</value></data>
+  <data name="TCP_BtnSave" xml:space="preserve"><value>保存配置</value></data>
+  <data name="TCP_ColTagName" xml:space="preserve"><value>变量名称</value></data>
+  <data name="TCP_ColDisplayName" xml:space="preserve"><value>中文别名</value></data>
+  <data name="TCP_ColDisplayNameEn" xml:space="preserve"><value>英文别名</value></data>
+  <data name="TCP_ColDecimalPlaces" xml:space="preserve"><value>小数位</value></data>
+  <data name="TCP_ColDataType" xml:space="preserve"><value>数据类型</value></data>
+  <data name="TCP_ColOrder" xml:space="preserve"><value>顺序</value></data>
+  <data name="TCP_ColMaxValue" xml:space="preserve"><value>上限值</value></data>
+  <data name="TCP_ColMinValue" xml:space="preserve"><value>下限值</value></data>
+  <data name="TCP_SaveSuccess" xml:space="preserve"><value>保存成功</value></data>
+
+  <!-- ── TimeRangeSelectorPanel ─────────────────────────────────────── -->
+  <data name="TRS_GroupBox" xml:space="preserve"><value>时间范围配置</value></data>
+  <data name="TRS_Settings" xml:space="preserve"><value>设置：</value></data>
+  <data name="TRS_StartTime" xml:space="preserve"><value>开始时间：</value></data>
+  <data name="TRS_EndTime" xml:space="preserve"><value>结束时间：</value></data>
+  <data name="TRS_TimeRange" xml:space="preserve"><value>时间范围：</value></data>
+  <data name="TRS_AggGranularity" xml:space="preserve"><value>聚合粒度：</value></data>
+  <data name="TRS_Count" xml:space="preserve"><value>测量点数量：</value></data>
+  <data name="TRS_Mode0" xml:space="preserve"><value>1 - 时间范围</value></data>
+  <data name="TRS_Mode1" xml:space="preserve"><value>2 - 开始到结束的时间</value></data>
+  <data name="TRS_Mode2" xml:space="preserve"><value>3 - 测量点数量</value></data>
+  <data name="TRS_Mode3" xml:space="preserve"><value>4 - 自定义聚类</value></data>
+  <data name="TRS_Unit0" xml:space="preserve"><value>1秒</value></data>
+  <data name="TRS_Unit1" xml:space="preserve"><value>1分钟</value></data>
+  <data name="TRS_Unit2" xml:space="preserve"><value>1小时</value></data>
+  <data name="TRS_Unit3" xml:space="preserve"><value>1天</value></data>
+  <data name="TRS_BtnOK" xml:space="preserve"><value>确定</value></data>
+  <data name="TRS_BtnCancel" xml:space="preserve"><value>取消</value></data>
+  <data name="TRS_BtnApply" xml:space="preserve"><value>应用</value></data>
+  <data name="TRS_ErrRange" xml:space="preserve"><value>开始时间不能晚于或等于结束时间</value></data>
+
+  <!-- ── TagSelectionPanel ──────────────────────────────────────────── -->
+  <data name="TSP_Title" xml:space="preserve"><value>变量选择</value></data>
+  <data name="TSP_BtnConfirm" xml:space="preserve"><value>保存选择</value></data>
+  <data name="TSP_NoSelection" xml:space="preserve"><value>请至少选择一个变量</value></data>
+
+  <!-- ── ExcelImportConfigForm ──────────────────────────────────────── -->
+  <data name="EIC_Title" xml:space="preserve"><value>导入配置</value></data>
+  <data name="EIC_StartRow" xml:space="preserve"><value>数据起始行</value></data>
+  <data name="EIC_TagCol" xml:space="preserve"><value>变量名列号</value></data>
+  <data name="EIC_DisplayCol" xml:space="preserve"><value>中文显示名列号</value></data>
+  <data name="EIC_DisplayEnCol" xml:space="preserve"><value>英文显示名列号 (0=无)</value></data>
+  <data name="EIC_BtnOK" xml:space="preserve"><value>确认</value></data>
+  <data name="EIC_BtnCancel" xml:space="preserve"><value>取消</value></data>
+</root>

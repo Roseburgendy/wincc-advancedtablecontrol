@@ -217,15 +217,15 @@ namespace TestProj
             "2 - 开始到结束的时间",
             "3 - 测量点数量",
             "4 - 自定义聚类"});
-            this.cmbMode.Location = new System.Drawing.Point(19, 101);
+            this.cmbMode.Location = new System.Drawing.Point(14, 101);
             this.cmbMode.Name = "cmbMode";
-            this.cmbMode.Size = new System.Drawing.Size(261, 42);
+            this.cmbMode.Size = new System.Drawing.Size(298, 42);
             this.cmbMode.TabIndex = 1;
             this.cmbMode.SelectedIndexChanged += new System.EventHandler(this.CmbMode_SelectedIndexChanged);
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(14, 47);
+            this.label1.Location = new System.Drawing.Point(3, 53);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(103, 42);
             this.label1.TabIndex = 0;

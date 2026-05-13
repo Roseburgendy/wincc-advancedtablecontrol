@@ -26,7 +26,49 @@ namespace TestProj
             cmbUnit.SelectedIndex = 2; // 默认 1小时
             cmbMode.SelectedIndex = 0;
 
+            ApplyLanguage();
             UpdateEnabledState();
+        }
+
+        /// <summary>刷新窗体所有 UI 文字为当前语言。</summary>
+        public void ApplyLanguage()
+        {
+            // GroupBox heading
+            groupBox1.Values.Heading = LangHelper.Get("TRS_GroupBox");
+
+            // Static labels
+            label1.Values.Text = LangHelper.Get("TRS_Settings");
+            label2.Values.Text = LangHelper.Get("TRS_StartTime");
+            label3.Values.Text = LangHelper.Get("TRS_EndTime");
+            label6.Values.Text = LangHelper.Get("TRS_Count");
+            // label4 is dynamic (TimeRange vs AggGranularity); let UpdateEnabledState handle it
+
+            // Buttons
+            btnOK.Values.Text     = LangHelper.Get("TRS_BtnOK");
+            btnCancel.Values.Text = LangHelper.Get("TRS_BtnCancel");
+            btnApply.Values.Text  = LangHelper.Get("TRS_BtnApply");
+
+            // Re-populate mode combo (preserving selection)
+            int modeIdx = cmbMode.SelectedIndex;
+            cmbMode.SelectedIndexChanged -= CmbMode_SelectedIndexChanged;
+            cmbMode.Items.Clear();
+            cmbMode.Items.Add(LangHelper.Get("TRS_Mode0"));
+            cmbMode.Items.Add(LangHelper.Get("TRS_Mode1"));
+            cmbMode.Items.Add(LangHelper.Get("TRS_Mode2"));
+            cmbMode.Items.Add(LangHelper.Get("TRS_Mode3"));
+            cmbMode.SelectedIndex = modeIdx < 0 ? 0 : modeIdx;
+            cmbMode.SelectedIndexChanged += CmbMode_SelectedIndexChanged;
+
+            // Re-populate unit combo (preserving selection)
+            int unitIdx = cmbUnit.SelectedIndex;
+            cmbUnit.SelectedIndexChanged -= RangeInput_Changed;
+            cmbUnit.Items.Clear();
+            cmbUnit.Items.Add(LangHelper.Get("TRS_Unit0"));
+            cmbUnit.Items.Add(LangHelper.Get("TRS_Unit1"));
+            cmbUnit.Items.Add(LangHelper.Get("TRS_Unit2"));
+            cmbUnit.Items.Add(LangHelper.Get("TRS_Unit3"));
+            cmbUnit.SelectedIndex = unitIdx < 0 ? 2 : unitIdx;
+            cmbUnit.SelectedIndexChanged += RangeInput_Changed;
         }
 
         // 模式切换
@@ -58,8 +100,10 @@ namespace TestProj
             // 粒度下拉：mode 0（计算区间）和 mode 3（聚类步长）
             cmbUnit.Enabled = mode == 0 || mode == 3;
 
-            // label4 语义：mode 3 时改为"聚合粒度："，其他为"时间范围："
-            label4.Text = mode == 3 ? "聚合粒度：" : "时间范围：";
+            // label4 语义：mode 3 时改为聚合粒度，其他为时间范围
+            label4.Values.Text = mode == 3
+                ? LangHelper.Get("TRS_AggGranularity")
+                : LangHelper.Get("TRS_TimeRange");
 
             // 测量点数量：mode 2
             numCount.Enabled = mode == 2;
@@ -148,7 +192,7 @@ namespace TestProj
             var (start, end) = GetCurrentRange();
             if (start >= end)
             {
-                MessageBox.Show("开始时间不能晚于或等于结束时间", "提示",
+                MessageBox.Show(LangHelper.Get("TRS_ErrRange"), LangHelper.Get("Msg_Info"),
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }

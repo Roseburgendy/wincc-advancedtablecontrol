@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+
+  <!-- ── Common ─────────────────────────────────────────────────────── -->
+  <data name="Msg_Info" xml:space="preserve"><value>Notice</value></data>
+  <data name="Msg_Error" xml:space="preserve"><value>Error</value></data>
+  <data name="Msg_Warning" xml:space="preserve"><value>Warning</value></data>
+
+  <!-- ── UserControl1 toolbar ───────────────────────────────────────── -->
+  <data name="UC_TimeSelect" xml:space="preserve"><value>Select Time</value></data>
+  <data name="UC_Language" xml:space="preserve"><value>Language:</value></data>
+  <data name="UC_SelectTemplate" xml:space="preserve"><value>Select Template</value></data>
+  <data name="UC_ImportExcel" xml:space="preserve"><value>Batch Import</value></data>
+  <data name="UC_Print" xml:space="preserve"><value>Print</value></data>
+  <data name="UC_Config" xml:space="preserve"><value>Config</value></data>
+  <data name="UC_ExportExcel" xml:space="preserve"><value>Export to Excel</value></data>
+
+  <!-- ── GeneralConfigPanel ─────────────────────────────────────────── -->
+  <data name="GCP_Title" xml:space="preserve"><value>System Config</value></data>
+  <data name="GCP_Tab_Templates" xml:space="preserve"><value>Templates</value></data>
+  <data name="GCP_Tab_General" xml:space="preserve"><value>General</value></data>
+  <data name="GCP_Tab_Export" xml:space="preserve"><value>Export</value></data>
+  <data name="GCP_TemplatesHeader" xml:space="preserve"><value>Report Templates</value></data>
+  <data name="GCP_BtnAdd" xml:space="preserve"><value>+ New</value></data>
+  <data name="GCP_BtnSave" xml:space="preserve"><value>Save</value></data>
+  <data name="GCP_BtnCancel" xml:space="preserve"><value>Cancel</value></data>
+  <data name="GCP_BtnClone" xml:space="preserve"><value>Clone Template</value></data>
+  <data name="GCP_BtnDelete" xml:space="preserve"><value>Delete Template</value></data>
+  <data name="GCP_LblName" xml:space="preserve"><value>Template Name</value></data>
+  <data name="GCP_LblDesc" xml:space="preserve"><value>Description</value></data>
+  <data name="GCP_LblVars" xml:space="preserve"><value>Tags</value></data>
+  <data name="GCP_NoVars" xml:space="preserve"><value>No tags selected</value></data>
+  <data name="GCP_BtnSelectVars" xml:space="preserve"><value>Select Tags…</value></data>
+  <data name="GCP_BtnConfigVars" xml:space="preserve"><value>Tag Config…</value></data>
+  <data name="GCP_LblCompany" xml:space="preserve"><value>Company Name:</value></data>
+  <data name="GCP_LblLanguage" xml:space="preserve"><value>Display Language:</value></data>
+  <data name="GCP_LblTheme" xml:space="preserve"><value>UI Theme:</value></data>
+  <data name="GCP_LblExportPath" xml:space="preserve"><value>Default Export Path:</value></data>
+  <data name="GCP_BtnBrowse" xml:space="preserve"><value>Browse…</value></data>
+  <data name="GCP_LblFilePattern" xml:space="preserve"><value>Filename Pattern:</value></data>
+  <data name="GCP_LblAutoExport" xml:space="preserve"><value>Auto Export:</value></data>
+  <data name="GCP_VarsSelected" xml:space="preserve"><value>Selected {0}: {1}</value></data>
+  <data name="GCP_NameSep" xml:space="preserve"><value>, </value></data>
+  <data name="GCP_NoVarsSelected" xml:space="preserve"><value>Please select tags first</value></data>
+  <data name="GCP_UnsavedChanges" xml:space="preserve"><value>You have unsaved changes. Save before closing?</value></data>
+  <data name="GCP_TemplateNameEmpty" xml:space="preserve"><value>Template name cannot be empty</value></data>
+  <data name="GCP_ConfirmDelete" xml:space="preserve"><value>Delete template "{0}"?</value></data>
+  <data name="GCP_DeleteTitle" xml:space="preserve"><value>Confirm Delete</value></data>
+  <data name="GCP_GeneralSaved" xml:space="preserve"><value>General settings saved</value></data>
+  <data name="GCP_ExportSaved" xml:space="preserve"><value>Export settings saved</value></data>
+  <data name="GCP_BrowseExportPath" xml:space="preserve"><value>Select default export path</value></data>
+
+  <!-- ── TagConfigPanel ─────────────────────────────────────────────── -->
+  <data name="TCP_Title" xml:space="preserve"><value>Tag Config</value></data>
+  <data name="TCP_GroupConfig" xml:space="preserve"><value>Tag Configuration</value></data>
+  <data name="TCP_GroupList" xml:space="preserve"><value>Tag List</value></data>
+  <data name="TCP_TagName" xml:space="preserve"><value>Tag Name</value></data>
+  <data name="TCP_DisplayName" xml:space="preserve"><value>Chinese Alias</value></data>
+  <data name="TCP_DisplayNameEn" xml:space="preserve"><value>English Alias</value></data>
+  <data name="TCP_DataType" xml:space="preserve"><value>Data Type</value></data>
+  <data name="TCP_DecimalPlaces" xml:space="preserve"><value>Decimal Places</value></data>
+  <data name="TCP_Order" xml:space="preserve"><value>Order</value></data>
+  <data name="TCP_MinValue" xml:space="preserve"><value>Min Value</value></data>
+  <data name="TCP_MaxValue" xml:space="preserve"><value>Max Value</value></data>
+  <data name="TCP_BtnSave" xml:space="preserve"><value>Save Config</value></data>
+  <data name="TCP_ColTagName" xml:space="preserve"><value>Tag Name</value></data>
+  <data name="TCP_ColDisplayName" xml:space="preserve"><value>Chinese Alias</value></data>
+  <data name="TCP_ColDisplayNameEn" xml:space="preserve"><value>English Alias</value></data>
+  <data name="TCP_ColDecimalPlaces" xml:space="preserve"><value>Decimals</value></data>
+  <data name="TCP_ColDataType" xml:space="preserve"><value>Data Type</value></data>
+  <data name="TCP_ColOrder" xml:space="preserve"><value>Order</value></data>
+  <data name="TCP_ColMaxValue" xml:space="preserve"><value>Max</value></data>
+  <data name="TCP_ColMinValue" xml:space="preserve"><value>Min</value></data>
+  <data name="TCP_SaveSuccess" xml:space="preserve"><value>Saved</value></data>
+
+  <!-- ── TimeRangeSelectorPanel ─────────────────────────────────────── -->
+  <data name="TRS_GroupBox" xml:space="preserve"><value>Time Range Config</value></data>
+  <data name="TRS_Settings" xml:space="preserve"><value>Settings:</value></data>
+  <data name="TRS_StartTime" xml:space="preserve"><value>Start Time:</value></data>
+  <data name="TRS_EndTime" xml:space="preserve"><value>End Time:</value></data>
+  <data name="TRS_TimeRange" xml:space="preserve"><value>Time Range:</value></data>
+  <data name="TRS_AggGranularity" xml:space="preserve"><value>Agg. Granularity:</value></data>
+  <data name="TRS_Count" xml:space="preserve"><value>Sample Count:</value></data>
+  <data name="TRS_Mode0" xml:space="preserve"><value>1 - Time Range</value></data>
+  <data name="TRS_Mode1" xml:space="preserve"><value>2 - Start to End</value></data>
+  <data name="TRS_Mode2" xml:space="preserve"><value>3 - Sample Count</value></data>
+  <data name="TRS_Mode3" xml:space="preserve"><value>4 - Custom Aggregation</value></data>
+  <data name="TRS_Unit0" xml:space="preserve"><value>1 sec</value></data>
+  <data name="TRS_Unit1" xml:space="preserve"><value>1 min</value></data>
+  <data name="TRS_Unit2" xml:space="preserve"><value>1 hour</value></data>
+  <data name="TRS_Unit3" xml:space="preserve"><value>1 day</value></data>
+  <data name="TRS_BtnOK" xml:space="preserve"><value>OK</value></data>
+  <data name="TRS_BtnCancel" xml:space="preserve"><value>Cancel</value></data>
+  <data name="TRS_BtnApply" xml:space="preserve"><value>Apply</value></data>
+  <data name="TRS_ErrRange" xml:space="preserve"><value>Start time must be before end time</value></data>
+
+  <!-- ── TagSelectionPanel ──────────────────────────────────────────── -->
+  <data name="TSP_Title" xml:space="preserve"><value>Tag Selection</value></data>
+  <data name="TSP_BtnConfirm" xml:space="preserve"><value>Confirm</value></data>
+  <data name="TSP_NoSelection" xml:space="preserve"><value>Please select at least one tag</value></data>
+
+  <!-- ── ExcelImportConfigForm ──────────────────────────────────────── -->
+  <data name="EIC_Title" xml:space="preserve"><value>Import Config</value></data>
+  <data name="EIC_StartRow" xml:space="preserve"><value>Data Start Row</value></data>
+  <data name="EIC_TagCol" xml:space="preserve"><value>Tag Name Col</value></data>
+  <data name="EIC_DisplayCol" xml:space="preserve"><value>Chinese Name Col</value></data>
+  <data name="EIC_DisplayEnCol" xml:space="preserve"><value>English Name Col (0=skip)</value></data>
+  <data name="EIC_BtnOK" xml:space="preserve"><value>OK</value></data>
+  <data name="EIC_BtnCancel" xml:space="preserve"><value>Cancel</value></data>
+</root>

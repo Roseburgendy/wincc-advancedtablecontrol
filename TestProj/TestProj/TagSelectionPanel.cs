@@ -19,6 +19,14 @@ namespace TestProj
             InitializeComponent();
             _previousSelected = previousSelected ?? new List<long>();
             LoadTree();
+            ApplyLanguage();
+        }
+
+        /// <summary>刷新窗体所有 UI 文字为当前语言。</summary>
+        public void ApplyLanguage()
+        {
+            this.Text             = LangHelper.Get("TSP_Title");
+            confirmBtn.Values.Text = LangHelper.Get("TSP_BtnConfirm");
         }
 
         private void LoadTree()
@@ -70,7 +78,7 @@ namespace TestProj
 
             if (SelectedTags.Count == 0)
             {
-                MessageBox.Show("请至少选择一个变量", "提示");
+                MessageBox.Show(LangHelper.Get("TSP_NoSelection"), LangHelper.Get("Msg_Info"));
                 return;
             }
 

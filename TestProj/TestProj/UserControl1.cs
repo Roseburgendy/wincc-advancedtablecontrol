@@ -42,6 +42,8 @@ namespace TestProj
 
             InitializeTemplateList();
             LoadSavedTheme();
+            LoadSavedLanguage();
+            ApplyLanguage();
         }
 
         public void InitializeTemplateList()
@@ -55,31 +57,71 @@ namespace TestProj
                 cmbTemplate.SelectedIndex = 0;
         }
 
-        // 启动时将保存的主题还原：先静默设置选中项，再应用到 KryptonManager
+        // 启动时将保存的主题还原
         private void LoadSavedTheme()
         {
             string saved = ConfigManager.Config?.Theme ?? "Microsoft365Blue";
             if (Enum.TryParse<Krypton.Toolkit.PaletteMode>(saved, out var mode))
-            {
-                // 去除事件避免触发一次无意义的保存
-                kryptonThemeComboBox1.SelectedIndexChanged -= kryptonThemeComboBox1_SelectedIndexChanged;
-                kryptonThemeComboBox1.DefaultPalette = mode;
-                kryptonManager.GlobalPaletteMode     = mode;
-                kryptonThemeComboBox1.SelectedIndexChanged += kryptonThemeComboBox1_SelectedIndexChanged;
-            }
+                kryptonManager.GlobalPaletteMode = mode;
         }
 
-        // 用户在下拉框选择新主题时：应用 + 持久化
-        private void kryptonThemeComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        // 启动时将保存的语言还原，并填充语言选项
+        private void LoadSavedLanguage()
         {
-            var mode = kryptonThemeComboBox1.DefaultPalette;
-            kryptonManager.GlobalPaletteMode = mode;
+            cmbLanguageSw.Items.Clear();
+            cmbLanguageSw.Items.Add("中文");
+            cmbLanguageSw.Items.Add("English");
 
+            string lang = ConfigManager.Config?.Language ?? "zh-CN";
+
+            cmbLanguageSw.SelectedIndexChanged -= cmbLanguageSw_SelectedIndexChanged;
+            cmbLanguageSw.SelectedIndex = lang == "en-US" ? 1 : 0;
+            cmbLanguageSw.SelectedIndexChanged += cmbLanguageSw_SelectedIndexChanged;
+        }
+
+        // 语言切换：保存并立即刷新工具栏文字
+        private void cmbLanguageSw_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string lang = cmbLanguageSw.SelectedIndex == 1 ? "en-US" : "zh-CN";
             if (ConfigManager.Config != null)
             {
-                ConfigManager.Config.Theme = mode.ToString();
+                ConfigManager.Config.Language = lang;
                 ConfigManager.SaveConfig();
             }
+            ApplyLanguage();
+        }
+
+        /// <summary>根据当前语言刷新工具栏所有控件的文字。</summary>
+        public void ApplyLanguage()
+        {
+            TimeSelectBtn.Values.Text   = LangHelper.Get("UC_TimeSelect");
+            lblLanguageSw.Values.Text   = LangHelper.Get("UC_Language");
+            label3.Values.Text          = LangHelper.Get("UC_SelectTemplate");
+            btnImportExcel.Values.Text  = LangHelper.Get("UC_ImportExcel");
+            PrintBtn.Values.Text        = LangHelper.Get("UC_Print");
+            btnConfig.Values.Text       = LangHelper.Get("UC_Config");
+            ExportExcelBtn.Values.Text  = LangHelper.Get("UC_ExportExcel");
+        }
+
+        // ── 显示名称辅助 ─────────────────────────────────────────────────────
+
+        /// <summary>根据当前语言返回变量的显示名称</summary>
+        private string GetDisplayName(TagMeta meta)
+        {
+            if (meta == null) return null;
+            bool useEn = ConfigManager.Config?.Language == "en-US";
+            if (useEn && !string.IsNullOrWhiteSpace(meta.DisplayNameEn))
+                return meta.DisplayNameEn;
+            return !string.IsNullOrWhiteSpace(meta.DisplayName) ? meta.DisplayName : meta.TagName;
+        }
+
+        /// <summary>通过列名（中文/英文/TagName）查找对应 TagMeta</summary>
+        private TagMeta FindMetaByColName(string colName)
+        {
+            return _tagMetaList.FirstOrDefault(t =>
+                t.DisplayName   == colName ||
+                t.DisplayNameEn == colName ||
+                t.TagName       == colName);
         }
 
         private void TimeSelectBtn_Click(object sender, EventArgs e)
@@ -184,19 +226,21 @@ namespace TestProj
         }
 
         /// <summary>
-        /// 配置按钮点击事件
+        /// 配置按钮点击事件 — 打开综合配置面板（模板 / 通用设置 / 导出设置）
         /// </summary>
         private void BtnConfig_Click(object sender, EventArgs e)
         {
-            using (var panel = new TemplateConfigPanel(
-                ConfigManager.Config.Template, 
-                ConfigManager.Config.TagMeta))
+            using (var panel = new GeneralConfigPanel(
+                ConfigManager.Config.Template,
+                ConfigManager.Config.TagMeta,
+                kryptonManager))
             {
                 panel.ShowDialog();
             }
+
             // 关闭配置窗口后，先设置显示成员再绑定数据源，避免 ComboBox 渲染异常
             var selectedId = _currentTemplate?.Id;
-            cmbTemplate.DataSource = null;
+            cmbTemplate.DataSource    = null;
             cmbTemplate.DisplayMember = "DisplayName";
             cmbTemplate.ValueMember   = "Id";
             cmbTemplate.DataSource    = ConfigManager.Config?.Template;
@@ -204,6 +248,9 @@ namespace TestProj
             // 恢复之前选中的模板
             if (selectedId != null)
                 cmbTemplate.SelectedValue = selectedId;
+
+            // 重新应用可能在配置面板中更改的主题
+            LoadSavedTheme();
         }
 
 
@@ -246,8 +293,7 @@ namespace TestProj
             if (colName == "Timestamp") return;
             if(e.Value == null || e.Value == DBNull.Value) return;
 
-            var meta = _tagMetaList.FirstOrDefault(t => t.DisplayName == colName
-            || t.TagName == colName);
+            var meta = FindMetaByColName(colName);
 
             if(!double.TryParse(e.Value.ToString(), out double val)) return;
 
@@ -268,11 +314,11 @@ namespace TestProj
 
             var allMeta = ConfigManager.Config?.TagMeta ?? new List<TagMeta>();
 
-            // ValueID → 列名（优先 DisplayName，fallback TagName，再 fallback ValueID）
+            // ValueID → 列名（根据当前语言选择 DisplayName 或 DisplayNameEn）
             var idToCol = sortedEntries.ToDictionary(e => e.ValueID, e =>
             {
                 var meta = allMeta.FirstOrDefault(m => m.ValueID == e.ValueID);
-                return meta?.DisplayName ?? meta?.TagName ?? e.ValueID.ToString();
+                return GetDisplayName(meta) ?? e.ValueID.ToString();
             });
 
             foreach (var colName in idToCol.Values)
@@ -318,6 +364,13 @@ namespace TestProj
                 string reportTitle = _currentTemplate?.DisplayName
                              ?? ConfigManager.Config?.CompanyName
                              ?? "报表";
+
+                // 如果已配置默认导出路径则预填
+                string exportPath = ConfigManager.Config?.ExportPath;
+                if (!string.IsNullOrWhiteSpace(exportPath)
+                    && System.IO.Directory.Exists(exportPath))
+                    dlg.InitialDirectory = exportPath;
+
                 dlg.FileName = $"{reportTitle}_{DateTime.Now:yyyyMMdd_HHmmss}";
                 if (dlg.ShowDialog() != DialogResult.OK) return;
 
@@ -375,9 +428,7 @@ namespace TestProj
                             continue;
                         }
 
-                        var meta = _tagMetaList.FirstOrDefault(
-                            t => t.DisplayName == dt.Columns[c].ColumnName
-                              || t.TagName == dt.Columns[c].ColumnName);
+                        var meta = FindMetaByColName(dt.Columns[c].ColumnName);
 
                         if (meta != null && val != DBNull.Value
                             && double.TryParse(val.ToString(), out double dval))
@@ -429,14 +480,15 @@ namespace TestProj
                 dlg.Title = "选择变量别名表";
                 if (dlg.ShowDialog() != DialogResult.OK) return;
 
-                int dataStartRow, tagNameCol, displayNameCol;
+                int dataStartRow, tagNameCol, displayNameCol, displayNameEnCol;
 
-                using(var cfg = new ExcelImportConfigForm())
+                using (var cfg = new ExcelImportConfigForm())
                 {
-                    if(cfg.ShowDialog() != DialogResult.OK) return;
-                    dataStartRow = cfg.DataStartRow;
-                    tagNameCol = cfg.TagNameCol;
-                    displayNameCol = cfg.DisplayNameCol;
+                    if (cfg.ShowDialog() != DialogResult.OK) return;
+                    dataStartRow      = cfg.DataStartRow;
+                    tagNameCol        = cfg.TagNameCol;
+                    displayNameCol    = cfg.DisplayNameCol;
+                    displayNameEnCol  = cfg.DisplayNameEnCol; // 0 = 不使用
                 }
 
                 try
@@ -454,11 +506,14 @@ namespace TestProj
 
                             for (int row = dataStartRow; row <= rowCount; row++)
                             {
-                                string tagName = sheet.Cells[row, tagNameCol].Text?.Trim();
-                                string displayName = sheet.Cells[row, displayNameCol].Text?.Trim();
+                                string tagName       = sheet.Cells[row, tagNameCol].Text?.Trim();
+                                string displayName   = sheet.Cells[row, displayNameCol].Text?.Trim();
+                                string displayNameEn = displayNameEnCol > 0
+                                    ? sheet.Cells[row, displayNameEnCol].Text?.Trim()
+                                    : null;
                                 if (string.IsNullOrEmpty(tagName)) continue;
 
-                                // 更新 TagMeta DisplayName
+                                // 更新 TagMeta DisplayName / DisplayNameEn
                                 var meta = ConfigManager.Config.TagMeta
                                     .FirstOrDefault(m =>
                                     {
@@ -467,10 +522,15 @@ namespace TestProj
                                         return shortName == tagName;
                                     });
 
-                                if (meta != null && !string.IsNullOrEmpty(displayName))
+                                if (meta != null)
                                 {
-                                    meta.DisplayName = displayName;
-                                    updatedTags++;
+                                    if (!string.IsNullOrEmpty(displayName))
+                                    {
+                                        meta.DisplayName = displayName;
+                                        updatedTags++;
+                                    }
+                                    if (!string.IsNullOrEmpty(displayNameEn))
+                                        meta.DisplayNameEn = displayNameEn;
                                 }
 
                                 if (meta == null || meta.ValueID == 0) continue;
@@ -652,8 +712,7 @@ namespace TestProj
                         }
                         else if (val != DBNull.Value && double.TryParse(txt, out double dval))
                         {
-                            var meta = _tagMetaList.FirstOrDefault(
-                                t => t.DisplayName == colName || t.TagName == colName);
+                            var meta = FindMetaByColName(colName);
                             txt = dval.ToString("F" + (meta?.DecimalPlaces ?? 2));
                         }
 
