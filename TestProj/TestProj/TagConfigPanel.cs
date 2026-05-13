@@ -249,7 +249,7 @@ namespace TestProj
             _isDirty = false;
 
             foreach (DataGridViewRow r in dgvTags.Rows)
-                r.DefaultCellStyle.BackColor = Color.Empty;
+                r.DefaultCellStyle.BackColor = Color.Transparent;
         }
 
         public void DiscardAllChanges()

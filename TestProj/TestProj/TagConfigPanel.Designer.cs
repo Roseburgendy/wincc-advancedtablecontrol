@@ -25,12 +25,12 @@ namespace TestProj
             this.label6           = new Krypton.Toolkit.KryptonLabel();
             this.txtMin           = new Krypton.Toolkit.KryptonTextBox();
             this.label7           = new Krypton.Toolkit.KryptonLabel();
-            this.groupBox1        = new System.Windows.Forms.GroupBox();
+            this.groupBox1        = new Krypton.Toolkit.KryptonGroupBox();
             this.label2           = new Krypton.Toolkit.KryptonLabel();
             this.txtDecimalPlaces = new Krypton.Toolkit.KryptonTextBox();
             this.label1           = new Krypton.Toolkit.KryptonLabel();
             this.txtOrder         = new Krypton.Toolkit.KryptonTextBox();
-            this.groupBox2        = new System.Windows.Forms.GroupBox();
+            this.groupBox2        = new Krypton.Toolkit.KryptonGroupBox();
             this.dgvTags          = new Krypton.Toolkit.KryptonDataGridView();
             this.Column1          = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2          = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,8 +40,8 @@ namespace TestProj
             this.Column6          = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7          = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.saveConfigBtn    = new Krypton.Toolkit.KryptonButton();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.groupBox1.Panel.SuspendLayout();
+            this.groupBox2.Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTags)).BeginInit();
             this.SuspendLayout();
             //
@@ -124,26 +124,25 @@ namespace TestProj
             //
             // groupBox1
             //
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.txtDecimalPlaces);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.txtOrder);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.txtTagName);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.txtMin);
-            this.groupBox1.Controls.Add(this.txtDisplayName);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.txtMax);
-            this.groupBox1.Controls.Add(this.txtDataType);
-            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Panel.Controls.Add(this.label2);
+            this.groupBox1.Panel.Controls.Add(this.txtDecimalPlaces);
+            this.groupBox1.Panel.Controls.Add(this.label1);
+            this.groupBox1.Panel.Controls.Add(this.txtOrder);
+            this.groupBox1.Panel.Controls.Add(this.label3);
+            this.groupBox1.Panel.Controls.Add(this.txtTagName);
+            this.groupBox1.Panel.Controls.Add(this.label4);
+            this.groupBox1.Panel.Controls.Add(this.txtMin);
+            this.groupBox1.Panel.Controls.Add(this.txtDisplayName);
+            this.groupBox1.Panel.Controls.Add(this.label7);
+            this.groupBox1.Panel.Controls.Add(this.label5);
+            this.groupBox1.Panel.Controls.Add(this.txtMax);
+            this.groupBox1.Panel.Controls.Add(this.txtDataType);
+            this.groupBox1.Panel.Controls.Add(this.label6);
             this.groupBox1.Location = new System.Drawing.Point(53, 602);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1322, 492);
             this.groupBox1.TabIndex = 16;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "变量配置";
+            this.groupBox1.Values.Heading = "变量配置";
             //
             // label2
             //
@@ -177,13 +176,12 @@ namespace TestProj
             //
             // groupBox2
             //
-            this.groupBox2.Controls.Add(this.dgvTags);
+            this.groupBox2.Panel.Controls.Add(this.dgvTags);
             this.groupBox2.Location = new System.Drawing.Point(53, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(1580, 571);
             this.groupBox2.TabIndex = 17;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "变量列表";
+            this.groupBox2.Values.Heading = "变量列表";
             //
             // dgvTags
             //
@@ -193,13 +191,12 @@ namespace TestProj
             this.dgvTags.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
                 this.Column1, this.Column2, this.Column5,
                 this.Column3, this.Column4, this.Column6, this.Column7 });
+            this.dgvTags.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvTags.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dgvTags.Location = new System.Drawing.Point(4, 33);
             this.dgvTags.Name = "dgvTags";
             this.dgvTags.RowHeadersWidth = 92;
             this.dgvTags.RowTemplate.Height = 40;
             this.dgvTags.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTags.Size = new System.Drawing.Size(1570, 532);
             this.dgvTags.TabIndex = 0;
             //
             // Column1
@@ -283,9 +280,9 @@ namespace TestProj
             this.Name = "TagConfigPanel";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "变量配置";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
+            this.groupBox1.Panel.ResumeLayout(false);
+            this.groupBox1.Panel.PerformLayout();
+            this.groupBox2.Panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTags)).EndInit();
             this.ResumeLayout(false);
         }
@@ -302,8 +299,8 @@ namespace TestProj
         private Krypton.Toolkit.KryptonLabel label6;
         private Krypton.Toolkit.KryptonTextBox txtMin;
         private Krypton.Toolkit.KryptonLabel label7;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private Krypton.Toolkit.KryptonGroupBox groupBox1;
+        private Krypton.Toolkit.KryptonGroupBox groupBox2;
         private Krypton.Toolkit.KryptonButton saveConfigBtn;
         private Krypton.Toolkit.KryptonDataGridView dgvTags;
         private Krypton.Toolkit.KryptonLabel label1;

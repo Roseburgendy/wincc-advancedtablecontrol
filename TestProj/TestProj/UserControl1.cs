@@ -15,23 +15,6 @@ namespace TestProj
         private List<TagMeta> _tagMetaList = new List<TagMeta>(); // 变量信息
         private ReportTemplate _currentTemplate; // 模板对应选中变量名称和顺序
 
-        // 可选主题：显示名 → PaletteMode
-        private static readonly Dictionary<string, Krypton.Toolkit.PaletteMode> _themes =
-            new Dictionary<string, Krypton.Toolkit.PaletteMode>
-        {
-            { "Microsoft 365 Blue",   Krypton.Toolkit.PaletteMode.Microsoft365Blue   },
-            { "Microsoft 365 Black",  Krypton.Toolkit.PaletteMode.Microsoft365Black  },
-            { "Microsoft 365 Silver", Krypton.Toolkit.PaletteMode.Microsoft365Silver },
-            { "Office 2010 Blue",     Krypton.Toolkit.PaletteMode.Office2010Blue     },
-            { "Office 2010 Silver",   Krypton.Toolkit.PaletteMode.Office2010Silver   },
-            { "Office 2010 Black",    Krypton.Toolkit.PaletteMode.Office2010Black    },
-            { "Office 2013",          Krypton.Toolkit.PaletteMode.Office2013         },
-            { "Sparkle Blue",         Krypton.Toolkit.PaletteMode.SparkleBlue        },
-            { "Sparkle Blue Dark",    Krypton.Toolkit.PaletteMode.SparkleBlueDarkMode },
-            { "Sparkle Orange",       Krypton.Toolkit.PaletteMode.SparkleOrange      },
-            { "Sparkle Purple",       Krypton.Toolkit.PaletteMode.SparklePurple      },
-            { "Professional",         Krypton.Toolkit.PaletteMode.ProfessionalSystem },
-        };
         public UserControl1()
         {
             InitializeComponent();
@@ -58,51 +41,39 @@ namespace TestProj
             }
 
             InitializeTemplateList();
-            InitializeThemeSelector();
+            LoadSavedTheme();
         }
 
         public void InitializeTemplateList()
         {
             cmbTemplate.DisplayMember = "DisplayName";
-            cmbTemplate.ValueMember = "Id";
-            cmbTemplate.DataSource = ConfigManager.Config?.Template
+            cmbTemplate.ValueMember   = "Id";
+            cmbTemplate.DataSource    = ConfigManager.Config?.Template
                                         ?? new List<ReportTemplate>();
 
             if (cmbTemplate.Items.Count > 0)
                 cmbTemplate.SelectedIndex = 0;
         }
 
-        private void InitializeThemeSelector()
+        // 启动时将保存的主题还原：先静默设置选中项，再应用到 KryptonManager
+        private void LoadSavedTheme()
         {
-            cmbTheme.Items.Clear();
-            foreach (var name in _themes.Keys)
-                cmbTheme.Items.Add(name);
-
-            // 从配置读取已保存主题，找不到则用默认
-            string savedTheme = ConfigManager.Config?.Theme ?? "Microsoft365Blue";
-            string displayName = null;
-            foreach (var kv in _themes)
+            string saved = ConfigManager.Config?.Theme ?? "Microsoft365Blue";
+            if (Enum.TryParse<Krypton.Toolkit.PaletteMode>(saved, out var mode))
             {
-                if (kv.Value.ToString() == savedTheme)
-                {
-                    displayName = kv.Key;
-                    break;
-                }
+                // 去除事件避免触发一次无意义的保存
+                kryptonThemeComboBox1.SelectedIndexChanged -= kryptonThemeComboBox1_SelectedIndexChanged;
+                kryptonThemeComboBox1.DefaultPalette = mode;
+                kryptonManager.GlobalPaletteMode     = mode;
+                kryptonThemeComboBox1.SelectedIndexChanged += kryptonThemeComboBox1_SelectedIndexChanged;
             }
-            // 订阅前先设置选中项（避免触发保存）
-            cmbTheme.SelectedIndexChanged -= CmbTheme_SelectedIndexChanged;
-            cmbTheme.SelectedItem = displayName ?? "Microsoft 365 Blue";
-            cmbTheme.SelectedIndexChanged += CmbTheme_SelectedIndexChanged;
-
-            ApplyTheme(savedTheme);
         }
 
-        private void CmbTheme_SelectedIndexChanged(object sender, EventArgs e)
+        // 用户在下拉框选择新主题时：应用 + 持久化
+        private void kryptonThemeComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string name = cmbTheme.SelectedItem as string;
-            if (name == null || !_themes.TryGetValue(name, out var mode)) return;
-
-            ApplyTheme(mode.ToString());
+            var mode = kryptonThemeComboBox1.DefaultPalette;
+            kryptonManager.GlobalPaletteMode = mode;
 
             if (ConfigManager.Config != null)
             {
@@ -110,14 +81,6 @@ namespace TestProj
                 ConfigManager.SaveConfig();
             }
         }
-
-        private void ApplyTheme(string modeName)
-        {
-            if (System.Enum.TryParse<Krypton.Toolkit.PaletteMode>(modeName, out var mode))
-                kryptonManager.GlobalPaletteMode = mode;
-        }
-
-        private void SearchBtn_Click(object sender, EventArgs e) { }
 
         private void TimeSelectBtn_Click(object sender, EventArgs e)
         {
@@ -231,12 +194,12 @@ namespace TestProj
             {
                 panel.ShowDialog();
             }
-            // 关闭配置窗口后
+            // 关闭配置窗口后，先设置显示成员再绑定数据源，避免 ComboBox 渲染异常
             var selectedId = _currentTemplate?.Id;
             cmbTemplate.DataSource = null;
-            cmbTemplate.DataSource = ConfigManager.Config?.Template;
             cmbTemplate.DisplayMember = "DisplayName";
-            cmbTemplate.ValueMember = "Id";
+            cmbTemplate.ValueMember   = "Id";
+            cmbTemplate.DataSource    = ConfigManager.Config?.Template;
 
             // 恢复之前选中的模板
             if (selectedId != null)

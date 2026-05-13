@@ -190,5 +190,15 @@ namespace TestProj
             DialogResult = DialogResult.Cancel;
             Close();
         }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
