@@ -105,9 +105,23 @@ namespace TestProj
             btnConfig.Values.Text       = LangHelper.Get("UC_Config");
             ExportExcelBtn.Values.Text  = LangHelper.Get("UC_ExportExcel");
 
-            // 若表格已有数据，实时刷新 Timestamp 列标题
-            if (dataGridView1.Columns.Contains("Timestamp"))
-                dataGridView1.Columns["Timestamp"].HeaderText = LangHelper.Get("UC_ColTimestamp");
+            // 若表格已有数据，实时刷新所有列标题为当前语言
+            if (dataGridView1.DataSource != null)
+            {
+                foreach (DataGridViewColumn col in dataGridView1.Columns)
+                {
+                    if (col.Name == "Timestamp")
+                    {
+                        col.HeaderText = LangHelper.Get("UC_ColTimestamp");
+                    }
+                    else
+                    {
+                        var meta = FindMetaByColName(col.HeaderText);
+                        if (meta != null)
+                            col.HeaderText = GetDisplayName(meta);
+                    }
+                }
+            }
         }
 
         /// <summary>根据当前主题重新生成并赋值工具栏各按钮的图标。</summary>
