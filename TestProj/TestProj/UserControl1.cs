@@ -116,9 +116,10 @@ namespace TestProj
                     }
                     else
                     {
-                        var meta = FindMetaByColName(col.HeaderText);
+                        // col.Name = DataTable 列名（查询时固定），用它反查 TagMeta 最可靠
+                        var meta = FindMetaByColName(col.Name);
                         if (meta != null)
-                            col.HeaderText = GetDisplayName(meta);
+                            col.HeaderText = BuildColHeader(meta, col.Name);
                     }
                 }
             }
@@ -153,6 +154,20 @@ namespace TestProj
                 t.DisplayName   == colName ||
                 t.DisplayNameEn == colName ||
                 t.TagName       == colName);
+        }
+
+        /// <summary>
+        /// 构建两行列标题："TagName \n DisplayName（当前语言）"。
+        /// 若二者相同则只返回一行。
+        /// </summary>
+        private string BuildColHeader(TagMeta meta, string fallback)
+        {
+            if (meta == null) return fallback;
+            string tagName  = meta.TagName ?? fallback;
+            string dispName = GetDisplayName(meta);
+            if (string.IsNullOrWhiteSpace(dispName) || dispName == tagName)
+                return tagName;
+            return tagName + "\n" + dispName;
         }
 
         private void TimeSelectBtn_Click(object sender, EventArgs e)
@@ -334,16 +349,29 @@ namespace TestProj
             dataGridView1.DataSource = null;
             dataGridView1.Columns.Clear();
             dataGridView1.DataSource = table;
-            if (dataGridView1.Columns.Contains("Timestamp"))
-            {
-                var tsCol = dataGridView1.Columns["Timestamp"];
-                tsCol.HeaderText = LangHelper.Get("UC_ColTimestamp");
-                tsCol.DefaultCellStyle.Format = "yyyy-MM-dd HH:mm:ss";
-            }
+
+            // 启用多行列标题（第一行 TagName，第二行 DisplayName）
+            dataGridView1.ColumnHeadersDefaultCellStyle.WrapMode =
+                DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersHeightSizeMode =
+                DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dataGridView1.ColumnHeadersHeight = 60;
 
             foreach (DataGridViewColumn col in dataGridView1.Columns)
             {
-                col.Width = col.Name == "Timestamp" ? 300 : 200;
+                if (col.Name == "Timestamp")
+                {
+                    col.HeaderText = LangHelper.Get("UC_ColTimestamp");
+                    col.DefaultCellStyle.Format = "yyyy-MM-dd HH:mm:ss";
+                    col.Width = 300;
+                }
+                else
+                {
+                    // col.Name == DataTable 列名（查询时的 DisplayName），用来反查 TagMeta
+                    var meta = FindMetaByColName(col.Name);
+                    col.HeaderText = BuildColHeader(meta, col.Name);
+                    col.Width = 200;
+                }
             }
 
             dataGridView1.CellFormatting -= DataGridView1_CellFormatting;
@@ -463,24 +491,50 @@ namespace TestProj
                 ws.Cells[1, 1].Style.Font.Size = 14;
                 ws.Cells[1, 1].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
 
-                // 列标题（加粗居中，带表格线）
-                int colHeaderRow = 2;
+                // 列标题：第 2 行 = TagName，第 3 行 = DisplayName（当前语言）
+                // Timestamp 列两行合并显示
+                const int tagNameRow   = 2;
+                const int dispNameRow  = 3;
+                const int dataStartRow = 4;
+
                 for (int c = 0; c < colCount; c++)
                 {
-                    var cell = ws.Cells[colHeaderRow, c + 1];
                     string colName = dt.Columns[c].ColumnName;
-                    cell.Value = colName == "Timestamp" ? LangHelper.Get("UC_ColTimestamp") : colName;
-                    cell.Style.Font.Bold = true;
-                    cell.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
-                    SetThinBorder(cell);
+                    if (colName == "Timestamp")
+                    {
+                        var merged = ws.Cells[tagNameRow, c + 1, dispNameRow, c + 1];
+                        merged.Merge = true;
+                        merged.Value = LangHelper.Get("UC_ColTimestamp");
+                        merged.Style.Font.Bold = true;
+                        merged.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+                        merged.Style.VerticalAlignment   = OfficeOpenXml.Style.ExcelVerticalAlignment.Center;
+                        SetThinBorder(merged);
+                    }
+                    else
+                    {
+                        var meta     = FindMetaByColName(colName);
+                        string tagN  = meta?.TagName ?? colName;
+                        string dispN = GetDisplayName(meta) ?? colName;
+
+                        var tagCell  = ws.Cells[tagNameRow,  c + 1];
+                        var dispCell = ws.Cells[dispNameRow, c + 1];
+                        tagCell.Value  = tagN;
+                        dispCell.Value = dispN;
+                        foreach (var hdrCell in new[] { tagCell, dispCell })
+                        {
+                            hdrCell.Style.Font.Bold = true;
+                            hdrCell.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+                            SetThinBorder(hdrCell);
+                        }
+                    }
                 }
 
-                // 数据行 
+                // 数据行（从第 4 行开始）
                 for (int r = 0; r < dt.Rows.Count; r++)
                 {
                     for (int c = 0; c < colCount; c++)
                     {
-                        var cell = ws.Cells[colHeaderRow + 1 + r, c + 1];
+                        var cell = ws.Cells[dataStartRow + r, c + 1];
                         var val = dt.Rows[r][c];
                         cell.Value = val == DBNull.Value ? null : val;
                         cell.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
@@ -722,7 +776,7 @@ namespace TestProj
                 float y          = bounds.Top;
                 float pageBottom = bounds.Bottom;
                 float titleH     = titleFont.GetHeight(g)  + 6f;
-                float hdrH       = headerFont.GetHeight(g) + 6f;
+                float hdrH       = 2 * headerFont.GetHeight(g) + 10f; // 双行：TagName + DisplayName
                 float rowH       = dataFont.GetHeight(g)   + 4f;
 
                 // ── 标题（每组列的首页显示一次） ──
@@ -738,13 +792,25 @@ namespace TestProj
                     y += titleH + 6f;
                 }
 
-                // ── 列标题行（灰底加粗居中） ──
+                // ── 列标题行（灰底加粗居中，双行：TagName + DisplayName） ──
                 float hx = x0;
                 for (int i = 0; i < colIndices.Count; i++)
                 {
-                    int    c    = colIndices[i];
-                    string hdr  = _printData.Columns[c].ColumnName == "Timestamp"
-                                  ? LangHelper.Get("UC_ColTimestamp") : _printData.Columns[c].ColumnName;
+                    int    c       = colIndices[i];
+                    string colName = _printData.Columns[c].ColumnName;
+                    string hdr;
+                    if (colName == "Timestamp")
+                    {
+                        hdr = LangHelper.Get("UC_ColTimestamp");
+                    }
+                    else
+                    {
+                        var    meta    = FindMetaByColName(colName);
+                        string tagN    = meta?.TagName ?? colName;
+                        string dispN   = GetDisplayName(meta) ?? colName;
+                        hdr = (string.IsNullOrWhiteSpace(dispN) || dispN == tagN)
+                              ? tagN : tagN + "\n" + dispN;
+                    }
                     var rect = new RectangleF(hx, y, scaledW[i], hdrH);
                     g.FillRectangle(Brushes.LightGray, rect);
                     g.DrawRectangle(Pens.Black, rect.X, rect.Y, rect.Width, rect.Height);
@@ -823,11 +889,22 @@ namespace TestProj
             for (int c = 0; c < colCount; c++)
             {
                 string colName = _printData.Columns[c].ColumnName;
-                string hdr     = colName == "Timestamp"
-                                 ? LangHelper.Get("UC_ColTimestamp") : colName;
 
-                // 从列标题宽度起步
-                float w = g.MeasureString(hdr, headerFont).Width + 16f;
+                // 标题宽度取两行（TagName / DisplayName）中较宽的
+                float w;
+                if (colName == "Timestamp")
+                {
+                    w = g.MeasureString(LangHelper.Get("UC_ColTimestamp"), headerFont).Width + 16f;
+                }
+                else
+                {
+                    var    meta   = FindMetaByColName(colName);
+                    string tagN   = meta?.TagName ?? colName;
+                    string dispN  = GetDisplayName(meta) ?? colName;
+                    float  wTag   = g.MeasureString(tagN,  headerFont).Width + 16f;
+                    float  wDisp  = g.MeasureString(dispN, headerFont).Width + 16f;
+                    w = Math.Max(wTag, wDisp);
+                }
 
                 // 扫描所有数据行，取最宽的单元格文本（与打印时相同的格式逻辑）
                 foreach (DataRow row in _printData.Rows)
