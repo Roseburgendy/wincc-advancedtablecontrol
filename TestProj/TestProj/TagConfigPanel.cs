@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using FontAwesome.Sharp;
 using TestProj.Models;
 
 namespace TestProj
@@ -48,6 +49,15 @@ namespace TestProj
             txtMin.TextChanged           += FormField_Changed;
 
             ApplyLanguage();
+            ApplyIcons();
+        }
+
+        /// <summary>根据 config 中保存的主题为按钮赋予对应颜色的图标。</summary>
+        public void ApplyIcons()
+        {
+            string saved = ConfigManager.Config?.Theme ?? "Microsoft365Blue";
+            Enum.TryParse<Krypton.Toolkit.PaletteMode>(saved, out var mode);
+            saveConfigBtn.Values.Image = IconManager.Make(IconChar.FloppyDisk, mode, 22);
         }
 
         /// <summary>刷新窗体所有 UI 文字为当前语言。</summary>

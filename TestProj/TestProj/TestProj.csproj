@@ -88,6 +88,7 @@
   <ItemGroup>
     <Compile Include="ConfigManager.cs" />
     <Compile Include="DbManager.cs" />
+    <Compile Include="IconManager.cs" />
     <Compile Include="LangHelper.cs" />
     <Compile Include="ExcelImportConfigForm.cs">
       <SubType>Form</SubType>

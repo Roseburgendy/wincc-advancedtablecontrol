@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
+using FontAwesome.Sharp;
 using Newtonsoft.Json;
 using TestProj.Models;
 
@@ -53,6 +54,27 @@ namespace TestProj
             LoadExportSettings();
 
             ApplyLanguage();
+            ApplyIcons(_kryptonManager.GlobalPaletteMode);
+        }
+
+        /// <summary>根据当前主题重新生成并赋值所有按钮的图标。</summary>
+        public void ApplyIcons(Krypton.Toolkit.PaletteMode mode)
+        {
+            // Tab 1 — Template Config
+            btnAdd.Values.Image    = IconManager.Make(IconChar.Plus,       mode, 22);
+            btnSave.Values.Image   = IconManager.Make(IconChar.FloppyDisk, mode, 22);
+            btnCancel.Values.Image = IconManager.Make(IconChar.Xmark,      mode, 22);
+            btnClone.Values.Image  = IconManager.Make(IconChar.Copy,       mode, 22);
+            btnDelete.Values.Image = IconManager.Make(IconChar.Trash,      mode, 22);
+            btnSelectTags.Values.Image = IconManager.Make(IconChar.Tags,   mode, 22);
+            btnConfigTag.Values.Image  = IconManager.Make(IconChar.Wrench, mode, 22);
+
+            // Tab 2 — General Settings
+            btnSaveGeneral.Values.Image = IconManager.Make(IconChar.FloppyDisk, mode, 22);
+
+            // Tab 3 — Export Settings
+            btnBrowseExportPath.Values.Image = IconManager.Make(IconChar.FolderOpen, mode, 22);
+            btnSaveExport.Values.Image       = IconManager.Make(IconChar.FloppyDisk, mode, 22);
         }
 
         /// <summary>刷新整个窗体的 UI 文字为当前语言。</summary>
@@ -329,6 +351,7 @@ namespace TestProj
             var mode = cmbTheme.DefaultPalette;
             if (_kryptonManager != null)
                 _kryptonManager.GlobalPaletteMode = mode;
+            ApplyIcons(mode);   // 同步刷新本窗体图标颜色
         }
 
         private void BtnSaveGeneral_Click(object sender, EventArgs e)

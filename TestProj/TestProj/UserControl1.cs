@@ -7,6 +7,7 @@ using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using FontAwesome.Sharp;
 using TestProj.Models;
 namespace TestProj
 {
@@ -44,6 +45,7 @@ namespace TestProj
             LoadSavedTheme();
             LoadSavedLanguage();
             ApplyLanguage();
+            ApplyIcons(kryptonManager.GlobalPaletteMode);
         }
 
         public void InitializeTemplateList()
@@ -101,6 +103,16 @@ namespace TestProj
             PrintBtn.Values.Text        = LangHelper.Get("UC_Print");
             btnConfig.Values.Text       = LangHelper.Get("UC_Config");
             ExportExcelBtn.Values.Text  = LangHelper.Get("UC_ExportExcel");
+        }
+
+        /// <summary>根据当前主题重新生成并赋值工具栏各按钮的图标。</summary>
+        public void ApplyIcons(Krypton.Toolkit.PaletteMode mode)
+        {
+            TimeSelectBtn.Values.Image  = IconManager.Make(IconChar.CalendarDay,  mode, 28);
+            btnImportExcel.Values.Image = IconManager.Make(IconChar.FileImport,   mode, 28);
+            PrintBtn.Values.Image       = IconManager.Make(IconChar.Print,        mode, 28);
+            btnConfig.Values.Image      = IconManager.Make(IconChar.Sliders,      mode, 28);
+            ExportExcelBtn.Values.Image = IconManager.Make(IconChar.FileExcel,    mode, 28);
         }
 
         // ── 显示名称辅助 ─────────────────────────────────────────────────────
@@ -249,8 +261,9 @@ namespace TestProj
             if (selectedId != null)
                 cmbTemplate.SelectedValue = selectedId;
 
-            // 重新应用可能在配置面板中更改的主题
+            // 重新应用可能在配置面板中更改的主题，并同步刷新图标颜色
             LoadSavedTheme();
+            ApplyIcons(kryptonManager.GlobalPaletteMode);
         }
 
 
