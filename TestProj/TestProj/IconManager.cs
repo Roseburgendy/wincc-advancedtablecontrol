@@ -1,3 +1,4 @@
+using System;
 using System.Drawing;
 using FontAwesome.Sharp;
 using Krypton.Toolkit;
