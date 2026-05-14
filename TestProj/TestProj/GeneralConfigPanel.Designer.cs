@@ -24,22 +24,22 @@ namespace TestProj
             // ── Tab 1: Template Config controls ───────────────────────────────
             this.splitMain          = new System.Windows.Forms.SplitContainer();
             this.lstTemplates       = new Krypton.Toolkit.KryptonListBox();
-            this.pnlLeftHeader      = new System.Windows.Forms.Panel();
+            this.pnlLeftHeader      = new Krypton.Toolkit.KryptonPanel();
             this.btnAdd             = new Krypton.Toolkit.KryptonButton();
             this.lblTemplatesHeader = new Krypton.Toolkit.KryptonLabel();
-            this.pnlFooter          = new System.Windows.Forms.Panel();
+            this.pnlFooter          = new Krypton.Toolkit.KryptonPanel();
             this.btnSave            = new Krypton.Toolkit.KryptonButton();
             this.btnCancel          = new Krypton.Toolkit.KryptonButton();
             this.btnClone           = new Krypton.Toolkit.KryptonButton();
             this.btnDelete          = new Krypton.Toolkit.KryptonButton();
-            this.pnlDetail          = new System.Windows.Forms.Panel();
+            this.pnlDetail          = new Krypton.Toolkit.KryptonPanel();
             this.tlpFields          = new System.Windows.Forms.TableLayoutPanel();
             this.label2             = new Krypton.Toolkit.KryptonLabel();
             this.txtName            = new Krypton.Toolkit.KryptonTextBox();
             this.labelDesc          = new Krypton.Toolkit.KryptonLabel();
             this.txtDesc            = new Krypton.Toolkit.KryptonTextBox();
             this.labelTags          = new Krypton.Toolkit.KryptonLabel();
-            this.panel4             = new System.Windows.Forms.Panel();
+            this.panel4             = new Krypton.Toolkit.KryptonPanel();
             this.txtTagSummary      = new Krypton.Toolkit.KryptonTextBox();
             this.btnSelectTags      = new Krypton.Toolkit.KryptonButton();
             this.btnConfigTag       = new Krypton.Toolkit.KryptonButton();
@@ -52,20 +52,20 @@ namespace TestProj
             this.cmbLanguage     = new Krypton.Toolkit.KryptonComboBox();
             this.lblTheme        = new Krypton.Toolkit.KryptonLabel();
             this.cmbTheme        = new Krypton.Toolkit.KryptonThemeComboBox();
-            this.pnlGeneralFooter = new System.Windows.Forms.Panel();
+            this.pnlGeneralFooter = new Krypton.Toolkit.KryptonPanel();
             this.btnSaveGeneral  = new Krypton.Toolkit.KryptonButton();
 
             // ── Tab 3: Export Settings controls ───────────────────────────────
             this.tlpExport           = new System.Windows.Forms.TableLayoutPanel();
             this.lblExportPath       = new Krypton.Toolkit.KryptonLabel();
-            this.pnlExportPath       = new System.Windows.Forms.Panel();
+            this.pnlExportPath       = new Krypton.Toolkit.KryptonPanel();
             this.txtExportPath       = new Krypton.Toolkit.KryptonTextBox();
             this.btnBrowseExportPath = new Krypton.Toolkit.KryptonButton();
             this.lblFilePattern      = new Krypton.Toolkit.KryptonLabel();
             this.txtFilePattern      = new Krypton.Toolkit.KryptonTextBox();
             this.lblAutoExport       = new Krypton.Toolkit.KryptonLabel();
             this.chkAutoExport       = new Krypton.Toolkit.KryptonCheckBox();
-            this.pnlExportFooter     = new System.Windows.Forms.Panel();
+            this.pnlExportFooter     = new Krypton.Toolkit.KryptonPanel();
             this.btnSaveExport       = new Krypton.Toolkit.KryptonButton();
 
             // ── Suspend / BeginInit ───────────────────────────────────────────
@@ -78,17 +78,24 @@ namespace TestProj
             this.splitMain.Panel1.SuspendLayout();
             this.splitMain.Panel2.SuspendLayout();
             this.splitMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlLeftHeader)).BeginInit();
             this.pnlLeftHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlFooter)).BeginInit();
             this.pnlFooter.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlDetail)).BeginInit();
             this.pnlDetail.SuspendLayout();
             this.tlpFields.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panel4)).BeginInit();
             this.panel4.SuspendLayout();
             this.tlpGeneral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbLanguage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbTheme)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlGeneralFooter)).BeginInit();
             this.pnlGeneralFooter.SuspendLayout();
             this.tlpExport.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlExportPath)).BeginInit();
             this.pnlExportPath.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlExportFooter)).BeginInit();
             this.pnlExportFooter.SuspendLayout();
             this.SuspendLayout();
 
@@ -233,6 +240,7 @@ namespace TestProj
             this.tlpFields.Controls.Add(this.txtDesc,   1, 1);
             this.tlpFields.Controls.Add(this.panel4,    1, 2);
             this.tlpFields.Controls.Add(this.labelTags, 0, 2);
+            this.tlpFields.BackColor = System.Drawing.Color.Transparent;
             this.tlpFields.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpFields.Location = new System.Drawing.Point(0, 0);
             this.tlpFields.Name = "tlpFields";
@@ -343,6 +351,7 @@ namespace TestProj
             this.tlpGeneral.Controls.Add(this.cmbLanguage,    1, 1);
             this.tlpGeneral.Controls.Add(this.lblTheme,       0, 2);
             this.tlpGeneral.Controls.Add(this.cmbTheme,       1, 2);
+            this.tlpGeneral.BackColor = System.Drawing.Color.Transparent;
             this.tlpGeneral.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpGeneral.Location = new System.Drawing.Point(0, 0);
             this.tlpGeneral.Name = "tlpGeneral";
@@ -443,6 +452,7 @@ namespace TestProj
             this.tlpExport.Controls.Add(this.txtFilePattern, 1, 1);
             this.tlpExport.Controls.Add(this.lblAutoExport,  0, 2);
             this.tlpExport.Controls.Add(this.chkAutoExport,  1, 2);
+            this.tlpExport.BackColor = System.Drawing.Color.Transparent;
             this.tlpExport.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpExport.Location = new System.Drawing.Point(0, 0);
             this.tlpExport.Name = "tlpExport";
@@ -558,22 +568,29 @@ namespace TestProj
             this.splitMain.ResumeLayout(false);
             this.pnlLeftHeader.ResumeLayout(false);
             this.pnlLeftHeader.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlLeftHeader)).EndInit();
             this.pnlFooter.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pnlFooter)).EndInit();
             this.pnlDetail.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pnlDetail)).EndInit();
             this.tlpFields.ResumeLayout(false);
             this.tlpFields.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panel4)).EndInit();
             this.tlpGeneral.ResumeLayout(false);
             this.tlpGeneral.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbLanguage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbTheme)).EndInit();
             this.pnlGeneralFooter.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pnlGeneralFooter)).EndInit();
             this.tlpExport.ResumeLayout(false);
             this.tlpExport.PerformLayout();
             this.pnlExportPath.ResumeLayout(false);
             this.pnlExportPath.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlExportPath)).EndInit();
             this.pnlExportFooter.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pnlExportFooter)).EndInit();
             this.ResumeLayout(false);
         }
 
@@ -588,22 +605,22 @@ namespace TestProj
         // ── Tab 1: Template Config ────────────────────────────────────────────
         private System.Windows.Forms.SplitContainer splitMain;
         private Krypton.Toolkit.KryptonListBox lstTemplates;
-        private System.Windows.Forms.Panel pnlLeftHeader;
+        private Krypton.Toolkit.KryptonPanel pnlLeftHeader;
         private Krypton.Toolkit.KryptonButton btnAdd;
         private Krypton.Toolkit.KryptonLabel lblTemplatesHeader;
-        private System.Windows.Forms.Panel pnlFooter;
+        private Krypton.Toolkit.KryptonPanel pnlFooter;
         private Krypton.Toolkit.KryptonButton btnSave;
         private Krypton.Toolkit.KryptonButton btnCancel;
         private Krypton.Toolkit.KryptonButton btnClone;
         private Krypton.Toolkit.KryptonButton btnDelete;
-        private System.Windows.Forms.Panel pnlDetail;
+        private Krypton.Toolkit.KryptonPanel pnlDetail;
         private System.Windows.Forms.TableLayoutPanel tlpFields;
         private Krypton.Toolkit.KryptonLabel label2;
         private Krypton.Toolkit.KryptonTextBox txtName;
         private Krypton.Toolkit.KryptonLabel labelDesc;
         private Krypton.Toolkit.KryptonTextBox txtDesc;
         private Krypton.Toolkit.KryptonLabel labelTags;
-        private System.Windows.Forms.Panel panel4;
+        private Krypton.Toolkit.KryptonPanel panel4;
         private Krypton.Toolkit.KryptonTextBox txtTagSummary;
         private Krypton.Toolkit.KryptonButton btnSelectTags;
         private Krypton.Toolkit.KryptonButton btnConfigTag;
@@ -616,20 +633,20 @@ namespace TestProj
         private Krypton.Toolkit.KryptonComboBox cmbLanguage;
         private Krypton.Toolkit.KryptonLabel lblTheme;
         private Krypton.Toolkit.KryptonThemeComboBox cmbTheme;
-        private System.Windows.Forms.Panel pnlGeneralFooter;
+        private Krypton.Toolkit.KryptonPanel pnlGeneralFooter;
         private Krypton.Toolkit.KryptonButton btnSaveGeneral;
 
         // ── Tab 3: Export Settings ────────────────────────────────────────────
         private System.Windows.Forms.TableLayoutPanel tlpExport;
         private Krypton.Toolkit.KryptonLabel lblExportPath;
-        private System.Windows.Forms.Panel pnlExportPath;
+        private Krypton.Toolkit.KryptonPanel pnlExportPath;
         private Krypton.Toolkit.KryptonTextBox txtExportPath;
         private Krypton.Toolkit.KryptonButton btnBrowseExportPath;
         private Krypton.Toolkit.KryptonLabel lblFilePattern;
         private Krypton.Toolkit.KryptonTextBox txtFilePattern;
         private Krypton.Toolkit.KryptonLabel lblAutoExport;
         private Krypton.Toolkit.KryptonCheckBox chkAutoExport;
-        private System.Windows.Forms.Panel pnlExportFooter;
+        private Krypton.Toolkit.KryptonPanel pnlExportFooter;
         private Krypton.Toolkit.KryptonButton btnSaveExport;
     }
 }

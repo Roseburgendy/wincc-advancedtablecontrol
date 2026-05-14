@@ -245,7 +245,8 @@ namespace TestProj
             using (var panel = new GeneralConfigPanel(
                 ConfigManager.Config.Template,
                 ConfigManager.Config.TagMeta,
-                kryptonManager))
+                kryptonManager,
+                mode => ApplyIcons(mode)))   // 主题切换时实时刷新工具栏图标
             {
                 panel.ShowDialog();
             }

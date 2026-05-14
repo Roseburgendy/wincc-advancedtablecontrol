@@ -24,15 +24,19 @@ namespace TestProj
         // =====================================================================
 
         private readonly Krypton.Toolkit.KryptonManager _kryptonManager;
+        /// <summary>主题切换时通知调用方（如 UserControl1）实时刷新图标。</summary>
+        private readonly Action<Krypton.Toolkit.PaletteMode> _onThemeChanged;
 
         public GeneralConfigPanel(
             List<ReportTemplate> templates,
             List<TagMeta> allTags,
-            Krypton.Toolkit.KryptonManager kryptonManager)
+            Krypton.Toolkit.KryptonManager kryptonManager,
+            Action<Krypton.Toolkit.PaletteMode> onThemeChanged = null)
         {
             InitializeComponent();
 
-            _kryptonManager = kryptonManager;
+            _kryptonManager  = kryptonManager;
+            _onThemeChanged  = onThemeChanged;
 
             // --- Tab 1: Template Config ---
             _allTags  = allTags  ?? new List<TagMeta>();
@@ -351,7 +355,8 @@ namespace TestProj
             var mode = cmbTheme.DefaultPalette;
             if (_kryptonManager != null)
                 _kryptonManager.GlobalPaletteMode = mode;
-            ApplyIcons(mode);   // 同步刷新本窗体图标颜色
+            ApplyIcons(mode);           // 刷新本窗体图标
+            _onThemeChanged?.Invoke(mode); // 实时通知 UserControl1 刷新工具栏图标
         }
 
         private void BtnSaveGeneral_Click(object sender, EventArgs e)
