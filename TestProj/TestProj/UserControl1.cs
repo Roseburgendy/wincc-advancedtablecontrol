@@ -709,7 +709,7 @@ namespace TestProj
             {
                 if (!_printLayoutReady)
                 {
-                    BuildPrintLayout(g, bounds.Width, headerFont);
+                    BuildPrintLayout(g, bounds.Width, headerFont, dataFont);
                     _printLayoutReady = true;
                 }
 
@@ -815,16 +815,45 @@ namespace TestProj
             }
         }
 
-        private void BuildPrintLayout(Graphics g, float printableWidth, Font headerFont)
+        private void BuildPrintLayout(Graphics g, float printableWidth, Font headerFont, Font dataFont)
         {
             int colCount    = _printData.Columns.Count;
             _printColWidths = new float[colCount];
 
             for (int c = 0; c < colCount; c++)
             {
-                string hdr = _printData.Columns[c].ColumnName == "Timestamp"
-                             ? LangHelper.Get("UC_ColTimestamp") : _printData.Columns[c].ColumnName;
+                string colName = _printData.Columns[c].ColumnName;
+                string hdr     = colName == "Timestamp"
+                                 ? LangHelper.Get("UC_ColTimestamp") : colName;
+
+                // 从列标题宽度起步
                 float w = g.MeasureString(hdr, headerFont).Width + 16f;
+
+                // 扫描所有数据行，取最宽的单元格文本（与打印时相同的格式逻辑）
+                foreach (DataRow row in _printData.Rows)
+                {
+                    var    val = row[c];
+                    if (val == null || val == DBNull.Value) continue;
+
+                    string txt;
+                    if (colName == "Timestamp" && val is DateTime dt)
+                    {
+                        txt = dt.ToString("yyyy-MM-dd HH:mm:ss");
+                    }
+                    else if (double.TryParse(val.ToString(), out double dval))
+                    {
+                        var meta = FindMetaByColName(colName);
+                        txt = dval.ToString("F" + (meta?.DecimalPlaces ?? 2));
+                    }
+                    else
+                    {
+                        txt = val.ToString();
+                    }
+
+                    float dataW = g.MeasureString(txt, dataFont).Width + 8f;
+                    if (dataW > w) w = dataW;
+                }
+
                 _printColWidths[c] = Math.Max(w, 60f);
             }
 
