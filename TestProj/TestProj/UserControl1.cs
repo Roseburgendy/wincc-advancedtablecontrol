@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using FontAwesome.Sharp;
 using TestProj.Models;
@@ -158,7 +159,7 @@ namespace TestProj
             using (var panel = new TimeRangeSelectorPanel())
             {
                 // 必须在 ShowDialog 之前订阅，否则事件永远不触发
-                panel.Applied += (start, end, mode, timeStep) =>
+                panel.Applied += async (start, end, mode, timeStep) =>
                 {
                     var startUTC = start.ToUniversalTime();
                     var endUTC   = end.ToUniversalTime();
@@ -166,10 +167,10 @@ namespace TestProj
                     switch (mode)
                     {
                         case 2: // 测量点数量：从 start 取前 N 条原始点
-                            RunQueryByCount(sortedEntries, startUTC, panel.SelectedCount);
+                            await RunQueryByCountAsync(sortedEntries, startUTC, panel.SelectedCount);
                             break;
                         default: // 0-时间范围 / 1-开始到结束 / 3-自定义聚类
-                            RunQuery(sortedEntries, startUTC, endUTC, timeStep);
+                            await RunQueryAsync(sortedEntries, startUTC, endUTC, timeStep);
                             break;
                     }
                 };
@@ -177,28 +178,43 @@ namespace TestProj
             }
         }
 
-        private void RunQuery(List<TemplateTagEntry> entries, DateTime start, DateTime end, int timeStep)
+        /// <summary>显示/隐藏进度条并切换查询按钮的可用状态。</summary>
+        private void SetQueryRunning(bool running)
         {
+            progressBar1.Visible  = running;
+            TimeSelectBtn.Enabled = !running;
+            ExportExcelBtn.Enabled = !running;
+            PrintBtn.Enabled      = !running;
+            btnImportExcel.Enabled = !running;
+        }
+
+        private async Task RunQueryAsync(List<TemplateTagEntry> entries, DateTime start, DateTime end, int timeStep)
+        {
+            SetQueryRunning(true);
             try
             {
                 var valueIds = entries.Select(e => e.ValueID).ToList();
-                var raw = DbManager.FetchData(valueIds, start, end, timeStep);
 
-                if (raw == null || raw.Rows.Count == 0)
+                // 把耗时的 DB 查询 + 数据转换移到后台线程
+                DataTable wide = await Task.Run(() =>
+                {
+                    var raw = DbManager.FetchData(valueIds, start, end, timeStep);
+                    if (raw == null || raw.Rows.Count == 0) return null;
+
+                    foreach (DataRow row in raw.Rows)
+                        if (raw.Columns.Contains("Timestamp") && row["Timestamp"] != DBNull.Value)
+                            row["Timestamp"] = ((DateTime)row["Timestamp"]).ToLocalTime();
+
+                    var w = PivotToWide(raw, entries);
+                    CleanUnusedColumns(w, new[] { "Quality", "Flags", "ValueID" });
+                    return w;
+                });
+
+                if (wide == null)
                 {
                     MessageBox.Show("没有查询到数据", "提示");
                     return;
                 }
-
-                foreach (DataRow row in raw.Rows)
-                {
-                    if (raw.Columns.Contains("Timestamp")
-                        && row["Timestamp"] != DBNull.Value)
-                        row["Timestamp"] = ((DateTime)row["Timestamp"]).ToLocalTime();
-                }
-
-                var wide = PivotToWide(raw, entries);
-                CleanUnusedColumns(wide, new[] { "Quality", "Flags", "ValueID" });
 
                 _tagMetaList = ConfigManager.Config?.TagMeta ?? new List<TagMeta>();
                 BindResultTable(wide);
@@ -206,34 +222,50 @@ namespace TestProj
             catch (Exception ex)
             {
                 MessageBox.Show($"查询失败: {ex.Message}", "错误");
+            }
+            finally
+            {
+                SetQueryRunning(false);
             }
         }
 
-        private void RunQueryByCount(List<TemplateTagEntry> entries, DateTime startUTC, int count)
+        private async Task RunQueryByCountAsync(List<TemplateTagEntry> entries, DateTime startUTC, int count)
         {
+            SetQueryRunning(true);
             try
             {
                 var valueIds = entries.Select(e => e.ValueID).ToList();
-                var raw = DbManager.FetchDataByCount(valueIds, startUTC, count);
 
-                if (raw == null || raw.Rows.Count == 0)
+                DataTable wide = await Task.Run(() =>
+                {
+                    var raw = DbManager.FetchDataByCount(valueIds, startUTC, count);
+                    if (raw == null || raw.Rows.Count == 0) return null;
+
+                    foreach (DataRow row in raw.Rows)
+                        if (raw.Columns.Contains("Timestamp") && row["Timestamp"] != DBNull.Value)
+                            row["Timestamp"] = ((DateTime)row["Timestamp"]).ToLocalTime();
+
+                    var w = PivotToWide(raw, entries);
+                    CleanUnusedColumns(w, new[] { "Quality", "Flags", "ValueID" });
+                    return w;
+                });
+
+                if (wide == null)
                 {
                     MessageBox.Show("没有查询到数据", "提示");
                     return;
                 }
 
-                foreach (DataRow row in raw.Rows)
-                    if (raw.Columns.Contains("Timestamp") && row["Timestamp"] != DBNull.Value)
-                        row["Timestamp"] = ((DateTime)row["Timestamp"]).ToLocalTime();
-
-                var wide = PivotToWide(raw, entries);
-                CleanUnusedColumns(wide, new[] { "Quality", "Flags", "ValueID" });
                 _tagMetaList = ConfigManager.Config?.TagMeta ?? new List<TagMeta>();
                 BindResultTable(wide);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"查询失败: {ex.Message}", "错误");
+            }
+            finally
+            {
+                SetQueryRunning(false);
             }
         }
 

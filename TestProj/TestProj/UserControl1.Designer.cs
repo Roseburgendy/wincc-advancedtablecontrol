@@ -29,6 +29,7 @@ namespace TestProj
             this.ExportExcelBtn = new Krypton.Toolkit.KryptonButton();
             this.dataGridView1 = new Krypton.Toolkit.KryptonDataGridView();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).BeginInit();
             this.kryptonPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbLanguageSw)).BeginInit();
@@ -36,6 +37,16 @@ namespace TestProj
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
+            //
+            // progressBar1
+            //
+            this.progressBar1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.progressBar1.Height = 8;
+            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.progressBar1.MarqueeAnimationSpeed = 30;
+            this.progressBar1.Visible = false;
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.TabIndex = 2;
             // 
             // kryptonManager
             // 
@@ -176,6 +187,7 @@ namespace TestProj
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.kryptonPanel1);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "UserControl1";
@@ -206,5 +218,6 @@ namespace TestProj
         private Krypton.Toolkit.KryptonButton ExportExcelBtn;
         private Krypton.Toolkit.KryptonDataGridView dataGridView1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }
