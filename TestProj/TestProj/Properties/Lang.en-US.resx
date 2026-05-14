@@ -66,6 +66,7 @@
   <data name="UC_Print" xml:space="preserve"><value>Print</value></data>
   <data name="UC_Config" xml:space="preserve"><value>Config</value></data>
   <data name="UC_ExportExcel" xml:space="preserve"><value>Export to Excel</value></data>
+  <data name="UC_ColTimestamp" xml:space="preserve"><value>Date</value></data>
 
   <!-- ── GeneralConfigPanel ─────────────────────────────────────────── -->
   <data name="GCP_Title" xml:space="preserve"><value>System Config</value></data>

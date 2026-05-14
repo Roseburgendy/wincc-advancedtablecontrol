@@ -66,6 +66,7 @@
   <data name="UC_Print" xml:space="preserve"><value>打印</value></data>
   <data name="UC_Config" xml:space="preserve"><value>配置</value></data>
   <data name="UC_ExportExcel" xml:space="preserve"><value>导出到EXCEL</value></data>
+  <data name="UC_ColTimestamp" xml:space="preserve"><value>日期</value></data>
 
   <!-- ── GeneralConfigPanel ─────────────────────────────────────────── -->
   <data name="GCP_Title" xml:space="preserve"><value>系统配置</value></data>

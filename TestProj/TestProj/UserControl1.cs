@@ -104,6 +104,10 @@ namespace TestProj
             PrintBtn.Values.Text        = LangHelper.Get("UC_Print");
             btnConfig.Values.Text       = LangHelper.Get("UC_Config");
             ExportExcelBtn.Values.Text  = LangHelper.Get("UC_ExportExcel");
+
+            // 若表格已有数据，实时刷新 Timestamp 列标题
+            if (dataGridView1.Columns.Contains("Timestamp"))
+                dataGridView1.Columns["Timestamp"].HeaderText = LangHelper.Get("UC_ColTimestamp");
         }
 
         /// <summary>根据当前主题重新生成并赋值工具栏各按钮的图标。</summary>
@@ -319,7 +323,7 @@ namespace TestProj
             if (dataGridView1.Columns.Contains("Timestamp"))
             {
                 var tsCol = dataGridView1.Columns["Timestamp"];
-                tsCol.HeaderText = "日期";
+                tsCol.HeaderText = LangHelper.Get("UC_ColTimestamp");
                 tsCol.DefaultCellStyle.Format = "yyyy-MM-dd HH:mm:ss";
             }
 
@@ -451,7 +455,7 @@ namespace TestProj
                 {
                     var cell = ws.Cells[colHeaderRow, c + 1];
                     string colName = dt.Columns[c].ColumnName;
-                    cell.Value = colName == "Timestamp" ? "日期" : colName;
+                    cell.Value = colName == "Timestamp" ? LangHelper.Get("UC_ColTimestamp") : colName;
                     cell.Style.Font.Bold = true;
                     cell.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
                     SetThinBorder(cell);
@@ -726,7 +730,7 @@ namespace TestProj
                 {
                     int    c    = colIndices[i];
                     string hdr  = _printData.Columns[c].ColumnName == "Timestamp"
-                                  ? "日期" : _printData.Columns[c].ColumnName;
+                                  ? LangHelper.Get("UC_ColTimestamp") : _printData.Columns[c].ColumnName;
                     var rect = new RectangleF(hx, y, scaledW[i], hdrH);
                     g.FillRectangle(Brushes.LightGray, rect);
                     g.DrawRectangle(Pens.Black, rect.X, rect.Y, rect.Width, rect.Height);
@@ -805,7 +809,7 @@ namespace TestProj
             for (int c = 0; c < colCount; c++)
             {
                 string hdr = _printData.Columns[c].ColumnName == "Timestamp"
-                             ? "日期" : _printData.Columns[c].ColumnName;
+                             ? LangHelper.Get("UC_ColTimestamp") : _printData.Columns[c].ColumnName;
                 float w = g.MeasureString(hdr, headerFont).Width + 16f;
                 _printColWidths[c] = Math.Max(w, 60f);
             }
