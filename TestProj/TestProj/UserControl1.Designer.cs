@@ -70,7 +70,7 @@ namespace TestProj
             this.kryptonPanel1.Name = "kryptonPanel1";
             this.kryptonPanel1.Size = new System.Drawing.Size(1940, 261);
             this.kryptonPanel1.TabIndex = 0;
-            this.kryptonPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panelTop_Paint);
+           
             // 
             // TimeSelectBtn
             // 

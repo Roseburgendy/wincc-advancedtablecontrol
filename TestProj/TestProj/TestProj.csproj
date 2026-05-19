@@ -146,6 +146,9 @@
     <EmbeddedResource Include="ExcelImportConfigForm.resx">
       <DependentUpon>ExcelImportConfigForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GeneralConfigPanel.resx">
+      <DependentUpon>GeneralConfigPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Lang.resx" />
     <EmbeddedResource Include="Properties\Lang.en-US.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
