@@ -248,6 +248,7 @@ namespace TestProj
             // 
             this.dgvTags.AllowUserToAddRows = false;
             this.dgvTags.AllowUserToDeleteRows = false;
+            this.dgvTags.AutoGenerateColumns = false;
             this.dgvTags.AutoGenerateKryptonColumns = false;
             this.dgvTags.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvTags.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
