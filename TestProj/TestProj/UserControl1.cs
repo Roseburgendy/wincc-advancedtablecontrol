@@ -787,6 +787,7 @@ namespace TestProj
                 }
 
                 // ── 列标题：第1行 TagName，第2行 DisplayName（灰底加粗居中）──
+                float hx;
                 using (var sf = new StringFormat
                 {
                     Alignment     = StringAlignment.Center,
@@ -794,7 +795,7 @@ namespace TestProj
                 })
                 {
                     // 第1行 — TagName
-                    float hx = x0;
+                    hx = x0;
                     for (int i = 0; i < colIndices.Count; i++)
                     {
                         int    c       = colIndices[i];
