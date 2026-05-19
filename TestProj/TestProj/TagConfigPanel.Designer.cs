@@ -344,10 +344,10 @@ namespace TestProj
             // saveConfigBtn
             // 
             this.saveConfigBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.saveConfigBtn.Location = new System.Drawing.Point(1334, 966);
+            this.saveConfigBtn.Location = new System.Drawing.Point(1221, 972);
             this.saveConfigBtn.Margin = new System.Windows.Forms.Padding(2);
             this.saveConfigBtn.Name = "saveConfigBtn";
-            this.saveConfigBtn.Size = new System.Drawing.Size(191, 72);
+            this.saveConfigBtn.Size = new System.Drawing.Size(310, 72);
             this.saveConfigBtn.TabIndex = 18;
             this.saveConfigBtn.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.saveConfigBtn.Values.Text = "保存配置";

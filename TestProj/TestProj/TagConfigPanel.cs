@@ -34,6 +34,7 @@ namespace TestProj
         public TagConfigPanel(List<TemplateTagEntry> templateEntries)
         {
             InitializeComponent();
+            this.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, (byte)134);
             _templateEntries = templateEntries;
 
             LoadData();
@@ -57,7 +58,7 @@ namespace TestProj
         {
             string saved = ConfigManager.Config?.Theme ?? "Microsoft365Blue";
             Enum.TryParse<Krypton.Toolkit.PaletteMode>(saved, out var mode);
-            saveConfigBtn.Values.Image = IconManager.Make(IconChar.FloppyDisk, mode, 22);
+            saveConfigBtn.Values.Image = IconManager.Make(IconChar.FloppyDisk, mode, 32);
         }
 
         /// <summary>刷新窗体所有 UI 文字为当前语言。</summary>

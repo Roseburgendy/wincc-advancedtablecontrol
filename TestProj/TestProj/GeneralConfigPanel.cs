@@ -34,6 +34,7 @@ namespace TestProj
             Action<Krypton.Toolkit.PaletteMode> onThemeChanged = null)
         {
             InitializeComponent();
+            this.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, (byte)134);
 
             _kryptonManager  = kryptonManager;
             _onThemeChanged  = onThemeChanged;
@@ -51,8 +52,9 @@ namespace TestProj
             cmbLanguage.Items.AddRange(new object[] { "中文 (zh-CN)", "English (en-US)" });
             LoadGeneralSettings();
 
-            // Wire theme combo AFTER loading settings so init doesn't fire a save
-            cmbTheme.SelectedIndexChanged += CmbTheme_SelectedIndexChanged;
+            // Wire combos AFTER loading settings so init doesn't fire a save
+            cmbLanguage.SelectedIndexChanged += CmbLanguage_SelectedIndexChanged;
+            cmbTheme.SelectedIndexChanged    += CmbTheme_SelectedIndexChanged;
 
             ApplyLanguage();
             ApplyIcons(_kryptonManager.GlobalPaletteMode);
@@ -62,16 +64,16 @@ namespace TestProj
         public void ApplyIcons(Krypton.Toolkit.PaletteMode mode)
         {
             // Tab 1 — Template Config
-            btnAdd.Values.Image    = IconManager.Make(IconChar.Plus,       mode, 22);
-            btnSave.Values.Image   = IconManager.Make(IconChar.FloppyDisk, mode, 22);
-            btnCancel.Values.Image = IconManager.Make(IconChar.Xmark,      mode, 22);
-            btnClone.Values.Image  = IconManager.Make(IconChar.Copy,       mode, 22);
-            btnDelete.Values.Image = IconManager.Make(IconChar.Trash,      mode, 22);
-            btnSelectTags.Values.Image = IconManager.Make(IconChar.Tags,   mode, 22);
-            btnConfigTag.Values.Image  = IconManager.Make(IconChar.Wrench, mode, 22);
+            btnAdd.Values.Image    = IconManager.Make(IconChar.Plus,       mode, 32);
+            btnSave.Values.Image   = IconManager.Make(IconChar.FloppyDisk, mode, 32);
+            btnCancel.Values.Image = IconManager.Make(IconChar.Xmark,      mode, 32);
+            btnClone.Values.Image  = IconManager.Make(IconChar.Copy,       mode, 32);
+            btnDelete.Values.Image = IconManager.Make(IconChar.Trash,      mode, 32);
+            btnSelectTags.Values.Image = IconManager.Make(IconChar.Tags,   mode, 32);
+            btnConfigTag.Values.Image  = IconManager.Make(IconChar.Wrench, mode, 32);
 
             // Tab 2 — General Settings
-            btnSaveGeneral.Values.Image = IconManager.Make(IconChar.FloppyDisk, mode, 22);
+            btnSaveGeneral.Values.Image = IconManager.Make(IconChar.FloppyDisk, mode, 32);
 
         }
 
@@ -97,7 +99,6 @@ namespace TestProj
             btnConfigTag.Values.Text       = LangHelper.Get("GCP_BtnConfigVars");
 
             // Tab 2 — General Settings
-            lblCompanyName.Values.Text = LangHelper.Get("GCP_LblCompany");
             lblLanguage.Values.Text    = LangHelper.Get("GCP_LblLanguage");
             lblTheme.Values.Text       = LangHelper.Get("GCP_LblTheme");
             btnSaveGeneral.Values.Text = LangHelper.Get("GCP_BtnSave");
@@ -324,7 +325,6 @@ namespace TestProj
         private void LoadGeneralSettings()
         {
             var cfg = ConfigManager.Config;
-            txtCompanyName.Text = cfg?.CompanyName ?? "";
 
             string lang = cfg?.Language ?? "zh-CN";
             cmbLanguage.SelectedIndex = lang == "en-US" ? 1 : 0;
@@ -332,6 +332,14 @@ namespace TestProj
             string theme = cfg?.Theme ?? "Microsoft365Blue";
             if (Enum.TryParse<Krypton.Toolkit.PaletteMode>(theme, out var mode))
                 cmbTheme.DefaultPalette = mode;
+        }
+
+        private void CmbLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 实时预览：切语言下拉时立刻刷新窗体文字
+            if (ConfigManager.Config != null)
+                ConfigManager.Config.Language = cmbLanguage.SelectedIndex == 1 ? "en-US" : "zh-CN";
+            ApplyLanguage();
         }
 
         private void CmbTheme_SelectedIndexChanged(object sender, EventArgs e)
@@ -347,12 +355,11 @@ namespace TestProj
         private void BtnSaveGeneral_Click(object sender, EventArgs e)
         {
             if (ConfigManager.Config == null) return;
-
-            ConfigManager.Config.CompanyName = txtCompanyName.Text.Trim();
             ConfigManager.Config.Language    = cmbLanguage.SelectedIndex == 1 ? "en-US" : "zh-CN";
             ConfigManager.Config.Theme       = cmbTheme.DefaultPalette.ToString();
             ConfigManager.SaveConfig();
 
+            ApplyLanguage();   // 保存后刷新本窗体文字（语言可能已变）
             MessageBox.Show(LangHelper.Get("GCP_GeneralSaved"), LangHelper.Get("Msg_Info"),
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
         }

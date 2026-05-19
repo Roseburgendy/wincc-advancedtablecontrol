@@ -84,8 +84,8 @@ namespace TestProj
             this.kryptonNavigator1.Pages.AddRange(new Krypton.Navigator.KryptonPage[] {
             this.kryptonPage1,
             this.kryptonPage2});
-            this.kryptonNavigator1.SelectedIndex = 1;
-            this.kryptonNavigator1.Size = new System.Drawing.Size(1372, 810);
+            this.kryptonNavigator1.SelectedIndex = 0;
+            this.kryptonNavigator1.Size = new System.Drawing.Size(1672, 989);
             this.kryptonNavigator1.TabIndex = 0;
             // 
             // kryptonPage1
@@ -97,7 +97,7 @@ namespace TestProj
             this.kryptonPage1.Margin = new System.Windows.Forms.Padding(2);
             this.kryptonPage1.MinimumSize = new System.Drawing.Size(28, 28);
             this.kryptonPage1.Name = "kryptonPage1";
-            this.kryptonPage1.Size = new System.Drawing.Size(1370, 761);
+            this.kryptonPage1.Size = new System.Drawing.Size(1670, 940);
             this.kryptonPage1.Text = "模板配置";
             this.kryptonPage1.ToolTipTitle = "Page ToolTip";
             this.kryptonPage1.UniqueName = "page_templates_001";
@@ -118,18 +118,18 @@ namespace TestProj
             // 
             this.splitMain.Panel2.Controls.Add(this.pnlFooter);
             this.splitMain.Panel2.Controls.Add(this.pnlDetail);
-            this.splitMain.Size = new System.Drawing.Size(1370, 761);
-            this.splitMain.SplitterDistance = 348;
+            this.splitMain.Size = new System.Drawing.Size(1670, 940);
+            this.splitMain.SplitterDistance = 397;
             this.splitMain.SplitterWidth = 2;
             this.splitMain.TabIndex = 0;
             // 
             // lstTemplates
             // 
             this.lstTemplates.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lstTemplates.Location = new System.Drawing.Point(0, 77);
+            this.lstTemplates.Location = new System.Drawing.Point(0, 91);
             this.lstTemplates.Margin = new System.Windows.Forms.Padding(2);
             this.lstTemplates.Name = "lstTemplates";
-            this.lstTemplates.Size = new System.Drawing.Size(348, 684);
+            this.lstTemplates.Size = new System.Drawing.Size(397, 849);
             this.lstTemplates.TabIndex = 1;
             this.lstTemplates.SelectedIndexChanged += new System.EventHandler(this.LstTemplates_SelectedIndexChanged);
             // 
@@ -141,19 +141,19 @@ namespace TestProj
             this.pnlLeftHeader.Location = new System.Drawing.Point(0, 0);
             this.pnlLeftHeader.Margin = new System.Windows.Forms.Padding(2);
             this.pnlLeftHeader.Name = "pnlLeftHeader";
-            this.pnlLeftHeader.Size = new System.Drawing.Size(348, 77);
+            this.pnlLeftHeader.Size = new System.Drawing.Size(397, 91);
             this.pnlLeftHeader.TabIndex = 0;
             // 
             // btnAdd
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd.Location = new System.Drawing.Point(207, 11);
+            this.btnAdd.Location = new System.Drawing.Point(221, 17);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(129, 56);
+            this.btnAdd.Size = new System.Drawing.Size(176, 56);
             this.btnAdd.TabIndex = 1;
             this.btnAdd.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.btnAdd.Values.Text = "+ 新建";
+            this.btnAdd.Values.Text = "新建";
             this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
             // lblTemplatesHeader
@@ -172,19 +172,19 @@ namespace TestProj
             this.pnlFooter.Controls.Add(this.btnClone);
             this.pnlFooter.Controls.Add(this.btnDelete);
             this.pnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlFooter.Location = new System.Drawing.Point(0, 651);
+            this.pnlFooter.Location = new System.Drawing.Point(0, 830);
             this.pnlFooter.Margin = new System.Windows.Forms.Padding(2);
             this.pnlFooter.Name = "pnlFooter";
-            this.pnlFooter.Size = new System.Drawing.Size(1020, 110);
+            this.pnlFooter.Size = new System.Drawing.Size(1271, 110);
             this.pnlFooter.TabIndex = 1;
             // 
             // btnSave
             // 
             this.btnSave.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnSave.Location = new System.Drawing.Point(55, 32);
+            this.btnSave.Location = new System.Drawing.Point(36, 32);
             this.btnSave.Margin = new System.Windows.Forms.Padding(2);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(174, 59);
+            this.btnSave.Size = new System.Drawing.Size(255, 59);
             this.btnSave.TabIndex = 0;
             this.btnSave.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnSave.Values.Text = "保存";
@@ -193,10 +193,10 @@ namespace TestProj
             // btnCancel
             // 
             this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnCancel.Location = new System.Drawing.Point(275, 32);
+            this.btnCancel.Location = new System.Drawing.Point(329, 32);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(174, 59);
+            this.btnCancel.Size = new System.Drawing.Size(255, 59);
             this.btnCancel.TabIndex = 1;
             this.btnCancel.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnCancel.Values.Text = "取消";
@@ -205,10 +205,10 @@ namespace TestProj
             // btnClone
             // 
             this.btnClone.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnClone.Location = new System.Drawing.Point(494, 32);
+            this.btnClone.Location = new System.Drawing.Point(626, 32);
             this.btnClone.Margin = new System.Windows.Forms.Padding(2);
             this.btnClone.Name = "btnClone";
-            this.btnClone.Size = new System.Drawing.Size(265, 59);
+            this.btnClone.Size = new System.Drawing.Size(336, 59);
             this.btnClone.TabIndex = 3;
             this.btnClone.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnClone.Values.Text = "复制并创建新模板";
@@ -217,10 +217,10 @@ namespace TestProj
             // btnDelete
             // 
             this.btnDelete.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnDelete.Location = new System.Drawing.Point(796, 32);
+            this.btnDelete.Location = new System.Drawing.Point(992, 32);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(174, 59);
+            this.btnDelete.Size = new System.Drawing.Size(255, 59);
             this.btnDelete.TabIndex = 2;
             this.btnDelete.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnDelete.Values.Text = "删除模板";
@@ -233,7 +233,7 @@ namespace TestProj
             this.pnlDetail.Location = new System.Drawing.Point(0, 0);
             this.pnlDetail.Margin = new System.Windows.Forms.Padding(2);
             this.pnlDetail.Name = "pnlDetail";
-            this.pnlDetail.Size = new System.Drawing.Size(1020, 761);
+            this.pnlDetail.Size = new System.Drawing.Size(1271, 940);
             this.pnlDetail.TabIndex = 9;
             // 
             // tlpFields
@@ -257,7 +257,7 @@ namespace TestProj
             this.tlpFields.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tlpFields.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 104F));
             this.tlpFields.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpFields.Size = new System.Drawing.Size(1020, 761);
+            this.tlpFields.Size = new System.Drawing.Size(1271, 940);
             this.tlpFields.TabIndex = 8;
             // 
             // label2
@@ -276,7 +276,7 @@ namespace TestProj
             this.txtName.Location = new System.Drawing.Point(232, 35);
             this.txtName.Margin = new System.Windows.Forms.Padding(2);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(779, 43);
+            this.txtName.Size = new System.Drawing.Size(1030, 43);
             this.txtName.TabIndex = 1;
             // 
             // labelDesc
@@ -295,7 +295,7 @@ namespace TestProj
             this.txtDesc.Location = new System.Drawing.Point(232, 137);
             this.txtDesc.Margin = new System.Windows.Forms.Padding(2);
             this.txtDesc.Name = "txtDesc";
-            this.txtDesc.Size = new System.Drawing.Size(779, 43);
+            this.txtDesc.Size = new System.Drawing.Size(1030, 43);
             this.txtDesc.TabIndex = 3;
             // 
             // panel4
@@ -307,27 +307,28 @@ namespace TestProj
             this.panel4.Location = new System.Drawing.Point(232, 213);
             this.panel4.Margin = new System.Windows.Forms.Padding(2);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(779, 544);
+            this.panel4.Size = new System.Drawing.Size(1030, 723);
             this.panel4.TabIndex = 5;
             // 
             // txtTagSummary
             // 
             this.txtTagSummary.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTagSummary.Location = new System.Drawing.Point(0, 81);
+            this.txtTagSummary.Location = new System.Drawing.Point(0, 170);
             this.txtTagSummary.Margin = new System.Windows.Forms.Padding(2);
             this.txtTagSummary.Multiline = true;
             this.txtTagSummary.Name = "txtTagSummary";
             this.txtTagSummary.ReadOnly = true;
-            this.txtTagSummary.Size = new System.Drawing.Size(558, 294);
+            this.txtTagSummary.Size = new System.Drawing.Size(732, 294);
             this.txtTagSummary.TabIndex = 0;
             // 
             // btnSelectTags
             // 
             this.btnSelectTags.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnSelectTags.Location = new System.Drawing.Point(584, 123);
+            this.btnSelectTags.Location = new System.Drawing.Point(754, 223);
             this.btnSelectTags.Margin = new System.Windows.Forms.Padding(2);
             this.btnSelectTags.Name = "btnSelectTags";
-            this.btnSelectTags.Size = new System.Drawing.Size(166, 61);
+            this.btnSelectTags.Size = new System.Drawing.Size(261, 61);
+            this.btnSelectTags.StateCommon.Content.LongText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.btnSelectTags.TabIndex = 1;
             this.btnSelectTags.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnSelectTags.Values.Text = "选择变量…";
@@ -336,10 +337,10 @@ namespace TestProj
             // btnConfigTag
             // 
             this.btnConfigTag.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnConfigTag.Location = new System.Drawing.Point(584, 213);
+            this.btnConfigTag.Location = new System.Drawing.Point(754, 321);
             this.btnConfigTag.Margin = new System.Windows.Forms.Padding(2);
             this.btnConfigTag.Name = "btnConfigTag";
-            this.btnConfigTag.Size = new System.Drawing.Size(166, 61);
+            this.btnConfigTag.Size = new System.Drawing.Size(261, 61);
             this.btnConfigTag.TabIndex = 2;
             this.btnConfigTag.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnConfigTag.Values.Text = "变量配置…";
@@ -348,7 +349,7 @@ namespace TestProj
             // labelTags
             // 
             this.labelTags.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.labelTags.Location = new System.Drawing.Point(9, 464);
+            this.labelTags.Location = new System.Drawing.Point(9, 553);
             this.labelTags.Margin = new System.Windows.Forms.Padding(2);
             this.labelTags.Name = "labelTags";
             this.labelTags.Size = new System.Drawing.Size(132, 42);
@@ -450,17 +451,17 @@ namespace TestProj
             this.cmbTheme.Location = new System.Drawing.Point(195, 436);
             this.cmbTheme.Margin = new System.Windows.Forms.Padding(2);
             this.cmbTheme.Name = "cmbTheme";
-            this.cmbTheme.Size = new System.Drawing.Size(223, 42);
+            this.cmbTheme.Size = new System.Drawing.Size(450, 42);
             this.cmbTheme.TabIndex = 5;
             // 
             // GeneralConfigPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1372, 810);
+            this.ClientSize = new System.Drawing.Size(1672, 989);
             this.Controls.Add(this.kryptonNavigator1);
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.MinimumSize = new System.Drawing.Size(1400, 730);
+            this.MinimumSize = new System.Drawing.Size(1700, 730);
             this.Name = "GeneralConfigPanel";
             this.Text = "系统配置";
             ((System.ComponentModel.ISupportInitialize)(this.kryptonNavigator1)).EndInit();

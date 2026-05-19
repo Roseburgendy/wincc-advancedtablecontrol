@@ -17,6 +17,7 @@ namespace TestProj
                                       DateTime? initialEnd = null)
         {
             InitializeComponent();
+            this.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, (byte)134);
 
             dtpStartDate.Value = initialStart?.Date ?? DateTime.Today;
             dtpStartTime.Value = initialStart ?? DateTime.Now.AddHours(-1);

@@ -17,6 +17,7 @@ namespace TestProj
         public TagSelectionPanel(List<long> previousSelected = null)
         {
             InitializeComponent();
+            this.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, (byte)134);
             _previousSelected = previousSelected ?? new List<long>();
             LoadTree();
             ApplyLanguage();

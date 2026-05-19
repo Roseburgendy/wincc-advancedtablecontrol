@@ -20,6 +20,7 @@ namespace TestProj
         public UserControl1()
         {
             InitializeComponent();
+            this.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, (byte)134);
 
             try
             {
@@ -121,11 +122,11 @@ namespace TestProj
         /// <summary>根据当前主题重新生成并赋值工具栏各按钮的图标。</summary>
         public void ApplyIcons(Krypton.Toolkit.PaletteMode mode)
         {
-            TimeSelectBtn.Values.Image  = IconManager.Make(IconChar.CalendarDay,  mode, 28);
-            btnImportExcel.Values.Image = IconManager.Make(IconChar.FileImport,   mode, 28);
-            PrintBtn.Values.Image       = IconManager.Make(IconChar.Print,        mode, 28);
-            btnConfig.Values.Image      = IconManager.Make(IconChar.Sliders,      mode, 28);
-            ExportExcelBtn.Values.Image = IconManager.Make(IconChar.FileExcel,    mode, 28);
+            TimeSelectBtn.Values.Image  = IconManager.Make(IconChar.CalendarDay,  mode, 40);
+            btnImportExcel.Values.Image = IconManager.Make(IconChar.FileImport,   mode, 40);
+            PrintBtn.Values.Image       = IconManager.Make(IconChar.Print,        mode, 40);
+            btnConfig.Values.Image      = IconManager.Make(IconChar.Sliders,      mode, 40);
+            ExportExcelBtn.Values.Image = IconManager.Make(IconChar.FileExcel,    mode, 40);
         }
 
         // ── 显示名称辅助 ─────────────────────────────────────────────────────
@@ -306,8 +307,10 @@ namespace TestProj
             if (selectedId != null)
                 cmbTemplate.SelectedValue = selectedId;
 
-            // 重新应用可能在配置面板中更改的主题，并同步刷新图标颜色
+            // 重新应用可能在配置面板中更改的主题/语言，并同步刷新图标颜色
             LoadSavedTheme();
+            LoadSavedLanguage();
+            ApplyLanguage();
             ApplyIcons(kryptonManager.GlobalPaletteMode);
         }
 
