@@ -287,69 +287,77 @@ namespace TestProj
             // 
             // Column1
             // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Column1.DataPropertyName = "TagName";
+            this.Column1.FillWeight = 18F;
             this.Column1.HeaderText = "变量名称";
-            this.Column1.MinimumWidth = 11;
+            this.Column1.MinimumWidth = 80;
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
-            this.Column1.Width = 225;
-            // 
+            //
             // Column2
-            // 
+            //
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Column2.DataPropertyName = "DisplayName";
+            this.Column2.FillWeight = 18F;
             this.Column2.HeaderText = "中文别名";
-            this.Column2.MinimumWidth = 11;
+            this.Column2.MinimumWidth = 80;
             this.Column2.Name = "Column2";
-            this.Column2.Width = 225;
-            // 
+            //
             // Column8
-            // 
+            //
+            this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Column8.DataPropertyName = "DisplayNameEn";
+            this.Column8.FillWeight = 18F;
             this.Column8.HeaderText = "英文别名";
-            this.Column8.MinimumWidth = 11;
+            this.Column8.MinimumWidth = 80;
             this.Column8.Name = "Column8";
-            this.Column8.Width = 225;
-            // 
+            //
             // Column4
-            // 
+            //
+            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Column4.DataPropertyName = "Order";
+            this.Column4.FillWeight = 6F;
             this.Column4.HeaderText = "顺序";
-            this.Column4.MinimumWidth = 11;
+            this.Column4.MinimumWidth = 50;
             this.Column4.Name = "Column4";
-            this.Column4.Width = 225;
-            // 
+            //
             // Column3
-            // 
+            //
+            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Column3.DataPropertyName = "DataType";
+            this.Column3.FillWeight = 10F;
             this.Column3.HeaderText = "数据类型";
-            this.Column3.MinimumWidth = 11;
+            this.Column3.MinimumWidth = 60;
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
-            this.Column3.Width = 225;
-            // 
+            //
             // Column5
-            // 
+            //
+            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Column5.DataPropertyName = "DecimalPlaces";
+            this.Column5.FillWeight = 8F;
             this.Column5.HeaderText = "小数位数";
-            this.Column5.MinimumWidth = 11;
+            this.Column5.MinimumWidth = 60;
             this.Column5.Name = "Column5";
-            this.Column5.Width = 225;
-            // 
+            //
             // Column6
-            // 
+            //
+            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Column6.DataPropertyName = "NormalMax";
+            this.Column6.FillWeight = 11F;
             this.Column6.HeaderText = "最大值";
-            this.Column6.MinimumWidth = 11;
+            this.Column6.MinimumWidth = 60;
             this.Column6.Name = "Column6";
-            this.Column6.Width = 225;
-            // 
+            //
             // Column7
-            // 
+            //
+            this.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Column7.DataPropertyName = "NormalMin";
+            this.Column7.FillWeight = 11F;
             this.Column7.HeaderText = "最小值";
-            this.Column7.MinimumWidth = 11;
+            this.Column7.MinimumWidth = 60;
             this.Column7.Name = "Column7";
-            this.Column7.Width = 225;
             // 
             // TagConfigPanel
             // 
