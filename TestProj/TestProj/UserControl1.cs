@@ -488,26 +488,47 @@ namespace TestProj
                 ws.Cells[1, 1].Style.Font.Size = 14;
                 ws.Cells[1, 1].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
 
-                // 列标题（第 2 行，加粗居中，带表格线）
-                int colHeaderRow = 2;
+                // 第 2 行：TagName；第 3 行：DisplayName；两行一起构成列标题
+                int tagNameRow  = 2;
+                int dispNameRow = 3;
+                int dataStartRow = 4;
+
                 for (int c = 0; c < colCount; c++)
                 {
-                    var    cell    = ws.Cells[colHeaderRow, c + 1];
                     string colName = dt.Columns[c].ColumnName;
-                    cell.Value = colName == "Timestamp"
+                    bool isTimestamp = colName == "Timestamp";
+                    var meta = isTimestamp ? null : FindMetaByColName(colName);
+
+                    // TagName 行
+                    var tagCell = ws.Cells[tagNameRow, c + 1];
+                    tagCell.Value = isTimestamp
                         ? LangHelper.Get("UC_ColTimestamp")
-                        : ShortTagName(FindMetaByColName(colName), colName);
-                    cell.Style.Font.Bold = true;
-                    cell.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
-                    SetThinBorder(cell);
+                        : ShortTagName(meta, colName);
+                    tagCell.Style.Font.Bold = true;
+                    tagCell.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+                    SetThinBorder(tagCell);
+
+                    // DisplayName 行（Timestamp 列合并两行；变量列显示 DisplayName）
+                    var dispCell = ws.Cells[dispNameRow, c + 1];
+                    if (isTimestamp)
+                    {
+                        ws.Cells[tagNameRow, c + 1, dispNameRow, c + 1].Merge = true;
+                    }
+                    else
+                    {
+                        dispCell.Value = GetDisplayName(meta) ?? ShortTagName(meta, colName);
+                        dispCell.Style.Font.Bold = true;
+                        dispCell.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+                        SetThinBorder(dispCell);
+                    }
                 }
 
-                // 数据行（从第 3 行开始）
+                // 数据行（从第 4 行开始）
                 for (int r = 0; r < dt.Rows.Count; r++)
                 {
                     for (int c = 0; c < colCount; c++)
                     {
-                        var cell = ws.Cells[colHeaderRow + 1 + r, c + 1];
+                        var cell = ws.Cells[dataStartRow + r, c + 1];
                         var val = dt.Rows[r][c];
                         cell.Value = val == DBNull.Value ? null : val;
                         cell.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
@@ -765,27 +786,48 @@ namespace TestProj
                     y += titleH + 6f;
                 }
 
-                // ── 列标题行（灰底加粗居中）──
-                float hx = x0;
-                for (int i = 0; i < colIndices.Count; i++)
+                // ── 列标题：第1行 TagName，第2行 DisplayName（灰底加粗居中）──
+                using (var sf = new StringFormat
                 {
-                    int    c       = colIndices[i];
-                    string colName = _printData.Columns[c].ColumnName;
-                    string hdr     = colName == "Timestamp"
-                                     ? LangHelper.Get("UC_ColTimestamp")
-                                     : ShortTagName(FindMetaByColName(colName), colName);
-                    var rect = new RectangleF(hx, y, scaledW[i], hdrH);
-                    g.FillRectangle(Brushes.LightGray, rect);
-                    g.DrawRectangle(Pens.Black, rect.X, rect.Y, rect.Width, rect.Height);
-                    using (var sf = new StringFormat
+                    Alignment     = StringAlignment.Center,
+                    LineAlignment = StringAlignment.Center
+                })
+                {
+                    // 第1行 — TagName
+                    float hx = x0;
+                    for (int i = 0; i < colIndices.Count; i++)
                     {
-                        Alignment     = StringAlignment.Center,
-                        LineAlignment = StringAlignment.Center
-                    })
+                        int    c       = colIndices[i];
+                        string colName = _printData.Columns[c].ColumnName;
+                        string hdr     = colName == "Timestamp"
+                                         ? LangHelper.Get("UC_ColTimestamp")
+                                         : ShortTagName(FindMetaByColName(colName), colName);
+                        var rect = new RectangleF(hx, y, scaledW[i], hdrH);
+                        g.FillRectangle(Brushes.LightGray, rect);
+                        g.DrawRectangle(Pens.Black, rect.X, rect.Y, rect.Width, rect.Height);
                         g.DrawString(hdr, headerFont, Brushes.Black, rect, sf);
-                    hx += scaledW[i];
+                        hx += scaledW[i];
+                    }
+                    y += hdrH;
+
+                    // 第2行 — DisplayName（Timestamp 列留空）
+                    hx = x0;
+                    for (int i = 0; i < colIndices.Count; i++)
+                    {
+                        int    c       = colIndices[i];
+                        string colName = _printData.Columns[c].ColumnName;
+                        string disp    = colName == "Timestamp"
+                                         ? ""
+                                         : GetDisplayName(FindMetaByColName(colName))
+                                           ?? ShortTagName(FindMetaByColName(colName), colName);
+                        var rect = new RectangleF(hx, y, scaledW[i], hdrH);
+                        g.FillRectangle(Brushes.LightGray, rect);
+                        g.DrawRectangle(Pens.Black, rect.X, rect.Y, rect.Width, rect.Height);
+                        g.DrawString(disp, headerFont, Brushes.Black, rect, sf);
+                        hx += scaledW[i];
+                    }
+                    y += hdrH;
                 }
-                y += hdrH;
 
                 // ── 数据行（间隔底色 + 灰色边框） ──
                 bool alt = false;
@@ -853,11 +895,17 @@ namespace TestProj
             {
                 string colName = _printData.Columns[c].ColumnName;
 
-                // 从列标题宽度起步（打印头用短 TagName）
-                string hdr = colName == "Timestamp"
-                             ? LangHelper.Get("UC_ColTimestamp")
-                             : ShortTagName(FindMetaByColName(colName), colName);
-                float w = g.MeasureString(hdr, headerFont).Width + 16f;
+                // 从列标题宽度起步：取 TagName 和 DisplayName 两行中较宽的那个
+                var   hdrMeta = colName == "Timestamp" ? null : FindMetaByColName(colName);
+                string hdr    = colName == "Timestamp"
+                                ? LangHelper.Get("UC_ColTimestamp")
+                                : ShortTagName(hdrMeta, colName);
+                string disp   = colName == "Timestamp"
+                                ? ""
+                                : GetDisplayName(hdrMeta) ?? hdr;
+                float w = Math.Max(
+                    g.MeasureString(hdr,  headerFont).Width,
+                    g.MeasureString(disp, headerFont).Width) + 16f;
 
                 // 扫描所有数据行，取最宽的单元格文本（与打印时相同的格式逻辑）
                 foreach (DataRow row in _printData.Rows)

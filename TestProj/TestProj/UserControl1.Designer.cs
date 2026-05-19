@@ -72,7 +72,7 @@ namespace TestProj
             // TimeSelectBtn
             // 
             this.TimeSelectBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.TimeSelectBtn.Location = new System.Drawing.Point(1098, 125);
+            this.TimeSelectBtn.Location = new System.Drawing.Point(1061, 125);
             this.TimeSelectBtn.Name = "TimeSelectBtn";
             this.TimeSelectBtn.Size = new System.Drawing.Size(266, 76);
             this.TimeSelectBtn.TabIndex = 33;
@@ -120,7 +120,7 @@ namespace TestProj
             // btnImportExcel
             // 
             this.btnImportExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnImportExcel.Location = new System.Drawing.Point(1407, 125);
+            this.btnImportExcel.Location = new System.Drawing.Point(1371, 125);
             this.btnImportExcel.Name = "btnImportExcel";
             this.btnImportExcel.Size = new System.Drawing.Size(319, 76);
             this.btnImportExcel.TabIndex = 31;
@@ -131,7 +131,7 @@ namespace TestProj
             // PrintBtn
             // 
             this.PrintBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.PrintBtn.Location = new System.Drawing.Point(1955, 125);
+            this.PrintBtn.Location = new System.Drawing.Point(1935, 125);
             this.PrintBtn.Name = "PrintBtn";
             this.PrintBtn.Size = new System.Drawing.Size(213, 76);
             this.PrintBtn.TabIndex = 32;
@@ -142,7 +142,7 @@ namespace TestProj
             // btnConfig
             // 
             this.btnConfig.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnConfig.Location = new System.Drawing.Point(1751, 125);
+            this.btnConfig.Location = new System.Drawing.Point(1732, 125);
             this.btnConfig.Name = "btnConfig";
             this.btnConfig.Size = new System.Drawing.Size(176, 76);
             this.btnConfig.TabIndex = 16;
@@ -153,9 +153,9 @@ namespace TestProj
             // ExportExcelBtn
             // 
             this.ExportExcelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ExportExcelBtn.Location = new System.Drawing.Point(2209, 125);
+            this.ExportExcelBtn.Location = new System.Drawing.Point(2180, 125);
             this.ExportExcelBtn.Name = "ExportExcelBtn";
-            this.ExportExcelBtn.Size = new System.Drawing.Size(221, 76);
+            this.ExportExcelBtn.Size = new System.Drawing.Size(290, 76);
             this.ExportExcelBtn.TabIndex = 15;
             this.ExportExcelBtn.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.ExportExcelBtn.Values.Text = "导出到EXCEL";

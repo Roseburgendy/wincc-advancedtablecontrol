@@ -34,6 +34,8 @@ namespace TestProj
         /// <summary>刷新窗体所有 UI 文字为当前语言。</summary>
         public void ApplyLanguage()
         {
+            this.Text = LangHelper.Get("TRS_Title");
+
             // GroupBox heading
             groupBox1.Values.Heading = LangHelper.Get("TRS_GroupBox");
 

@@ -34,14 +34,6 @@ namespace TestProj
             this.groupBox1 = new Krypton.Toolkit.KryptonGroupBox();
             this.groupBox2 = new Krypton.Toolkit.KryptonGroupBox();
             this.dgvTags = new Krypton.Toolkit.KryptonDataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.saveConfigBtn = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupBox1.Panel)).BeginInit();
@@ -248,17 +240,9 @@ namespace TestProj
             // 
             this.dgvTags.AllowUserToAddRows = false;
             this.dgvTags.AllowUserToDeleteRows = false;
+            this.dgvTags.AutoGenerateKryptonColumns = false;
             this.dgvTags.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvTags.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTags.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column8,
-            this.Column5,
-            this.Column3,
-            this.Column4,
-            this.Column6,
-            this.Column7});
             this.dgvTags.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvTags.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgvTags.Location = new System.Drawing.Point(0, 0);
@@ -271,75 +255,6 @@ namespace TestProj
             this.dgvTags.TabIndex = 0;
             this.dgvTags.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvTags_CellValueChanged);
             this.dgvTags.SelectionChanged += new System.EventHandler(this.DgvTags_SelectionChanged);
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "TagName";
-            this.Column1.HeaderText = "变量名称";
-            this.Column1.MinimumWidth = 11;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 200;
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "DisplayName";
-            this.Column2.HeaderText = "中文别名";
-            this.Column2.MinimumWidth = 11;
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 200;
-            // 
-            // Column8
-            // 
-            this.Column8.DataPropertyName = "DisplayNameEn";
-            this.Column8.HeaderText = "英文别名";
-            this.Column8.MinimumWidth = 11;
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            this.Column8.Width = 200;
-            // 
-            // Column5
-            // 
-            this.Column5.DataPropertyName = "DecimalPlaces";
-            this.Column5.HeaderText = "小数位";
-            this.Column5.MinimumWidth = 11;
-            this.Column5.Name = "Column5";
-            this.Column5.Width = 120;
-            // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "DataType";
-            this.Column3.HeaderText = "数据类型";
-            this.Column3.MinimumWidth = 11;
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 160;
-            // 
-            // Column4
-            // 
-            this.Column4.DataPropertyName = "Order";
-            this.Column4.HeaderText = "顺序";
-            this.Column4.MinimumWidth = 11;
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Width = 225;
-            // 
-            // Column6
-            // 
-            this.Column6.DataPropertyName = "NormalMax";
-            this.Column6.HeaderText = "上限值";
-            this.Column6.MinimumWidth = 11;
-            this.Column6.Name = "Column6";
-            this.Column6.Width = 160;
-            // 
-            // Column7
-            // 
-            this.Column7.DataPropertyName = "NormalMin";
-            this.Column7.HeaderText = "下限值";
-            this.Column7.MinimumWidth = 11;
-            this.Column7.Name = "Column7";
-            this.Column7.Width = 160;
             // 
             // saveConfigBtn
             // 
@@ -402,13 +317,5 @@ namespace TestProj
         private Krypton.Toolkit.KryptonGroupBox groupBox2;
         private Krypton.Toolkit.KryptonButton saveConfigBtn;
         private Krypton.Toolkit.KryptonDataGridView dgvTags;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
     }
 }
