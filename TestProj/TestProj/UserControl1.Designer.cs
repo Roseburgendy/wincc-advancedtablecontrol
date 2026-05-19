@@ -18,6 +18,7 @@ namespace TestProj
             this.components = new System.ComponentModel.Container();
             this.kryptonManager = new Krypton.Toolkit.KryptonManager(this.components);
             this.kryptonPanel1 = new Krypton.Toolkit.KryptonPanel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.TimeSelectBtn = new Krypton.Toolkit.KryptonButton();
             this.lblLanguageSw = new Krypton.Toolkit.KryptonLabel();
             this.cmbLanguageSw = new Krypton.Toolkit.KryptonComboBox();
@@ -28,25 +29,14 @@ namespace TestProj
             this.btnConfig = new Krypton.Toolkit.KryptonButton();
             this.ExportExcelBtn = new Krypton.Toolkit.KryptonButton();
             this.dataGridView1 = new Krypton.Toolkit.KryptonDataGridView();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).BeginInit();
             this.kryptonPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbLanguageSw)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            //
-            // progressBar1
-            //
-            this.progressBar1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.progressBar1.Height = 8;
-            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
-            this.progressBar1.MarqueeAnimationSpeed = 30;
-            this.progressBar1.Visible = false;
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.TabIndex = 2;
             // 
             // kryptonManager
             // 
@@ -70,7 +60,14 @@ namespace TestProj
             this.kryptonPanel1.Name = "kryptonPanel1";
             this.kryptonPanel1.Size = new System.Drawing.Size(1940, 261);
             this.kryptonPanel1.TabIndex = 0;
-           
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(28, 25);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(448, 212);
+            this.pictureBox1.TabIndex = 30;
+            this.pictureBox1.TabStop = false;
             // 
             // TimeSelectBtn
             // 
@@ -166,21 +163,25 @@ namespace TestProj
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 261);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 269);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 72;
             this.dataGridView1.RowTemplate.Height = 33;
-            this.dataGridView1.Size = new System.Drawing.Size(1940, 1146);
+            this.dataGridView1.Size = new System.Drawing.Size(1940, 1138);
             this.dataGridView1.TabIndex = 1;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
-            // pictureBox1
+            // progressBar1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(28, 25);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(448, 212);
-            this.pictureBox1.TabIndex = 30;
-            this.pictureBox1.TabStop = false;
+            this.progressBar1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.progressBar1.Location = new System.Drawing.Point(0, 261);
+            this.progressBar1.MarqueeAnimationSpeed = 30;
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(1940, 8);
+            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.progressBar1.TabIndex = 2;
+            this.progressBar1.Visible = false;
             // 
             // UserControl1
             // 
@@ -195,10 +196,10 @@ namespace TestProj
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).EndInit();
             this.kryptonPanel1.ResumeLayout(false);
             this.kryptonPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbLanguageSw)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }

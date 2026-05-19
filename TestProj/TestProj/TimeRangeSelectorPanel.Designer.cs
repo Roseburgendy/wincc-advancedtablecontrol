@@ -40,9 +40,10 @@ namespace TestProj
             ((System.ComponentModel.ISupportInitialize)(this.cmbUnit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbMode)).BeginInit();
             this.SuspendLayout();
-            // 
+            //
             // groupBox1
-            // 
+            //
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right));
             this.groupBox1.Location = new System.Drawing.Point(28, 23);
             // 
             // groupBox1.Panel
@@ -136,9 +137,10 @@ namespace TestProj
             this.label5.Size = new System.Drawing.Size(32, 42);
             this.label5.TabIndex = 11;
             this.label5.Values.Text = "X";
-            // 
+            //
             // cmbUnit
-            // 
+            //
+            this.cmbUnit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbUnit.Items.AddRange(new object[] {
             "1秒",
             "1分钟",
@@ -165,9 +167,10 @@ namespace TestProj
             this.label3.Size = new System.Drawing.Size(161, 42);
             this.label3.TabIndex = 7;
             this.label3.Values.Text = "结束时间：";
-            // 
+            //
             // dtpEndTime
-            // 
+            //
+            this.dtpEndTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.dtpEndTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dtpEndTime.Location = new System.Drawing.Point(598, 217);
             this.dtpEndTime.Name = "dtpEndTime";
@@ -190,9 +193,10 @@ namespace TestProj
             this.label2.Size = new System.Drawing.Size(161, 42);
             this.label2.TabIndex = 4;
             this.label2.Values.Text = "开始时间：";
-            // 
+            //
             // dtpStartTime
-            // 
+            //
+            this.dtpStartTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.dtpStartTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dtpStartTime.Location = new System.Drawing.Point(603, 101);
             this.dtpStartTime.Name = "dtpStartTime";
@@ -230,9 +234,10 @@ namespace TestProj
             this.label1.Size = new System.Drawing.Size(103, 42);
             this.label1.TabIndex = 0;
             this.label1.Values.Text = "设置：";
-            // 
+            //
             // btnOK
-            // 
+            //
+            this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnOK.Location = new System.Drawing.Point(452, 604);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(140, 57);
@@ -240,9 +245,10 @@ namespace TestProj
             this.btnOK.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnOK.Values.Text = "确定";
             this.btnOK.Click += new System.EventHandler(this.BtnOK_Click);
-            // 
+            //
             // btnCancel
-            // 
+            //
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCancel.Location = new System.Drawing.Point(636, 604);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(140, 57);
@@ -250,9 +256,10 @@ namespace TestProj
             this.btnCancel.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnCancel.Values.Text = "取消";
             this.btnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
-            // 
+            //
             // btnApply
-            // 
+            //
+            this.btnApply.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnApply.Location = new System.Drawing.Point(820, 604);
             this.btnApply.Name = "btnApply";
             this.btnApply.Size = new System.Drawing.Size(140, 57);
@@ -260,12 +267,14 @@ namespace TestProj
             this.btnApply.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnApply.Values.Text = "应用";
             this.btnApply.Click += new System.EventHandler(this.BtnApply_Click);
-            // 
+            //
             // TimeRangeSelectorPanel
-            // 
+            //
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(994, 687);
+            this.MinimumSize = new System.Drawing.Size(994, 730);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
             this.Controls.Add(this.btnApply);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);

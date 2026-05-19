@@ -353,12 +353,20 @@ namespace TestProj
             dataGridView1.CellFormatting += DataGridView1_CellFormatting;
         }
 
-        /// <summary>生成列头文字：TagName 换行 DisplayName（当前语言）。
+        /// <summary>取 TagName 最后一段（去掉 / 或 \ 前的路径前缀）。</summary>
+        private static string ShortTagName(TagMeta meta, string fallback = "")
+        {
+            string full = meta?.TagName;
+            if (string.IsNullOrWhiteSpace(full)) return fallback;
+            return full.Split('/', '\\').Last();
+        }
+
+        /// <summary>生成 DGV 列头文字：短 TagName 换行 DisplayName（当前语言）。
         /// 若两者相同则只显示一行。</summary>
         private string BuildTagHeader(TagMeta meta, string fallback)
         {
             if (meta == null) return fallback;
-            string tag  = meta.TagName ?? fallback;
+            string tag  = ShortTagName(meta, fallback);
             string disp = GetDisplayName(meta) ?? fallback;
             return (string.IsNullOrWhiteSpace(disp) || disp == tag)
                    ? tag : tag + "\n" + disp;
@@ -485,7 +493,7 @@ namespace TestProj
                     string colName = dt.Columns[c].ColumnName;
                     cell.Value = colName == "Timestamp"
                         ? LangHelper.Get("UC_ColTimestamp")
-                        : colName;
+                        : ShortTagName(FindMetaByColName(colName), colName);
                     cell.Style.Font.Bold = true;
                     cell.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
                     SetThinBorder(cell);
@@ -758,10 +766,11 @@ namespace TestProj
                 float hx = x0;
                 for (int i = 0; i < colIndices.Count; i++)
                 {
-                    int    c    = colIndices[i];
-                    string hdr  = _printData.Columns[c].ColumnName == "Timestamp"
-                                  ? LangHelper.Get("UC_ColTimestamp")
-                                  : _printData.Columns[c].ColumnName;
+                    int    c       = colIndices[i];
+                    string colName = _printData.Columns[c].ColumnName;
+                    string hdr     = colName == "Timestamp"
+                                     ? LangHelper.Get("UC_ColTimestamp")
+                                     : ShortTagName(FindMetaByColName(colName), colName);
                     var rect = new RectangleF(hx, y, scaledW[i], hdrH);
                     g.FillRectangle(Brushes.LightGray, rect);
                     g.DrawRectangle(Pens.Black, rect.X, rect.Y, rect.Width, rect.Height);
@@ -841,9 +850,10 @@ namespace TestProj
             {
                 string colName = _printData.Columns[c].ColumnName;
 
-                // 从列标题宽度起步
+                // 从列标题宽度起步（打印头用短 TagName）
                 string hdr = colName == "Timestamp"
-                             ? LangHelper.Get("UC_ColTimestamp") : colName;
+                             ? LangHelper.Get("UC_ColTimestamp")
+                             : ShortTagName(FindMetaByColName(colName), colName);
                 float w = g.MeasureString(hdr, headerFont).Width + 16f;
 
                 // 扫描所有数据行，取最宽的单元格文本（与打印时相同的格式逻辑）
@@ -893,5 +903,10 @@ namespace TestProj
         }
 
         #endregion
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

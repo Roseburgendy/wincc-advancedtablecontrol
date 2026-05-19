@@ -21,6 +21,7 @@ namespace TestProj
             //
             // tagTreeView
             //
+            this.tagTreeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.tagTreeView.CheckBoxes = true;
             this.tagTreeView.Location = new System.Drawing.Point(25, 12);
             this.tagTreeView.Name = "tagTreeView";
@@ -30,6 +31,7 @@ namespace TestProj
             //
             // confirmBtn
             //
+            this.confirmBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.confirmBtn.Location = new System.Drawing.Point(290, 800);
             this.confirmBtn.Name = "confirmBtn";
             this.confirmBtn.Size = new System.Drawing.Size(213, 57);
@@ -42,6 +44,8 @@ namespace TestProj
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(801, 886);
+            this.MinimumSize = new System.Drawing.Size(801, 886);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
             this.Controls.Add(this.confirmBtn);
             this.Controls.Add(this.tagTreeView);
             this.Name = "TagSelectionPanel";

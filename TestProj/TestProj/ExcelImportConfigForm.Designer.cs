@@ -29,7 +29,6 @@ namespace TestProj
             //
             // label1  —  数据起始行
             //
-            this.label1.Font = new System.Drawing.Font("SimSun", 14F);
             this.label1.Location = new System.Drawing.Point(35, 72);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(228, 42);
@@ -38,7 +37,6 @@ namespace TestProj
             //
             // label2  —  变量名列号
             //
-            this.label2.Font = new System.Drawing.Font("SimSun", 14F);
             this.label2.Location = new System.Drawing.Point(35, 170);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(228, 42);
@@ -47,7 +45,6 @@ namespace TestProj
             //
             // label3  —  中文显示名列号
             //
-            this.label3.Font = new System.Drawing.Font("SimSun", 14F);
             this.label3.Location = new System.Drawing.Point(35, 270);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(258, 42);
@@ -56,7 +53,6 @@ namespace TestProj
             //
             // label4  —  英文显示名列号
             //
-            this.label4.Font = new System.Drawing.Font("SimSun", 14F);
             this.label4.Location = new System.Drawing.Point(35, 370);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(290, 42);
@@ -65,6 +61,7 @@ namespace TestProj
             //
             // numStartRow
             //
+            this.numStartRow.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.numStartRow.Location = new System.Drawing.Point(314, 74);
             this.numStartRow.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             this.numStartRow.Name = "numStartRow";
@@ -74,6 +71,7 @@ namespace TestProj
             //
             // numTagCol
             //
+            this.numTagCol.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.numTagCol.Location = new System.Drawing.Point(314, 172);
             this.numTagCol.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             this.numTagCol.Name = "numTagCol";
@@ -83,6 +81,7 @@ namespace TestProj
             //
             // numDisplayCol  (中文)
             //
+            this.numDisplayCol.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.numDisplayCol.Location = new System.Drawing.Point(314, 272);
             this.numDisplayCol.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             this.numDisplayCol.Name = "numDisplayCol";
@@ -92,6 +91,7 @@ namespace TestProj
             //
             // numDisplayEnCol  (英文, 0=不使用)
             //
+            this.numDisplayEnCol.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.numDisplayEnCol.Location = new System.Drawing.Point(314, 372);
             this.numDisplayEnCol.Minimum = new decimal(new int[] { 0, 0, 0, 0 });
             this.numDisplayEnCol.Name = "numDisplayEnCol";
@@ -101,6 +101,7 @@ namespace TestProj
             //
             // btnOK
             //
+            this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnOK.Location = new System.Drawing.Point(52, 480);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(198, 65);
@@ -110,6 +111,7 @@ namespace TestProj
             //
             // btnCancel
             //
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Location = new System.Drawing.Point(417, 480);
             this.btnCancel.Name = "btnCancel";
@@ -125,6 +127,7 @@ namespace TestProj
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(698, 580);
+            this.MinimumSize = new System.Drawing.Size(698, 620);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.numDisplayEnCol);
