@@ -54,9 +54,6 @@ namespace TestProj
             // Wire theme combo AFTER loading settings so init doesn't fire a save
             cmbTheme.SelectedIndexChanged += CmbTheme_SelectedIndexChanged;
 
-            // --- Tab 3: Export Settings ---
-            LoadExportSettings();
-
             ApplyLanguage();
             ApplyIcons(_kryptonManager.GlobalPaletteMode);
         }
@@ -76,9 +73,6 @@ namespace TestProj
             // Tab 2 — General Settings
             btnSaveGeneral.Values.Image = IconManager.Make(IconChar.FloppyDisk, mode, 22);
 
-            // Tab 3 — Export Settings
-            btnBrowseExportPath.Values.Image = IconManager.Make(IconChar.FolderOpen, mode, 22);
-            btnSaveExport.Values.Image       = IconManager.Make(IconChar.FloppyDisk, mode, 22);
         }
 
         /// <summary>刷新整个窗体的 UI 文字为当前语言。</summary>
@@ -89,8 +83,6 @@ namespace TestProj
             // Navigator tab titles
             kryptonPage1.Text = LangHelper.Get("GCP_Tab_Templates");
             kryptonPage2.Text = LangHelper.Get("GCP_Tab_General");
-            kryptonPage3.Text = LangHelper.Get("GCP_Tab_Export");
-
             // Tab 1 — Template Config
             lblTemplatesHeader.Values.Text = LangHelper.Get("GCP_TemplatesHeader");
             btnAdd.Values.Text             = LangHelper.Get("GCP_BtnAdd");
@@ -109,13 +101,6 @@ namespace TestProj
             lblLanguage.Values.Text    = LangHelper.Get("GCP_LblLanguage");
             lblTheme.Values.Text       = LangHelper.Get("GCP_LblTheme");
             btnSaveGeneral.Values.Text = LangHelper.Get("GCP_BtnSave");
-
-            // Tab 3 — Export Settings
-            lblExportPath.Values.Text    = LangHelper.Get("GCP_LblExportPath");
-            btnBrowseExportPath.Values.Text = LangHelper.Get("GCP_BtnBrowse");
-            lblFilePattern.Values.Text   = LangHelper.Get("GCP_LblFilePattern");
-            lblAutoExport.Values.Text    = LangHelper.Get("GCP_LblAutoExport");
-            btnSaveExport.Values.Text    = LangHelper.Get("GCP_BtnSave");
 
             // Refresh tag summary text (it may contain a localised separator)
             UpdateTagSummary();
@@ -372,40 +357,5 @@ namespace TestProj
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        // =====================================================================
-        // Tab 3 — Export Settings
-        // =====================================================================
-
-        private void LoadExportSettings()
-        {
-            var cfg = ConfigManager.Config;
-            txtExportPath.Text   = cfg?.ExportPath        ?? "";
-            txtFilePattern.Text  = cfg?.ExportFilePattern ?? "{模板名}_{日期}";
-            chkAutoExport.Checked = cfg?.AutoExport       ?? false;
-        }
-
-        private void BtnBrowseExportPath_Click(object sender, EventArgs e)
-        {
-            using (var dlg = new FolderBrowserDialog())
-            {
-                dlg.Description  = LangHelper.Get("GCP_BrowseExportPath");
-                dlg.SelectedPath = txtExportPath.Text;
-                if (dlg.ShowDialog() == DialogResult.OK)
-                    txtExportPath.Text = dlg.SelectedPath;
-            }
-        }
-
-        private void BtnSaveExport_Click(object sender, EventArgs e)
-        {
-            if (ConfigManager.Config == null) return;
-
-            ConfigManager.Config.ExportPath        = txtExportPath.Text.Trim();
-            ConfigManager.Config.ExportFilePattern = txtFilePattern.Text.Trim();
-            ConfigManager.Config.AutoExport        = chkAutoExport.Checked;
-            ConfigManager.SaveConfig();
-
-            MessageBox.Show(LangHelper.Get("GCP_ExportSaved"), LangHelper.Get("Msg_Info"),
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
     }
 }

@@ -58,7 +58,7 @@ namespace TestProj
             this.kryptonPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.kryptonPanel1.Location = new System.Drawing.Point(0, 0);
             this.kryptonPanel1.Name = "kryptonPanel1";
-            this.kryptonPanel1.Size = new System.Drawing.Size(1940, 261);
+            this.kryptonPanel1.Size = new System.Drawing.Size(2493, 261);
             this.kryptonPanel1.TabIndex = 0;
             // 
             // pictureBox1
@@ -71,9 +71,10 @@ namespace TestProj
             // 
             // TimeSelectBtn
             // 
-            this.TimeSelectBtn.Location = new System.Drawing.Point(537, 107);
+            this.TimeSelectBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.TimeSelectBtn.Location = new System.Drawing.Point(1098, 125);
             this.TimeSelectBtn.Name = "TimeSelectBtn";
-            this.TimeSelectBtn.Size = new System.Drawing.Size(266, 60);
+            this.TimeSelectBtn.Size = new System.Drawing.Size(266, 76);
             this.TimeSelectBtn.TabIndex = 33;
             this.TimeSelectBtn.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.TimeSelectBtn.Values.Text = "时间选择";
@@ -81,7 +82,8 @@ namespace TestProj
             // 
             // lblLanguageSw
             // 
-            this.lblLanguageSw.Location = new System.Drawing.Point(537, 195);
+            this.lblLanguageSw.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblLanguageSw.Location = new System.Drawing.Point(1265, 36);
             this.lblLanguageSw.Name = "lblLanguageSw";
             this.lblLanguageSw.Size = new System.Drawing.Size(103, 42);
             this.lblLanguageSw.TabIndex = 36;
@@ -89,8 +91,9 @@ namespace TestProj
             // 
             // cmbLanguageSw
             // 
+            this.cmbLanguageSw.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbLanguageSw.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbLanguageSw.Location = new System.Drawing.Point(714, 195);
+            this.cmbLanguageSw.Location = new System.Drawing.Point(1433, 36);
             this.cmbLanguageSw.Name = "cmbLanguageSw";
             this.cmbLanguageSw.Size = new System.Drawing.Size(232, 42);
             this.cmbLanguageSw.TabIndex = 37;
@@ -99,7 +102,7 @@ namespace TestProj
             // label3
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.Location = new System.Drawing.Point(1289, 36);
+            this.label3.Location = new System.Drawing.Point(1842, 36);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(132, 42);
             this.label3.TabIndex = 10;
@@ -108,7 +111,7 @@ namespace TestProj
             // cmbTemplate
             // 
             this.cmbTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbTemplate.Location = new System.Drawing.Point(1427, 33);
+            this.cmbTemplate.Location = new System.Drawing.Point(1980, 33);
             this.cmbTemplate.Name = "cmbTemplate";
             this.cmbTemplate.Size = new System.Drawing.Size(439, 42);
             this.cmbTemplate.TabIndex = 18;
@@ -117,9 +120,9 @@ namespace TestProj
             // btnImportExcel
             // 
             this.btnImportExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnImportExcel.Location = new System.Drawing.Point(832, 107);
+            this.btnImportExcel.Location = new System.Drawing.Point(1407, 125);
             this.btnImportExcel.Name = "btnImportExcel";
-            this.btnImportExcel.Size = new System.Drawing.Size(319, 60);
+            this.btnImportExcel.Size = new System.Drawing.Size(319, 76);
             this.btnImportExcel.TabIndex = 31;
             this.btnImportExcel.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnImportExcel.Values.Text = "批量导入模板";
@@ -128,9 +131,9 @@ namespace TestProj
             // PrintBtn
             // 
             this.PrintBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.PrintBtn.Location = new System.Drawing.Point(1380, 107);
+            this.PrintBtn.Location = new System.Drawing.Point(1955, 125);
             this.PrintBtn.Name = "PrintBtn";
-            this.PrintBtn.Size = new System.Drawing.Size(213, 60);
+            this.PrintBtn.Size = new System.Drawing.Size(213, 76);
             this.PrintBtn.TabIndex = 32;
             this.PrintBtn.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.PrintBtn.Values.Text = "打印";
@@ -139,9 +142,9 @@ namespace TestProj
             // btnConfig
             // 
             this.btnConfig.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnConfig.Location = new System.Drawing.Point(1176, 107);
+            this.btnConfig.Location = new System.Drawing.Point(1751, 125);
             this.btnConfig.Name = "btnConfig";
-            this.btnConfig.Size = new System.Drawing.Size(176, 60);
+            this.btnConfig.Size = new System.Drawing.Size(176, 76);
             this.btnConfig.TabIndex = 16;
             this.btnConfig.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnConfig.Values.Text = "配置";
@@ -150,9 +153,9 @@ namespace TestProj
             // ExportExcelBtn
             // 
             this.ExportExcelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ExportExcelBtn.Location = new System.Drawing.Point(1634, 107);
+            this.ExportExcelBtn.Location = new System.Drawing.Point(2209, 125);
             this.ExportExcelBtn.Name = "ExportExcelBtn";
-            this.ExportExcelBtn.Size = new System.Drawing.Size(221, 60);
+            this.ExportExcelBtn.Size = new System.Drawing.Size(221, 76);
             this.ExportExcelBtn.TabIndex = 15;
             this.ExportExcelBtn.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.ExportExcelBtn.Values.Text = "导出到EXCEL";
@@ -167,8 +170,8 @@ namespace TestProj
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 72;
-            this.dataGridView1.RowTemplate.Height = 33;
-            this.dataGridView1.Size = new System.Drawing.Size(1940, 1138);
+            this.dataGridView1.RowTemplate.Height = 50;
+            this.dataGridView1.Size = new System.Drawing.Size(2493, 1188);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -178,21 +181,22 @@ namespace TestProj
             this.progressBar1.Location = new System.Drawing.Point(0, 261);
             this.progressBar1.MarqueeAnimationSpeed = 30;
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(1940, 8);
+            this.progressBar1.Size = new System.Drawing.Size(2493, 8);
             this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.progressBar1.TabIndex = 2;
             this.progressBar1.Visible = false;
             // 
             // UserControl1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 27F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(18F, 45F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.kryptonPanel1);
+            this.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "UserControl1";
-            this.Size = new System.Drawing.Size(1940, 1407);
+            this.Size = new System.Drawing.Size(2493, 1457);
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).EndInit();
             this.kryptonPanel1.ResumeLayout(false);
             this.kryptonPanel1.PerformLayout();

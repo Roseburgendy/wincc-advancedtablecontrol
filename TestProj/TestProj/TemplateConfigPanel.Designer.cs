@@ -279,9 +279,10 @@ namespace TestProj
             // 
             // TemplateConfigPanel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 27F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(17F, 33F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1764, 1049);
+            this.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Controls.Add(this.splitMain);
             this.MinimumSize = new System.Drawing.Size(900, 600);
             this.Name = "TemplateConfigPanel";
