@@ -285,59 +285,69 @@ namespace TestProj
             this.saveConfigBtn.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.saveConfigBtn.Values.Text = "保存配置";
             this.saveConfigBtn.Click += new System.EventHandler(this.SaveConfigBtn_Click_1);
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Column1";
+            //
+            // Column1 — TagName
+            //
+            this.Column1.DataPropertyName = "TagName";
+            this.Column1.HeaderText = "变量名称";
             this.Column1.MinimumWidth = 11;
             this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
             this.Column1.Width = 225;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Column2";
+            //
+            // Column2 — DisplayName
+            //
+            this.Column2.DataPropertyName = "DisplayName";
+            this.Column2.HeaderText = "中文别名";
             this.Column2.MinimumWidth = 11;
             this.Column2.Name = "Column2";
             this.Column2.Width = 225;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Column3";
+            //
+            // Column3 — DataType
+            //
+            this.Column3.DataPropertyName = "DataType";
+            this.Column3.HeaderText = "数据类型";
             this.Column3.MinimumWidth = 11;
             this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
             this.Column3.Width = 225;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Column4";
+            //
+            // Column4 — Order
+            //
+            this.Column4.DataPropertyName = "Order";
+            this.Column4.HeaderText = "顺序";
             this.Column4.MinimumWidth = 11;
             this.Column4.Name = "Column4";
             this.Column4.Width = 225;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Column5";
+            //
+            // Column5 — DecimalPlaces
+            //
+            this.Column5.DataPropertyName = "DecimalPlaces";
+            this.Column5.HeaderText = "小数位数";
             this.Column5.MinimumWidth = 11;
             this.Column5.Name = "Column5";
             this.Column5.Width = 225;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Column6";
+            //
+            // Column6 — NormalMax
+            //
+            this.Column6.DataPropertyName = "NormalMax";
+            this.Column6.HeaderText = "最大值";
             this.Column6.MinimumWidth = 11;
             this.Column6.Name = "Column6";
             this.Column6.Width = 225;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "Column7";
+            //
+            // Column7 — NormalMin
+            //
+            this.Column7.DataPropertyName = "NormalMin";
+            this.Column7.HeaderText = "最小值";
             this.Column7.MinimumWidth = 11;
             this.Column7.Name = "Column7";
             this.Column7.Width = 225;
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "Column8";
+            //
+            // Column8 — DisplayNameEn
+            //
+            this.Column8.DataPropertyName = "DisplayNameEn";
+            this.Column8.HeaderText = "英文别名";
             this.Column8.MinimumWidth = 11;
             this.Column8.Name = "Column8";
             this.Column8.Width = 225;
