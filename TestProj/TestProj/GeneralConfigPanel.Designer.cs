@@ -84,7 +84,7 @@ namespace TestProj
             this.kryptonNavigator1.Pages.AddRange(new Krypton.Navigator.KryptonPage[] {
             this.kryptonPage1,
             this.kryptonPage2});
-            this.kryptonNavigator1.SelectedIndex = 0;
+            this.kryptonNavigator1.SelectedIndex = 1;
             this.kryptonNavigator1.Size = new System.Drawing.Size(1672, 989);
             this.kryptonNavigator1.TabIndex = 0;
             // 
@@ -366,7 +366,7 @@ namespace TestProj
             this.kryptonPage2.Margin = new System.Windows.Forms.Padding(2);
             this.kryptonPage2.MinimumSize = new System.Drawing.Size(28, 28);
             this.kryptonPage2.Name = "kryptonPage2";
-            this.kryptonPage2.Size = new System.Drawing.Size(1370, 761);
+            this.kryptonPage2.Size = new System.Drawing.Size(1670, 940);
             this.kryptonPage2.Text = "通用设置";
             this.kryptonPage2.ToolTipTitle = "Page ToolTip";
             this.kryptonPage2.UniqueName = "page_general_001";
@@ -375,15 +375,15 @@ namespace TestProj
             // 
             this.pnlGeneralFooter.Controls.Add(this.btnSaveGeneral);
             this.pnlGeneralFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlGeneralFooter.Location = new System.Drawing.Point(0, 678);
+            this.pnlGeneralFooter.Location = new System.Drawing.Point(0, 857);
             this.pnlGeneralFooter.Margin = new System.Windows.Forms.Padding(2);
             this.pnlGeneralFooter.Name = "pnlGeneralFooter";
-            this.pnlGeneralFooter.Size = new System.Drawing.Size(1370, 83);
+            this.pnlGeneralFooter.Size = new System.Drawing.Size(1670, 83);
             this.pnlGeneralFooter.TabIndex = 1;
             // 
             // btnSaveGeneral
             // 
-            this.btnSaveGeneral.Location = new System.Drawing.Point(1113, 2);
+            this.btnSaveGeneral.Location = new System.Drawing.Point(1441, 5);
             this.btnSaveGeneral.Margin = new System.Windows.Forms.Padding(2);
             this.btnSaveGeneral.Name = "btnSaveGeneral";
             this.btnSaveGeneral.Size = new System.Drawing.Size(205, 65);
@@ -396,7 +396,7 @@ namespace TestProj
             // 
             this.tlpGeneral.BackColor = System.Drawing.Color.Transparent;
             this.tlpGeneral.ColumnCount = 2;
-            this.tlpGeneral.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 176F));
+            this.tlpGeneral.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 328F));
             this.tlpGeneral.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpGeneral.Controls.Add(this.lblLanguage, 0, 0);
             this.tlpGeneral.Controls.Add(this.cmbLanguage, 1, 0);
@@ -411,7 +411,7 @@ namespace TestProj
             this.tlpGeneral.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 143F));
             this.tlpGeneral.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 412F));
             this.tlpGeneral.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 13F));
-            this.tlpGeneral.Size = new System.Drawing.Size(1370, 761);
+            this.tlpGeneral.Size = new System.Drawing.Size(1670, 940);
             this.tlpGeneral.TabIndex = 0;
             // 
             // lblLanguage
@@ -428,7 +428,7 @@ namespace TestProj
             // 
             this.cmbLanguage.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cmbLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbLanguage.Location = new System.Drawing.Point(195, 66);
+            this.cmbLanguage.Location = new System.Drawing.Point(347, 66);
             this.cmbLanguage.Margin = new System.Windows.Forms.Padding(2);
             this.cmbLanguage.Name = "cmbLanguage";
             this.cmbLanguage.Size = new System.Drawing.Size(450, 42);
@@ -437,7 +437,7 @@ namespace TestProj
             // lblTheme
             // 
             this.lblTheme.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lblTheme.Location = new System.Drawing.Point(19, 436);
+            this.lblTheme.Location = new System.Drawing.Point(19, 525);
             this.lblTheme.Margin = new System.Windows.Forms.Padding(2);
             this.lblTheme.Name = "lblTheme";
             this.lblTheme.Size = new System.Drawing.Size(161, 42);
@@ -448,7 +448,7 @@ namespace TestProj
             // 
             this.cmbTheme.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cmbTheme.DefaultPalette = Krypton.Toolkit.PaletteMode.Microsoft365Blue;
-            this.cmbTheme.Location = new System.Drawing.Point(195, 436);
+            this.cmbTheme.Location = new System.Drawing.Point(347, 525);
             this.cmbTheme.Margin = new System.Windows.Forms.Padding(2);
             this.cmbTheme.Name = "cmbTheme";
             this.cmbTheme.Size = new System.Drawing.Size(450, 42);

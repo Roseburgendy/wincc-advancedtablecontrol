@@ -45,7 +45,6 @@ namespace TestProj
 
             InitializeTemplateList();
             LoadSavedTheme();
-            LoadSavedLanguage();
             ApplyLanguage();
             ApplyIcons(kryptonManager.GlobalPaletteMode);
         }
@@ -69,37 +68,10 @@ namespace TestProj
                 kryptonManager.GlobalPaletteMode = mode;
         }
 
-        // 启动时将保存的语言还原，并填充语言选项
-        private void LoadSavedLanguage()
-        {
-            cmbLanguageSw.Items.Clear();
-            cmbLanguageSw.Items.Add("中文");
-            cmbLanguageSw.Items.Add("English");
-
-            string lang = ConfigManager.Config?.Language ?? "zh-CN";
-
-            cmbLanguageSw.SelectedIndexChanged -= cmbLanguageSw_SelectedIndexChanged;
-            cmbLanguageSw.SelectedIndex = lang == "en-US" ? 1 : 0;
-            cmbLanguageSw.SelectedIndexChanged += cmbLanguageSw_SelectedIndexChanged;
-        }
-
-        // 语言切换：保存并立即刷新工具栏文字
-        private void cmbLanguageSw_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string lang = cmbLanguageSw.SelectedIndex == 1 ? "en-US" : "zh-CN";
-            if (ConfigManager.Config != null)
-            {
-                ConfigManager.Config.Language = lang;
-                ConfigManager.SaveConfig();
-            }
-            ApplyLanguage();
-        }
-
         /// <summary>根据当前语言刷新工具栏所有控件的文字。</summary>
         public void ApplyLanguage()
         {
             TimeSelectBtn.Values.Text   = LangHelper.Get("UC_TimeSelect");
-            lblLanguageSw.Values.Text   = LangHelper.Get("UC_Language");
             label3.Values.Text          = LangHelper.Get("UC_SelectTemplate");
             btnImportExcel.Values.Text  = LangHelper.Get("UC_ImportExcel");
             PrintBtn.Values.Text        = LangHelper.Get("UC_Print");
@@ -291,7 +263,8 @@ namespace TestProj
                 ConfigManager.Config.Template,
                 ConfigManager.Config.TagMeta,
                 kryptonManager,
-                mode => ApplyIcons(mode)))   // 主题切换时实时刷新工具栏图标
+                mode => ApplyIcons(mode),                          // 主题切换时实时刷新工具栏图标
+                () => { LoadSavedLanguage(); ApplyLanguage(); }))  // 语言切换时实时刷新主界面
             {
                 panel.ShowDialog();
             }
@@ -309,7 +282,6 @@ namespace TestProj
 
             // 重新应用可能在配置面板中更改的主题/语言，并同步刷新图标颜色
             LoadSavedTheme();
-            LoadSavedLanguage();
             ApplyLanguage();
             ApplyIcons(kryptonManager.GlobalPaletteMode);
         }

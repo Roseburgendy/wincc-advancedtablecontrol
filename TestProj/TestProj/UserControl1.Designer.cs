@@ -53,7 +53,7 @@ namespace TestProj
             this.kryptonPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.kryptonPanel1.Location = new System.Drawing.Point(0, 0);
             this.kryptonPanel1.Name = "kryptonPanel1";
-            this.kryptonPanel1.Size = new System.Drawing.Size(2493, 261);
+            this.kryptonPanel1.Size = new System.Drawing.Size(2493, 244);
             this.kryptonPanel1.TabIndex = 0;
             // 
             // TimeSelectBtn
@@ -70,7 +70,7 @@ namespace TestProj
             // label3
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.Location = new System.Drawing.Point(1842, 36);
+            this.label3.Location = new System.Drawing.Point(1890, 50);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(132, 42);
             this.label3.TabIndex = 10;
@@ -79,7 +79,7 @@ namespace TestProj
             // cmbTemplate
             // 
             this.cmbTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbTemplate.Location = new System.Drawing.Point(1980, 33);
+            this.cmbTemplate.Location = new System.Drawing.Point(2028, 50);
             this.cmbTemplate.Name = "cmbTemplate";
             this.cmbTemplate.Size = new System.Drawing.Size(439, 42);
             this.cmbTemplate.TabIndex = 18;
@@ -134,19 +134,19 @@ namespace TestProj
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 269);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 252);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 72;
             this.dataGridView1.RowTemplate.Height = 50;
-            this.dataGridView1.Size = new System.Drawing.Size(2493, 1188);
+            this.dataGridView1.Size = new System.Drawing.Size(2493, 1205);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // progressBar1
             // 
             this.progressBar1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.progressBar1.Location = new System.Drawing.Point(0, 261);
+            this.progressBar1.Location = new System.Drawing.Point(0, 244);
             this.progressBar1.MarqueeAnimationSpeed = 30;
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(2493, 8);
@@ -156,7 +156,8 @@ namespace TestProj
             // 
             // kryptonLabel1
             // 
-            this.kryptonLabel1.Location = new System.Drawing.Point(63, 59);
+            this.kryptonLabel1.LabelStyle = Krypton.Toolkit.LabelStyle.NormalControl;
+            this.kryptonLabel1.Location = new System.Drawing.Point(124, 60);
             this.kryptonLabel1.Name = "kryptonLabel1";
             this.kryptonLabel1.Size = new System.Drawing.Size(428, 128);
             this.kryptonLabel1.StateCommon.ShortText.Font = new System.Drawing.Font("DengXian", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));

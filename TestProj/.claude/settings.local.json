@@ -3,7 +3,9 @@
     "allow": [
       "Bash(\"C:\\\\Windows\\\\Microsoft.NET\\\\Framework\\\\v4.0.30319\\\\MSBuild.exe\" TestProj.csproj /t:Build /p:Configuration=Debug /nologo /v:minimal)",
       "Bash(\"C:\\\\Windows\\\\Microsoft.NET\\\\Framework\\\\v4.0.30319\\\\MSBuild.exe\" \"D:\\\\WinCCReport_Dev\\\\wincc-advancedtablecontrol\\\\TestProj\\\\TestProj\\\\TestProj.csproj\" /p:Configuration=Debug /nologo /v:minimal)",
-      "PowerShell(& \"C:\\\\Program Files\\\\Microsoft Visual Studio\\\\2022\\\\Community\\\\MSBuild\\\\Current\\\\Bin\\\\MSBuild.exe\" \"D:\\\\WinCCReport_Dev\\\\wincc-advancedtablecontrol\\\\TestProj\\\\TestProj\\\\TestProj.csproj\" /p:Configuration=Debug /nologo /v:minimal 2>&1)"
+      "PowerShell(& \"C:\\\\Program Files\\\\Microsoft Visual Studio\\\\2022\\\\Community\\\\MSBuild\\\\Current\\\\Bin\\\\MSBuild.exe\" \"D:\\\\WinCCReport_Dev\\\\wincc-advancedtablecontrol\\\\TestProj\\\\TestProj\\\\TestProj.csproj\" /p:Configuration=Debug /nologo /v:minimal 2>&1)",
+      "Bash(Get-Content \"D:\\\\WinCCReport_Dev\\\\wincc-advancedtablecontrol\\\\TestProj\\\\GeneralConfigPanel.cs\")",
+      "PowerShell(Select-String -Path \"D:\\\\WinCCReport_Dev\\\\wincc-advancedtablecontrol\\\\TestProj\\\\TestProj\\\\UserControl1.cs\" -Pattern \"GeneralConfigPanel|ApplyLanguage|onThemeChanged|_onThemeChanged|language\" -CaseSensitive:$false)"
     ]
   }
 }

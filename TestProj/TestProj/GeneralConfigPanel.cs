@@ -26,18 +26,22 @@ namespace TestProj
         private readonly Krypton.Toolkit.KryptonManager _kryptonManager;
         /// <summary>主题切换时通知调用方（如 UserControl1）实时刷新图标。</summary>
         private readonly Action<Krypton.Toolkit.PaletteMode> _onThemeChanged;
+        /// <summary>语言切换时通知调用方（如 UserControl1）实时刷新所有 UI 文字。</summary>
+        private readonly Action _onLanguageChanged;
 
         public GeneralConfigPanel(
             List<ReportTemplate> templates,
             List<TagMeta> allTags,
             Krypton.Toolkit.KryptonManager kryptonManager,
-            Action<Krypton.Toolkit.PaletteMode> onThemeChanged = null)
+            Action<Krypton.Toolkit.PaletteMode> onThemeChanged = null,
+            Action onLanguageChanged = null)
         {
             InitializeComponent();
             this.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, (byte)134);
 
-            _kryptonManager  = kryptonManager;
-            _onThemeChanged  = onThemeChanged;
+            _kryptonManager   = kryptonManager;
+            _onThemeChanged   = onThemeChanged;
+            _onLanguageChanged = onLanguageChanged;
 
             // --- Tab 1: Template Config ---
             _allTags  = allTags  ?? new List<TagMeta>();
@@ -336,10 +340,10 @@ namespace TestProj
 
         private void CmbLanguage_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // 实时预览：切语言下拉时立刻刷新窗体文字
             if (ConfigManager.Config != null)
                 ConfigManager.Config.Language = cmbLanguage.SelectedIndex == 1 ? "en-US" : "zh-CN";
-            ApplyLanguage();
+            ApplyLanguage();                  // 刷新本窗口
+            _onLanguageChanged?.Invoke();     // 通知调用方（UserControl1 等）同步刷新
         }
 
         private void CmbTheme_SelectedIndexChanged(object sender, EventArgs e)
