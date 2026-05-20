@@ -149,7 +149,9 @@
     <EmbeddedResource Include="GeneralConfigPanel.resx">
       <DependentUpon>GeneralConfigPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Lang.resx" />
+    <EmbeddedResource Include="Properties\Lang.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Lang.en-US.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

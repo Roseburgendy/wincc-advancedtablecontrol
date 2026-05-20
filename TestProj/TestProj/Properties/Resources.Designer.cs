@@ -59,5 +59,15 @@ namespace TestProj.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] light {
+            get {
+                object obj = ResourceManager.GetObject("light", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

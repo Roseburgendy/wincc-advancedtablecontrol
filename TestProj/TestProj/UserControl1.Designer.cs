@@ -16,12 +16,10 @@ namespace TestProj
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserControl1));
             this.kryptonManager = new Krypton.Toolkit.KryptonManager(this.components);
             this.kryptonPanel1 = new Krypton.Toolkit.KryptonPanel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.TimeSelectBtn = new Krypton.Toolkit.KryptonButton();
-            this.lblLanguageSw = new Krypton.Toolkit.KryptonLabel();
-            this.cmbLanguageSw = new Krypton.Toolkit.KryptonComboBox();
             this.label3 = new Krypton.Toolkit.KryptonLabel();
             this.cmbTemplate = new Krypton.Toolkit.KryptonComboBox();
             this.btnImportExcel = new Krypton.Toolkit.KryptonButton();
@@ -30,10 +28,9 @@ namespace TestProj
             this.ExportExcelBtn = new Krypton.Toolkit.KryptonButton();
             this.dataGridView1 = new Krypton.Toolkit.KryptonDataGridView();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.kryptonLabel1 = new Krypton.Toolkit.KryptonLabel();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).BeginInit();
             this.kryptonPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbLanguageSw)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -45,10 +42,8 @@ namespace TestProj
             // 
             // kryptonPanel1
             // 
-            this.kryptonPanel1.Controls.Add(this.pictureBox1);
+            this.kryptonPanel1.Controls.Add(this.kryptonLabel1);
             this.kryptonPanel1.Controls.Add(this.TimeSelectBtn);
-            this.kryptonPanel1.Controls.Add(this.lblLanguageSw);
-            this.kryptonPanel1.Controls.Add(this.cmbLanguageSw);
             this.kryptonPanel1.Controls.Add(this.label3);
             this.kryptonPanel1.Controls.Add(this.cmbTemplate);
             this.kryptonPanel1.Controls.Add(this.btnImportExcel);
@@ -61,14 +56,6 @@ namespace TestProj
             this.kryptonPanel1.Size = new System.Drawing.Size(2493, 261);
             this.kryptonPanel1.TabIndex = 0;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(28, 25);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(448, 212);
-            this.pictureBox1.TabIndex = 30;
-            this.pictureBox1.TabStop = false;
-            // 
             // TimeSelectBtn
             // 
             this.TimeSelectBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -79,25 +66,6 @@ namespace TestProj
             this.TimeSelectBtn.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.TimeSelectBtn.Values.Text = "时间选择";
             this.TimeSelectBtn.Click += new System.EventHandler(this.TimeSelectBtn_Click);
-            // 
-            // lblLanguageSw
-            // 
-            this.lblLanguageSw.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblLanguageSw.Location = new System.Drawing.Point(1265, 36);
-            this.lblLanguageSw.Name = "lblLanguageSw";
-            this.lblLanguageSw.Size = new System.Drawing.Size(103, 42);
-            this.lblLanguageSw.TabIndex = 36;
-            this.lblLanguageSw.Values.Text = "语言：";
-            // 
-            // cmbLanguageSw
-            // 
-            this.cmbLanguageSw.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbLanguageSw.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbLanguageSw.Location = new System.Drawing.Point(1433, 36);
-            this.cmbLanguageSw.Name = "cmbLanguageSw";
-            this.cmbLanguageSw.Size = new System.Drawing.Size(232, 42);
-            this.cmbLanguageSw.TabIndex = 37;
-            this.cmbLanguageSw.SelectedIndexChanged += new System.EventHandler(this.cmbLanguageSw_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -186,6 +154,16 @@ namespace TestProj
             this.progressBar1.TabIndex = 2;
             this.progressBar1.Visible = false;
             // 
+            // kryptonLabel1
+            // 
+            this.kryptonLabel1.Location = new System.Drawing.Point(63, 59);
+            this.kryptonLabel1.Name = "kryptonLabel1";
+            this.kryptonLabel1.Size = new System.Drawing.Size(428, 128);
+            this.kryptonLabel1.StateCommon.ShortText.Font = new System.Drawing.Font("DengXian", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.kryptonLabel1.TabIndex = 39;
+            this.kryptonLabel1.Values.Image = ((System.Drawing.Image)(resources.GetObject("kryptonLabel1.Values.Image")));
+            this.kryptonLabel1.Values.Text = "中源技术";
+            // 
             // UserControl1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(18F, 45F);
@@ -200,8 +178,6 @@ namespace TestProj
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).EndInit();
             this.kryptonPanel1.ResumeLayout(false);
             this.kryptonPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbLanguageSw)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
@@ -213,8 +189,6 @@ namespace TestProj
         private Krypton.Toolkit.KryptonManager kryptonManager;
         private Krypton.Toolkit.KryptonPanel kryptonPanel1;
         private Krypton.Toolkit.KryptonButton TimeSelectBtn;
-        private Krypton.Toolkit.KryptonLabel lblLanguageSw;
-        private Krypton.Toolkit.KryptonComboBox cmbLanguageSw;
         private Krypton.Toolkit.KryptonLabel label3;
         private Krypton.Toolkit.KryptonComboBox cmbTemplate;
         private Krypton.Toolkit.KryptonButton btnImportExcel;
@@ -222,7 +196,7 @@ namespace TestProj
         private Krypton.Toolkit.KryptonButton btnConfig;
         private Krypton.Toolkit.KryptonButton ExportExcelBtn;
         private Krypton.Toolkit.KryptonDataGridView dataGridView1;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private Krypton.Toolkit.KryptonLabel kryptonLabel1;
     }
 }
