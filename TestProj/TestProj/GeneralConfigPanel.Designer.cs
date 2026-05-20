@@ -50,6 +50,8 @@ namespace TestProj
             this.kryptonLabel1 = new Krypton.Toolkit.KryptonLabel();
             this.kryptonTextBox1 = new Krypton.Toolkit.KryptonTextBox();
             this.kryptonButton1 = new Krypton.Toolkit.KryptonButton();
+            this.kryptonLabel2 = new Krypton.Toolkit.KryptonLabel();
+            this.kryptonTextBox2 = new Krypton.Toolkit.KryptonTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonNavigator1)).BeginInit();
             this.kryptonNavigator1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPage1)).BeginInit();
@@ -463,6 +465,8 @@ namespace TestProj
             // 
             // kryptonGroupBox2.Panel
             // 
+            this.kryptonGroupBox2.Panel.Controls.Add(this.kryptonTextBox2);
+            this.kryptonGroupBox2.Panel.Controls.Add(this.kryptonLabel2);
             this.kryptonGroupBox2.Panel.Controls.Add(this.kryptonButton1);
             this.kryptonGroupBox2.Panel.Controls.Add(this.kryptonTextBox1);
             this.kryptonGroupBox2.Panel.Controls.Add(this.kryptonLabel1);
@@ -493,6 +497,22 @@ namespace TestProj
             this.kryptonButton1.TabIndex = 8;
             this.kryptonButton1.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.kryptonButton1.Values.Text = "...";
+            // 
+            // kryptonLabel2
+            // 
+            this.kryptonLabel2.Location = new System.Drawing.Point(41, 124);
+            this.kryptonLabel2.Name = "kryptonLabel2";
+            this.kryptonLabel2.Size = new System.Drawing.Size(180, 44);
+            this.kryptonLabel2.TabIndex = 9;
+            this.kryptonLabel2.Values.Text = "公司抬头：";
+            // 
+            // kryptonTextBox2
+            // 
+            this.kryptonTextBox2.Location = new System.Drawing.Point(254, 124);
+            this.kryptonTextBox2.Name = "kryptonTextBox2";
+            this.kryptonTextBox2.Size = new System.Drawing.Size(514, 44);
+            this.kryptonTextBox2.TabIndex = 10;
+            this.kryptonTextBox2.Text = "kryptonTextBox2";
             // 
             // GeneralConfigPanel
             // 
@@ -584,6 +604,8 @@ namespace TestProj
         private Krypton.Toolkit.KryptonLabel kryptonLabel1;
         private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox1;
         private Krypton.Toolkit.KryptonButton kryptonButton1;
+        private Krypton.Toolkit.KryptonTextBox kryptonTextBox2;
+        private Krypton.Toolkit.KryptonLabel kryptonLabel2;
 
         // ── Tab 3: Export Settings ────────────────────────────────────────────
     }
