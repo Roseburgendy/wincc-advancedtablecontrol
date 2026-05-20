@@ -41,11 +41,15 @@ namespace TestProj
             this.kryptonPage2 = new Krypton.Navigator.KryptonPage();
             this.pnlGeneralFooter = new Krypton.Toolkit.KryptonPanel();
             this.btnSaveGeneral = new Krypton.Toolkit.KryptonButton();
-            this.tlpGeneral = new System.Windows.Forms.TableLayoutPanel();
-            this.lblLanguage = new Krypton.Toolkit.KryptonLabel();
-            this.cmbLanguage = new Krypton.Toolkit.KryptonComboBox();
-            this.lblTheme = new Krypton.Toolkit.KryptonLabel();
             this.cmbTheme = new Krypton.Toolkit.KryptonThemeComboBox();
+            this.lblTheme = new Krypton.Toolkit.KryptonLabel();
+            this.cmbLanguage = new Krypton.Toolkit.KryptonComboBox();
+            this.lblLanguage = new Krypton.Toolkit.KryptonLabel();
+            this.kryptonGroupBox1 = new Krypton.Toolkit.KryptonGroupBox();
+            this.kryptonGroupBox2 = new Krypton.Toolkit.KryptonGroupBox();
+            this.kryptonLabel1 = new Krypton.Toolkit.KryptonLabel();
+            this.kryptonTextBox1 = new Krypton.Toolkit.KryptonTextBox();
+            this.kryptonButton1 = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonNavigator1)).BeginInit();
             this.kryptonNavigator1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPage1)).BeginInit();
@@ -67,9 +71,16 @@ namespace TestProj
             this.kryptonPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlGeneralFooter)).BeginInit();
             this.pnlGeneralFooter.SuspendLayout();
-            this.tlpGeneral.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbLanguage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbTheme)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbLanguage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox1.Panel)).BeginInit();
+            this.kryptonGroupBox1.Panel.SuspendLayout();
+            this.kryptonGroupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox2.Panel)).BeginInit();
+            this.kryptonGroupBox2.Panel.SuspendLayout();
+            this.kryptonGroupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // kryptonNavigator1
@@ -359,8 +370,9 @@ namespace TestProj
             // kryptonPage2
             // 
             this.kryptonPage2.AutoHiddenSlideSize = new System.Drawing.Size(200, 200);
+            this.kryptonPage2.Controls.Add(this.kryptonGroupBox2);
+            this.kryptonPage2.Controls.Add(this.kryptonGroupBox1);
             this.kryptonPage2.Controls.Add(this.pnlGeneralFooter);
-            this.kryptonPage2.Controls.Add(this.tlpGeneral);
             this.kryptonPage2.Flags = 65534;
             this.kryptonPage2.LastVisibleSet = true;
             this.kryptonPage2.Margin = new System.Windows.Forms.Padding(2);
@@ -392,67 +404,95 @@ namespace TestProj
             this.btnSaveGeneral.Values.Text = "保存";
             this.btnSaveGeneral.Click += new System.EventHandler(this.BtnSaveGeneral_Click);
             // 
-            // tlpGeneral
+            // cmbTheme
             // 
-            this.tlpGeneral.BackColor = System.Drawing.Color.Transparent;
-            this.tlpGeneral.ColumnCount = 2;
-            this.tlpGeneral.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 328F));
-            this.tlpGeneral.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpGeneral.Controls.Add(this.lblLanguage, 0, 0);
-            this.tlpGeneral.Controls.Add(this.cmbLanguage, 1, 0);
-            this.tlpGeneral.Controls.Add(this.lblTheme, 0, 1);
-            this.tlpGeneral.Controls.Add(this.cmbTheme, 1, 1);
-            this.tlpGeneral.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpGeneral.Location = new System.Drawing.Point(0, 0);
-            this.tlpGeneral.Margin = new System.Windows.Forms.Padding(2);
-            this.tlpGeneral.Name = "tlpGeneral";
-            this.tlpGeneral.Padding = new System.Windows.Forms.Padding(17, 16, 17, 6);
-            this.tlpGeneral.RowCount = 2;
-            this.tlpGeneral.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 143F));
-            this.tlpGeneral.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 412F));
-            this.tlpGeneral.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 13F));
-            this.tlpGeneral.Size = new System.Drawing.Size(1670, 940);
-            this.tlpGeneral.TabIndex = 0;
-            // 
-            // lblLanguage
-            // 
-            this.lblLanguage.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lblLanguage.Location = new System.Drawing.Point(19, 66);
-            this.lblLanguage.Margin = new System.Windows.Forms.Padding(2);
-            this.lblLanguage.Name = "lblLanguage";
-            this.lblLanguage.Size = new System.Drawing.Size(161, 42);
-            this.lblLanguage.TabIndex = 2;
-            this.lblLanguage.Values.Text = "显示语言：";
-            // 
-            // cmbLanguage
-            // 
-            this.cmbLanguage.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.cmbLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbLanguage.Location = new System.Drawing.Point(347, 66);
-            this.cmbLanguage.Margin = new System.Windows.Forms.Padding(2);
-            this.cmbLanguage.Name = "cmbLanguage";
-            this.cmbLanguage.Size = new System.Drawing.Size(450, 42);
-            this.cmbLanguage.TabIndex = 3;
+            this.cmbTheme.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cmbTheme.DefaultPalette = Krypton.Toolkit.PaletteMode.Microsoft365Blue;
+            this.cmbTheme.Location = new System.Drawing.Point(207, 136);
+            this.cmbTheme.Margin = new System.Windows.Forms.Padding(2);
+            this.cmbTheme.Name = "cmbTheme";
+            this.cmbTheme.Size = new System.Drawing.Size(450, 42);
+            this.cmbTheme.TabIndex = 5;
             // 
             // lblTheme
             // 
             this.lblTheme.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lblTheme.Location = new System.Drawing.Point(19, 525);
+            this.lblTheme.Location = new System.Drawing.Point(27, 136);
             this.lblTheme.Margin = new System.Windows.Forms.Padding(2);
             this.lblTheme.Name = "lblTheme";
             this.lblTheme.Size = new System.Drawing.Size(161, 42);
             this.lblTheme.TabIndex = 4;
             this.lblTheme.Values.Text = "界面主题：";
             // 
-            // cmbTheme
+            // cmbLanguage
             // 
-            this.cmbTheme.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.cmbTheme.DefaultPalette = Krypton.Toolkit.PaletteMode.Microsoft365Blue;
-            this.cmbTheme.Location = new System.Drawing.Point(347, 525);
-            this.cmbTheme.Margin = new System.Windows.Forms.Padding(2);
-            this.cmbTheme.Name = "cmbTheme";
-            this.cmbTheme.Size = new System.Drawing.Size(450, 42);
-            this.cmbTheme.TabIndex = 5;
+            this.cmbLanguage.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cmbLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbLanguage.Location = new System.Drawing.Point(207, 50);
+            this.cmbLanguage.Margin = new System.Windows.Forms.Padding(2);
+            this.cmbLanguage.Name = "cmbLanguage";
+            this.cmbLanguage.Size = new System.Drawing.Size(450, 42);
+            this.cmbLanguage.TabIndex = 3;
+            // 
+            // lblLanguage
+            // 
+            this.lblLanguage.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblLanguage.Location = new System.Drawing.Point(27, 50);
+            this.lblLanguage.Margin = new System.Windows.Forms.Padding(2);
+            this.lblLanguage.Name = "lblLanguage";
+            this.lblLanguage.Size = new System.Drawing.Size(161, 42);
+            this.lblLanguage.TabIndex = 2;
+            this.lblLanguage.Values.Text = "显示语言：";
+            // 
+            // kryptonGroupBox1
+            // 
+            this.kryptonGroupBox1.Location = new System.Drawing.Point(19, 23);
+            // 
+            // kryptonGroupBox1.Panel
+            // 
+            this.kryptonGroupBox1.Panel.Controls.Add(this.cmbLanguage);
+            this.kryptonGroupBox1.Panel.Controls.Add(this.cmbTheme);
+            this.kryptonGroupBox1.Panel.Controls.Add(this.lblTheme);
+            this.kryptonGroupBox1.Panel.Controls.Add(this.lblLanguage);
+            this.kryptonGroupBox1.Size = new System.Drawing.Size(1642, 352);
+            this.kryptonGroupBox1.TabIndex = 6;
+            // 
+            // kryptonGroupBox2
+            // 
+            this.kryptonGroupBox2.Location = new System.Drawing.Point(17, 383);
+            // 
+            // kryptonGroupBox2.Panel
+            // 
+            this.kryptonGroupBox2.Panel.Controls.Add(this.kryptonButton1);
+            this.kryptonGroupBox2.Panel.Controls.Add(this.kryptonTextBox1);
+            this.kryptonGroupBox2.Panel.Controls.Add(this.kryptonLabel1);
+            this.kryptonGroupBox2.Size = new System.Drawing.Size(1642, 375);
+            this.kryptonGroupBox2.TabIndex = 7;
+            // 
+            // kryptonLabel1
+            // 
+            this.kryptonLabel1.Location = new System.Drawing.Point(29, 42);
+            this.kryptonLabel1.Name = "kryptonLabel1";
+            this.kryptonLabel1.Size = new System.Drawing.Size(219, 42);
+            this.kryptonLabel1.TabIndex = 6;
+            this.kryptonLabel1.Values.Text = "配置文件路径：";
+            // 
+            // kryptonTextBox1
+            // 
+            this.kryptonTextBox1.Location = new System.Drawing.Point(254, 40);
+            this.kryptonTextBox1.Name = "kryptonTextBox1";
+            this.kryptonTextBox1.Size = new System.Drawing.Size(599, 44);
+            this.kryptonTextBox1.TabIndex = 7;
+            this.kryptonTextBox1.Text = "kryptonTextBox1";
+            // 
+            // kryptonButton1
+            // 
+            this.kryptonButton1.Location = new System.Drawing.Point(890, 41);
+            this.kryptonButton1.Name = "kryptonButton1";
+            this.kryptonButton1.Size = new System.Drawing.Size(116, 42);
+            this.kryptonButton1.TabIndex = 8;
+            this.kryptonButton1.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.kryptonButton1.Values.Text = "...";
             // 
             // GeneralConfigPanel
             // 
@@ -488,10 +528,18 @@ namespace TestProj
             this.kryptonPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnlGeneralFooter)).EndInit();
             this.pnlGeneralFooter.ResumeLayout(false);
-            this.tlpGeneral.ResumeLayout(false);
-            this.tlpGeneral.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbLanguage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbTheme)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbLanguage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox1.Panel)).EndInit();
+            this.kryptonGroupBox1.Panel.ResumeLayout(false);
+            this.kryptonGroupBox1.Panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox1)).EndInit();
+            this.kryptonGroupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox2.Panel)).EndInit();
+            this.kryptonGroupBox2.Panel.ResumeLayout(false);
+            this.kryptonGroupBox2.Panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox2)).EndInit();
+            this.kryptonGroupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -525,15 +573,17 @@ namespace TestProj
         private Krypton.Toolkit.KryptonTextBox txtTagSummary;
         private Krypton.Toolkit.KryptonButton btnSelectTags;
         private Krypton.Toolkit.KryptonButton btnConfigTag;
-
-        // ── Tab 2: General Settings ───────────────────────────────────────────
-        private System.Windows.Forms.TableLayoutPanel tlpGeneral;
-        private Krypton.Toolkit.KryptonLabel lblLanguage;
-        private Krypton.Toolkit.KryptonComboBox cmbLanguage;
-        private Krypton.Toolkit.KryptonLabel lblTheme;
-        private Krypton.Toolkit.KryptonThemeComboBox cmbTheme;
         private Krypton.Toolkit.KryptonPanel pnlGeneralFooter;
         private Krypton.Toolkit.KryptonButton btnSaveGeneral;
+        private Krypton.Toolkit.KryptonThemeComboBox cmbTheme;
+        private Krypton.Toolkit.KryptonLabel lblTheme;
+        private Krypton.Toolkit.KryptonLabel lblLanguage;
+        private Krypton.Toolkit.KryptonComboBox cmbLanguage;
+        private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox2;
+        private Krypton.Toolkit.KryptonTextBox kryptonTextBox1;
+        private Krypton.Toolkit.KryptonLabel kryptonLabel1;
+        private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox1;
+        private Krypton.Toolkit.KryptonButton kryptonButton1;
 
         // ── Tab 3: Export Settings ────────────────────────────────────────────
     }

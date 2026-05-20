@@ -101,7 +101,7 @@ namespace TestProj
             ExportExcelBtn.Values.Image = IconManager.Make(IconChar.FileExcel,    mode, 40);
         }
 
-        // ── 显示名称辅助 ─────────────────────────────────────────────────────
+        // 显示名称辅助
 
         /// <summary>根据当前语言返回变量的显示名称</summary>
         private string GetDisplayName(TagMeta meta)
@@ -264,7 +264,7 @@ namespace TestProj
                 ConfigManager.Config.TagMeta,
                 kryptonManager,
                 mode => ApplyIcons(mode),                          // 主题切换时实时刷新工具栏图标
-                () => { LoadSavedLanguage(); ApplyLanguage(); }))  // 语言切换时实时刷新主界面
+                () => ApplyLanguage()))                            // 语言切换时实时刷新主界面
             {
                 panel.ShowDialog();
             }
@@ -669,13 +669,17 @@ namespace TestProj
 
         #region 打印功能
 
-        private DataTable _printData;
-        private float[]   _printColWidths;
+        private DataTable       _printData;
+        private float[]         _printColWidths;
         private List<List<int>> _printColGroups;
-        private int    _printCurrentGroup;
-        private int    _printCurrentRow;
-        private string _printTitle;
-        private bool   _printLayoutReady;
+        private int             _printCurrentGroup;
+        private int             _printCurrentRow;
+        private string          _printTitle;
+        private string          _printSubtitle;   // 公司名 / 抬头
+        private bool            _printLayoutReady;
+        private int             _currentPage;
+        private int             _totalPages;
+        private DateTime        _printTime;
 
         public void PrintBtn_Click(object sender, EventArgs e)
         {
@@ -686,15 +690,19 @@ namespace TestProj
                 return;
             }
 
-            _printTitle = _currentTemplate?.DisplayName ?? "数据报表";
+            _printTitle    = _currentTemplate?.DisplayName ?? "数据报表";
+            _printSubtitle = ConfigManager.Config?.CompanyName ?? "";
+            _printTime     = DateTime.Now;
+            _currentPage   = 0;
+            _totalPages    = 0;
 
             var doc = new PrintDocument();
 
             using (var setup = new PageSetupDialog
             {
-                PageSettings   = doc.DefaultPageSettings,
+                PageSettings     = doc.DefaultPageSettings,
                 AllowOrientation = true,
-                AllowMargins   = true
+                AllowMargins     = true
             })
             {
                 if (setup.ShowDialog() != DialogResult.OK) return;
@@ -707,6 +715,7 @@ namespace TestProj
                 _printCurrentGroup = 0;
                 _printColGroups    = null;
                 _printLayoutReady  = false;
+                _currentPage       = 0;
             };
             doc.PrintPage += PrintDoc_PrintPage;
 
@@ -723,15 +732,20 @@ namespace TestProj
             var g      = e.Graphics;
             var bounds = e.MarginBounds;
 
-            using (var titleFont  = new Font("Arial", 14f, FontStyle.Bold))
-            using (var headerFont = new Font("Arial",  9f, FontStyle.Bold))
-            using (var dataFont   = new Font("Arial",  8f))
+            using (var titleFont    = new Font("Arial", 14f, FontStyle.Bold))
+            using (var subtitleFont = new Font("Arial", 10f, FontStyle.Regular))
+            using (var headerFont   = new Font("Arial",  9f, FontStyle.Bold))
+            using (var dataFont     = new Font("Arial",  8f))
+            using (var footerFont   = new Font("Arial",  8f, FontStyle.Italic))
             {
                 if (!_printLayoutReady)
                 {
                     BuildPrintLayout(g, bounds.Width, headerFont, dataFont);
+                    _totalPages       = CalculateTotalPages(g, bounds, titleFont, subtitleFont, headerFont, dataFont, footerFont);
                     _printLayoutReady = true;
                 }
+
+                _currentPage++;
 
                 var   colIndices = _printColGroups[_printCurrentGroup];
                 float groupW     = colIndices.Sum(c => _printColWidths[c]);
@@ -740,31 +754,32 @@ namespace TestProj
 
                 float x0         = bounds.Left;
                 float y          = bounds.Top;
-                float pageBottom = bounds.Bottom;
-                float titleH     = titleFont.GetHeight(g)  + 6f;
-                float hdrH       = headerFont.GetHeight(g) + 6f;
-                float rowH       = dataFont.GetHeight(g)   + 4f;
+                float titleH     = titleFont.GetHeight(g)    + 6f;
+                float subH       = subtitleFont.GetHeight(g) + 4f;
+                float hdrH       = headerFont.GetHeight(g)   + 6f;
+                float rowH       = dataFont.GetHeight(g)     + 4f;
+                float footH      = footerFont.GetHeight(g)   + 4f;
+                float pageBottom = bounds.Bottom - footH - 2f;   // 留出页脚空间
 
-                // ── 标题（每组列的首页显示一次） ──
-                if (_printCurrentRow == 0)
+                // ── 报表标题 + 抬头（每页都有）──
+                using (var sf = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center })
                 {
-                    using (var sf = new StringFormat
+                    g.DrawString(_printTitle, titleFont, Brushes.Black,
+                        new RectangleF(x0, y, bounds.Width, titleH), sf);
+                    y += titleH;
+
+                    if (!string.IsNullOrWhiteSpace(_printSubtitle))
                     {
-                        Alignment     = StringAlignment.Center,
-                        LineAlignment = StringAlignment.Center
-                    })
-                        g.DrawString(_printTitle, titleFont, Brushes.Black,
-                            new RectangleF(x0, y, bounds.Width, titleH), sf);
-                    y += titleH + 6f;
+                        g.DrawString(_printSubtitle, subtitleFont, Brushes.DimGray,
+                            new RectangleF(x0, y, bounds.Width, subH), sf);
+                        y += subH;
+                    }
                 }
+                y += 6f;
 
                 // ── 列标题：第1行 TagName，第2行 DisplayName（灰底加粗居中）──
                 float hx;
-                using (var sf = new StringFormat
-                {
-                    Alignment     = StringAlignment.Center,
-                    LineAlignment = StringAlignment.Center
-                })
+                using (var sf = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center })
                 {
                     // 第1行 — TagName
                     hx = x0;
@@ -815,23 +830,18 @@ namespace TestProj
                         string txt     = val == DBNull.Value ? "" : val.ToString();
 
                         if (colName == "Timestamp" && val is DateTime dt)
-                        {
                             txt = dt.ToString("yyyy-MM-dd HH:mm:ss");
-                        }
                         else if (val != DBNull.Value && double.TryParse(txt, out double dval))
-                        {
-                            var meta = FindMetaByColName(colName);
-                            txt = dval.ToString("F" + (meta?.DecimalPlaces ?? 2));
-                        }
+                            txt = dval.ToString("F" + (FindMetaByColName(colName)?.DecimalPlaces ?? 2));
 
                         var rect = new RectangleF(hx, y, scaledW[i], rowH);
                         if (alt) g.FillRectangle(Brushes.WhiteSmoke, rect);
                         g.DrawRectangle(Pens.Gray, rect.X, rect.Y, rect.Width, rect.Height);
                         using (var sf = new StringFormat
                         {
-                            Alignment     = StringAlignment.Center,
+                            Alignment   = StringAlignment.Center,
                             LineAlignment = StringAlignment.Center,
-                            FormatFlags   = StringFormatFlags.NoWrap
+                            FormatFlags = StringFormatFlags.NoWrap
                         })
                             g.DrawString(txt, dataFont, Brushes.Black, rect, sf);
                         hx += scaledW[i];
@@ -841,14 +851,27 @@ namespace TestProj
                     alt = !alt;
                 }
 
+                // ── 页脚：页码居中，导出时间右对齐 ──
+                float footY = bounds.Bottom - footH;
+                string pageStr  = $"{_currentPage} / {_totalPages}";
+                string timeStr  = _printTime.ToString("yyyy-MM-dd HH:mm:ss");
+
+                using (var sfCenter = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center })
+                using (var sfRight  = new StringFormat { Alignment = StringAlignment.Far,    LineAlignment = StringAlignment.Center })
+                {
+                    var footRect = new RectangleF(x0, footY, bounds.Width, footH);
+                    g.DrawString(pageStr, footerFont, Brushes.Gray, footRect, sfCenter);
+                    g.DrawString(timeStr, footerFont, Brushes.Gray, footRect, sfRight);
+                }
+
                 // ── 分页判断 ──
                 if (_printCurrentRow < _printData.Rows.Count)
                 {
-                    e.HasMorePages = true;  // 当前列组还有剩余行，继续下一页
+                    e.HasMorePages = true;
                 }
                 else if (_printCurrentGroup < _printColGroups.Count - 1)
                 {
-                    _printCurrentGroup++;   // 列超宽，切换到下一列组
+                    _printCurrentGroup++;
                     _printCurrentRow = 0;
                     e.HasMorePages   = true;
                 }
@@ -857,6 +880,34 @@ namespace TestProj
                     e.HasMorePages = false;
                 }
             }
+        }
+
+        /// <summary>预算总页数，用于显示"X / N"页码。</summary>
+        private int CalculateTotalPages(Graphics g, RectangleF bounds,
+            Font titleFont, Font subtitleFont, Font headerFont, Font dataFont, Font footerFont)
+        {
+            float titleH  = titleFont.GetHeight(g)    + 6f;
+            float subH    = string.IsNullOrWhiteSpace(_printSubtitle) ? 0f : subtitleFont.GetHeight(g) + 4f;
+            float hdrH    = headerFont.GetHeight(g)   + 6f;
+            float rowH    = dataFont.GetHeight(g)     + 4f;
+            float footH   = footerFont.GetHeight(g)   + 4f + 2f;
+            float usable  = bounds.Height - footH;
+
+            // 每页都有标题+抬头，可用行数一致
+            float headerArea = titleH + subH + 6f + 2 * hdrH;
+            int   rowsPerPage = Math.Max(1, (int)Math.Floor((usable - headerArea) / rowH));
+
+            int total     = 0;
+            int remaining = _printData.Rows.Count;
+
+            foreach (var group in _printColGroups)
+            {
+                int r = remaining;
+                if (r <= 0) { total++; continue; }
+                while (r > 0) { r -= rowsPerPage; total++; }
+            }
+
+            return Math.Max(1, total);
         }
 
         private void BuildPrintLayout(Graphics g, float printableWidth, Font headerFont, Font dataFont)
@@ -908,17 +959,29 @@ namespace TestProj
                 _printColWidths[c] = Math.Max(w, 60f);
             }
 
-            // 按可打印宽度分组，超宽则强制新建一组（新页）
+            // 找 Timestamp 列（每个列组都要含它）
+            int tsColIdx = -1;
+            for (int c = 0; c < colCount; c++)
+                if (_printData.Columns[c].ColumnName == "Timestamp") { tsColIdx = c; break; }
+            float tsW = tsColIdx >= 0 ? _printColWidths[tsColIdx] : 0f;
+
+            // 按可打印宽度分组；第2组起自动预留 Timestamp 列宽
             _printColGroups = new List<List<int>>();
-            var   group = new List<int>();
-            float gw    = 0f;
+            var   group     = new List<int>();
+            float gw        = 0f;
+            bool  firstGroup = true;
+
             for (int c = 0; c < colCount; c++)
             {
-                if (group.Count > 0 && gw + _printColWidths[c] > printableWidth)
+                if (c == tsColIdx && !firstGroup) continue;  // 非首组中跳过 Timestamp（稍后插到头部）
+
+                float reserved = firstGroup ? 0f : tsW;      // 非首组要为 Timestamp 预留宽度
+                if (group.Count > 0 && gw + _printColWidths[c] > printableWidth - reserved)
                 {
                     _printColGroups.Add(group);
-                    group = new List<int>();
-                    gw    = 0f;
+                    group      = new List<int> { tsColIdx };  // 新组从 Timestamp 列开始
+                    gw         = tsW;
+                    firstGroup = false;
                 }
                 group.Add(c);
                 gw += _printColWidths[c];

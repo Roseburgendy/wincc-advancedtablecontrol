@@ -330,6 +330,8 @@ namespace TestProj
         {
             var cfg = ConfigManager.Config;
 
+            kryptonTextBox1.Text = cfg?.CompanyName ?? "";
+
             string lang = cfg?.Language ?? "zh-CN";
             cmbLanguage.SelectedIndex = lang == "en-US" ? 1 : 0;
 
@@ -359,6 +361,7 @@ namespace TestProj
         private void BtnSaveGeneral_Click(object sender, EventArgs e)
         {
             if (ConfigManager.Config == null) return;
+            ConfigManager.Config.CompanyName = kryptonTextBox1.Text.Trim();
             ConfigManager.Config.Language    = cmbLanguage.SelectedIndex == 1 ? "en-US" : "zh-CN";
             ConfigManager.Config.Theme       = cmbTheme.DefaultPalette.ToString();
             ConfigManager.SaveConfig();
