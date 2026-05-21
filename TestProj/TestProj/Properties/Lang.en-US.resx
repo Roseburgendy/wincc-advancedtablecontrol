@@ -198,9 +198,6 @@
   <data name="GCP_BtnConfigVars" xml:space="preserve">
     <value>Tag Config…</value>
   </data>
-  <data name="GCP_LblCompany" xml:space="preserve">
-    <value>Company Name:</value>
-  </data>
   <data name="GCP_LblLanguage" xml:space="preserve">
     <value>Display Language:</value>
   </data>
@@ -401,5 +398,17 @@
   </data>
   <data name="EIC_BtnCancel" xml:space="preserve">
     <value>Cancel</value>
+  </data>
+  <data name="GCP_LblCompanyName" xml:space="preserve">
+    <value>CompanyName:</value>
+  </data>
+  <data name="GCP_LblConfigPath" xml:space="preserve">
+    <value>Config File Path:</value>
+  </data>
+  <data name="GCP_BrowseConfigTitle" xml:space="preserve">
+    <value>Select Config File Location</value>
+  </data>
+  <data name="GCP_ConfigPathError" xml:space="preserve">
+    <value>Failed to relocate config file: {0}</value>
   </data>
 </root>

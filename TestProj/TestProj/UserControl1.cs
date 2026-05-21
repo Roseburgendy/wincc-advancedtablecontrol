@@ -60,6 +60,7 @@ namespace TestProj
                 cmbTemplate.SelectedIndex = 0;
         }
 
+        #region theme related
         // 启动时将保存的主题还原
         private void LoadSavedTheme()
         {
@@ -101,67 +102,9 @@ namespace TestProj
             ExportExcelBtn.Values.Image = IconManager.Make(IconChar.FileExcel,    mode, 40);
         }
 
-        // 显示名称辅助
-
-        /// <summary>根据当前语言返回变量的显示名称</summary>
-        private string GetDisplayName(TagMeta meta)
-        {
-            if (meta == null) return null;
-            bool useEn = ConfigManager.Config?.Language == "en-US";
-            if (useEn && !string.IsNullOrWhiteSpace(meta.DisplayNameEn))
-                return meta.DisplayNameEn;
-            return !string.IsNullOrWhiteSpace(meta.DisplayName) ? meta.DisplayName : meta.TagName;
-        }
-
-        /// <summary>通过列名（中文/英文/TagName）查找对应 TagMeta</summary>
-        private TagMeta FindMetaByColName(string colName)
-        {
-            return _tagMetaList.FirstOrDefault(t =>
-                t.DisplayName   == colName ||
-                t.DisplayNameEn == colName ||
-                t.TagName       == colName);
-        }
-
-        private void TimeSelectBtn_Click(object sender, EventArgs e)
-        {
-            if (_currentTemplate == null)
-            {
-                MessageBox.Show("请先选择报表模板", "提示");
-                return;
-            }
-
-            var sortedEntries = _currentTemplate.SelectedTags
-                .OrderBy(entry => entry.Order)
-                .ToList();
-
-            if (sortedEntries.Count == 0)
-            {
-                MessageBox.Show("当前模板没有配置变量", "提示",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            using (var panel = new TimeRangeSelectorPanel())
-            {
-                // 必须在 ShowDialog 之前订阅，否则事件永远不触发
-                panel.Applied += async (start, end, mode, timeStep) =>
-                {
-                    var startUTC = start.ToUniversalTime();
-                    var endUTC   = end.ToUniversalTime();
-
-                    switch (mode)
-                    {
-                        case 2: // 测量点数量：从 start 取前 N 条原始点
-                            await RunQueryByCountAsync(sortedEntries, startUTC, panel.SelectedCount);
-                            break;
-                        default: // 0-时间范围 / 1-开始到结束 / 3-自定义聚类
-                            await RunQueryAsync(sortedEntries, startUTC, endUTC, timeStep);
-                            break;
-                    }
-                };
-                panel.ShowDialog();
-            }
-        }
+        #endregion
+        
+        #region Query Function
 
         /// <summary>显示/隐藏进度条并切换查询按钮的可用状态。</summary>
         private void SetQueryRunning(bool running)
@@ -254,6 +197,172 @@ namespace TestProj
             }
         }
 
+        #endregion
+
+        #region Panel Control Functions
+        /// <summary>
+        /// 时间选择按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TimeSelectBtn_Click(object sender, EventArgs e)
+        {
+            if (_currentTemplate == null)
+            {
+                MessageBox.Show("请先选择报表模板", "提示");
+                return;
+            }
+
+            var sortedEntries = _currentTemplate.SelectedTags
+                .OrderBy(entry => entry.Order)
+                .ToList();
+
+            if (sortedEntries.Count == 0)
+            {
+                MessageBox.Show("当前模板没有配置变量", "提示",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            using (var panel = new TimeRangeSelectorPanel())
+            {
+                // 必须在 ShowDialog 之前订阅，否则事件永远不触发
+                panel.Applied += async (start, end, mode, timeStep) =>
+                {
+                    var startUTC = start.ToUniversalTime();
+                    var endUTC = end.ToUniversalTime();
+
+                    switch (mode)
+                    {
+                        case 2: // 测量点数量：从 start 取前 N 条原始点
+                            await RunQueryByCountAsync(sortedEntries, startUTC, panel.SelectedCount);
+                            break;
+                        default: // 0-时间范围 / 1-开始到结束 / 3-自定义聚类
+                            await RunQueryAsync(sortedEntries, startUTC, endUTC, timeStep);
+                            break;
+                    }
+                };
+                panel.ShowDialog();
+            }
+        }
+
+        /// <summary>
+        /// 批量导入Excel报表模板
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnImportFromExcel_Click(object sender, EventArgs e)
+        {
+
+            using (var dlg = new OpenFileDialog())
+            {
+                dlg.Filter = "Excel 文件|*.xlsx";
+                dlg.Title = "选择变量别名表";
+                if (dlg.ShowDialog() != DialogResult.OK) return;
+
+                int dataStartRow, tagNameCol, displayNameCol, displayNameEnCol;
+
+                using (var cfg = new ExcelImportConfigForm())
+                {
+                    if (cfg.ShowDialog() != DialogResult.OK) return;
+                    dataStartRow = cfg.DataStartRow;
+                    tagNameCol = cfg.TagNameCol;
+                    displayNameCol = cfg.DisplayNameCol;
+                    displayNameEnCol = cfg.DisplayNameEnCol; // 0 = 不使用
+                }
+
+                try
+                {
+                    int updatedTags = 0;
+                    int importedTemplates = 0;
+
+                    using (var package = new ExcelPackage(new FileInfo(dlg.FileName)))
+                    {
+                        foreach (var sheet in package.Workbook.Worksheets)
+                        {
+                            if (sheet.Dimension == null) continue;
+                            int rowCount = sheet.Dimension.End.Row;
+                            var selectedTags = new List<TemplateTagEntry>();
+
+                            for (int row = dataStartRow; row <= rowCount; row++)
+                            {
+                                string tagName = sheet.Cells[row, tagNameCol].Text?.Trim();
+                                string displayName = sheet.Cells[row, displayNameCol].Text?.Trim();
+                                string displayNameEn = displayNameEnCol > 0
+                                    ? sheet.Cells[row, displayNameEnCol].Text?.Trim()
+                                    : null;
+                                if (string.IsNullOrEmpty(tagName)) continue;
+
+                                // 更新 TagMeta DisplayName / DisplayNameEn
+                                var meta = ConfigManager.Config.TagMeta
+                                    .FirstOrDefault(m =>
+                                    {
+                                        string shortName = m.TagName.Contains("\\")
+                                            ? m.TagName.Split('\\')[1] : m.TagName;
+                                        return shortName == tagName;
+                                    });
+
+                                if (meta != null)
+                                {
+                                    if (!string.IsNullOrEmpty(displayName))
+                                    {
+                                        meta.DisplayName = displayName;
+                                        updatedTags++;
+                                    }
+                                    if (!string.IsNullOrEmpty(displayNameEn))
+                                        meta.DisplayNameEn = displayNameEn;
+                                }
+
+                                if (meta == null || meta.ValueID == 0) continue;
+                                selectedTags.Add(new TemplateTagEntry
+                                {
+                                    ValueID = meta.ValueID,
+                                    Order = selectedTags.Count + 1
+                                });
+                            }
+
+                            if (selectedTags.Count == 0) continue;
+                            if (ConfigManager.Config.Template == null)
+                                ConfigManager.Config.Template = new List<ReportTemplate>();
+
+                            // 写入 Template：同名则更新，否则新增
+                            var existing = ConfigManager.Config.Template
+                                .FirstOrDefault(t => t.DisplayName == sheet.Name);
+
+                            // 写入template selected tags
+                            if (existing != null)
+                            {
+                                existing.SelectedTags = selectedTags;
+                            }
+                            else
+                            {
+                                ConfigManager.Config.Template.Add(new ReportTemplate
+                                {
+                                    Id = "tpl_" + DateTime.Now.Ticks + importedTemplates,
+                                    DisplayName = sheet.Name,
+                                    Description = "",
+                                    SelectedTags = selectedTags
+                                });
+                            }
+
+                            importedTemplates++;
+                        }
+                    }
+
+                    ConfigManager.SaveConfig();
+                    MessageBox.Show(
+                        $"导入完成：{importedTemplates} 个模板，更新 {updatedTags} 个变量别名。",
+                        "成功");
+
+                    InitializeTemplateList();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"导入失败: {ex.Message}", "错误");
+                }
+            }
+        }
+
         /// <summary>
         /// 配置按钮点击事件 — 打开综合配置面板（模板 / 通用设置 / 导出设置）
         /// </summary>
@@ -286,8 +395,105 @@ namespace TestProj
             ApplyIcons(kryptonManager.GlobalPaletteMode);
         }
 
+        /// <summary>
+        /// 打印按钮事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void PrintBtn_Click(object sender, EventArgs e)
+        {
+            _printData = dataGridView1.DataSource as DataTable;
+            if (_printData == null || _printData.Rows.Count == 0)
+            {
+                MessageBox.Show("请先查询数据", "提示");
+                return;
+            }
+
+            _printTitle = _currentTemplate?.DisplayName ?? "数据报表";
+            _printSubtitle = ConfigManager.Config?.CompanyName ?? "";
+            _printTime = DateTime.Now;
+            _currentPage = 0;
+            _totalPages = 0;
+
+            var doc = new PrintDocument();
+
+            using (var setup = new PageSetupDialog
+            {
+                PageSettings = doc.DefaultPageSettings,
+                AllowOrientation = true,
+                AllowMargins = true
+            })
+            {
+                if (setup.ShowDialog() != DialogResult.OK) return;
+                doc.DefaultPageSettings = setup.PageSettings;
+            }
+
+            doc.BeginPrint += (s, ev) =>
+            {
+                _printCurrentRow = 0;
+                _printCurrentGroup = 0;
+                _printColGroups = null;
+                _printLayoutReady = false;
+                _currentPage = 0;
+            };
+            doc.PrintPage += PrintDoc_PrintPage;
+
+            using (var preview = new PrintPreviewDialog
+            {
+                Document = doc,
+                WindowState = FormWindowState.Maximized
+            })
+                preview.ShowDialog();
+        }
+
+        /// <summary>
+        /// 导出excel按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ExportExcelBtn_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.DataSource == null)
+            {
+                MessageBox.Show("请先查询数据", "提示");
+                return;
+            }
+
+            using (var dlg = new SaveFileDialog())
+            {
+                dlg.Filter = "Excel 文件|*.xlsx";
+                string reportTitle = _currentTemplate?.DisplayName
+                             ?? ConfigManager.Config?.CompanyName
+                             ?? "报表";
+
+                // 如果已配置默认导出路径则预填
+                string exportPath = ConfigManager.Config?.ExportPath;
+                if (!string.IsNullOrWhiteSpace(exportPath)
+                    && System.IO.Directory.Exists(exportPath))
+                    dlg.InitialDirectory = exportPath;
+
+                dlg.FileName = $"{reportTitle}_{DateTime.Now:yyyyMMdd_HHmmss}";
+                if (dlg.ShowDialog() != DialogResult.OK) return;
+
+                ExportToExcel(dlg.FileName);
+                MessageBox.Show("导出成功", "提示");
+            }
+        }
+
+        /// <summary>
+        /// 模板选择按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CmbTemplate_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _currentTemplate = cmbTemplate.SelectedItem as ReportTemplate;
+        }
+        
+        #endregion
 
         #region Utils
+
         private void CleanUnusedColumns(DataTable table, IEnumerable<string> cols)
         {
             foreach (var col in cols)
@@ -326,25 +532,6 @@ namespace TestProj
 
             dataGridView1.CellFormatting -= DataGridView1_CellFormatting;
             dataGridView1.CellFormatting += DataGridView1_CellFormatting;
-        }
-
-        /// <summary>取 TagName 最后一段（去掉 / 或 \ 前的路径前缀）。</summary>
-        private static string ShortTagName(TagMeta meta, string fallback = "")
-        {
-            string full = meta?.TagName;
-            if (string.IsNullOrWhiteSpace(full)) return fallback;
-            return full.Split('/', '\\').Last();
-        }
-
-        /// <summary>生成 DGV 列头文字：短 TagName 换行 DisplayName（当前语言）。
-        /// 若两者相同则只显示一行。</summary>
-        private string BuildTagHeader(TagMeta meta, string fallback)
-        {
-            if (meta == null) return fallback;
-            string tag  = ShortTagName(meta, fallback);
-            string disp = GetDisplayName(meta) ?? fallback;
-            return (string.IsNullOrWhiteSpace(disp) || disp == tag)
-                   ? tag : tag + "\n" + disp;
         }
 
         private void DataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -408,37 +595,47 @@ namespace TestProj
         }
 
 
+        /// <summary>取 TagName 最后一段（去掉 / 或 \ 前的路径前缀）。</summary>
+        private static string ShortTagName(TagMeta meta, string fallback = "")
+        {
+            string full = meta?.TagName;
+            if (string.IsNullOrWhiteSpace(full)) return fallback;
+            return full.Split('/', '\\').Last();
+        }
+        /// <summary>生成 DGV 列头文字：短 TagName 换行 DisplayName（当前语言）。
+        /// 若两者相同则只显示一行。</summary>
+        private string BuildTagHeader(TagMeta meta, string fallback)
+        {
+            if (meta == null) return fallback;
+            string tag = ShortTagName(meta, fallback);
+            string disp = GetDisplayName(meta) ?? fallback;
+            return (string.IsNullOrWhiteSpace(disp) || disp == tag)
+                   ? tag : tag + "\n" + disp;
+        }
+
+        /// <summary>根据当前语言返回变量的显示名称</summary>
+        private string GetDisplayName(TagMeta meta)
+        {
+            if (meta == null) return null;
+            bool useEn = ConfigManager.Config?.Language == "en-US";
+            if (useEn && !string.IsNullOrWhiteSpace(meta.DisplayNameEn))
+                return meta.DisplayNameEn;
+            return !string.IsNullOrWhiteSpace(meta.DisplayName) ? meta.DisplayName : meta.TagName;
+        }
+
+        /// <summary>通过列名（中文/英文/TagName）查找对应 TagMeta</summary>
+        private TagMeta FindMetaByColName(string colName)
+        {
+            return _tagMetaList.FirstOrDefault(t =>
+                t.DisplayName == colName ||
+                t.DisplayNameEn == colName ||
+                t.TagName == colName);
+        }
+
         #endregion
 
         #region 导出相关功能
-        private void ExportExcelBtn_Click(object sender, EventArgs e)
-        {
-            if (dataGridView1.DataSource == null)
-            {
-                MessageBox.Show("请先查询数据", "提示");
-                return;
-            }
 
-            using (var dlg = new SaveFileDialog())
-            {
-                dlg.Filter = "Excel 文件|*.xlsx";
-                string reportTitle = _currentTemplate?.DisplayName
-                             ?? ConfigManager.Config?.CompanyName
-                             ?? "报表";
-
-                // 如果已配置默认导出路径则预填
-                string exportPath = ConfigManager.Config?.ExportPath;
-                if (!string.IsNullOrWhiteSpace(exportPath)
-                    && System.IO.Directory.Exists(exportPath))
-                    dlg.InitialDirectory = exportPath;
-
-                dlg.FileName = $"{reportTitle}_{DateTime.Now:yyyyMMdd_HHmmss}";
-                if (dlg.ShowDialog() != DialogResult.OK) return;
-
-                ExportToExcel(dlg.FileName);
-                MessageBox.Show("导出成功", "提示");
-            }
-        }
         private void ExportToExcel(string filePath)
         {
             var dt = (dataGridView1.DataSource as DataTable);
@@ -550,123 +747,6 @@ namespace TestProj
 
         #endregion
 
-        private void CmbTemplate_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            _currentTemplate = cmbTemplate.SelectedItem as ReportTemplate;
-        }
-
-        private void BtnImportFromExcel_Click(object sender, EventArgs e)
-        {
-           
-            using (var dlg = new OpenFileDialog())
-            {
-                dlg.Filter = "Excel 文件|*.xlsx";
-                dlg.Title = "选择变量别名表";
-                if (dlg.ShowDialog() != DialogResult.OK) return;
-
-                int dataStartRow, tagNameCol, displayNameCol, displayNameEnCol;
-
-                using (var cfg = new ExcelImportConfigForm())
-                {
-                    if (cfg.ShowDialog() != DialogResult.OK) return;
-                    dataStartRow      = cfg.DataStartRow;
-                    tagNameCol        = cfg.TagNameCol;
-                    displayNameCol    = cfg.DisplayNameCol;
-                    displayNameEnCol  = cfg.DisplayNameEnCol; // 0 = 不使用
-                }
-
-                try
-                {
-                    int updatedTags = 0;
-                    int importedTemplates = 0;
-
-                    using (var package = new ExcelPackage(new FileInfo(dlg.FileName)))
-                    {
-                        foreach (var sheet in package.Workbook.Worksheets)
-                        {
-                            if (sheet.Dimension == null) continue;
-                            int rowCount = sheet.Dimension.End.Row;
-                            var selectedTags = new List<TemplateTagEntry>();
-
-                            for (int row = dataStartRow; row <= rowCount; row++)
-                            {
-                                string tagName       = sheet.Cells[row, tagNameCol].Text?.Trim();
-                                string displayName   = sheet.Cells[row, displayNameCol].Text?.Trim();
-                                string displayNameEn = displayNameEnCol > 0
-                                    ? sheet.Cells[row, displayNameEnCol].Text?.Trim()
-                                    : null;
-                                if (string.IsNullOrEmpty(tagName)) continue;
-
-                                // 更新 TagMeta DisplayName / DisplayNameEn
-                                var meta = ConfigManager.Config.TagMeta
-                                    .FirstOrDefault(m =>
-                                    {
-                                        string shortName = m.TagName.Contains("\\")
-                                            ? m.TagName.Split('\\')[1] : m.TagName;
-                                        return shortName == tagName;
-                                    });
-
-                                if (meta != null)
-                                {
-                                    if (!string.IsNullOrEmpty(displayName))
-                                    {
-                                        meta.DisplayName = displayName;
-                                        updatedTags++;
-                                    }
-                                    if (!string.IsNullOrEmpty(displayNameEn))
-                                        meta.DisplayNameEn = displayNameEn;
-                                }
-
-                                if (meta == null || meta.ValueID == 0) continue;
-                                selectedTags.Add(new TemplateTagEntry
-                                {
-                                    ValueID = meta.ValueID,
-                                    Order   = selectedTags.Count + 1
-                                });
-                            }
-
-                            if (selectedTags.Count == 0) continue;
-                            if (ConfigManager.Config.Template == null)
-                                ConfigManager.Config.Template = new List<ReportTemplate>();
-
-                            // 写入 Template：同名则更新，否则新增
-                            var existing = ConfigManager.Config.Template
-                                .FirstOrDefault(t => t.DisplayName == sheet.Name);
-
-                            // 写入template selected tags
-                            if (existing != null)
-                            {
-                                existing.SelectedTags = selectedTags;
-                            }
-                            else
-                            {
-                                ConfigManager.Config.Template.Add(new ReportTemplate
-                                {
-                                    Id = "tpl_" + DateTime.Now.Ticks + importedTemplates,
-                                    DisplayName = sheet.Name,
-                                    Description = "",
-                                    SelectedTags = selectedTags
-                                });
-                            }
-
-                            importedTemplates++;
-                        }
-                    }
-
-                    ConfigManager.SaveConfig();
-                    MessageBox.Show(
-                        $"导入完成：{importedTemplates} 个模板，更新 {updatedTags} 个变量别名。",
-                        "成功");
-
-                    InitializeTemplateList();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"导入失败: {ex.Message}", "错误");
-                }
-            }
-        }
-
         #region 打印功能
 
         private DataTable       _printData;
@@ -681,51 +761,7 @@ namespace TestProj
         private int             _totalPages;
         private DateTime        _printTime;
 
-        public void PrintBtn_Click(object sender, EventArgs e)
-        {
-            _printData = dataGridView1.DataSource as DataTable;
-            if (_printData == null || _printData.Rows.Count == 0)
-            {
-                MessageBox.Show("请先查询数据", "提示");
-                return;
-            }
 
-            _printTitle    = _currentTemplate?.DisplayName ?? "数据报表";
-            _printSubtitle = ConfigManager.Config?.CompanyName ?? "";
-            _printTime     = DateTime.Now;
-            _currentPage   = 0;
-            _totalPages    = 0;
-
-            var doc = new PrintDocument();
-
-            using (var setup = new PageSetupDialog
-            {
-                PageSettings     = doc.DefaultPageSettings,
-                AllowOrientation = true,
-                AllowMargins     = true
-            })
-            {
-                if (setup.ShowDialog() != DialogResult.OK) return;
-                doc.DefaultPageSettings = setup.PageSettings;
-            }
-
-            doc.BeginPrint += (s, ev) =>
-            {
-                _printCurrentRow   = 0;
-                _printCurrentGroup = 0;
-                _printColGroups    = null;
-                _printLayoutReady  = false;
-                _currentPage       = 0;
-            };
-            doc.PrintPage += PrintDoc_PrintPage;
-
-            using (var preview = new PrintPreviewDialog
-            {
-                Document    = doc,
-                WindowState = FormWindowState.Maximized
-            })
-                preview.ShowDialog();
-        }
 
         private void PrintDoc_PrintPage(object sender, PrintPageEventArgs e)
         {
@@ -991,9 +1027,5 @@ namespace TestProj
 
         #endregion
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
     }
 }

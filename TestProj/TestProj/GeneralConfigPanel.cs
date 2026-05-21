@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using FontAwesome.Sharp;
@@ -11,24 +12,15 @@ namespace TestProj
 {
     public partial class GeneralConfigPanel : Krypton.Toolkit.KryptonForm
     {
-        // =====================================================================
-        // Tab 1 — Template Config
-        // =====================================================================
-
         private readonly BindingList<ReportTemplate> _bindingList;
         private readonly List<TagMeta> _allTags;
         private ReportTemplate _editing;
-
-        // =====================================================================
-        // Dependencies
-        // =====================================================================
 
         private readonly Krypton.Toolkit.KryptonManager _kryptonManager;
         /// <summary>主题切换时通知调用方（如 UserControl1）实时刷新图标。</summary>
         private readonly Action<Krypton.Toolkit.PaletteMode> _onThemeChanged;
         /// <summary>语言切换时通知调用方（如 UserControl1）实时刷新所有 UI 文字。</summary>
         private readonly Action _onLanguageChanged;
-
         public GeneralConfigPanel(
             List<ReportTemplate> templates,
             List<TagMeta> allTags,
@@ -37,7 +29,6 @@ namespace TestProj
             Action onLanguageChanged = null)
         {
             InitializeComponent();
-            this.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, (byte)134);
 
             _kryptonManager   = kryptonManager;
             _onThemeChanged   = onThemeChanged;
@@ -55,11 +46,6 @@ namespace TestProj
             // --- Tab 2: General Settings ---
             cmbLanguage.Items.AddRange(new object[] { "中文 (zh-CN)", "English (en-US)" });
             LoadGeneralSettings();
-
-            // Wire combos AFTER loading settings so init doesn't fire a save
-            cmbLanguage.SelectedIndexChanged += CmbLanguage_SelectedIndexChanged;
-            cmbTheme.SelectedIndexChanged    += CmbTheme_SelectedIndexChanged;
-
             ApplyLanguage();
             ApplyIcons(_kryptonManager.GlobalPaletteMode);
         }
@@ -102,18 +88,19 @@ namespace TestProj
             btnSelectTags.Values.Text      = LangHelper.Get("GCP_BtnSelectVars");
             btnConfigTag.Values.Text       = LangHelper.Get("GCP_BtnConfigVars");
 
+
+
             // Tab 2 — General Settings
             lblLanguage.Values.Text    = LangHelper.Get("GCP_LblLanguage");
             lblTheme.Values.Text       = LangHelper.Get("GCP_LblTheme");
             btnSaveGeneral.Values.Text = LangHelper.Get("GCP_BtnSave");
-
+            lblCompanyName.Values.Text = LangHelper.Get("GCP_LblCompanyName");
+            lblConfigPath.Values.Text = LangHelper.Get("GCP_LblConfigPath");
             // Refresh tag summary text (it may contain a localised separator)
             UpdateTagSummary();
         }
 
-        // =====================================================================
-        // Tab 1 — Template Config logic (mirrors TemplateConfigPanel.cs)
-        // =====================================================================
+        #region Template Config Panel Logic
 
         private void LstTemplates_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -322,15 +309,15 @@ namespace TestProj
                 string.Join(sep, names));
         }
 
-        // =====================================================================
-        // Tab 2 — General Settings
-        // =====================================================================
+        #endregion
 
+        #region General Settings Panel Logic
         private void LoadGeneralSettings()
         {
             var cfg = ConfigManager.Config;
 
-            kryptonTextBox1.Text = cfg?.CompanyName ?? "";
+            kryptonTextBox2.Text = cfg?.CompanyName ?? "";
+            kryptonTextBox1.Text = ConfigManager.ConfigPath ?? "";
 
             string lang = cfg?.Language ?? "zh-CN";
             cmbLanguage.SelectedIndex = lang == "en-US" ? 1 : 0;
@@ -358,18 +345,72 @@ namespace TestProj
             _onThemeChanged?.Invoke(mode); // 实时通知 UserControl1 刷新工具栏图标
         }
 
+        private void BtnBrowseConfigPath_Click(object sender, EventArgs e)
+        {
+            using (var dlg = new SaveFileDialog())
+            {
+                dlg.Title            = LangHelper.Get("GCP_BrowseConfigTitle");
+                dlg.Filter           = "JSON 配置文件 (*.json)|*.json|所有文件 (*.*)|*.*";
+                dlg.DefaultExt       = "json";
+                dlg.OverwritePrompt  = false;   // we handle overwrite ourselves
+
+                // Default to the directory of the current config file
+                string current = kryptonTextBox1.Text.Trim();
+                if (!string.IsNullOrEmpty(current) && File.Exists(current))
+                {
+                    dlg.InitialDirectory = Path.GetDirectoryName(current);
+                    dlg.FileName         = Path.GetFileName(current);
+                }
+                else
+                {
+                    dlg.InitialDirectory = Application.StartupPath;
+                    dlg.FileName         = Path.GetFileName(ConfigManager.ConfigPath ?? "config.json");
+                }
+
+                if (dlg.ShowDialog() == DialogResult.OK)
+                    kryptonTextBox1.Text = dlg.FileName;
+            }
+        }
+
         private void BtnSaveGeneral_Click(object sender, EventArgs e)
         {
             if (ConfigManager.Config == null) return;
-            ConfigManager.Config.CompanyName = kryptonTextBox1.Text.Trim();
+            ConfigManager.Config.CompanyName = kryptonTextBox2.Text.Trim();
             ConfigManager.Config.Language    = cmbLanguage.SelectedIndex == 1 ? "en-US" : "zh-CN";
             ConfigManager.Config.Theme       = cmbTheme.DefaultPalette.ToString();
-            ConfigManager.SaveConfig();
+
+            // Handle config file relocation if the path has changed
+            string newPath = kryptonTextBox1.Text.Trim();
+            if (!string.IsNullOrEmpty(newPath) &&
+                !string.Equals(newPath, ConfigManager.ConfigPath,
+                               StringComparison.OrdinalIgnoreCase))
+            {
+                try
+                {
+                    ConfigManager.MoveConfigTo(newPath);
+                    // Keep the textbox in sync with the actual resolved path
+                    kryptonTextBox1.Text = ConfigManager.ConfigPath;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(
+                        string.Format(LangHelper.Get("GCP_ConfigPathError"), ex.Message),
+                        LangHelper.Get("Msg_Error"),
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+            else
+            {
+                ConfigManager.SaveConfig();
+            }
 
             ApplyLanguage();   // 保存后刷新本窗体文字（语言可能已变）
             MessageBox.Show(LangHelper.Get("GCP_GeneralSaved"), LangHelper.Get("Msg_Info"),
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        #endregion
 
     }
 }

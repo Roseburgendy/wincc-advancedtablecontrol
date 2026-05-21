@@ -198,9 +198,6 @@
   <data name="GCP_BtnConfigVars" xml:space="preserve">
     <value>变量配置…</value>
   </data>
-  <data name="GCP_LblCompany" xml:space="preserve">
-    <value>公司名称：</value>
-  </data>
   <data name="GCP_LblLanguage" xml:space="preserve">
     <value>显示语言：</value>
   </data>
@@ -401,5 +398,17 @@
   </data>
   <data name="EIC_BtnCancel" xml:space="preserve">
     <value>取消</value>
+  </data>
+  <data name="GCP_LblCompanyName" xml:space="preserve">
+    <value>公司抬头：</value>
+  </data>
+  <data name="GCP_LblConfigPath" xml:space="preserve">
+    <value>配置文件路径：</value>
+  </data>
+  <data name="GCP_BrowseConfigTitle" xml:space="preserve">
+    <value>选择配置文件存储位置</value>
+  </data>
+  <data name="GCP_ConfigPathError" xml:space="preserve">
+    <value>配置文件迁移失败：{0}</value>
   </data>
 </root>
