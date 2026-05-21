@@ -23,10 +23,10 @@ namespace TestProj.Models
         public string CompanyName { get; set; } = "";
         public string Theme { get; set; } = "Microsoft365Blue";
         public string Language { get; set; } = "zh-CN";
-        public string ExportPath { get; set; } = "";
-        public string ExportFilePattern { get; set; } = "{模板名}_{日期}";
         public bool AutoExport { get; set; } = false;
         public List<TagMeta> TagMeta { get; set; } = new List<TagMeta>();
         public List<ReportTemplate> Template { get; set; } = new List<ReportTemplate>();
+        /// <summary>批量精确位数规则，按前缀匹配，顺序优先。</summary>
+        public List<DecimalRule> DecimalRules { get; set; } = new List<DecimalRule>();
     }
 }

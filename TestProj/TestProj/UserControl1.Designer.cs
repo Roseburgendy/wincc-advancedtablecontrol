@@ -19,6 +19,7 @@ namespace TestProj
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserControl1));
             this.kryptonManager = new Krypton.Toolkit.KryptonManager(this.components);
             this.kryptonPanel1 = new Krypton.Toolkit.KryptonPanel();
+            this.kryptonLabel1 = new Krypton.Toolkit.KryptonLabel();
             this.TimeSelectBtn = new Krypton.Toolkit.KryptonButton();
             this.label3 = new Krypton.Toolkit.KryptonLabel();
             this.cmbTemplate = new Krypton.Toolkit.KryptonComboBox();
@@ -28,7 +29,6 @@ namespace TestProj
             this.ExportExcelBtn = new Krypton.Toolkit.KryptonButton();
             this.dataGridView1 = new Krypton.Toolkit.KryptonDataGridView();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.kryptonLabel1 = new Krypton.Toolkit.KryptonLabel();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).BeginInit();
             this.kryptonPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbTemplate)).BeginInit();
@@ -55,6 +55,17 @@ namespace TestProj
             this.kryptonPanel1.Name = "kryptonPanel1";
             this.kryptonPanel1.Size = new System.Drawing.Size(2493, 244);
             this.kryptonPanel1.TabIndex = 0;
+            // 
+            // kryptonLabel1
+            // 
+            this.kryptonLabel1.LabelStyle = Krypton.Toolkit.LabelStyle.NormalControl;
+            this.kryptonLabel1.Location = new System.Drawing.Point(58, 63);
+            this.kryptonLabel1.Name = "kryptonLabel1";
+            this.kryptonLabel1.Size = new System.Drawing.Size(428, 128);
+            this.kryptonLabel1.StateCommon.ShortText.Font = new System.Drawing.Font("DengXian", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.kryptonLabel1.TabIndex = 39;
+            this.kryptonLabel1.Values.Image = ((System.Drawing.Image)(resources.GetObject("kryptonLabel1.Values.Image")));
+            this.kryptonLabel1.Values.Text = "中源技术";
             // 
             // TimeSelectBtn
             // 
@@ -141,7 +152,6 @@ namespace TestProj
             this.dataGridView1.RowTemplate.Height = 50;
             this.dataGridView1.Size = new System.Drawing.Size(2493, 1205);
             this.dataGridView1.TabIndex = 1;
-           
             // 
             // progressBar1
             // 
@@ -153,17 +163,6 @@ namespace TestProj
             this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.progressBar1.TabIndex = 2;
             this.progressBar1.Visible = false;
-            // 
-            // kryptonLabel1
-            // 
-            this.kryptonLabel1.LabelStyle = Krypton.Toolkit.LabelStyle.NormalControl;
-            this.kryptonLabel1.Location = new System.Drawing.Point(124, 60);
-            this.kryptonLabel1.Name = "kryptonLabel1";
-            this.kryptonLabel1.Size = new System.Drawing.Size(428, 128);
-            this.kryptonLabel1.StateCommon.ShortText.Font = new System.Drawing.Font("DengXian", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.kryptonLabel1.TabIndex = 39;
-            this.kryptonLabel1.Values.Image = ((System.Drawing.Image)(resources.GetObject("kryptonLabel1.Values.Image")));
-            this.kryptonLabel1.Values.Text = "中源技术";
             // 
             // UserControl1
             // 

@@ -91,7 +91,7 @@ namespace TestProj
             labelTags.Values.Text          = LangHelper.Get("GCP_LblVars");
             btnSelectTags.Values.Text      = LangHelper.Get("GCP_BtnSelectVars");
             btnConfigTag.Values.Text       = LangHelper.Get("GCP_BtnConfigVars");
-            lblTemplateExportPath.Values.Text      = LangHelper.Get("GCP_LblExportPath");
+            lblTemplateExportPath.Values.Text      = LangHelper.Get("GCP_LblTemplateExportPath");
 
             // Tab 2 — General Settings
             lblLanguage.Values.Text    = LangHelper.Get("GCP_LblLanguage");

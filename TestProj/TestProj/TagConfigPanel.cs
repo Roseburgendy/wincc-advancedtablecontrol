@@ -58,7 +58,8 @@ namespace TestProj
         {
             string saved = ConfigManager.Config?.Theme ?? "Microsoft365Blue";
             Enum.TryParse<Krypton.Toolkit.PaletteMode>(saved, out var mode);
-            saveConfigBtn.Values.Image = IconManager.Make(IconChar.FloppyDisk, mode, 32);
+            saveConfigBtn.Values.Image    = IconManager.Make(IconChar.FloppyDisk, mode, 32);
+            btnBatchDecimal.Values.Image  = IconManager.Make(IconChar.Bolt,       mode, 32);
         }
 
         /// <summary>刷新窗体所有 UI 文字为当前语言。</summary>
@@ -80,8 +81,9 @@ namespace TestProj
             label7.Values.Text = LangHelper.Get("TCP_MinValue");
             label6.Values.Text = LangHelper.Get("TCP_MaxValue");
 
-            // Button
-            saveConfigBtn.Values.Text = LangHelper.Get("TCP_BtnSave");
+            // Buttons
+            saveConfigBtn.Values.Text   = LangHelper.Get("TCP_BtnSave");
+            btnBatchDecimal.Values.Text = LangHelper.Get("TCP_BtnBatchDecimal");
 
             // DataGridView column headers
             Column1.HeaderText = LangHelper.Get("TCP_ColTagName");
@@ -352,6 +354,19 @@ namespace TestProj
             SaveAll();
             MessageBox.Show(LangHelper.Get("TCP_SaveSuccess"), LangHelper.Get("Msg_Info"));
             _editingBackups.Clear();
+        }
+
+        private void BtnBatchDecimal_Click(object sender, EventArgs e)
+        {
+            using (var form = new BatchDecimalForm())
+            {
+                if (form.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+                {
+                    // Rules were applied & saved inside the form.
+                    // Reload the DGV so updated DecimalPlaces are visible immediately.
+                    LoadData();
+                }
+            }
         }
 
         #endregion

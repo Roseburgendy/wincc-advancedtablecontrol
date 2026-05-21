@@ -271,10 +271,10 @@ namespace TestProj
                 using (var cfg = new ExcelImportConfigForm())
                 {
                     if (cfg.ShowDialog() != DialogResult.OK) return;
-                    dataStartRow = cfg.DataStartRow;
-                    tagNameCol = cfg.TagNameCol;
-                    displayNameCol = cfg.DisplayNameCol;
-                    displayNameEnCol = cfg.DisplayNameEnCol; // 0 = 不使用
+                    dataStartRow = cfg.DataStartRow; // 数据开始行
+                    tagNameCol = cfg.TagNameCol;  // TagName 列
+                    displayNameCol = cfg.DisplayNameCol; // 中文显示名称列
+                    displayNameEnCol = cfg.DisplayNameEnCol; // 英文显示名称列（0 = 不使用）
                 }
 
                 try
@@ -284,12 +284,15 @@ namespace TestProj
 
                     using (var package = new ExcelPackage(new FileInfo(dlg.FileName)))
                     {
+                        // 一个excel文件，读取多个worksheet
                         foreach (var sheet in package.Workbook.Worksheets)
                         {
                             if (sheet.Dimension == null) continue;
                             int rowCount = sheet.Dimension.End.Row;
                             var selectedTags = new List<TemplateTagEntry>();
 
+                            // 从第 dataStartRow 行开始读取，直到最后一行。
+                            // 每行根据 tagNameCol / displayNameCol / displayNameEnCol 列号读取 TagName / DisplayName / DisplayNameEn
                             for (int row = dataStartRow; row <= rowCount; row++)
                             {
                                 string tagName = sheet.Cells[row, tagNameCol].Text?.Trim();
@@ -299,7 +302,8 @@ namespace TestProj
                                     : null;
                                 if (string.IsNullOrEmpty(tagName)) continue;
 
-                                // 更新 TagMeta DisplayName / DisplayNameEn
+                                // excel内的tagName和归档变量匹配
+                                // （支持带路径的 TagName，如 "设备1\变量A"，也支持不带路径的短 TagName，如 "变量A"）
                                 var meta = ConfigManager.Config.TagMeta
                                     .FirstOrDefault(m =>
                                     {
@@ -308,6 +312,7 @@ namespace TestProj
                                         return shortName == tagName;
                                     });
 
+                                // 更新 TagMeta DisplayName / DisplayNameEn（中英显示名）if have
                                 if (meta != null)
                                 {
                                     if (!string.IsNullOrEmpty(displayName))
@@ -319,7 +324,10 @@ namespace TestProj
                                         meta.DisplayNameEn = displayNameEn;
                                 }
 
+
                                 if (meta == null || meta.ValueID == 0) continue;
+
+                                // 所选变量加入template tag entry
                                 selectedTags.Add(new TemplateTagEntry
                                 {
                                     ValueID = meta.ValueID,
@@ -334,8 +342,6 @@ namespace TestProj
                             // 写入 Template：同名则更新，否则新增
                             var existing = ConfigManager.Config.Template
                                 .FirstOrDefault(t => t.DisplayName == sheet.Name);
-
-                            // 写入template selected tags
                             if (existing != null)
                             {
                                 existing.SelectedTags = selectedTags;
@@ -474,8 +480,6 @@ namespace TestProj
 
                 // 优先用当前模板的导出路径，回退到全局配置路径
                 string exportPath = _currentTemplate?.ExportPath;
-                if (string.IsNullOrWhiteSpace(exportPath))
-                    exportPath = ConfigManager.Config?.ExportPath;
                 if (!string.IsNullOrWhiteSpace(exportPath)
                     && System.IO.Directory.Exists(exportPath))
                     dlg.InitialDirectory = exportPath;

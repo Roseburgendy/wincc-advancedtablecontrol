@@ -85,7 +85,7 @@ namespace TestProj
             0,
             0});
             this.numStartRow.Name = "numStartRow";
-            this.numStartRow.Size = new System.Drawing.Size(352, 42);
+            this.numStartRow.Size = new System.Drawing.Size(382, 42);
             this.numStartRow.TabIndex = 3;
             this.numStartRow.Value = new decimal(new int[] {
             2,
@@ -115,7 +115,7 @@ namespace TestProj
             0,
             0});
             this.numTagCol.Name = "numTagCol";
-            this.numTagCol.Size = new System.Drawing.Size(352, 42);
+            this.numTagCol.Size = new System.Drawing.Size(382, 42);
             this.numTagCol.TabIndex = 4;
             this.numTagCol.Value = new decimal(new int[] {
             2,
@@ -145,7 +145,7 @@ namespace TestProj
             0,
             0});
             this.numDisplayCol.Name = "numDisplayCol";
-            this.numDisplayCol.Size = new System.Drawing.Size(352, 42);
+            this.numDisplayCol.Size = new System.Drawing.Size(382, 42);
             this.numDisplayCol.TabIndex = 5;
             this.numDisplayCol.Value = new decimal(new int[] {
             3,
@@ -175,10 +175,10 @@ namespace TestProj
             0,
             0});
             this.numDisplayEnCol.Name = "numDisplayEnCol";
-            this.numDisplayEnCol.Size = new System.Drawing.Size(352, 42);
+            this.numDisplayEnCol.Size = new System.Drawing.Size(382, 42);
             this.numDisplayEnCol.TabIndex = 6;
             this.numDisplayEnCol.Value = new decimal(new int[] {
-            0,
+            4,
             0,
             0,
             0});
@@ -186,7 +186,7 @@ namespace TestProj
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnOK.Location = new System.Drawing.Point(43, 393);
+            this.btnOK.Location = new System.Drawing.Point(43, 427);
             this.btnOK.Margin = new System.Windows.Forms.Padding(2);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(163, 53);
@@ -199,7 +199,7 @@ namespace TestProj
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(551, 393);
+            this.btnCancel.Location = new System.Drawing.Point(581, 427);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(163, 53);
@@ -214,7 +214,7 @@ namespace TestProj
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(783, 475);
+            this.ClientSize = new System.Drawing.Size(813, 509);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.numDisplayEnCol);

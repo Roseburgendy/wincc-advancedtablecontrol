@@ -285,6 +285,42 @@
   <data name="TCP_BtnSave" xml:space="preserve">
     <value>Save Config</value>
   </data>
+  <data name="TCP_BtnBatchDecimal" xml:space="preserve">
+    <value>Batch Decimal Places…</value>
+  </data>
+  <data name="BDF_Title" xml:space="preserve">
+    <value>Batch Decimal Places Rules</value>
+  </data>
+  <data name="BDF_Hint" xml:space="preserve">
+    <value>Set decimal places by TagName prefix. Rules are matched top-to-bottom; the first match wins.</value>
+  </data>
+  <data name="BDF_ColPrefix" xml:space="preserve">
+    <value>TagName Prefix</value>
+  </data>
+  <data name="BDF_ColDecimal" xml:space="preserve">
+    <value>Decimal Places</value>
+  </data>
+  <data name="BDF_ColMatchCount" xml:space="preserve">
+    <value>Matching Tags (Preview)</value>
+  </data>
+  <data name="BDF_BtnAdd" xml:space="preserve">
+    <value>+ Add Rule</value>
+  </data>
+  <data name="BDF_BtnDelete" xml:space="preserve">
+    <value>- Delete Selected</value>
+  </data>
+  <data name="BDF_BtnApply" xml:space="preserve">
+    <value>Apply Rules</value>
+  </data>
+  <data name="BDF_ApplyResult" xml:space="preserve">
+    <value>✔ Updated {0} tag(s)</value>
+  </data>
+  <data name="BDF_NoTags" xml:space="preserve">
+    <value>No tag data found in this project</value>
+  </data>
+  <data name="BDF_InvalidDecimal" xml:space="preserve">
+    <value>Decimal places cannot be negative</value>
+  </data>
   <data name="TCP_ColTagName" xml:space="preserve">
     <value>Tag Name</value>
   </data>
