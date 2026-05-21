@@ -140,7 +140,10 @@ namespace TestProj
 
                 if (wide == null)
                 {
-                    MessageBox.Show("没有查询到数据", "提示");
+                    dataGridView1.DataSource = null;
+                    dataGridView1.Columns.Clear();
+                    MessageBox.Show(LangHelper.Get("Msg_NoData"), LangHelper.Get("Msg_Info"),
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
 
@@ -180,7 +183,10 @@ namespace TestProj
 
                 if (wide == null)
                 {
-                    MessageBox.Show("没有查询到数据", "提示");
+                    dataGridView1.DataSource = null;
+                    dataGridView1.Columns.Clear();
+                    MessageBox.Show(LangHelper.Get("Msg_NoData"), LangHelper.Get("Msg_Info"),
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
 
