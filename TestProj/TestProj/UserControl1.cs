@@ -472,8 +472,10 @@ namespace TestProj
                              ?? ConfigManager.Config?.CompanyName
                              ?? "报表";
 
-                // 如果已配置默认导出路径则预填
-                string exportPath = ConfigManager.Config?.ExportPath;
+                // 优先用当前模板的导出路径，回退到全局配置路径
+                string exportPath = _currentTemplate?.ExportPath;
+                if (string.IsNullOrWhiteSpace(exportPath))
+                    exportPath = ConfigManager.Config?.ExportPath;
                 if (!string.IsNullOrWhiteSpace(exportPath)
                     && System.IO.Directory.Exists(exportPath))
                     dlg.InitialDirectory = exportPath;

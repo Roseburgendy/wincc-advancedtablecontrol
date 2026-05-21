@@ -123,9 +123,6 @@
   <data name="Msg_Error" xml:space="preserve">
     <value>错误</value>
   </data>
-  <data name="Msg_NoData" xml:space="preserve">
-    <value>没有查询到数据</value>
-  </data>
   <data name="Msg_Warning" xml:space="preserve">
     <value>警告</value>
   </data>
@@ -209,6 +206,9 @@
   </data>
   <data name="GCP_LblExportPath" xml:space="preserve">
     <value>默认导出路径：</value>
+  </data>
+  <data name="GCP_LblTemplateExportPath" xml:space="preserve">
+    <value>模板导出路径：</value>
   </data>
   <data name="GCP_BtnBrowse" xml:space="preserve">
     <value>浏览…</value>
@@ -410,5 +410,8 @@
   </data>
   <data name="GCP_ConfigFolderNotFound" xml:space="preserve">
     <value>目录不存在：{0}</value>
+  </data>
+  <data name="Msg_NoData" xml:space="preserve">
+    <value>没有查询到数据</value>
   </data>
 </root>

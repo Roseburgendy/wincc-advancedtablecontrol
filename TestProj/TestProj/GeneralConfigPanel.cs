@@ -48,6 +48,9 @@ namespace TestProj
             cmbLanguage.Items.AddRange(new object[] { "中文 (zh-CN)", "English (en-US)" });
             LoadGeneralSettings();
 
+            // Config path: auto-determined — show only, open folder on button click
+            kryptonTextBox1.ReadOnly = true;
+
             ApplyLanguage();
             ApplyIcons(_kryptonManager.GlobalPaletteMode);
         }
@@ -61,11 +64,11 @@ namespace TestProj
             btnCancel.Values.Image = IconManager.Make(IconChar.Xmark,      mode, 32);
             btnClone.Values.Image  = IconManager.Make(IconChar.Copy,       mode, 32);
             btnDelete.Values.Image = IconManager.Make(IconChar.Trash,      mode, 32);
-            btnSelectTags.Values.Image = IconManager.Make(IconChar.Tags,   mode, 32);
-            btnConfigTag.Values.Image  = IconManager.Make(IconChar.Wrench, mode, 32);
+            btnSelectTags.Values.Image       = IconManager.Make(IconChar.Tags,       mode, 32);
+            btnConfigTag.Values.Image        = IconManager.Make(IconChar.Wrench,     mode, 32);
 
             // Tab 2 — General Settings
-            btnSaveGeneral.Values.Image  = IconManager.Make(IconChar.FloppyDisk,  mode, 32);
+            btnSaveGeneral.Values.Image = IconManager.Make(IconChar.FloppyDisk, mode, 32);
         }
 
         /// <summary>刷新整个窗体的 UI 文字为当前语言。</summary>
@@ -88,8 +91,7 @@ namespace TestProj
             labelTags.Values.Text          = LangHelper.Get("GCP_LblVars");
             btnSelectTags.Values.Text      = LangHelper.Get("GCP_BtnSelectVars");
             btnConfigTag.Values.Text       = LangHelper.Get("GCP_BtnConfigVars");
-
-
+            lblTemplateExportPath.Values.Text      = LangHelper.Get("GCP_LblExportPath");
 
             // Tab 2 — General Settings
             lblLanguage.Values.Text    = LangHelper.Get("GCP_LblLanguage");
@@ -201,6 +203,7 @@ namespace TestProj
 
             _editing.DisplayName = txtName.Text.Trim();
             _editing.Description = txtDesc.Text.Trim();
+            _editing.ExportPath  = kryptonTextBox3.Text.Trim();
 
             var existing = _bindingList.FirstOrDefault(t => t.Id == _editing.Id);
             if (existing != null)
@@ -280,8 +283,9 @@ namespace TestProj
 
         private void BindDetail()
         {
-            txtName.Text = _editing.DisplayName;
-            txtDesc.Text = _editing.Description;
+            txtName.Text         = _editing.DisplayName;
+            txtDesc.Text         = _editing.Description;
+            kryptonTextBox3.Text = _editing.ExportPath ?? "";
             UpdateTagSummary();
             pnlDetail.Visible = true;
         }
@@ -346,26 +350,19 @@ namespace TestProj
             _onThemeChanged?.Invoke(mode); // 实时通知 UserControl1 刷新工具栏图标
         }
 
-        /// <summary>
-        /// 在资源管理器中打开配置文件所在目录，方便用户手动备份或查看。
-        /// </summary>
-        private void BtnOpenConfigFolder_Click(object sender, EventArgs e)
+        private void BtnBrowseExportPath_Click(object sender, EventArgs e)
         {
-            string path = ConfigManager.ConfigPath;
-            if (string.IsNullOrEmpty(path)) return;
+            using (var dlg = new FolderBrowserDialog())
+            {
+                dlg.Description = LangHelper.Get("GCP_BrowseExportPath");
+                string current = kryptonTextBox3.Text.Trim();
+                dlg.SelectedPath = Directory.Exists(current) ? current : Application.StartupPath;
 
-            string folder = File.Exists(path)
-                ? Path.GetDirectoryName(path)   // 文件已存在，打开其目录
-                : path;                          // 尚未创建时也尝试打开
-
-            if (Directory.Exists(folder))
-                Process.Start("explorer.exe", folder);
-            else
-                MessageBox.Show(
-                    string.Format(LangHelper.Get("GCP_ConfigFolderNotFound"), folder),
-                    LangHelper.Get("Msg_Info"),
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (dlg.ShowDialog() == DialogResult.OK)
+                    kryptonTextBox3.Text = dlg.SelectedPath;
+            }
         }
+
 
         private void BtnSaveGeneral_Click(object sender, EventArgs e)
         {
