@@ -32,7 +32,7 @@ namespace TestProj
             if (ConfigManager.Config == null)
             {
                 string dtname      = hmirt.Tags["@DatasourceNameRT"].Read().ToString();
-                string projectPath = hmirt.Tags["@CurrentProjectDirectory"].Read().ToString();
+                string projectPath = hmirt.ActiveProject.Path;
                 ConfigManager.Init(projectPath, dtname);
             }
             string connStr = $"Provider=WinCCOLEDBProvider.1;" +
