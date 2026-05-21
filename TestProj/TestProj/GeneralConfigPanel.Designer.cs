@@ -42,7 +42,6 @@ namespace TestProj
             this.kryptonGroupBox2 = new Krypton.Toolkit.KryptonGroupBox();
             this.kryptonTextBox2 = new Krypton.Toolkit.KryptonTextBox();
             this.lblCompanyName = new Krypton.Toolkit.KryptonLabel();
-            this.BtnBrowseConfigPath = new Krypton.Toolkit.KryptonButton();
             this.kryptonTextBox1 = new Krypton.Toolkit.KryptonTextBox();
             this.lblConfigPath = new Krypton.Toolkit.KryptonLabel();
             this.kryptonGroupBox1 = new Krypton.Toolkit.KryptonGroupBox();
@@ -393,7 +392,6 @@ namespace TestProj
             // 
             this.kryptonGroupBox2.Panel.Controls.Add(this.kryptonTextBox2);
             this.kryptonGroupBox2.Panel.Controls.Add(this.lblCompanyName);
-            this.kryptonGroupBox2.Panel.Controls.Add(this.BtnBrowseConfigPath);
             this.kryptonGroupBox2.Panel.Controls.Add(this.kryptonTextBox1);
             this.kryptonGroupBox2.Panel.Controls.Add(this.lblConfigPath);
             this.kryptonGroupBox2.Size = new System.Drawing.Size(1642, 375);
@@ -413,16 +411,6 @@ namespace TestProj
             this.lblCompanyName.Size = new System.Drawing.Size(180, 44);
             this.lblCompanyName.TabIndex = 9;
             this.lblCompanyName.Values.Text = "公司抬头：";
-            // 
-            // BtnBrowseConfigPath
-            // 
-            this.BtnBrowseConfigPath.Location = new System.Drawing.Point(890, 41);
-            this.BtnBrowseConfigPath.Name = "BtnBrowseConfigPath";
-            this.BtnBrowseConfigPath.Size = new System.Drawing.Size(116, 42);
-            this.BtnBrowseConfigPath.TabIndex = 8;
-            this.BtnBrowseConfigPath.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.BtnBrowseConfigPath.Values.Text = "...";
-            this.BtnBrowseConfigPath.Click += new System.EventHandler(this.BtnBrowseConfigPath_Click);
             // 
             // kryptonTextBox1
             // 
@@ -605,7 +593,6 @@ namespace TestProj
         private Krypton.Toolkit.KryptonTextBox kryptonTextBox1;
         private Krypton.Toolkit.KryptonLabel lblConfigPath;
         private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox1;
-        private Krypton.Toolkit.KryptonButton BtnBrowseConfigPath;
         private Krypton.Toolkit.KryptonTextBox kryptonTextBox2;
         private Krypton.Toolkit.KryptonLabel lblCompanyName;
 

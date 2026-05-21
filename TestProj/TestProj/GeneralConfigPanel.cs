@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -46,6 +47,7 @@ namespace TestProj
             // --- Tab 2: General Settings ---
             cmbLanguage.Items.AddRange(new object[] { "中文 (zh-CN)", "English (en-US)" });
             LoadGeneralSettings();
+
             ApplyLanguage();
             ApplyIcons(_kryptonManager.GlobalPaletteMode);
         }
@@ -63,8 +65,7 @@ namespace TestProj
             btnConfigTag.Values.Image  = IconManager.Make(IconChar.Wrench, mode, 32);
 
             // Tab 2 — General Settings
-            btnSaveGeneral.Values.Image = IconManager.Make(IconChar.FloppyDisk, mode, 32);
-
+            btnSaveGeneral.Values.Image  = IconManager.Make(IconChar.FloppyDisk,  mode, 32);
         }
 
         /// <summary>刷新整个窗体的 UI 文字为当前语言。</summary>
@@ -345,31 +346,25 @@ namespace TestProj
             _onThemeChanged?.Invoke(mode); // 实时通知 UserControl1 刷新工具栏图标
         }
 
-        private void BtnBrowseConfigPath_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 在资源管理器中打开配置文件所在目录，方便用户手动备份或查看。
+        /// </summary>
+        private void BtnOpenConfigFolder_Click(object sender, EventArgs e)
         {
-            using (var dlg = new SaveFileDialog())
-            {
-                dlg.Title            = LangHelper.Get("GCP_BrowseConfigTitle");
-                dlg.Filter           = "JSON 配置文件 (*.json)|*.json|所有文件 (*.*)|*.*";
-                dlg.DefaultExt       = "json";
-                dlg.OverwritePrompt  = false;   // we handle overwrite ourselves
+            string path = ConfigManager.ConfigPath;
+            if (string.IsNullOrEmpty(path)) return;
 
-                // Default to the directory of the current config file
-                string current = kryptonTextBox1.Text.Trim();
-                if (!string.IsNullOrEmpty(current) && File.Exists(current))
-                {
-                    dlg.InitialDirectory = Path.GetDirectoryName(current);
-                    dlg.FileName         = Path.GetFileName(current);
-                }
-                else
-                {
-                    dlg.InitialDirectory = Application.StartupPath;
-                    dlg.FileName         = Path.GetFileName(ConfigManager.ConfigPath ?? "config.json");
-                }
+            string folder = File.Exists(path)
+                ? Path.GetDirectoryName(path)   // 文件已存在，打开其目录
+                : path;                          // 尚未创建时也尝试打开
 
-                if (dlg.ShowDialog() == DialogResult.OK)
-                    kryptonTextBox1.Text = dlg.FileName;
-            }
+            if (Directory.Exists(folder))
+                Process.Start("explorer.exe", folder);
+            else
+                MessageBox.Show(
+                    string.Format(LangHelper.Get("GCP_ConfigFolderNotFound"), folder),
+                    LangHelper.Get("Msg_Info"),
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void BtnSaveGeneral_Click(object sender, EventArgs e)
@@ -378,32 +373,7 @@ namespace TestProj
             ConfigManager.Config.CompanyName = kryptonTextBox2.Text.Trim();
             ConfigManager.Config.Language    = cmbLanguage.SelectedIndex == 1 ? "en-US" : "zh-CN";
             ConfigManager.Config.Theme       = cmbTheme.DefaultPalette.ToString();
-
-            // Handle config file relocation if the path has changed
-            string newPath = kryptonTextBox1.Text.Trim();
-            if (!string.IsNullOrEmpty(newPath) &&
-                !string.Equals(newPath, ConfigManager.ConfigPath,
-                               StringComparison.OrdinalIgnoreCase))
-            {
-                try
-                {
-                    ConfigManager.MoveConfigTo(newPath);
-                    // Keep the textbox in sync with the actual resolved path
-                    kryptonTextBox1.Text = ConfigManager.ConfigPath;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(
-                        string.Format(LangHelper.Get("GCP_ConfigPathError"), ex.Message),
-                        LangHelper.Get("Msg_Error"),
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-            }
-            else
-            {
-                ConfigManager.SaveConfig();
-            }
+            ConfigManager.SaveConfig();
 
             ApplyLanguage();   // 保存后刷新本窗体文字（语言可能已变）
             MessageBox.Show(LangHelper.Get("GCP_GeneralSaved"), LangHelper.Get("Msg_Info"),

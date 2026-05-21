@@ -405,10 +405,7 @@
   <data name="GCP_LblConfigPath" xml:space="preserve">
     <value>Config File Path:</value>
   </data>
-  <data name="GCP_BrowseConfigTitle" xml:space="preserve">
-    <value>Select Config File Location</value>
-  </data>
-  <data name="GCP_ConfigPathError" xml:space="preserve">
-    <value>Failed to relocate config file: {0}</value>
+  <data name="GCP_ConfigFolderNotFound" xml:space="preserve">
+    <value>Directory does not exist: {0}</value>
   </data>
 </root>

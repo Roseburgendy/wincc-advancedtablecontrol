@@ -405,10 +405,7 @@
   <data name="GCP_LblConfigPath" xml:space="preserve">
     <value>配置文件路径：</value>
   </data>
-  <data name="GCP_BrowseConfigTitle" xml:space="preserve">
-    <value>选择配置文件存储位置</value>
-  </data>
-  <data name="GCP_ConfigPathError" xml:space="preserve">
-    <value>配置文件迁移失败：{0}</value>
+  <data name="GCP_ConfigFolderNotFound" xml:space="preserve">
+    <value>目录不存在：{0}</value>
   </data>
 </root>

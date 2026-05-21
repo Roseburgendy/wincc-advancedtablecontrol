@@ -17,11 +17,13 @@ namespace TestProj
         public static string ConfigPath => _configPath;
 
         /// <summary>
-        /// 根据项目名称初始化，每个项目对应一个独立的 config.json
+        /// 根据 WinCC 项目目录和项目名称初始化，配置文件位于
+        /// {projectPath}\WinCCReporter\{projectName}.json。
+        /// 路径完全由 WinCC 运行时标签决定，无需额外存储。
         /// </summary>
-        public static void Init(string projectName)
+        public static void Init(string projectPath, string projectName)
         {
-            string dir = @"C:\Users\Public\Documents\WinCCReporter";
+            string dir  = Path.Combine(projectPath, "WinCCReporter");
             _configPath = Path.Combine(dir, $"{projectName}.json");
             LoadConfig();
         }
@@ -50,36 +52,9 @@ namespace TestProj
         }
         public static void SaveConfig()
         {
-            string json = JsonConvert.SerializeObject(_config, Formatting.Indented);
             Directory.CreateDirectory(Path.GetDirectoryName(_configPath));
+            string json = JsonConvert.SerializeObject(_config, Formatting.Indented);
             File.WriteAllText(_configPath, json, new UTF8Encoding(false));
-        }
-
-        /// <summary>
-        /// 将配置文件迁移到新路径并更新 _configPath。
-        /// 若新路径与当前相同则只做保存。
-        /// </summary>
-        public static void MoveConfigTo(string newPath)
-        {
-            if (string.IsNullOrWhiteSpace(newPath)) return;
-            newPath = Path.GetFullPath(newPath);
-
-            if (!string.Equals(newPath, _configPath, System.StringComparison.OrdinalIgnoreCase))
-            {
-                Directory.CreateDirectory(Path.GetDirectoryName(newPath));
-                // Save to new location first, then remove old file
-                string json = JsonConvert.SerializeObject(_config, Formatting.Indented);
-                File.WriteAllText(newPath, json, new UTF8Encoding(false));
-
-                if (File.Exists(_configPath))
-                    File.Delete(_configPath);
-
-                _configPath = newPath;
-            }
-            else
-            {
-                SaveConfig();
-            }
         }
     }
 }

@@ -31,8 +31,9 @@ namespace TestProj
 
             if (ConfigManager.Config == null)
             {
-                string dtname = hmirt.Tags["@DatasourceNameRT"].Read().ToString();
-                ConfigManager.Init(dtname);
+                string dtname      = hmirt.Tags["@DatasourceNameRT"].Read().ToString();
+                string projectPath = hmirt.Tags["@CurrentProjectDirectory"].Read().ToString();
+                ConfigManager.Init(projectPath, dtname);
             }
             string connStr = $"Provider=WinCCOLEDBProvider.1;" +
                              $"Catalog={catalog};" +

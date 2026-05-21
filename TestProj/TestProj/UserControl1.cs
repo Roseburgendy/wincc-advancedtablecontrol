@@ -797,7 +797,7 @@ namespace TestProj
                 float footH      = footerFont.GetHeight(g)   + 4f;
                 float pageBottom = bounds.Bottom - footH - 2f;   // 留出页脚空间
 
-                // ── 报表标题 + 抬头（每页都有）──
+                // 报表标题 + 抬头（每页都有）
                 using (var sf = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center })
                 {
                     g.DrawString(_printTitle, titleFont, Brushes.Black,
