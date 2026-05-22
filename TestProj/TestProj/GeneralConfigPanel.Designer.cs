@@ -48,6 +48,9 @@ namespace TestProj
             this.lblCompanyName = new Krypton.Toolkit.KryptonLabel();
             this.kryptonTextBox1 = new Krypton.Toolkit.KryptonTextBox();
             this.lblConfigPath = new Krypton.Toolkit.KryptonLabel();
+            this.lblMaxQueryDays = new Krypton.Toolkit.KryptonLabel();
+            this.lblMaxDataPoints = new Krypton.Toolkit.KryptonLabel();
+            this.lblQueryLimitsHint = new Krypton.Toolkit.KryptonLabel();
             this.kryptonGroupBox1 = new Krypton.Toolkit.KryptonGroupBox();
             this.cmbLanguage = new Krypton.Toolkit.KryptonComboBox();
             this.cmbTheme = new Krypton.Toolkit.KryptonThemeComboBox();
@@ -56,6 +59,8 @@ namespace TestProj
             this.pnlGeneralFooter = new Krypton.Toolkit.KryptonPanel();
             this.btnSaveGeneral = new Krypton.Toolkit.KryptonButton();
             this.btnBatchDecimal = new Krypton.Toolkit.KryptonButton();
+            this.numMaxQueryDays = new Krypton.Toolkit.KryptonNumericUpDown();
+            this.numMaxDataPoints = new Krypton.Toolkit.KryptonNumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonNavigator1)).BeginInit();
             this.kryptonNavigator1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPage1)).BeginInit();
@@ -442,11 +447,16 @@ namespace TestProj
             // 
             // kryptonGroupBox2.Panel
             // 
+            this.kryptonGroupBox2.Panel.Controls.Add(this.numMaxDataPoints);
+            this.kryptonGroupBox2.Panel.Controls.Add(this.numMaxQueryDays);
             this.kryptonGroupBox2.Panel.Controls.Add(this.kryptonTextBox2);
             this.kryptonGroupBox2.Panel.Controls.Add(this.lblCompanyName);
             this.kryptonGroupBox2.Panel.Controls.Add(this.kryptonTextBox1);
             this.kryptonGroupBox2.Panel.Controls.Add(this.lblConfigPath);
-            this.kryptonGroupBox2.Size = new System.Drawing.Size(1642, 375);
+            this.kryptonGroupBox2.Panel.Controls.Add(this.lblMaxQueryDays);
+            this.kryptonGroupBox2.Panel.Controls.Add(this.lblMaxDataPoints);
+            this.kryptonGroupBox2.Panel.Controls.Add(this.lblQueryLimitsHint);
+            this.kryptonGroupBox2.Size = new System.Drawing.Size(1642, 475);
             this.kryptonGroupBox2.TabIndex = 7;
             // 
             // kryptonTextBox2
@@ -479,6 +489,30 @@ namespace TestProj
             this.lblConfigPath.Size = new System.Drawing.Size(219, 42);
             this.lblConfigPath.TabIndex = 6;
             this.lblConfigPath.Values.Text = "配置文件路径：";
+            // 
+            // lblMaxQueryDays
+            // 
+            this.lblMaxQueryDays.Location = new System.Drawing.Point(29, 207);
+            this.lblMaxQueryDays.Name = "lblMaxQueryDays";
+            this.lblMaxQueryDays.Size = new System.Drawing.Size(219, 42);
+            this.lblMaxQueryDays.TabIndex = 11;
+            this.lblMaxQueryDays.Values.Text = "最大查询天数：";
+            // 
+            // lblMaxDataPoints
+            // 
+            this.lblMaxDataPoints.Location = new System.Drawing.Point(29, 290);
+            this.lblMaxDataPoints.Name = "lblMaxDataPoints";
+            this.lblMaxDataPoints.Size = new System.Drawing.Size(219, 42);
+            this.lblMaxDataPoints.TabIndex = 13;
+            this.lblMaxDataPoints.Values.Text = "最大数据点数：";
+            // 
+            // lblQueryLimitsHint
+            // 
+            this.lblQueryLimitsHint.Location = new System.Drawing.Point(549, 295);
+            this.lblQueryLimitsHint.Name = "lblQueryLimitsHint";
+            this.lblQueryLimitsHint.Size = new System.Drawing.Size(210, 42);
+            this.lblQueryLimitsHint.TabIndex = 15;
+            this.lblQueryLimitsHint.Values.Text = "（0 = 不限制）";
             // 
             // kryptonGroupBox1
             // 
@@ -567,6 +601,61 @@ namespace TestProj
             this.btnBatchDecimal.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnBatchDecimal.Values.Text = "批量精确位数…";
             this.btnBatchDecimal.Click += new System.EventHandler(this.BtnBatchDecimal_Click);
+            // 
+            // numMaxQueryDays
+            // 
+            this.numMaxQueryDays.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numMaxQueryDays.Location = new System.Drawing.Point(333, 207);
+            this.numMaxQueryDays.Maximum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.numMaxQueryDays.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.numMaxQueryDays.Name = "numMaxQueryDays";
+            this.numMaxQueryDays.Size = new System.Drawing.Size(211, 42);
+            this.numMaxQueryDays.TabIndex = 16;
+            this.numMaxQueryDays.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.numMaxQueryDays.ValueChanged += new System.EventHandler(this.kryptonNumericUpDown1_ValueChanged);
+            // 
+            // numMaxDataPoints
+            // 
+            this.numMaxDataPoints.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numMaxDataPoints.Location = new System.Drawing.Point(333, 290);
+            this.numMaxDataPoints.Maximum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.numMaxDataPoints.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.numMaxDataPoints.Name = "numMaxDataPoints";
+            this.numMaxDataPoints.Size = new System.Drawing.Size(211, 42);
+            this.numMaxDataPoints.TabIndex = 17;
+            this.numMaxDataPoints.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             // 
             // GeneralConfigPanel
             // 
@@ -662,11 +751,16 @@ namespace TestProj
         private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox1;
         private Krypton.Toolkit.KryptonTextBox kryptonTextBox2;
         private Krypton.Toolkit.KryptonLabel lblCompanyName;
+        private Krypton.Toolkit.KryptonLabel lblMaxQueryDays;
+        private Krypton.Toolkit.KryptonLabel lblMaxDataPoints;
+        private Krypton.Toolkit.KryptonLabel lblQueryLimitsHint;
         private Krypton.Toolkit.KryptonLabel lblTemplateExportPath;
         private Krypton.Toolkit.KryptonTextBox kryptonTextBox3;
         private Krypton.Toolkit.KryptonPanel panel5;
         private Krypton.Toolkit.KryptonButton btnBrowseExportPath;
         private Krypton.Toolkit.KryptonButton btnBatchDecimal;
+        private Krypton.Toolkit.KryptonNumericUpDown numMaxQueryDays;
+        private Krypton.Toolkit.KryptonNumericUpDown numMaxDataPoints;
 
         // ── Tab 3: Export Settings ────────────────────────────────────────────
     }

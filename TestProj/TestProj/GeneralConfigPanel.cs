@@ -95,12 +95,15 @@ namespace TestProj
             lblTemplateExportPath.Values.Text      = LangHelper.Get("GCP_LblTemplateExportPath");
 
             // Tab 2 — General Settings
-            lblLanguage.Values.Text    = LangHelper.Get("GCP_LblLanguage");
-            lblTheme.Values.Text       = LangHelper.Get("GCP_LblTheme");
-            btnSaveGeneral.Values.Text  = LangHelper.Get("GCP_BtnSave");
-            lblCompanyName.Values.Text  = LangHelper.Get("GCP_LblCompanyName");
-            lblConfigPath.Values.Text   = LangHelper.Get("GCP_LblConfigPath");
-            btnBatchDecimal.Values.Text = LangHelper.Get("TCP_BtnBatchDecimal");
+            lblLanguage.Values.Text       = LangHelper.Get("GCP_LblLanguage");
+            lblTheme.Values.Text          = LangHelper.Get("GCP_LblTheme");
+            btnSaveGeneral.Values.Text    = LangHelper.Get("GCP_BtnSave");
+            lblCompanyName.Values.Text    = LangHelper.Get("GCP_LblCompanyName");
+            lblConfigPath.Values.Text     = LangHelper.Get("GCP_LblConfigPath");
+            btnBatchDecimal.Values.Text   = LangHelper.Get("TCP_BtnBatchDecimal");
+            lblMaxQueryDays.Values.Text   = LangHelper.Get("GCP_LblMaxQueryDays");
+            lblMaxDataPoints.Values.Text  = LangHelper.Get("GCP_LblMaxDataPoints");
+            lblQueryLimitsHint.Values.Text = LangHelper.Get("GCP_HintQueryLimits");
             // Refresh tag summary text (it may contain a localised separator)
             UpdateTagSummary();
         }
@@ -332,6 +335,9 @@ namespace TestProj
             string theme = cfg?.Theme ?? "Microsoft365Blue";
             if (Enum.TryParse<Krypton.Toolkit.PaletteMode>(theme, out var mode))
                 cmbTheme.DefaultPalette = mode;
+
+            numMaxQueryDays.Value  = Math.Max(0, Math.Min((decimal)(cfg?.MaxQueryDays  ?? 31),  numMaxQueryDays.Maximum));
+            numMaxDataPoints.Value = Math.Max(0, Math.Min((decimal)(cfg?.MaxDataPoints ?? 50000), numMaxDataPoints.Maximum));
         }
 
         private void CmbLanguage_SelectedIndexChanged(object sender, EventArgs e)
@@ -369,9 +375,11 @@ namespace TestProj
         private void BtnSaveGeneral_Click(object sender, EventArgs e)
         {
             if (ConfigManager.Config == null) return;
-            ConfigManager.Config.CompanyName = kryptonTextBox2.Text.Trim();
-            ConfigManager.Config.Language    = cmbLanguage.SelectedIndex == 1 ? "en-US" : "zh-CN";
-            ConfigManager.Config.Theme       = cmbTheme.DefaultPalette.ToString();
+            ConfigManager.Config.CompanyName    = kryptonTextBox2.Text.Trim();
+            ConfigManager.Config.Language       = cmbLanguage.SelectedIndex == 1 ? "en-US" : "zh-CN";
+            ConfigManager.Config.Theme          = cmbTheme.DefaultPalette.ToString();
+            ConfigManager.Config.MaxQueryDays   = (int)numMaxQueryDays.Value;
+            ConfigManager.Config.MaxDataPoints  = (int)numMaxDataPoints.Value;
             ConfigManager.SaveConfig();
 
             ApplyLanguage();   // 保存后刷新本窗体文字（语言可能已变）
@@ -388,5 +396,9 @@ namespace TestProj
 
         #endregion
 
+        private void kryptonNumericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

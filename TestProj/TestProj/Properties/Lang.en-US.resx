@@ -321,6 +321,24 @@
   <data name="BDF_InvalidDecimal" xml:space="preserve">
     <value>Decimal places cannot be negative</value>
   </data>
+  <data name="GCP_LblMaxQueryDays" xml:space="preserve">
+    <value>Max Query Days:</value>
+  </data>
+  <data name="GCP_LblMaxDataPoints" xml:space="preserve">
+    <value>Max Data Points:</value>
+  </data>
+  <data name="GCP_HintQueryLimits" xml:space="preserve">
+    <value>(0 = unlimited)</value>
+  </data>
+  <data name="Msg_RangeExceedWarning" xml:space="preserve">
+    <value>Query span of {0} days exceeds the {1}-day limit. This may load a very large amount of data. Continue?</value>
+  </data>
+  <data name="Msg_CountExceedWarning" xml:space="preserve">
+    <value>Requested {0} data points exceeds the limit of {1}. Only the first {1} points will be loaded. Continue?</value>
+  </data>
+  <data name="Msg_DataTruncated" xml:space="preserve">
+    <value>Result exceeds the row limit and has been truncated to {0} rows. Narrow the time range for complete data.</value>
+  </data>
   <data name="TCP_ColTagName" xml:space="preserve">
     <value>Tag Name</value>
   </data>

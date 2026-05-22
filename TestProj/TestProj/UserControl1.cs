@@ -121,6 +121,23 @@ namespace TestProj
             SetQueryRunning(true);
             try
             {
+                var cfg = ConfigManager.Config;
+
+                // ── 安全检查 1：时间跨度上限 ────────────────────────────────
+                int maxDays = (cfg?.MaxQueryDays ?? 31);
+                if (maxDays > 0)
+                {
+                    int spanDays = (int)Math.Ceiling((end - start).TotalDays);
+                    if (spanDays > maxDays)
+                    {
+                        var ans = MessageBox.Show(
+                            string.Format(LangHelper.Get("Msg_RangeExceedWarning"), spanDays, maxDays),
+                            LangHelper.Get("Msg_Warning"),
+                            MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                        if (ans != DialogResult.Yes) return;
+                    }
+                }
+
                 var valueIds = entries.Select(e => e.ValueID).ToList();
 
                 // 把耗时的 DB 查询 + 数据转换移到后台线程
@@ -147,8 +164,25 @@ namespace TestProj
                     return;
                 }
 
+                // ── 安全检查 2：数据行数上限 ────────────────────────────────
+                int maxPts = cfg?.MaxDataPoints ?? 50000;
+                bool truncated = false;
+                if (maxPts > 0 && wide.Rows.Count > maxPts)
+                {
+                    var trimmed = wide.Clone();
+                    for (int i = 0; i < maxPts; i++) trimmed.ImportRow(wide.Rows[i]);
+                    wide = trimmed;
+                    truncated = true;
+                }
+
                 _tagMetaList = ConfigManager.Config?.TagMeta ?? new List<TagMeta>();
                 BindResultTable(wide);
+
+                if (truncated)
+                    MessageBox.Show(
+                        string.Format(LangHelper.Get("Msg_DataTruncated"), maxPts),
+                        LangHelper.Get("Msg_Warning"),
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (Exception ex)
             {
@@ -165,6 +199,20 @@ namespace TestProj
             SetQueryRunning(true);
             try
             {
+                var cfg = ConfigManager.Config;
+
+                // ── 安全检查：数据点数上限 ───────────────────────────────────
+                int maxPts = cfg?.MaxDataPoints ?? 50000;
+                if (maxPts > 0 && count > maxPts)
+                {
+                    var ans = MessageBox.Show(
+                        string.Format(LangHelper.Get("Msg_CountExceedWarning"), count, maxPts),
+                        LangHelper.Get("Msg_Warning"),
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (ans != DialogResult.Yes) return;
+                    count = maxPts;
+                }
+
                 var valueIds = entries.Select(e => e.ValueID).ToList();
 
                 DataTable wide = await Task.Run(() =>

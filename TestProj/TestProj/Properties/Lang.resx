@@ -321,6 +321,24 @@
   <data name="BDF_InvalidDecimal" xml:space="preserve">
     <value>精确位数不能为负数</value>
   </data>
+  <data name="GCP_LblMaxQueryDays" xml:space="preserve">
+    <value>最大查询天数：</value>
+  </data>
+  <data name="GCP_LblMaxDataPoints" xml:space="preserve">
+    <value>最大数据点数：</value>
+  </data>
+  <data name="GCP_HintQueryLimits" xml:space="preserve">
+    <value>（0 = 不限制）</value>
+  </data>
+  <data name="Msg_RangeExceedWarning" xml:space="preserve">
+    <value>查询时间跨度 {0} 天超过上限 {1} 天，数据量可能很大，是否继续？</value>
+  </data>
+  <data name="Msg_CountExceedWarning" xml:space="preserve">
+    <value>请求数据点数 {0} 超过上限 {1}，将自动截取前 {1} 条，是否继续？</value>
+  </data>
+  <data name="Msg_DataTruncated" xml:space="preserve">
+    <value>数据行数超过上限，已截取前 {0} 行。如需完整数据请缩小时间范围。</value>
+  </data>
   <data name="TCP_ColTagName" xml:space="preserve">
     <value>变量名称</value>
   </data>
