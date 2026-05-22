@@ -86,6 +86,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BatchDecimalForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BatchDecimalForm.Designer.cs">
+      <DependentUpon>BatchDecimalForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConfigManager.cs" />
     <Compile Include="DbManager.cs" />
     <Compile Include="IconManager.cs" />
@@ -96,6 +102,7 @@
     <Compile Include="ExcelImportConfigForm.Designer.cs">
       <DependentUpon>ExcelImportConfigForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\DecimalRule.cs" />
     <Compile Include="Models\ReportTemplate.cs" />
     <Compile Include="Models\TagMeta.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -143,6 +150,9 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="BatchDecimalForm.resx">
+      <DependentUpon>BatchDecimalForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ExcelImportConfigForm.resx">
       <DependentUpon>ExcelImportConfigForm.cs</DependentUpon>
     </EmbeddedResource>

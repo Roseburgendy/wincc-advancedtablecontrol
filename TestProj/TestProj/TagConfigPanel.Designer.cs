@@ -34,8 +34,7 @@ namespace TestProj
             this.groupBox1 = new Krypton.Toolkit.KryptonGroupBox();
             this.groupBox2 = new Krypton.Toolkit.KryptonGroupBox();
             this.dgvTags = new Krypton.Toolkit.KryptonDataGridView();
-            this.saveConfigBtn     = new Krypton.Toolkit.KryptonButton();
-            this.btnBatchDecimal   = new Krypton.Toolkit.KryptonButton();
+            this.saveConfigBtn = new Krypton.Toolkit.KryptonButton();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -286,20 +285,6 @@ namespace TestProj
             this.saveConfigBtn.Values.Text = "保存配置";
             this.saveConfigBtn.Click += new System.EventHandler(this.SaveConfigBtn_Click_1);
             //
-            // btnBatchDecimal
-            //
-            this.btnBatchDecimal.Anchor = ((System.Windows.Forms.AnchorStyles)(
-                System.Windows.Forms.AnchorStyles.Bottom |
-                System.Windows.Forms.AnchorStyles.Right));
-            this.btnBatchDecimal.Location = new System.Drawing.Point(895, 972);
-            this.btnBatchDecimal.Margin   = new System.Windows.Forms.Padding(2);
-            this.btnBatchDecimal.Name     = "btnBatchDecimal";
-            this.btnBatchDecimal.Size     = new System.Drawing.Size(310, 72);
-            this.btnBatchDecimal.TabIndex = 19;
-            this.btnBatchDecimal.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.btnBatchDecimal.Values.Text = "批量精确位数…";
-            this.btnBatchDecimal.Click += new System.EventHandler(this.BtnBatchDecimal_Click);
-            //
             // Column1
             // 
             this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -381,7 +366,6 @@ namespace TestProj
             this.ClientSize = new System.Drawing.Size(1544, 1072);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.saveConfigBtn);
-            this.Controls.Add(this.btnBatchDecimal);
             this.Controls.Add(this.groupBox1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MinimumSize = new System.Drawing.Size(1572, 1000);
@@ -423,7 +407,6 @@ namespace TestProj
         private Krypton.Toolkit.KryptonGroupBox groupBox1;
         private Krypton.Toolkit.KryptonGroupBox groupBox2;
         private Krypton.Toolkit.KryptonButton saveConfigBtn;
-        private Krypton.Toolkit.KryptonButton btnBatchDecimal;
         private Krypton.Toolkit.KryptonDataGridView dgvTags;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;

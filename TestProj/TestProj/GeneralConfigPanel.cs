@@ -68,7 +68,9 @@ namespace TestProj
             btnConfigTag.Values.Image        = IconManager.Make(IconChar.Wrench,     mode, 32);
 
             // Tab 2 — General Settings
-            btnSaveGeneral.Values.Image = IconManager.Make(IconChar.FloppyDisk, mode, 32);
+            btnSaveGeneral.Values.Image  = IconManager.Make(IconChar.FloppyDisk, mode, 32);
+            kryptonButton1.Values.Image  = IconManager.Make(IconChar.FolderOpen, mode, 32);
+            btnBatchDecimal.Values.Image = IconManager.Make(IconChar.Bolt,       mode, 32);
         }
 
         /// <summary>刷新整个窗体的 UI 文字为当前语言。</summary>
@@ -96,9 +98,10 @@ namespace TestProj
             // Tab 2 — General Settings
             lblLanguage.Values.Text    = LangHelper.Get("GCP_LblLanguage");
             lblTheme.Values.Text       = LangHelper.Get("GCP_LblTheme");
-            btnSaveGeneral.Values.Text = LangHelper.Get("GCP_BtnSave");
-            lblCompanyName.Values.Text = LangHelper.Get("GCP_LblCompanyName");
-            lblConfigPath.Values.Text = LangHelper.Get("GCP_LblConfigPath");
+            btnSaveGeneral.Values.Text  = LangHelper.Get("GCP_BtnSave");
+            lblCompanyName.Values.Text  = LangHelper.Get("GCP_LblCompanyName");
+            lblConfigPath.Values.Text   = LangHelper.Get("GCP_LblConfigPath");
+            btnBatchDecimal.Values.Text = LangHelper.Get("TCP_BtnBatchDecimal");
             // Refresh tag summary text (it may contain a localised separator)
             UpdateTagSummary();
         }
@@ -375,6 +378,13 @@ namespace TestProj
             ApplyLanguage();   // 保存后刷新本窗体文字（语言可能已变）
             MessageBox.Show(LangHelper.Get("GCP_GeneralSaved"), LangHelper.Get("Msg_Info"),
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void BtnBatchDecimal_Click(object sender, EventArgs e)
+        {
+            using (var form = new BatchDecimalForm())
+                form.ShowDialog(this);
+            // No DGV to refresh here — changes are persisted in config immediately
         }
 
         #endregion

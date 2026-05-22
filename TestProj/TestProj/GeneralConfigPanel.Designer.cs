@@ -55,6 +55,7 @@ namespace TestProj
             this.lblLanguage = new Krypton.Toolkit.KryptonLabel();
             this.pnlGeneralFooter = new Krypton.Toolkit.KryptonPanel();
             this.btnSaveGeneral = new Krypton.Toolkit.KryptonButton();
+            this.btnBatchDecimal = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonNavigator1)).BeginInit();
             this.kryptonNavigator1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPage1)).BeginInit();
@@ -102,7 +103,7 @@ namespace TestProj
             this.kryptonNavigator1.Pages.AddRange(new Krypton.Navigator.KryptonPage[] {
             this.kryptonPage1,
             this.kryptonPage2});
-            this.kryptonNavigator1.SelectedIndex = 0;
+            this.kryptonNavigator1.SelectedIndex = 1;
             this.kryptonNavigator1.Size = new System.Drawing.Size(1728, 989);
             this.kryptonNavigator1.TabIndex = 0;
             // 
@@ -537,6 +538,7 @@ namespace TestProj
             // pnlGeneralFooter
             // 
             this.pnlGeneralFooter.Controls.Add(this.btnSaveGeneral);
+            this.pnlGeneralFooter.Controls.Add(this.btnBatchDecimal);
             this.pnlGeneralFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlGeneralFooter.Location = new System.Drawing.Point(0, 857);
             this.pnlGeneralFooter.Margin = new System.Windows.Forms.Padding(2);
@@ -554,6 +556,17 @@ namespace TestProj
             this.btnSaveGeneral.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnSaveGeneral.Values.Text = "保存";
             this.btnSaveGeneral.Click += new System.EventHandler(this.BtnSaveGeneral_Click);
+            // 
+            // btnBatchDecimal
+            // 
+            this.btnBatchDecimal.Location = new System.Drawing.Point(15, 9);
+            this.btnBatchDecimal.Margin = new System.Windows.Forms.Padding(2);
+            this.btnBatchDecimal.Name = "btnBatchDecimal";
+            this.btnBatchDecimal.Size = new System.Drawing.Size(310, 65);
+            this.btnBatchDecimal.TabIndex = 1;
+            this.btnBatchDecimal.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnBatchDecimal.Values.Text = "批量精确位数…";
+            this.btnBatchDecimal.Click += new System.EventHandler(this.BtnBatchDecimal_Click);
             // 
             // GeneralConfigPanel
             // 
@@ -653,6 +666,7 @@ namespace TestProj
         private Krypton.Toolkit.KryptonTextBox kryptonTextBox3;
         private Krypton.Toolkit.KryptonPanel panel5;
         private Krypton.Toolkit.KryptonButton btnBrowseExportPath;
+        private Krypton.Toolkit.KryptonButton btnBatchDecimal;
 
         // ── Tab 3: Export Settings ────────────────────────────────────────────
     }
