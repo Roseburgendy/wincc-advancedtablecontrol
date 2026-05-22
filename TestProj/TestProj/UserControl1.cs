@@ -124,17 +124,17 @@ namespace TestProj
                 var cfg = ConfigManager.Config;
 
                 // ── 安全检查 1：时间跨度上限 ────────────────────────────────
-                int maxDays = (cfg?.MaxQueryDays ?? 31);
+                int maxDays = cfg?.MaxQueryDays ?? 31;
                 if (maxDays > 0)
                 {
                     int spanDays = (int)Math.Ceiling((end - start).TotalDays);
                     if (spanDays > maxDays)
                     {
-                        var ans = MessageBox.Show(
+                        MessageBox.Show(
                             string.Format(LangHelper.Get("Msg_RangeExceedWarning"), spanDays, maxDays),
                             LangHelper.Get("Msg_Warning"),
-                            MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                        if (ans != DialogResult.Yes) return;
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
                     }
                 }
 

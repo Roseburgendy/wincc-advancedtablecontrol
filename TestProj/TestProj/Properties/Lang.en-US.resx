@@ -331,7 +331,7 @@
     <value>(0 = unlimited)</value>
   </data>
   <data name="Msg_RangeExceedWarning" xml:space="preserve">
-    <value>Query span of {0} days exceeds the {1}-day limit. This may load a very large amount of data. Continue?</value>
+    <value>Query span of {0} days exceeds the {1}-day limit. Please narrow the time range or increase the limit in General Settings.</value>
   </data>
   <data name="Msg_CountExceedWarning" xml:space="preserve">
     <value>Requested {0} data points exceeds the limit of {1}. Only the first {1} points will be loaded. Continue?</value>
