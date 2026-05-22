@@ -113,7 +113,7 @@ namespace TestProj
                 int count = string.IsNullOrEmpty(prefix)
                     ? 0
                     : tags.Count(t =>
-                        t.TagName?.StartsWith(prefix, StringComparison.OrdinalIgnoreCase) == true);
+                        ShortTagName(t).StartsWith(prefix, StringComparison.OrdinalIgnoreCase));
                 row.Cells["colMatchCount"].Value = count;
             }
         }
@@ -124,9 +124,6 @@ namespace TestProj
         {
             string saved = ConfigManager.Config?.Theme ?? "Microsoft365Blue";
             Enum.TryParse<Krypton.Toolkit.PaletteMode>(saved, out var mode);
-
-            btnAddRule.Values.Image    = IconManager.Make(IconChar.Plus,       mode, 28);
-            btnDeleteRule.Values.Image = IconManager.Make(IconChar.Trash,      mode, 28);
             btnApply.Values.Image      = IconManager.Make(IconChar.Bolt,       mode, 28);
             btnOK.Values.Image         = IconManager.Make(IconChar.FloppyDisk, mode, 28);
             btnCancel.Values.Image     = IconManager.Make(IconChar.Xmark,      mode, 28);
@@ -244,8 +241,8 @@ namespace TestProj
             {
                 foreach (var rule in validRules)
                 {
-                    if (tag.TagName?.StartsWith(rule.Prefix,
-                            StringComparison.OrdinalIgnoreCase) == true)
+                    if (ShortTagName(tag).StartsWith(rule.Prefix,
+                            StringComparison.OrdinalIgnoreCase))
                     {
                         tag.DecimalPlaces = rule.DecimalPlaces;
                         count++;
@@ -254,6 +251,14 @@ namespace TestProj
                 }
             }
             return count;
+        }
+
+        /// <summary>取 TagName 最后一段（去掉 / 或 \ 前的路径前缀）。</summary>
+        private static string ShortTagName(TagMeta meta, string fallback = "")
+        {
+            string full = meta?.TagName;
+            if (string.IsNullOrWhiteSpace(full)) return fallback;
+            return full.Split('/', '\\').Last();
         }
     }
 }

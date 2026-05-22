@@ -69,7 +69,6 @@ namespace TestProj
 
             // Tab 2 — General Settings
             btnSaveGeneral.Values.Image  = IconManager.Make(IconChar.FloppyDisk, mode, 32);
-            kryptonButton1.Values.Image  = IconManager.Make(IconChar.FolderOpen, mode, 32);
             btnBatchDecimal.Values.Image = IconManager.Make(IconChar.Bolt,       mode, 32);
         }
 
