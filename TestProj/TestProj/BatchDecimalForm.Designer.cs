@@ -20,7 +20,6 @@ namespace TestProj
             this.btnAddRule = new Krypton.Toolkit.KryptonButton();
             this.btnDeleteRule = new Krypton.Toolkit.KryptonButton();
             this.lblApplyResult = new Krypton.Toolkit.KryptonLabel();
-            this.btnApply = new Krypton.Toolkit.KryptonButton();
             this.btnOK = new Krypton.Toolkit.KryptonButton();
             this.btnCancel = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRules)).BeginInit();
@@ -89,29 +88,17 @@ namespace TestProj
             this.lblApplyResult.TabIndex = 4;
             this.lblApplyResult.Values.Text = "";
             this.lblApplyResult.Visible = false;
-            // 
-            // btnApply
-            // 
-            this.btnApply.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnApply.Location = new System.Drawing.Point(15, 629);
-            this.btnApply.Margin = new System.Windows.Forms.Padding(2);
-            this.btnApply.Name = "btnApply";
-            this.btnApply.Size = new System.Drawing.Size(230, 60);
-            this.btnApply.TabIndex = 5;
-            this.btnApply.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.btnApply.Values.Text = "应用规则";
-            this.btnApply.Click += new System.EventHandler(this.BtnApply_Click);
-            // 
-            // btnOK
-            // 
+            //
+            // btnOK  (Save & Apply)
+            //
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.Location = new System.Drawing.Point(744, 629);
+            this.btnOK.Location = new System.Drawing.Point(724, 629);
             this.btnOK.Margin = new System.Windows.Forms.Padding(2);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(175, 60);
-            this.btnOK.TabIndex = 6;
+            this.btnOK.Size = new System.Drawing.Size(195, 60);
+            this.btnOK.TabIndex = 5;
             this.btnOK.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.btnOK.Values.Text = "确认";
+            this.btnOK.Values.Text = "保存并应用";
             this.btnOK.Click += new System.EventHandler(this.BtnOK_Click);
             // 
             // btnCancel
@@ -139,7 +126,6 @@ namespace TestProj
             this.Controls.Add(this.btnAddRule);
             this.Controls.Add(this.btnDeleteRule);
             this.Controls.Add(this.lblApplyResult);
-            this.Controls.Add(this.btnApply);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.btnCancel);
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -160,7 +146,6 @@ namespace TestProj
         private Krypton.Toolkit.KryptonButton btnAddRule;
         private Krypton.Toolkit.KryptonButton btnDeleteRule;
         private Krypton.Toolkit.KryptonLabel  lblApplyResult;
-        private Krypton.Toolkit.KryptonButton btnApply;
         private Krypton.Toolkit.KryptonButton btnOK;
         private Krypton.Toolkit.KryptonButton btnCancel;
     }

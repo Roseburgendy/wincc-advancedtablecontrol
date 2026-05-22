@@ -15,7 +15,7 @@ namespace TestProj
     /// </summary>
     public partial class BatchDecimalForm : Krypton.Toolkit.KryptonForm
     {
-        // ── DGV column indices ──────────────────────────────────────────────
+        // DGV column indices
         private const int ColPrefix     = 0;
         private const int ColDecimal    = 1;
         private const int ColMatchCount = 2;
@@ -42,15 +42,15 @@ namespace TestProj
             dgvRules.DataSource = _rules;
             RefreshMatchCounts();
 
-            dgvRules.CellEndEdit      += (s, e) => RefreshMatchCounts();
-            dgvRules.RowsAdded        += (s, e) => RefreshMatchCounts();
-            dgvRules.RowsRemoved      += (s, e) => RefreshMatchCounts();
+            dgvRules.CellEndEdit += (s, e) => RefreshMatchCounts();
+            dgvRules.RowsAdded   += (s, e) => RefreshMatchCounts();
+            dgvRules.RowsRemoved += (s, e) => RefreshMatchCounts();
 
             ApplyIcons();
             ApplyLanguage();
         }
 
-        // ── DGV setup ────────────────────────────────────────────────────────
+        // DGV setup
 
         private void SetupDgv()
         {
@@ -118,15 +118,14 @@ namespace TestProj
             }
         }
 
-        // ── Icons & Language ─────────────────────────────────────────────────
+        #region Icons & Language
 
         public void ApplyIcons()
         {
             string saved = ConfigManager.Config?.Theme ?? "Microsoft365Blue";
             Enum.TryParse<Krypton.Toolkit.PaletteMode>(saved, out var mode);
-            btnApply.Values.Image      = IconManager.Make(IconChar.Bolt,       mode, 28);
-            btnOK.Values.Image         = IconManager.Make(IconChar.FloppyDisk, mode, 28);
-            btnCancel.Values.Image     = IconManager.Make(IconChar.Xmark,      mode, 28);
+            btnOK.Values.Image     = IconManager.Make(IconChar.FloppyDisk, mode, 28);
+            btnCancel.Values.Image = IconManager.Make(IconChar.Xmark,      mode, 28);
         }
 
         public void ApplyLanguage()
@@ -140,13 +139,15 @@ namespace TestProj
 
             btnAddRule.Values.Text    = LangHelper.Get("BDF_BtnAdd");
             btnDeleteRule.Values.Text = LangHelper.Get("BDF_BtnDelete");
-            btnApply.Values.Text      = LangHelper.Get("BDF_BtnApply");
-            btnOK.Values.Text         = LangHelper.Get("GCP_BtnSave");
+            btnOK.Values.Text         = LangHelper.Get("BDF_BtnSaveApply");
             btnCancel.Values.Text     = LangHelper.Get("GCP_BtnCancel");
         }
 
-        // ── Button handlers ──────────────────────────────────────────────────
+        #endregion
 
+        #region Button handlers
+
+        // add rule
         private void BtnAddRule_Click(object sender, EventArgs e)
         {
             _rules.Add(new DecimalRule { Prefix = "", DecimalPlaces = 2 });
@@ -158,6 +159,7 @@ namespace TestProj
             lblApplyResult.Visible = false;
         }
 
+        // delete rule
         private void BtnDeleteRule_Click(object sender, EventArgs e)
         {
             if (dgvRules.CurrentRow == null) return;
@@ -170,9 +172,9 @@ namespace TestProj
             }
         }
 
-        private void BtnApply_Click(object sender, EventArgs e)
+        // save & apply
+        private void BtnOK_Click(object sender, EventArgs e)
         {
-            // Commit any in-progress cell edit
             dgvRules.EndEdit();
 
             var tags = ConfigManager.Config?.TagMeta;
@@ -195,24 +197,18 @@ namespace TestProj
                 }
             }
 
+            // Apply rules to tags
             int updated = ApplyRules(tags, _rules.ToList());
-            ConfigManager.SaveConfig();
-            RefreshMatchCounts();
 
-            lblApplyResult.Values.Text = string.Format(LangHelper.Get("BDF_ApplyResult"), updated);
-            lblApplyResult.Visible     = true;
-        }
-
-        private void BtnOK_Click(object sender, EventArgs e)
-        {
-            dgvRules.EndEdit();
-
-            // Save rule list to config
+            // Persist updated rule list + tag meta
             if (ConfigManager.Config != null)
-            {
                 ConfigManager.Config.DecimalRules = _rules.ToList();
-                ConfigManager.SaveConfig();
-            }
+            ConfigManager.SaveConfig();
+
+            MessageBox.Show(
+                string.Format(LangHelper.Get("BDF_ApplyResult"), updated),
+                LangHelper.Get("Msg_Info"),
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             DialogResult = DialogResult.OK;
             Close();
@@ -224,7 +220,9 @@ namespace TestProj
             Close();
         }
 
-        // ── Core logic ───────────────────────────────────────────────────────
+        #endregion
+
+        #region core logic
 
         /// <summary>
         /// 将规则列表应用到 tags 集合，返回实际被修改的变量数。
@@ -260,5 +258,7 @@ namespace TestProj
             if (string.IsNullOrWhiteSpace(full)) return fallback;
             return full.Split('/', '\\').Last();
         }
+
+        #endregion
     }
 }

@@ -309,8 +309,8 @@
   <data name="BDF_BtnDelete" xml:space="preserve">
     <value>- Delete Selected</value>
   </data>
-  <data name="BDF_BtnApply" xml:space="preserve">
-    <value>Apply Rules</value>
+  <data name="BDF_BtnSaveApply" xml:space="preserve">
+    <value>Save &amp; Apply</value>
   </data>
   <data name="BDF_ApplyResult" xml:space="preserve">
     <value>✔ Updated {0} tag(s)</value>
