@@ -17,11 +17,16 @@ namespace TestProj
         private List<TagMeta> _tagMetaList = new List<TagMeta>(); // 变量信息
         private ReportTemplate _currentTemplate; // 模板对应选中变量名称和顺序
 
+        // 导航快捷按钮状态
+        private DateTime                _navStart;    // 当前窗口起始（UTC）
+        private DateTime                _navEnd;      // 当前窗口结束（UTC）
+        private int                     _navTimeStep; // 聚合步长（秒）
+        private List<TemplateTagEntry>  _navEntries;  // 当前条目
+        private bool                    _navActive;   // 是否已完成过一次时间范围查询
+
         public UserControl1()
         {
             InitializeComponent();
-            this.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, (byte)134);
-
             try
             {
                 DbManager.GetConnection(); // 内部会触发 ConfigManager.Init
@@ -78,6 +83,10 @@ namespace TestProj
             PrintBtn.Values.Text        = LangHelper.Get("UC_Print");
             btnConfig.Values.Text       = LangHelper.Get("UC_Config");
             ExportExcelBtn.Values.Text  = LangHelper.Get("UC_ExportExcel");
+            btnNavFirst.Values.Text     = LangHelper.Get("UC_NavFirst");
+            btnNavPrev.Values.Text      = LangHelper.Get("UC_NavPrev");
+            btnNavNext.Values.Text      = LangHelper.Get("UC_NavNext");
+            btnNavLast.Values.Text      = LangHelper.Get("UC_NavLast");
 
             // 若表格已有数据，实时刷新列标题（语言切换后 DisplayName 行同步更新）
             if (dataGridView1.DataSource != null)
@@ -95,11 +104,16 @@ namespace TestProj
         /// <summary>根据当前主题重新生成并赋值工具栏各按钮的图标。</summary>
         public void ApplyIcons(Krypton.Toolkit.PaletteMode mode)
         {
-            TimeSelectBtn.Values.Image  = IconManager.Make(IconChar.CalendarDay,  mode, 40);
-            btnImportExcel.Values.Image = IconManager.Make(IconChar.FileImport,   mode, 40);
-            PrintBtn.Values.Image       = IconManager.Make(IconChar.Print,        mode, 40);
-            btnConfig.Values.Image      = IconManager.Make(IconChar.Sliders,      mode, 40);
-            ExportExcelBtn.Values.Image = IconManager.Make(IconChar.FileExcel,    mode, 40);
+            TimeSelectBtn.Values.Image  = IconManager.Make(IconChar.CalendarDay,   mode, 40);
+            btnImportExcel.Values.Image = IconManager.Make(IconChar.FileImport,    mode, 40);
+            PrintBtn.Values.Image       = IconManager.Make(IconChar.Print,         mode, 40);
+            btnConfig.Values.Image      = IconManager.Make(IconChar.Sliders,       mode, 40);
+            ExportExcelBtn.Values.Image = IconManager.Make(IconChar.FileExcel,     mode, 40);
+
+            btnNavFirst.Values.Image    = IconManager.Make(IconChar.BackwardStep,  mode, 36);
+            btnNavPrev.Values.Image     = IconManager.Make(IconChar.Backward,      mode, 36);
+            btnNavNext.Values.Image     = IconManager.Make(IconChar.Forward,       mode, 36);
+            btnNavLast.Values.Image     = IconManager.Make(IconChar.ForwardStep,   mode, 36);
         }
 
         #endregion
@@ -109,11 +123,18 @@ namespace TestProj
         /// <summary>显示/隐藏进度条并切换查询按钮的可用状态。</summary>
         private void SetQueryRunning(bool running)
         {
-            progressBar1.Visible  = running;
-            TimeSelectBtn.Enabled = !running;
+            progressBar1.Visible   = running;
+            TimeSelectBtn.Enabled  = !running;
             ExportExcelBtn.Enabled = !running;
-            PrintBtn.Enabled      = !running;
+            PrintBtn.Enabled       = !running;
             btnImportExcel.Enabled = !running;
+
+            // 导航按钮：查询期间禁用，完成后按 _navActive 决定
+            bool navEnabled = !running && _navActive;
+            btnNavFirst.Enabled = navEnabled;
+            btnNavPrev.Enabled  = navEnabled;
+            btnNavNext.Enabled  = navEnabled;
+            btnNavLast.Enabled  = navEnabled;
         }
 
         private async Task RunQueryAsync(List<TemplateTagEntry> entries, DateTime start, DateTime end, int timeStep)
@@ -177,6 +198,14 @@ namespace TestProj
 
                 _tagMetaList = ConfigManager.Config?.TagMeta ?? new List<TagMeta>();
                 BindResultTable(wide);
+
+                // ── 存储导航状态，激活四个快捷导航按钮 ────────────────────
+                _navEntries  = entries;
+                _navStart    = start;
+                _navEnd      = end;
+                _navTimeStep = timeStep;
+                _navActive   = true;
+                UpdateRangeLabel();
 
                 if (truncated)
                     MessageBox.Show(
@@ -249,6 +278,72 @@ namespace TestProj
             {
                 SetQueryRunning(false);
             }
+        }
+
+        #endregion
+
+        #region Navigation Buttons
+
+        /// <summary>更新工具栏当前时间段标签文字。</summary>
+        private void UpdateRangeLabel()
+        {
+            if (!_navActive)
+            {
+                lblCurrentRange.Values.Text = "";
+                return;
+            }
+            lblCurrentRange.Values.Text =
+                $"{_navStart.ToLocalTime():yyyy-MM-dd HH:mm}  ~  {_navEnd.ToLocalTime():yyyy-MM-dd HH:mm}";
+        }
+
+        /// <summary>⏮ 跳转到归档中最早的数据，保持当前时间窗口跨度不变。</summary>
+        private async void BtnNavFirst_Click(object sender, EventArgs e)
+        {
+            if (!_navActive || _navEntries == null) return;
+            var span     = _navEnd - _navStart;
+            var valueIds = _navEntries.Select(en => en.ValueID).ToList();
+
+            progressBar1.Visible = true;
+            DateTime first;
+            try   { (first, _) = await Task.Run(() => DbManager.GetArchiveBounds(valueIds)); }
+            finally { progressBar1.Visible = false; }
+
+            await RunQueryAsync(_navEntries, first, first + span, _navTimeStep);
+        }
+
+        /// <summary>◀ 向前移动一个时间窗口（当前起点 - 跨度）。</summary>
+        private async void BtnNavPrev_Click(object sender, EventArgs e)
+        {
+            if (!_navActive || _navEntries == null) return;
+            var span     = _navEnd - _navStart;
+            var newEnd   = _navStart;
+            var newStart = newEnd - span;
+            await RunQueryAsync(_navEntries, newStart, newEnd, _navTimeStep);
+        }
+
+        /// <summary>▶ 向后移动一个时间窗口（当前终点 + 跨度）。</summary>
+        private async void BtnNavNext_Click(object sender, EventArgs e)
+        {
+            if (!_navActive || _navEntries == null) return;
+            var span     = _navEnd - _navStart;
+            var newStart = _navEnd;
+            var newEnd   = newStart + span;
+            await RunQueryAsync(_navEntries, newStart, newEnd, _navTimeStep);
+        }
+
+        /// <summary>⏭ 跳转到归档中最新的数据，保持当前时间窗口跨度不变。</summary>
+        private async void BtnNavLast_Click(object sender, EventArgs e)
+        {
+            if (!_navActive || _navEntries == null) return;
+            var span     = _navEnd - _navStart;
+            var valueIds = _navEntries.Select(en => en.ValueID).ToList();
+
+            progressBar1.Visible = true;
+            DateTime last;
+            try   { (_, last) = await Task.Run(() => DbManager.GetArchiveBounds(valueIds)); }
+            finally { progressBar1.Visible = false; }
+
+            await RunQueryAsync(_navEntries, last - span, last, _navTimeStep);
         }
 
         #endregion

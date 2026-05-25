@@ -147,6 +147,18 @@
   <data name="UC_ExportExcel" xml:space="preserve">
     <value>导出到EXCEL</value>
   </data>
+  <data name="UC_NavFirst" xml:space="preserve">
+    <value>第一条</value>
+  </data>
+  <data name="UC_NavPrev" xml:space="preserve">
+    <value>前一条</value>
+  </data>
+  <data name="UC_NavNext" xml:space="preserve">
+    <value>下一条</value>
+  </data>
+  <data name="UC_NavLast" xml:space="preserve">
+    <value>最后一条</value>
+  </data>
   <data name="UC_ColTimestamp" xml:space="preserve">
     <value>日期</value>
   </data>

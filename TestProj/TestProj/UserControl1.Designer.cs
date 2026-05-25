@@ -20,6 +20,11 @@ namespace TestProj
             this.kryptonManager = new Krypton.Toolkit.KryptonManager(this.components);
             this.kryptonPanel1 = new Krypton.Toolkit.KryptonPanel();
             this.kryptonLabel1 = new Krypton.Toolkit.KryptonLabel();
+            this.btnNavFirst = new Krypton.Toolkit.KryptonButton();
+            this.btnNavPrev  = new Krypton.Toolkit.KryptonButton();
+            this.btnNavNext  = new Krypton.Toolkit.KryptonButton();
+            this.btnNavLast  = new Krypton.Toolkit.KryptonButton();
+            this.lblCurrentRange = new Krypton.Toolkit.KryptonLabel();
             this.TimeSelectBtn = new Krypton.Toolkit.KryptonButton();
             this.label3 = new Krypton.Toolkit.KryptonLabel();
             this.cmbTemplate = new Krypton.Toolkit.KryptonComboBox();
@@ -43,6 +48,11 @@ namespace TestProj
             // kryptonPanel1
             // 
             this.kryptonPanel1.Controls.Add(this.kryptonLabel1);
+            this.kryptonPanel1.Controls.Add(this.lblCurrentRange);
+            this.kryptonPanel1.Controls.Add(this.btnNavFirst);
+            this.kryptonPanel1.Controls.Add(this.btnNavPrev);
+            this.kryptonPanel1.Controls.Add(this.btnNavNext);
+            this.kryptonPanel1.Controls.Add(this.btnNavLast);
             this.kryptonPanel1.Controls.Add(this.TimeSelectBtn);
             this.kryptonPanel1.Controls.Add(this.label3);
             this.kryptonPanel1.Controls.Add(this.cmbTemplate);
@@ -66,9 +76,63 @@ namespace TestProj
             this.kryptonLabel1.TabIndex = 39;
             this.kryptonLabel1.Values.Image = ((System.Drawing.Image)(resources.GetObject("kryptonLabel1.Values.Image")));
             this.kryptonLabel1.Values.Text = "中源技术";
-            // 
+            //
+            // lblCurrentRange — 显示当前查询时间段
+            //
+            this.lblCurrentRange.Location = new System.Drawing.Point(500, 22);
+            this.lblCurrentRange.Name = "lblCurrentRange";
+            this.lblCurrentRange.Size = new System.Drawing.Size(540, 50);
+            this.lblCurrentRange.TabIndex = 44;
+            this.lblCurrentRange.LabelStyle = Krypton.Toolkit.LabelStyle.NormalControl;
+            this.lblCurrentRange.StateCommon.ShortText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblCurrentRange.Values.Text = "";
+            //
+            // btnNavFirst — ⏮ 第一条
+            //
+            this.btnNavFirst.Enabled = false;
+            this.btnNavFirst.Location = new System.Drawing.Point(500, 125);
+            this.btnNavFirst.Name = "btnNavFirst";
+            this.btnNavFirst.Size = new System.Drawing.Size(120, 76);
+            this.btnNavFirst.TabIndex = 40;
+            this.btnNavFirst.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnNavFirst.Values.Text = "第一条";
+            this.btnNavFirst.Click += new System.EventHandler(this.BtnNavFirst_Click);
+            //
+            // btnNavPrev — ◀ 前一条
+            //
+            this.btnNavPrev.Enabled = false;
+            this.btnNavPrev.Location = new System.Drawing.Point(628, 125);
+            this.btnNavPrev.Name = "btnNavPrev";
+            this.btnNavPrev.Size = new System.Drawing.Size(120, 76);
+            this.btnNavPrev.TabIndex = 41;
+            this.btnNavPrev.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnNavPrev.Values.Text = "前一条";
+            this.btnNavPrev.Click += new System.EventHandler(this.BtnNavPrev_Click);
+            //
+            // btnNavNext — 下一条 ▶
+            //
+            this.btnNavNext.Enabled = false;
+            this.btnNavNext.Location = new System.Drawing.Point(756, 125);
+            this.btnNavNext.Name = "btnNavNext";
+            this.btnNavNext.Size = new System.Drawing.Size(120, 76);
+            this.btnNavNext.TabIndex = 42;
+            this.btnNavNext.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnNavNext.Values.Text = "下一条";
+            this.btnNavNext.Click += new System.EventHandler(this.BtnNavNext_Click);
+            //
+            // btnNavLast — 最后一条 ⏭
+            //
+            this.btnNavLast.Enabled = false;
+            this.btnNavLast.Location = new System.Drawing.Point(884, 125);
+            this.btnNavLast.Name = "btnNavLast";
+            this.btnNavLast.Size = new System.Drawing.Size(120, 76);
+            this.btnNavLast.TabIndex = 43;
+            this.btnNavLast.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnNavLast.Values.Text = "最后一条";
+            this.btnNavLast.Click += new System.EventHandler(this.BtnNavLast_Click);
+            //
             // TimeSelectBtn
-            // 
+            //
             this.TimeSelectBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.TimeSelectBtn.Location = new System.Drawing.Point(1061, 125);
             this.TimeSelectBtn.Name = "TimeSelectBtn";
@@ -188,6 +252,11 @@ namespace TestProj
 
         private Krypton.Toolkit.KryptonManager kryptonManager;
         private Krypton.Toolkit.KryptonPanel kryptonPanel1;
+        private Krypton.Toolkit.KryptonLabel lblCurrentRange;
+        private Krypton.Toolkit.KryptonButton btnNavFirst;
+        private Krypton.Toolkit.KryptonButton btnNavPrev;
+        private Krypton.Toolkit.KryptonButton btnNavNext;
+        private Krypton.Toolkit.KryptonButton btnNavLast;
         private Krypton.Toolkit.KryptonButton TimeSelectBtn;
         private Krypton.Toolkit.KryptonLabel label3;
         private Krypton.Toolkit.KryptonComboBox cmbTemplate;

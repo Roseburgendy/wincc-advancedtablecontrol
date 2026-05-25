@@ -239,6 +239,46 @@ namespace TestProj
         
 
         /// <summary>
+        /// 获取归档数据的最早和最晚时间戳（UTC）。
+        /// 仅查询 valueIds 中第一个 ID，使用 1 天 TIMESTEP 快速扫描。
+        /// 返回的 Last 已加 1 天，保证最后一个区间的数据不被截断。
+        /// </summary>
+        public static (DateTime First, DateTime Last) GetArchiveBounds(List<long> valueIds)
+        {
+            var fallback = (First: new DateTime(1990, 1, 1, 0, 0, 0, DateTimeKind.Utc),
+                            Last:  DateTime.UtcNow);
+
+            if (valueIds == null || valueIds.Count == 0) return fallback;
+
+            // 只用第一个 ValueID，用 1 天聚合扫描全量时间
+            var singleId   = new List<long> { valueIds[0] };
+            const int step = 86400; // 1 day in seconds
+            var wideStart  = new DateTime(1990, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            var wideEnd    = DateTime.UtcNow;
+
+            try
+            {
+                var data = FetchData(singleId, wideStart, wideEnd, step);
+                if (data == null || !data.Columns.Contains("Timestamp") || data.Rows.Count == 0)
+                    return fallback;
+
+                // WinCC OLE DB 已按时间排序，直接取首尾行
+                var times = data.AsEnumerable()
+                    .Where(r  => r["Timestamp"] != DBNull.Value)
+                    .Select(r => Convert.ToDateTime(r["Timestamp"]))
+                    .ToList();
+
+                if (times.Count == 0) return fallback;
+
+                return (times.First(), times.Last() + TimeSpan.FromSeconds(step));
+            }
+            catch
+            {
+                return fallback;
+            }
+        }
+
+        /// <summary>
         /// 映射变量类型
         /// </summary>
         public static string MapVarType(int varType)
