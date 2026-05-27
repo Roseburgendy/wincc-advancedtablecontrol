@@ -93,7 +93,8 @@ namespace TestProj
         {
             var hmi = new HMIRuntime();
             // WinCC VBS API：HMIRuntime.Logging.DataLogs.Remove SourcePath, Type
-            int result = (int)hmi.Logging.Remove(sourcePath, archiveType);
+            // Type 参数在 COM 接口中为 string，传整数值的字符串形式
+            int result = (int)hmi.Logging.Remove(sourcePath, ((int)archiveType).ToString());
             if (result == 0)
                 _connectedFolders.Remove(sourcePath);
             return result;
