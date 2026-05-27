@@ -604,58 +604,25 @@ namespace TestProj
             // 
             // numMaxQueryDays
             // 
-            this.numMaxQueryDays.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             this.numMaxQueryDays.Location = new System.Drawing.Point(333, 207);
-            this.numMaxQueryDays.Maximum = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.numMaxQueryDays.Minimum = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
+            this.numMaxQueryDays.Minimum = new decimal(new int[] { 0, 0, 0, 0 });
+            this.numMaxQueryDays.Maximum = new decimal(new int[] { 3650, 0, 0, 0 });
+            this.numMaxQueryDays.Increment = new decimal(new int[] { 1, 0, 0, 0 });
+            this.numMaxQueryDays.Value = new decimal(new int[] { 31, 0, 0, 0 });
             this.numMaxQueryDays.Name = "numMaxQueryDays";
             this.numMaxQueryDays.Size = new System.Drawing.Size(211, 42);
             this.numMaxQueryDays.TabIndex = 16;
-            this.numMaxQueryDays.Value = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.numMaxQueryDays.ValueChanged += new System.EventHandler(this.kryptonNumericUpDown1_ValueChanged);
-            // 
+            //
             // numMaxDataPoints
-            // 
-            this.numMaxDataPoints.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
+            //
             this.numMaxDataPoints.Location = new System.Drawing.Point(333, 290);
-            this.numMaxDataPoints.Maximum = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.numMaxDataPoints.Minimum = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
+            this.numMaxDataPoints.Minimum = new decimal(new int[] { 0, 0, 0, 0 });
+            this.numMaxDataPoints.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
+            this.numMaxDataPoints.Increment = new decimal(new int[] { 1000, 0, 0, 0 });
+            this.numMaxDataPoints.Value = new decimal(new int[] { 50000, 0, 0, 0 });
             this.numMaxDataPoints.Name = "numMaxDataPoints";
             this.numMaxDataPoints.Size = new System.Drawing.Size(211, 42);
             this.numMaxDataPoints.TabIndex = 17;
-            this.numMaxDataPoints.Value = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
             // 
             // GeneralConfigPanel
             // 
