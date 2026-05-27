@@ -468,4 +468,58 @@
   <data name="Msg_DataTruncated" xml:space="preserve">
     <value>数据行数超过上限，已截取前 {0} 行。如需完整数据请缩小时间范围。</value>
   </data>
+  <data name="Msg_OK" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="Msg_Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="UC_ConnectBackup" xml:space="preserve">
+    <value>连接备份</value>
+  </data>
+  <data name="UC_DisconnectBackup" xml:space="preserve">
+    <value>断开备份</value>
+  </data>
+  <data name="GCP_ChkAutoConnectBackup" xml:space="preserve">
+    <value>自动链接备份</value>
+  </data>
+  <data name="GCP_LblBackupPath" xml:space="preserve">
+    <value>备份文件夹：</value>
+  </data>
+  <data name="Backup_ConnectTitle" xml:space="preserve">
+    <value>选择想要连接的备份。</value>
+  </data>
+  <data name="Backup_DisconnectTitle" xml:space="preserve">
+    <value>选择想要断开的备份。</value>
+  </data>
+  <data name="Backup_FolderLabel" xml:space="preserve">
+    <value>备份文件夹：</value>
+  </data>
+  <data name="Backup_FolderBrowseDesc" xml:space="preserve">
+    <value>选择备份归档文件夹</value>
+  </data>
+  <data name="Backup_NoFileSelected" xml:space="preserve">
+    <value>请选择要连接的备份文件。</value>
+  </data>
+  <data name="Backup_NoDisconnectSelected" xml:space="preserve">
+    <value>请选择要断开的备份。</value>
+  </data>
+  <data name="Backup_NoBackupsConnected" xml:space="preserve">
+    <value>当前没有已连接的备份归档。</value>
+  </data>
+  <data name="Backup_ConnectSuccess" xml:space="preserve">
+    <value>备份已成功连接。</value>
+  </data>
+  <data name="Backup_DisconnectSuccess" xml:space="preserve">
+    <value>备份已成功断开。</value>
+  </data>
+  <data name="Backup_FolderNotFound" xml:space="preserve">
+    <value>文件夹不存在，请重新选择。</value>
+  </data>
+  <data name="Backup_ConnectFailed" xml:space="preserve">
+    <value>连接备份失败</value>
+  </data>
+  <data name="Backup_DisconnectFailed" xml:space="preserve">
+    <value>断开备份失败</value>
+  </data>
 </root>

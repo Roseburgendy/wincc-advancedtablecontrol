@@ -45,6 +45,7 @@ namespace TestProj
             LoadSavedTheme();
             ApplyLanguage();
             ApplyIcons(kryptonManager.GlobalPaletteMode);
+            RefreshBackupButtons();
         }
 
         public void InitializeTemplateList()
@@ -70,12 +71,14 @@ namespace TestProj
         /// <summary>根据当前语言刷新工具栏所有控件的文字。</summary>
         public void ApplyLanguage()
         {
-            TimeSelectBtn.Values.Text   = LangHelper.Get("UC_TimeSelect");
-            label3.Values.Text          = LangHelper.Get("UC_SelectTemplate");
-            btnImportExcel.Values.Text  = LangHelper.Get("UC_ImportExcel");
-            PrintBtn.Values.Text        = LangHelper.Get("UC_Print");
-            btnConfig.Values.Text       = LangHelper.Get("UC_Config");
-            ExportExcelBtn.Values.Text  = LangHelper.Get("UC_ExportExcel");
+            TimeSelectBtn.Values.Text        = LangHelper.Get("UC_TimeSelect");
+            label3.Values.Text               = LangHelper.Get("UC_SelectTemplate");
+            btnImportExcel.Values.Text       = LangHelper.Get("UC_ImportExcel");
+            PrintBtn.Values.Text             = LangHelper.Get("UC_Print");
+            btnConfig.Values.Text            = LangHelper.Get("UC_Config");
+            ExportExcelBtn.Values.Text       = LangHelper.Get("UC_ExportExcel");
+            btnConnectBackup.Values.Text    = LangHelper.Get("UC_ConnectBackup");
+            btnDisconnectBackup.Values.Text = LangHelper.Get("UC_DisconnectBackup");
 
             // 若表格已有数据，实时刷新列标题（语言切换后 DisplayName 行同步更新）
             if (dataGridView1.DataSource != null)
@@ -93,11 +96,13 @@ namespace TestProj
         /// <summary>根据当前主题重新生成并赋值工具栏各按钮的图标。</summary>
         public void ApplyIcons(Krypton.Toolkit.PaletteMode mode)
         {
-            TimeSelectBtn.Values.Image  = IconManager.Make(IconChar.CalendarDay,   mode, 40);
-            btnImportExcel.Values.Image = IconManager.Make(IconChar.FileImport,    mode, 40);
-            PrintBtn.Values.Image       = IconManager.Make(IconChar.Print,         mode, 40);
-            btnConfig.Values.Image      = IconManager.Make(IconChar.Sliders,       mode, 40);
-            ExportExcelBtn.Values.Image = IconManager.Make(IconChar.FileExcel,     mode, 40);
+            TimeSelectBtn.Values.Image       = IconManager.Make(IconChar.CalendarDay,   mode, 40);
+            btnImportExcel.Values.Image      = IconManager.Make(IconChar.FileImport,    mode, 40);
+            PrintBtn.Values.Image            = IconManager.Make(IconChar.Print,         mode, 40);
+            btnConfig.Values.Image           = IconManager.Make(IconChar.Sliders,       mode, 40);
+            ExportExcelBtn.Values.Image      = IconManager.Make(IconChar.FileExcel,     mode, 40);
+            btnConnectBackup.Values.Image    = IconManager.Make(IconChar.HardDrive,    mode, 40);
+            btnDisconnectBackup.Values.Image = IconManager.Make(IconChar.TimesCircle,  mode, 40);
         }
 
         #endregion
@@ -107,11 +112,13 @@ namespace TestProj
         /// <summary>显示/隐藏进度条并切换查询按钮的可用状态。</summary>
         private void SetQueryRunning(bool running)
         {
-            progressBar1.Visible  = running;
-            TimeSelectBtn.Enabled = !running;
-            ExportExcelBtn.Enabled = !running;
-            PrintBtn.Enabled      = !running;
-            btnImportExcel.Enabled = !running;
+            progressBar1.Visible         = running;
+            TimeSelectBtn.Enabled        = !running;
+            ExportExcelBtn.Enabled       = !running;
+            PrintBtn.Enabled             = !running;
+            btnImportExcel.Enabled       = !running;
+            btnConnectBackup.Enabled    = !running;
+            btnDisconnectBackup.Enabled = !running;
         }
 
         private async Task RunQueryAsync(List<TemplateTagEntry> entries, DateTime start, DateTime end, int timeStep)
@@ -134,6 +141,13 @@ namespace TestProj
                             MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
+                }
+
+                // ── 自动连接备份 ────────────────────────────────────────────────
+                if (cfg?.AutoConnectBackup == true)
+                {
+                    string bkFolder = cfg.BackupPath ?? "";
+                    BackupManager.AutoConnectForTimeRange(bkFolder, start, end);
                 }
 
                 var valueIds = entries.Select(e => e.ValueID).ToList();
@@ -209,6 +223,13 @@ namespace TestProj
                         MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (ans != DialogResult.Yes) return;
                     count = maxPts;
+                }
+
+                // ── 自动连接备份（FetchByCount 只有 start 时间，按1年窗口匹配）────
+                if (cfg?.AutoConnectBackup == true)
+                {
+                    string bkFolder = cfg.BackupPath ?? "";
+                    BackupManager.AutoConnectForTimeRange(bkFolder, startUTC, startUTC.AddDays(365));
                 }
 
                 var valueIds = entries.Select(e => e.ValueID).ToList();
@@ -451,6 +472,7 @@ namespace TestProj
             LoadSavedTheme();
             ApplyLanguage();
             ApplyIcons(kryptonManager.GlobalPaletteMode);
+            RefreshBackupButtons();
         }
 
         /// <summary>
@@ -535,6 +557,78 @@ namespace TestProj
 
                 ExportToExcel(dlg.FileName);
                 MessageBox.Show("导出成功", "提示");
+            }
+        }
+
+        /// <summary>
+        /// 根据 AutoConnectBackup 配置决定连接/断开备份按钮的可见性。
+        /// </summary>
+        private void RefreshBackupButtons()
+        {
+            bool autoConnect = ConfigManager.Config?.AutoConnectBackup ?? false;
+            btnConnectBackup.Visible    = !autoConnect;
+            btnDisconnectBackup.Visible = !autoConnect;
+        }
+
+        /// <summary>连接备份按钮点击事件。</summary>
+        private void BtnConnectBackup_Click(object sender, EventArgs e)
+        {
+            string backupFolder = ConfigManager.Config?.BackupPath ?? "";
+            using (var dlg = new BackupConnectForm(backupFolder))
+            {
+                if (dlg.ShowDialog() != DialogResult.OK) return;
+                try
+                {
+                    // SelectedTimeFrom/To 为 null 时，ConnectBackup 连接文件夹下所有归档
+                    int ret = BackupManager.ConnectBackup(
+                        dlg.SelectedFolder,
+                        dlg.SelectedTimeFrom,
+                        dlg.SelectedTimeTo);
+
+                    if (ret == 0 || ret == 1)
+                        MessageBox.Show(LangHelper.Get("Backup_ConnectSuccess"), LangHelper.Get("Msg_Info"),
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    else
+                        MessageBox.Show(
+                            $"{LangHelper.Get("Backup_ConnectFailed")} (code={ret})",
+                            LangHelper.Get("Msg_Warning"),
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"{LangHelper.Get("Backup_ConnectFailed")}: {ex.Message}", "错误");
+                }
+            }
+        }
+
+        /// <summary>断开备份按钮点击事件。</summary>
+        private void BtnDisconnectBackup_Click(object sender, EventArgs e)
+        {
+            if (BackupManager.ConnectedFolders.Count == 0)
+            {
+                MessageBox.Show(LangHelper.Get("Backup_NoBackupsConnected"), LangHelper.Get("Msg_Info"),
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            using (var dlg = new BackupDisconnectForm())
+            {
+                if (dlg.ShowDialog() != DialogResult.OK) return;
+                try
+                {
+                    int ret = BackupManager.DisconnectBackup(dlg.SelectedFolder);
+                    if (ret == 0)
+                        MessageBox.Show(LangHelper.Get("Backup_DisconnectSuccess"), LangHelper.Get("Msg_Info"),
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    else
+                        MessageBox.Show(
+                            $"{LangHelper.Get("Backup_DisconnectFailed")} (code={ret})",
+                            LangHelper.Get("Msg_Warning"),
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"{LangHelper.Get("Backup_DisconnectFailed")}: {ex.Message}", "错误");
+                }
             }
         }
 

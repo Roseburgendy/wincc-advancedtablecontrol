@@ -20,6 +20,8 @@ namespace TestProj
             this.kryptonManager = new Krypton.Toolkit.KryptonManager(this.components);
             this.kryptonPanel1 = new Krypton.Toolkit.KryptonPanel();
             this.kryptonLabel1 = new Krypton.Toolkit.KryptonLabel();
+            this.btnConnectBackup = new Krypton.Toolkit.KryptonButton();
+            this.btnDisconnectBackup = new Krypton.Toolkit.KryptonButton();
             this.TimeSelectBtn = new Krypton.Toolkit.KryptonButton();
             this.label3 = new Krypton.Toolkit.KryptonLabel();
             this.cmbTemplate = new Krypton.Toolkit.KryptonComboBox();
@@ -43,6 +45,8 @@ namespace TestProj
             // kryptonPanel1
             // 
             this.kryptonPanel1.Controls.Add(this.kryptonLabel1);
+            this.kryptonPanel1.Controls.Add(this.btnConnectBackup);
+            this.kryptonPanel1.Controls.Add(this.btnDisconnectBackup);
             this.kryptonPanel1.Controls.Add(this.TimeSelectBtn);
             this.kryptonPanel1.Controls.Add(this.label3);
             this.kryptonPanel1.Controls.Add(this.cmbTemplate);
@@ -66,6 +70,28 @@ namespace TestProj
             this.kryptonLabel1.TabIndex = 39;
             this.kryptonLabel1.Values.Image = ((System.Drawing.Image)(resources.GetObject("kryptonLabel1.Values.Image")));
             this.kryptonLabel1.Values.Text = "中源技术";
+            //
+            // btnConnectBackup
+            //
+            this.btnConnectBackup.Location = new System.Drawing.Point(500, 125);
+            this.btnConnectBackup.Name = "btnConnectBackup";
+            this.btnConnectBackup.Size = new System.Drawing.Size(266, 76);
+            this.btnConnectBackup.TabIndex = 40;
+            this.btnConnectBackup.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnConnectBackup.Values.Text = "连接备份";
+            this.btnConnectBackup.Visible = false;
+            this.btnConnectBackup.Click += new System.EventHandler(this.BtnConnectBackup_Click);
+            //
+            // btnDisconnectBackup
+            //
+            this.btnDisconnectBackup.Location = new System.Drawing.Point(780, 125);
+            this.btnDisconnectBackup.Name = "btnDisconnectBackup";
+            this.btnDisconnectBackup.Size = new System.Drawing.Size(266, 76);
+            this.btnDisconnectBackup.TabIndex = 41;
+            this.btnDisconnectBackup.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnDisconnectBackup.Values.Text = "断开备份";
+            this.btnDisconnectBackup.Visible = false;
+            this.btnDisconnectBackup.Click += new System.EventHandler(this.BtnDisconnectBackup_Click);
             //
             // TimeSelectBtn
             //
@@ -188,6 +214,8 @@ namespace TestProj
 
         private Krypton.Toolkit.KryptonManager kryptonManager;
         private Krypton.Toolkit.KryptonPanel kryptonPanel1;
+        private Krypton.Toolkit.KryptonButton btnConnectBackup;
+        private Krypton.Toolkit.KryptonButton btnDisconnectBackup;
         private Krypton.Toolkit.KryptonButton TimeSelectBtn;
         private Krypton.Toolkit.KryptonLabel label3;
         private Krypton.Toolkit.KryptonComboBox cmbTemplate;

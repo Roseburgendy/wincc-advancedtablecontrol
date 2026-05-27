@@ -68,8 +68,9 @@ namespace TestProj
             btnConfigTag.Values.Image        = IconManager.Make(IconChar.Wrench,     mode, 32);
 
             // Tab 2 — General Settings
-            btnSaveGeneral.Values.Image  = IconManager.Make(IconChar.FloppyDisk, mode, 32);
-            btnBatchDecimal.Values.Image = IconManager.Make(IconChar.Bolt,       mode, 32);
+            btnSaveGeneral.Values.Image      = IconManager.Make(IconChar.FloppyDisk, mode, 32);
+            btnBatchDecimal.Values.Image     = IconManager.Make(IconChar.Bolt,       mode, 32);
+            btnBrowseBackupPath.Values.Image = IconManager.Make(IconChar.FolderOpen, mode, 22);
         }
 
         /// <summary>刷新整个窗体的 UI 文字为当前语言。</summary>
@@ -101,9 +102,11 @@ namespace TestProj
             lblCompanyName.Values.Text    = LangHelper.Get("GCP_LblCompanyName");
             lblConfigPath.Values.Text     = LangHelper.Get("GCP_LblConfigPath");
             btnBatchDecimal.Values.Text   = LangHelper.Get("TCP_BtnBatchDecimal");
-            lblMaxQueryDays.Values.Text   = LangHelper.Get("GCP_LblMaxQueryDays");
-            lblMaxDataPoints.Values.Text  = LangHelper.Get("GCP_LblMaxDataPoints");
-            lblQueryLimitsHint.Values.Text = LangHelper.Get("GCP_HintQueryLimits");
+            lblMaxQueryDays.Values.Text        = LangHelper.Get("GCP_LblMaxQueryDays");
+            lblMaxDataPoints.Values.Text       = LangHelper.Get("GCP_LblMaxDataPoints");
+            lblQueryLimitsHint.Values.Text     = LangHelper.Get("GCP_HintQueryLimits");
+            chkAutoConnectBackup.Values.Text   = LangHelper.Get("GCP_ChkAutoConnectBackup");
+            lblBackupPath.Values.Text          = LangHelper.Get("GCP_LblBackupPath");
             // Refresh tag summary text (it may contain a localised separator)
             UpdateTagSummary();
         }
@@ -338,6 +341,9 @@ namespace TestProj
 
             numMaxQueryDays.Value  = Math.Max(0, Math.Min((decimal)(cfg?.MaxQueryDays  ?? 31),  numMaxQueryDays.Maximum));
             numMaxDataPoints.Value = Math.Max(0, Math.Min((decimal)(cfg?.MaxDataPoints ?? 50000), numMaxDataPoints.Maximum));
+
+            chkAutoConnectBackup.Checked = cfg?.AutoConnectBackup ?? false;
+            txtBackupPath.Text           = cfg?.BackupPath ?? "";
         }
 
         private void CmbLanguage_SelectedIndexChanged(object sender, EventArgs e)
@@ -372,14 +378,29 @@ namespace TestProj
         }
 
 
+        private void BtnBrowseBackupPath_Click(object sender, EventArgs e)
+        {
+            using (var dlg = new FolderBrowserDialog())
+            {
+                dlg.Description = LangHelper.Get("Backup_FolderBrowseDesc");
+                string current = txtBackupPath.Text.Trim();
+                dlg.SelectedPath = Directory.Exists(current) ? current : Application.StartupPath;
+
+                if (dlg.ShowDialog() == DialogResult.OK)
+                    txtBackupPath.Text = dlg.SelectedPath;
+            }
+        }
+
         private void BtnSaveGeneral_Click(object sender, EventArgs e)
         {
             if (ConfigManager.Config == null) return;
             ConfigManager.Config.CompanyName    = kryptonTextBox2.Text.Trim();
             ConfigManager.Config.Language       = cmbLanguage.SelectedIndex == 1 ? "en-US" : "zh-CN";
             ConfigManager.Config.Theme          = cmbTheme.DefaultPalette.ToString();
-            ConfigManager.Config.MaxQueryDays   = (int)numMaxQueryDays.Value;
-            ConfigManager.Config.MaxDataPoints  = (int)numMaxDataPoints.Value;
+            ConfigManager.Config.MaxQueryDays      = (int)numMaxQueryDays.Value;
+            ConfigManager.Config.MaxDataPoints     = (int)numMaxDataPoints.Value;
+            ConfigManager.Config.AutoConnectBackup = chkAutoConnectBackup.Checked;
+            ConfigManager.Config.BackupPath        = txtBackupPath.Text.Trim();
             ConfigManager.SaveConfig();
 
             ApplyLanguage();   // 保存后刷新本窗体文字（语言可能已变）

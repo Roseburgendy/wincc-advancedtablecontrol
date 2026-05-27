@@ -468,4 +468,58 @@
   <data name="Msg_NoData" xml:space="preserve">
     <value>No data found for the selected range</value>
   </data>
+  <data name="Msg_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Msg_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="UC_ConnectBackup" xml:space="preserve">
+    <value>Connect Backup</value>
+  </data>
+  <data name="UC_DisconnectBackup" xml:space="preserve">
+    <value>Disconnect Backup</value>
+  </data>
+  <data name="GCP_ChkAutoConnectBackup" xml:space="preserve">
+    <value>Auto-connect Backup</value>
+  </data>
+  <data name="GCP_LblBackupPath" xml:space="preserve">
+    <value>Backup Folder:</value>
+  </data>
+  <data name="Backup_ConnectTitle" xml:space="preserve">
+    <value>Select the backup to connect.</value>
+  </data>
+  <data name="Backup_DisconnectTitle" xml:space="preserve">
+    <value>Select the backup to disconnect.</value>
+  </data>
+  <data name="Backup_FolderLabel" xml:space="preserve">
+    <value>Backup Folder:</value>
+  </data>
+  <data name="Backup_FolderBrowseDesc" xml:space="preserve">
+    <value>Select the backup archive folder</value>
+  </data>
+  <data name="Backup_NoFileSelected" xml:space="preserve">
+    <value>Please select a backup file to connect.</value>
+  </data>
+  <data name="Backup_NoDisconnectSelected" xml:space="preserve">
+    <value>Please select a backup to disconnect.</value>
+  </data>
+  <data name="Backup_NoBackupsConnected" xml:space="preserve">
+    <value>No backup archives are currently connected.</value>
+  </data>
+  <data name="Backup_ConnectSuccess" xml:space="preserve">
+    <value>Backup connected successfully.</value>
+  </data>
+  <data name="Backup_DisconnectSuccess" xml:space="preserve">
+    <value>Backup disconnected successfully.</value>
+  </data>
+  <data name="Backup_FolderNotFound" xml:space="preserve">
+    <value>Folder not found, please select again.</value>
+  </data>
+  <data name="Backup_ConnectFailed" xml:space="preserve">
+    <value>Failed to connect backup</value>
+  </data>
+  <data name="Backup_DisconnectFailed" xml:space="preserve">
+    <value>Failed to disconnect backup</value>
+  </data>
 </root>

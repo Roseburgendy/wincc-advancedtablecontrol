@@ -86,6 +86,19 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BackupConnectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BackupConnectForm.Designer.cs">
+      <DependentUpon>BackupConnectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BackupDisconnectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BackupDisconnectForm.Designer.cs">
+      <DependentUpon>BackupDisconnectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BackupManager.cs" />
     <Compile Include="BatchDecimalForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -150,6 +163,12 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="BackupConnectForm.resx">
+      <DependentUpon>BackupConnectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BackupDisconnectForm.resx">
+      <DependentUpon>BackupDisconnectForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BatchDecimalForm.resx">
       <DependentUpon>BatchDecimalForm.cs</DependentUpon>
     </EmbeddedResource>

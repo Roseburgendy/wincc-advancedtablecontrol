@@ -1,28 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|d:\\winccreport_dev\\wincc-advancedtablecontrol\\testproj\\testproj\\dbmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|solutionrelative:testproj\\dbmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|d:\\winccreport_dev\\wincc-advancedtablecontrol\\testproj\\testproj\\usercontrol1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|solutionrelative:testproj\\usercontrol1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|d:\\winccreport_dev\\wincc-advancedtablecontrol\\testproj\\testproj\\batchdecimalform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|solutionrelative:testproj\\batchdecimalform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\testproj\\usercontrol1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|solutionrelative:testproj\\usercontrol1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\testproj\\properties\\lang.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}",
-      "RelativeMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|solutionrelative:testproj\\properties\\lang.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -30,61 +9,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 1246,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": -1,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "UserControl1.cs",
-              "DocumentMoniker": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\UserControl1.cs",
-              "RelativeDocumentMoniker": "TestProj\\UserControl1.cs",
-              "ToolTip": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\UserControl1.cs",
-              "RelativeToolTip": "TestProj\\UserControl1.cs",
-              "ViewState": "AgIAAGEAAAAAAAAAAAAYwGsAAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-20T05:12:55.325Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Lang.resx",
-              "DocumentMoniker": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\Properties\\Lang.resx",
-              "RelativeDocumentMoniker": "TestProj\\Properties\\Lang.resx",
-              "ToolTip": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\Properties\\Lang.resx",
-              "RelativeToolTip": "TestProj\\Properties\\Lang.resx",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
-              "WhenOpened": "2026-05-21T01:32:48.277Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "DbManager.cs",
-              "DocumentMoniker": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\DbManager.cs",
-              "RelativeDocumentMoniker": "TestProj\\DbManager.cs",
-              "ToolTip": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\DbManager.cs",
-              "RelativeToolTip": "TestProj\\DbManager.cs",
-              "ViewState": "AgIAAM8AAAAAAAAAAAAiwH0AAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-26T02:55:59.21Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "BatchDecimalForm.cs",
-              "DocumentMoniker": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\BatchDecimalForm.cs",
-              "RelativeDocumentMoniker": "TestProj\\BatchDecimalForm.cs",
-              "ToolTip": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\BatchDecimalForm.cs",
-              "RelativeToolTip": "TestProj\\BatchDecimalForm.cs",
-              "ViewState": "AgIAAJ4AAAAAAAAAAAAUwGEAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-26T00:48:09.291Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
@@ -92,18 +18,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UserControl1.cs [Design]",
-              "DocumentMoniker": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\UserControl1.cs",
-              "RelativeDocumentMoniker": "TestProj\\UserControl1.cs",
-              "ToolTip": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\UserControl1.cs [Design]",
-              "RelativeToolTip": "TestProj\\UserControl1.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-22T06:57:20.525Z",
-              "EditorCaption": " [Design]"
             }
           ]
         },

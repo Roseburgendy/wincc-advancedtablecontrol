@@ -33,5 +33,10 @@ namespace TestProj.Models
         public int MaxQueryDays { get; set; } = 31;
         /// <summary>单次查询允许的最大数据行数。超出时截断并提示。0 表示不限制。默认 50000。</summary>
         public int MaxDataPoints { get; set; } = 50000;
+
+        /// <summary>是否在查询时自动连接对应时间段的备份归档。</summary>
+        public bool AutoConnectBackup { get; set; } = false;
+        /// <summary>WinCC 备份归档文件所在文件夹路径。</summary>
+        public string BackupPath { get; set; } = "";
     }
 }
