@@ -60,7 +60,7 @@ namespace TestProj
                     fromStr,
                     toStr,
                     -1,           // TimeOut = -1：等待连接完成
-                    archiveType);
+                    1);
             }
             else
             {
@@ -71,7 +71,7 @@ namespace TestProj
                     "",
                     "",
                     -1,
-                    archiveType);
+                    1);
             }
 
             // 0 = 正常，1 = 已连接或无备份，均视为可以记录
@@ -128,10 +128,7 @@ namespace TestProj
             return result;
         }
 
-        /// <summary>
-        /// 从 WinCC 备份归档文件名中解析时间范围。
-        /// 文件名格式末尾：<c>_TLG_F_YYYYMMDDHHmm_YYYYMMDDHHmm</c>
-        /// </summary>
+        // 从 WinCC 备份归档文件名中解析时间范围
         public static (DateTime Start, DateTime End)? ParseBackupTimeRange(string archiveName)
         {
             var match = Regex.Match(archiveName, @"_TLG_F_(\d{12})_(\d{12})$");

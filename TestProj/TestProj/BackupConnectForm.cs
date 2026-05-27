@@ -5,10 +5,6 @@ using System.Windows.Forms;
 
 namespace TestProj
 {
-    /// <summary>
-    /// 选择并连接 WinCC 备份归档的对话框（仿 WinCC Online Table Control 样式）。
-    /// 使用 HMIRuntime.Logging.DataLogs.Restore 连接。
-    /// </summary>
     public partial class BackupConnectForm : Krypton.Toolkit.KryptonForm
     {
         /// <summary>用户选中的备份文件夹路径，OK 后有效。</summary>
@@ -34,9 +30,10 @@ namespace TestProj
             this.Text             = LangHelper.Get("Backup_ConnectTitle");
             lblTitle.Values.Text  = LangHelper.Get("Backup_ConnectTitle");
             lblFolder.Values.Text = LangHelper.Get("Backup_FolderLabel");
-            btnBrowse.Values.Text = "...";
-            btnOK.Values.Text     = LangHelper.Get("Msg_OK");
-            btnCancel.Values.Text = LangHelper.Get("Msg_Cancel");
+            btnBrowse.Values.Text     = "...";
+            btnBrowseFile.Values.Text = LangHelper.Get("Backup_BrowseFile");
+            btnOK.Values.Text         = LangHelper.Get("Msg_OK");
+            btnCancel.Values.Text     = LangHelper.Get("Msg_Cancel");
 
             if (!string.IsNullOrWhiteSpace(initialFolder))
             {
@@ -45,6 +42,47 @@ namespace TestProj
             }
         }
 
+        /// <summary>
+        /// 直接选择单个备份文件（.ldf / .mdf）。
+        /// 选中后自动填入文件夹路径并在列表中定位到该文件，
+        /// 用户确认时只连接该文件对应的时间范围。
+        /// </summary>
+        private void BtnBrowseFile_Click(object sender, EventArgs e)
+        {
+            using (var dlg = new OpenFileDialog())
+            {
+                dlg.Title  = LangHelper.Get("Backup_BrowseFile");
+                dlg.Filter = "WinCC 备份文件 (*.ldf;*.mdf)|*.ldf;*.mdf|所有文件 (*.*)|*.*";
+
+                // 以当前文件夹为初始目录
+                string current = txtFolder.Text.Trim();
+                if (Directory.Exists(current))
+                    dlg.InitialDirectory = current;
+
+                if (dlg.ShowDialog() != DialogResult.OK) return;
+
+                string filePath  = dlg.FileName;
+                string folder    = Path.GetDirectoryName(filePath);
+                string fileNameNoExt = Path.GetFileNameWithoutExtension(filePath);
+
+                // 填入文件夹并重新加载列表
+                txtFolder.Text = folder;
+                LoadBackupFiles(folder);
+
+                // 在列表中自动定位到用户选中的那个文件
+                for (int i = 0; i < _backupFiles.Count; i++)
+                {
+                    if (string.Equals(_backupFiles[i].Name, fileNameNoExt,
+                            StringComparison.OrdinalIgnoreCase))
+                    {
+                        lstBackups.SelectedIndex = i;
+                        break;
+                    }
+                }
+            }
+        }
+
+        // 浏览文件夹路径
         private void BtnBrowse_Click(object sender, EventArgs e)
         {
             using (var dlg = new FolderBrowserDialog())
@@ -69,6 +107,7 @@ namespace TestProj
                 LoadBackupFiles(folder);
         }
 
+        // 加载指定文件夹下的备份文件，更新列表显示
         private void LoadBackupFiles(string folder)
         {
             _backupFiles = BackupManager.GetBackupFilesInFolder(folder);

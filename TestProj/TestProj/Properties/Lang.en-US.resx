@@ -522,4 +522,7 @@
   <data name="Backup_DisconnectFailed" xml:space="preserve">
     <value>Failed to disconnect backup</value>
   </data>
+  <data name="Backup_BrowseFile" xml:space="preserve">
+    <value>Browse File...</value>
+  </data>
 </root>

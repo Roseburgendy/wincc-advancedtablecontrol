@@ -522,4 +522,7 @@
   <data name="Backup_DisconnectFailed" xml:space="preserve">
     <value>断开备份失败</value>
   </data>
+  <data name="Backup_BrowseFile" xml:space="preserve">
+    <value>选择文件...</value>
+  </data>
 </root>
