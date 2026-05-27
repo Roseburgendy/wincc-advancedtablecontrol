@@ -147,18 +147,6 @@
   <data name="UC_ExportExcel" xml:space="preserve">
     <value>Export to Excel</value>
   </data>
-  <data name="UC_NavFirst" xml:space="preserve">
-    <value>First</value>
-  </data>
-  <data name="UC_NavPrev" xml:space="preserve">
-    <value>Previous</value>
-  </data>
-  <data name="UC_NavNext" xml:space="preserve">
-    <value>Next</value>
-  </data>
-  <data name="UC_NavLast" xml:space="preserve">
-    <value>Last</value>
-  </data>
   <data name="UC_ColTimestamp" xml:space="preserve">
     <value>Date</value>
   </data>
