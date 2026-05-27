@@ -37,22 +37,28 @@ namespace TestProj
         /// <returns>
         ///   0 = 成功；1 = 归档已连接或路径下无备份（视为正常）；其余值 = 错误。
         /// </returns>
+        // 归档类型常量（与 HMILoggingType 枚举值对应）
+        // 1=快速归档，2=慢速归档，3=快速+慢速
+        private const HMILoggingType ArchiveTypeBoth = (HMILoggingType)3;
+
         public static int ConnectBackup(
-            string   sourcePath,
-            DateTime? timeFrom    = null,
-            DateTime? timeTo      = null,
-            int      archiveType  = 3)
+            string    sourcePath,
+            DateTime? timeFrom   = null,
+            DateTime? timeTo     = null,
+            HMILoggingType archiveType = ArchiveTypeBoth)
         {
             var hmi = new HMIRuntime();
             int result;
 
             if (timeFrom.HasValue && timeTo.HasValue)
             {
-                // 按时间范围连接（Restore 使用 UTC 时间）
+                // Restore 时间参数为字符串（BSTR），格式 yyyy-MM-dd HH:mm:ss，UTC 时间
+                string fromStr = timeFrom.Value.ToString("yyyy-MM-dd HH:mm:ss");
+                string toStr   = timeTo.Value.ToString("yyyy-MM-dd HH:mm:ss");
                 result = (int)hmi.Logging.DataLogs.Restore(
                     sourcePath,
-                    timeFrom.Value,
-                    timeTo.Value,
+                    fromStr,
+                    toStr,
                     -1,           // TimeOut = -1：等待连接完成
                     archiveType);
             }
@@ -62,7 +68,7 @@ namespace TestProj
                 // （文档说明：TimeFrom/TimeTo 格式错误时连接路径下全部归档）
                 result = (int)hmi.Logging.DataLogs.Restore(
                     sourcePath,
-                    "",           // 无效时间 → 连接所有归档
+                    "",
                     "",
                     -1,
                     archiveType);
@@ -79,9 +85,11 @@ namespace TestProj
         /// 断开已连接的备份归档。
         /// </summary>
         /// <param name="sourcePath">备份文件夹路径（与连接时相同）。</param>
-        /// <param name="archiveType">归档类型：1/2/3，默认 3（快速+慢速）。</param>
+        /// <param name="archiveType">归档类型，默认快速+慢速。</param>
         /// <returns>0 = 成功；其余 = 错误。</returns>
-        public static int DisconnectBackup(string sourcePath, int archiveType = 3)
+        public static int DisconnectBackup(
+            string sourcePath,
+            HMILoggingType archiveType = ArchiveTypeBoth)
         {
             var hmi = new HMIRuntime();
             // WinCC VBS API：HMIRuntime.Logging.DataLogs.Remove SourcePath, Type
