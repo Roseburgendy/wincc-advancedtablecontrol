@@ -525,4 +525,10 @@
   <data name="Backup_BrowseFile" xml:space="preserve">
     <value>选择文件...</value>
   </data>
+  <data name="Backup_ConnectProgressTitle" xml:space="preserve">
+    <value>连接归档</value>
+  </data>
+  <data name="Backup_ConnectSuccessDetail" xml:space="preserve">
+    <value>已成功连接到系统。</value>
+  </data>
 </root>

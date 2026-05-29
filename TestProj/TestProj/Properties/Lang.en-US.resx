@@ -525,4 +525,10 @@
   <data name="Backup_BrowseFile" xml:space="preserve">
     <value>Browse File...</value>
   </data>
+  <data name="Backup_ConnectProgressTitle" xml:space="preserve">
+    <value>Connect Archive</value>
+  </data>
+  <data name="Backup_ConnectSuccessDetail" xml:space="preserve">
+    <value>has been successfully connected to the system.</value>
+  </data>
 </root>

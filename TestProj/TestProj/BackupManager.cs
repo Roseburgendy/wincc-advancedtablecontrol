@@ -128,6 +128,26 @@ namespace TestProj
             return result;
         }
 
+        /// <summary>
+        /// 从已连接文件夹中筛选出与查询时间段重叠的备份文件。
+        /// timeFrom/timeTo 均为 null 时返回文件夹内全部文件。
+        /// </summary>
+        public static List<BackupFileInfo> GetMatchingFiles(
+            string    folder,
+            DateTime? timeFrom,
+            DateTime? timeTo)
+        {
+            var all = GetBackupFilesInFolder(folder);
+            if (!timeFrom.HasValue || !timeTo.HasValue) return all;
+
+            // 只保留时间范围与查询区间有重叠的文件（含端点）
+            return all.Where(f =>
+                f.TimeRange.HasValue &&
+                f.TimeRange.Value.Start < timeTo.Value &&
+                f.TimeRange.Value.End   > timeFrom.Value
+            ).ToList();
+        }
+
         // 从 WinCC 备份归档文件名中解析时间范围
         public static (DateTime Start, DateTime End)? ParseBackupTimeRange(string archiveName)
         {

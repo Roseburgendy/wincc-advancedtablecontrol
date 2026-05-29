@@ -99,6 +99,12 @@
       <DependentUpon>BackupDisconnectForm.cs</DependentUpon>
     </Compile>
     <Compile Include="BackupManager.cs" />
+    <Compile Include="BackupProgressForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BackupProgressForm.Designer.cs">
+      <DependentUpon>BackupProgressForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="BatchDecimalForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,6 +174,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BackupDisconnectForm.resx">
       <DependentUpon>BackupDisconnectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BackupProgressForm.resx">
+      <DependentUpon>BackupProgressForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BatchDecimalForm.resx">
       <DependentUpon>BatchDecimalForm.cs</DependentUpon>

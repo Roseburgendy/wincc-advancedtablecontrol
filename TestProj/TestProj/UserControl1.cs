@@ -577,26 +577,12 @@ namespace TestProj
             using (var dlg = new BackupConnectForm(backupFolder))
             {
                 if (dlg.ShowDialog() != DialogResult.OK) return;
-                try
-                {
-                    // SelectedTimeFrom/To 为 null 时，ConnectBackup 连接文件夹下所有归档
-                    int ret = BackupManager.ConnectBackup(
-                        dlg.SelectedFolder,
-                        dlg.SelectedTimeFrom,
-                        dlg.SelectedTimeTo);
 
-                    if (ret == 0 || ret == 1)
-                        MessageBox.Show(LangHelper.Get("Backup_ConnectSuccess"), LangHelper.Get("Msg_Info"),
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    else
-                        MessageBox.Show(
-                            $"{LangHelper.Get("Backup_ConnectFailed")} (code={ret})",
-                            LangHelper.Get("Msg_Warning"),
-                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-                catch (Exception ex)
+                // 打开进度/结果对话框，内部异步执行连接并显示每个文件的结果
+                using (var progressDlg = new BackupProgressForm(
+                    dlg.SelectedFolder, dlg.SelectedTimeFrom, dlg.SelectedTimeTo))
                 {
-                    MessageBox.Show($"{LangHelper.Get("Backup_ConnectFailed")}: {ex.Message}", "错误");
+                    progressDlg.ShowDialog(this);
                 }
             }
         }
