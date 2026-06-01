@@ -60,7 +60,7 @@ namespace TestProj
                     fromStr,
                     toStr,
                     -1,           // TimeOut = -1：等待连接完成
-                    1);
+                    archiveType);
             }
             else
             {
@@ -71,7 +71,7 @@ namespace TestProj
                     "",
                     "",
                     -1,
-                    1);
+                    archiveType);
             }
 
             // 0 = 正常，1 = 已连接或无备份，均视为可以记录
@@ -94,7 +94,7 @@ namespace TestProj
             var hmi = new HMIRuntime();
             // WinCC VBS API：HMIRuntime.Logging.DataLogs.Remove SourcePath, Type
             // Type 参数在 COM 接口中为 string，传整数值的字符串形式
-            int result = (int)hmi.Logging.Remove(sourcePath, ((int)archiveType).ToString());
+            int result = (int)hmi.Logging.Datalogs.Remove(sourcePath, ((int)archiveType).ToString());
             if (result == 0)
                 _connectedFolders.Remove(sourcePath);
             return result;

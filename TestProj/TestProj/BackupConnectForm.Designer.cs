@@ -15,14 +15,13 @@ namespace TestProj
 
         private void InitializeComponent()
         {
-            this.lblTitle      = new Krypton.Toolkit.KryptonLabel();
-            this.lblFolder     = new Krypton.Toolkit.KryptonLabel();
-            this.txtFolder     = new Krypton.Toolkit.KryptonTextBox();
-            this.btnBrowse     = new Krypton.Toolkit.KryptonButton();
-            this.btnBrowseFile = new Krypton.Toolkit.KryptonButton();
-            this.lstBackups    = new Krypton.Toolkit.KryptonListBox();
-            this.btnOK         = new Krypton.Toolkit.KryptonButton();
-            this.btnCancel     = new Krypton.Toolkit.KryptonButton();
+            this.lblTitle   = new Krypton.Toolkit.KryptonLabel();
+            this.lblFolder  = new Krypton.Toolkit.KryptonLabel();
+            this.txtFolder  = new Krypton.Toolkit.KryptonTextBox();
+            this.btnBrowse  = new Krypton.Toolkit.KryptonButton();
+            this.lstBackups = new Krypton.Toolkit.KryptonListBox();
+            this.btnOK      = new Krypton.Toolkit.KryptonButton();
+            this.btnCancel  = new Krypton.Toolkit.KryptonButton();
             this.SuspendLayout();
             //
             // lblTitle
@@ -47,31 +46,20 @@ namespace TestProj
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtFolder.Location = new System.Drawing.Point(210, 76);
             this.txtFolder.Name = "txtFolder";
-            this.txtFolder.Size = new System.Drawing.Size(460, 43);
+            this.txtFolder.Size = new System.Drawing.Size(580, 43);
             this.txtFolder.TabIndex = 2;
             this.txtFolder.Leave += new System.EventHandler(this.TxtFolder_Leave);
             //
-            // btnBrowse  （浏览文件夹）
+            // btnBrowse
             //
             this.btnBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBrowse.Location = new System.Drawing.Point(680, 74);
+            this.btnBrowse.Location = new System.Drawing.Point(800, 74);
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(80, 46);
             this.btnBrowse.TabIndex = 3;
             this.btnBrowse.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnBrowse.Values.Text = "...";
             this.btnBrowse.Click += new System.EventHandler(this.BtnBrowse_Click);
-            //
-            // btnBrowseFile  （浏览单个备份文件）
-            //
-            this.btnBrowseFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBrowseFile.Location = new System.Drawing.Point(770, 74);
-            this.btnBrowseFile.Name = "btnBrowseFile";
-            this.btnBrowseFile.Size = new System.Drawing.Size(110, 46);
-            this.btnBrowseFile.TabIndex = 4;
-            this.btnBrowseFile.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.btnBrowseFile.Values.Text = "选择文件...";
-            this.btnBrowseFile.Click += new System.EventHandler(this.BtnBrowseFile_Click);
             //
             // lstBackups
             //
@@ -81,7 +69,7 @@ namespace TestProj
             this.lstBackups.Location = new System.Drawing.Point(20, 138);
             this.lstBackups.Name = "lstBackups";
             this.lstBackups.Size = new System.Drawing.Size(860, 310);
-            this.lstBackups.TabIndex = 5;
+            this.lstBackups.TabIndex = 4;
             //
             // btnOK
             //
@@ -90,7 +78,7 @@ namespace TestProj
             this.btnOK.Location = new System.Drawing.Point(560, 466);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(150, 52);
-            this.btnOK.TabIndex = 6;
+            this.btnOK.TabIndex = 5;
             this.btnOK.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnOK.Values.Text = "确定";
             this.btnOK.Click += new System.EventHandler(this.BtnOK_Click);
@@ -101,7 +89,7 @@ namespace TestProj
             this.btnCancel.Location = new System.Drawing.Point(730, 466);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(150, 52);
-            this.btnCancel.TabIndex = 7;
+            this.btnCancel.TabIndex = 6;
             this.btnCancel.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnCancel.Values.Text = "取消";
             this.btnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
@@ -115,7 +103,6 @@ namespace TestProj
             this.Controls.Add(this.lblFolder);
             this.Controls.Add(this.txtFolder);
             this.Controls.Add(this.btnBrowse);
-            this.Controls.Add(this.btnBrowseFile);
             this.Controls.Add(this.lstBackups);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.btnCancel);
@@ -129,11 +116,10 @@ namespace TestProj
 
         #endregion
 
-        private Krypton.Toolkit.KryptonLabel   lblTitle;
-        private Krypton.Toolkit.KryptonLabel   lblFolder;
+        private Krypton.Toolkit.KryptonLabel  lblTitle;
+        private Krypton.Toolkit.KryptonLabel  lblFolder;
         private Krypton.Toolkit.KryptonTextBox txtFolder;
         private Krypton.Toolkit.KryptonButton  btnBrowse;
-        private Krypton.Toolkit.KryptonButton  btnBrowseFile;
         private Krypton.Toolkit.KryptonListBox lstBackups;
         private Krypton.Toolkit.KryptonButton  btnOK;
         private Krypton.Toolkit.KryptonButton  btnCancel;
