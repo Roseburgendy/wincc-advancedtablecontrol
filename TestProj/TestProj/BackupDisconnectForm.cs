@@ -1,21 +1,15 @@
-using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace TestProj
 {
     /// <summary>
-    /// 选择并断开 WinCC 备份归档的对话框（仿 WinCC Online Table Control 样式）。
-    /// 使用 HMIRuntime.Logging.DataLogs.Remove 断开。
-    /// 列表显示具体备份文件名及时间范围；断开操作以文件夹为粒度（WinCC Remove 接口限制）。
+    /// 选择并断开 WinCC 备份归档的对话框。
+    /// 列表直接显示 BackupManager.ConnectedArchives 中记录的已连接条目。
     /// </summary>
     public partial class BackupDisconnectForm : Krypton.Toolkit.KryptonForm
     {
-        /// <summary>用户选中项所在的备份文件夹路径，OK 后有效（传给 BackupManager.DisconnectBackup）。</summary>
-        public string SelectedFolder { get; private set; }
-
-        // 列表项索引 → 对应文件夹路径（WinCC Remove 以文件夹为粒度）
-        private readonly List<string> _folderForIndex = new List<string>();
+        /// <summary>用户选中要断开的归档条目，OK 后有效。传给 BackupManager.DisconnectBackup。</summary>
+        public ConnectedArchiveEntry SelectedEntry { get; private set; }
 
         public BackupDisconnectForm()
         {
@@ -25,26 +19,9 @@ namespace TestProj
             btnOK.Values.Text     = LangHelper.Get("Msg_OK");
             btnCancel.Values.Text = LangHelper.Get("Msg_Cancel");
 
-            // 对每个已连接的文件夹，扫描其中的备份文件并逐项列出
-            foreach (string folder in BackupManager.ConnectedFolders)
-            {
-                var files = BackupManager.GetBackupFilesInFolder(folder);
-                if (files.Count > 0)
-                {
-                    foreach (var fi in files)
-                    {
-                        // BackupFileInfo.ToString() 已含文件名 + 本地时间范围
-                        lstBackups.Items.Add(fi.ToString());
-                        _folderForIndex.Add(folder);
-                    }
-                }
-                else
-                {
-                    // 文件夹下无可识别的备份文件，退而显示文件夹路径
-                    lstBackups.Items.Add(folder);
-                    _folderForIndex.Add(folder);
-                }
-            }
+            // 直接显示已记录的已连接归档条目（ConnectBackup 时已解析好文件名和时间范围）
+            foreach (var entry in BackupManager.ConnectedArchives)
+                lstBackups.Items.Add(entry.DisplayName);
 
             btnOK.Enabled = lstBackups.Items.Count > 0;
 
@@ -60,9 +37,8 @@ namespace TestProj
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            // 取该列表项对应的文件夹路径（而非文件名字符串）
-            SelectedFolder = _folderForIndex[lstBackups.SelectedIndex];
-            DialogResult   = DialogResult.OK;
+            SelectedEntry = BackupManager.ConnectedArchives[lstBackups.SelectedIndex];
+            DialogResult  = DialogResult.OK;
             Close();
         }
 

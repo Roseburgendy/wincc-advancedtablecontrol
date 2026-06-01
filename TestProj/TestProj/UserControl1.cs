@@ -590,7 +590,7 @@ namespace TestProj
         /// <summary>断开备份按钮点击事件。</summary>
         private void BtnDisconnectBackup_Click(object sender, EventArgs e)
         {
-            if (BackupManager.ConnectedFolders.Count == 0)
+            if (BackupManager.ConnectedArchives.Count == 0)
             {
                 MessageBox.Show(LangHelper.Get("Backup_NoBackupsConnected"), LangHelper.Get("Msg_Info"),
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -601,7 +601,7 @@ namespace TestProj
                 if (dlg.ShowDialog() != DialogResult.OK) return;
                 try
                 {
-                    int ret = BackupManager.DisconnectBackup(dlg.SelectedFolder);
+                    int ret = BackupManager.DisconnectBackup(dlg.SelectedEntry);
                     if (ret == 0)
                         MessageBox.Show(LangHelper.Get("Backup_DisconnectSuccess"), LangHelper.Get("Msg_Info"),
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
