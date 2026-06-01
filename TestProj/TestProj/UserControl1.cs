@@ -128,7 +128,7 @@ namespace TestProj
             {
                 var cfg = ConfigManager.Config;
 
-                // ── 安全检查 1：时间跨度上限 ────────────────────────────────
+                // 安全检查 1：时间跨度上限
                 int maxDays = cfg?.MaxQueryDays ?? 31;
                 if (maxDays > 0)
                 {
@@ -143,11 +143,15 @@ namespace TestProj
                     }
                 }
 
-                // ── 自动连接备份 ────────────────────────────────────────────────
+                // 自动连接备份
                 if (cfg?.AutoConnectBackup == true)
                 {
                     string bkFolder = cfg.BackupPath ?? "";
-                    BackupManager.AutoConnectForTimeRange(bkFolder, start, end);
+                    if (BackupManager.NeedsConnection(bkFolder, start, end))
+                    {
+                        using (var progressDlg = new BackupProgressForm(bkFolder, start, end))
+                            progressDlg.ShowDialog(this);
+                    }
                 }
 
                 var valueIds = entries.Select(e => e.ValueID).ToList();
@@ -228,8 +232,13 @@ namespace TestProj
                 // ── 自动连接备份（FetchByCount 只有 start 时间，按1年窗口匹配）────
                 if (cfg?.AutoConnectBackup == true)
                 {
-                    string bkFolder = cfg.BackupPath ?? "";
-                    BackupManager.AutoConnectForTimeRange(bkFolder, startUTC, startUTC.AddDays(365));
+                    string   bkFolder = cfg.BackupPath ?? "";
+                    DateTime bkEnd    = startUTC.AddDays(365);
+                    if (BackupManager.NeedsConnection(bkFolder, startUTC, bkEnd))
+                    {
+                        using (var progressDlg = new BackupProgressForm(bkFolder, startUTC, bkEnd))
+                            progressDlg.ShowDialog(this);
+                    }
                 }
 
                 var valueIds = entries.Select(e => e.ValueID).ToList();
@@ -573,6 +582,7 @@ namespace TestProj
         /// <summary>连接备份按钮点击事件。</summary>
         private void BtnConnectBackup_Click(object sender, EventArgs e)
         {
+            // read the backup path from the configuration
             string backupFolder = ConfigManager.Config?.BackupPath ?? "";
             using (var dlg = new BackupConnectForm(backupFolder))
             {

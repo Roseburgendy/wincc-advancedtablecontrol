@@ -8,10 +8,7 @@ using System.Text.RegularExpressions;
 namespace TestProj
 {
     /// <summary>
-    /// 管理 WinCC 备份归档的连接与断开。
-    /// 连接：HMIRuntime.Logging.DataLogs.Restore SourcePath, TimeFrom, TimeTo, TimeOut, Type
-    /// 断开：HMIRuntime.Logging.DataLogs.Remove              TimeFrom, TimeTo, TimeOut, Type
-    ///        （注意：Remove 无 SourcePath，以时间范围定位归档）
+    /// 管理 WinCC 备份归档的连接与断开
     /// </summary>
     public static class BackupManager
     {
@@ -34,6 +31,7 @@ namespace TestProj
         /// <param name="timeTo">查询结束时间（UTC）；null 表示连接所有归档。</param>
         /// <param name="archiveType">归档类型，默认快速+慢速。</param>
         /// <returns>0 = 成功；1 = 已连接或无备份（视为正常）；其余 = 错误。</returns>
+
         public static int ConnectBackup(
             string         sourcePath,
             DateTime?      timeFrom    = null,
@@ -47,6 +45,7 @@ namespace TestProj
             {
                 string fromStr = timeFrom.Value.ToString("yyyy-MM-dd HH:mm:ss");
                 string toStr   = timeTo.Value.ToString("yyyy-MM-dd HH:mm:ss");
+                // connect the backup 
                 result = (int)hmi.Logging.DataLogs.Restore(
                     sourcePath, fromStr, toStr, -1, archiveType);
             }
@@ -106,7 +105,6 @@ namespace TestProj
 
         /// <summary>
         /// 断开已连接的备份归档。
-        /// WinCC Remove 以时间范围定位归档，无 SourcePath 参数。
         /// </summary>
         /// <param name="entry">要断开的归档条目（来自 <see cref="ConnectedArchives"/>）。</param>
         /// <param name="archiveType">归档类型，默认快速+慢速。</param>
@@ -136,27 +134,24 @@ namespace TestProj
             return result;
         }
 
+        #region  自动链接备份
         /// <summary>
-        /// 根据查询时间范围自动连接备份归档。
-        /// 若已有时间范围覆盖查询区间的归档，跳过不重复连接。
+        /// 判断指定时间段的备份归档是否尚未连接（需要连接）。
+        /// 用于自动连接流程中决定是否显示进度窗体。
         /// </summary>
-        public static int AutoConnectForTimeRange(
-            string   backupFolder,
-            DateTime queryStart,
-            DateTime queryEnd)
+        public static bool NeedsConnection(string backupFolder, DateTime queryStart, DateTime queryEnd)
         {
             if (string.IsNullOrWhiteSpace(backupFolder) || !Directory.Exists(backupFolder))
-                return -1;
+                return false;
 
-            // 检查是否已有覆盖该查询范围的已连接归档
             bool alreadyCovered = _connectedArchives.Any(e =>
                 (!e.TimeFrom.HasValue || e.TimeFrom.Value < queryEnd) &&
                 (!e.TimeTo.HasValue   || e.TimeTo.Value   > queryStart));
 
-            if (alreadyCovered) return -999;
-
-            return ConnectBackup(backupFolder, queryStart, queryEnd);
+            return !alreadyCovered;
         }
+
+        #endregion
 
         /// <summary>
         /// 扫描指定文件夹，返回识别到的 WinCC 备份归档文件列表。
@@ -172,9 +167,9 @@ namespace TestProj
 
             foreach (var f in files.OrderBy(x => x))
             {
-                string name  = Path.GetFileNameWithoutExtension(f);
-                var    range = ParseBackupTimeRange(name);
-                result.Add(new BackupFileInfo { Name = name, TimeRange = range });
+                string name  = Path.GetFileNameWithoutExtension(f); // get file name
+                var    range = ParseBackupTimeRange(name); // get time range
+                result.Add(new BackupFileInfo { Name = name, TimeRange = range }); // add to file log
             }
             return result;
         }
@@ -186,6 +181,7 @@ namespace TestProj
             string folder, DateTime? timeFrom, DateTime? timeTo)
         {
             var all = GetBackupFilesInFolder(folder);
+            // no time range specified → return all
             if (!timeFrom.HasValue || !timeTo.HasValue) return all;
 
             return all.Where(f =>
@@ -220,8 +216,6 @@ namespace TestProj
             return true;
         }
     }
-
-    // ── 数据类 ───────────────────────────────────────────────────────────────
 
     /// <summary>已连接的备份归档条目，保存断开时所需的时间范围。</summary>
     public class ConnectedArchiveEntry

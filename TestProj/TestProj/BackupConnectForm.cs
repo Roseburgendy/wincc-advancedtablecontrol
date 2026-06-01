@@ -70,7 +70,7 @@ namespace TestProj
             _backupFiles = BackupManager.GetBackupFilesInFolder(folder);
             lstBackups.Items.Clear();
             foreach (var info in _backupFiles)
-                lstBackups.Items.Add(info); // uses BackupFileInfo.ToString()
+                lstBackups.Items.Add(info);
 
             if (lstBackups.Items.Count > 0)
                 lstBackups.SelectedIndex = 0;
@@ -102,7 +102,6 @@ namespace TestProj
                 }
             }
             // SelectedTimeFrom/To 为 null 时，ConnectBackup 会连接文件夹下所有归档
-
             DialogResult = DialogResult.OK;
             Close();
         }

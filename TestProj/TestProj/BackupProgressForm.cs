@@ -36,7 +36,7 @@ namespace TestProj
             BeginInvoke(new Action(async () => await RunConnectAsync()));
         }
 
-        // ── 核心：后台连接 + UI 更新 ──────────────────────────────────────
+        // 后台连接 + UI 更新
 
         private async Task RunConnectAsync()
         {
