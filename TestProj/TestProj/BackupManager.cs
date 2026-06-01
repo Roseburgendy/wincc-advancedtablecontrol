@@ -26,8 +26,6 @@ namespace TestProj
         public static IReadOnlyList<ConnectedArchiveEntry> ConnectedArchives =>
             _connectedArchives.AsReadOnly();
 
-        // ── 连接 ────────────────────────────────────────────────────────────
-
         /// <summary>
         /// 连接备份归档。
         /// </summary>
@@ -68,11 +66,9 @@ namespace TestProj
         /// <summary>
         /// 连接成功后，扫描文件夹记录每个被连接的归档条目，供断开时使用。
         /// </summary>
-        private static void RecordConnected(
-            string sourcePath, DateTime? timeFrom, DateTime? timeTo)
+        private static void RecordConnected(string sourcePath, DateTime? timeFrom, DateTime? timeTo)
         {
             var files = GetMatchingFiles(sourcePath, timeFrom, timeTo);
-
             if (files.Count > 0)
             {
                 foreach (var f in files)
@@ -108,8 +104,6 @@ namespace TestProj
             }
         }
 
-        // ── 断开 ────────────────────────────────────────────────────────────
-
         /// <summary>
         /// 断开已连接的备份归档。
         /// WinCC Remove 以时间范围定位归档，无 SourcePath 参数。
@@ -142,8 +136,6 @@ namespace TestProj
             return result;
         }
 
-        // ── 自动连接 ────────────────────────────────────────────────────────
-
         /// <summary>
         /// 根据查询时间范围自动连接备份归档。
         /// 若已有时间范围覆盖查询区间的归档，跳过不重复连接。
@@ -165,8 +157,6 @@ namespace TestProj
 
             return ConnectBackup(backupFolder, queryStart, queryEnd);
         }
-
-        // ── 文件扫描工具 ─────────────────────────────────────────────────────
 
         /// <summary>
         /// 扫描指定文件夹，返回识别到的 WinCC 备份归档文件列表。

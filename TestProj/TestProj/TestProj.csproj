@@ -98,6 +98,12 @@
     <Compile Include="BackupDisconnectForm.Designer.cs">
       <DependentUpon>BackupDisconnectForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="BackupDisconnectProgressForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BackupDisconnectProgressForm.Designer.cs">
+      <DependentUpon>BackupDisconnectProgressForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="BackupManager.cs" />
     <Compile Include="BackupProgressForm.cs">
       <SubType>Form</SubType>
@@ -174,6 +180,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BackupDisconnectForm.resx">
       <DependentUpon>BackupDisconnectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BackupDisconnectProgressForm.resx">
+      <DependentUpon>BackupDisconnectProgressForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BackupProgressForm.resx">
       <DependentUpon>BackupProgressForm.cs</DependentUpon>

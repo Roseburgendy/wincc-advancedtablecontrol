@@ -531,4 +531,10 @@
   <data name="Backup_ConnectSuccessDetail" xml:space="preserve">
     <value>已成功连接到系统。</value>
   </data>
+  <data name="Backup_DisconnectProgressTitle" xml:space="preserve">
+    <value>断开归档</value>
+  </data>
+  <data name="Backup_DisconnectSuccessDetail" xml:space="preserve">
+    <value>已成功断开连接。</value>
+  </data>
 </root>

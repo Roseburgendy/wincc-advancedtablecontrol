@@ -531,4 +531,10 @@
   <data name="Backup_ConnectSuccessDetail" xml:space="preserve">
     <value>has been successfully connected to the system.</value>
   </data>
+  <data name="Backup_DisconnectProgressTitle" xml:space="preserve">
+    <value>Disconnect Archive</value>
+  </data>
+  <data name="Backup_DisconnectSuccessDetail" xml:space="preserve">
+    <value>has been successfully disconnected.</value>
+  </data>
 </root>

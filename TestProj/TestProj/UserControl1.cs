@@ -599,22 +599,9 @@ namespace TestProj
             using (var dlg = new BackupDisconnectForm())
             {
                 if (dlg.ShowDialog() != DialogResult.OK) return;
-                try
-                {
-                    int ret = BackupManager.DisconnectBackup(dlg.SelectedEntry);
-                    if (ret == 0)
-                        MessageBox.Show(LangHelper.Get("Backup_DisconnectSuccess"), LangHelper.Get("Msg_Info"),
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    else
-                        MessageBox.Show(
-                            $"{LangHelper.Get("Backup_DisconnectFailed")} (code={ret})",
-                            LangHelper.Get("Msg_Warning"),
-                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"{LangHelper.Get("Backup_DisconnectFailed")}: {ex.Message}", "错误");
-                }
+
+                using (var progressDlg = new BackupDisconnectProgressForm(dlg.SelectedEntry))
+                    progressDlg.ShowDialog(this);
             }
         }
 
