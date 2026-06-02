@@ -13,7 +13,7 @@ namespace TestProj
     public static class BackupManager
     {
         // 归档类型常量：1=快速归档，2=慢速归档，3=快速+慢速
-        private const HMILoggingType ArchiveTypeBoth = (HMILoggingType)3;
+        private const HMILoggingType ArchiveTypeBoth = (HMILoggingType)1;
 
         // 已连接归档列表（含时间范围，断开时作为 Remove 的参数）
         private static readonly List<ConnectedArchiveEntry> _connectedArchives =
@@ -31,7 +31,6 @@ namespace TestProj
         /// <param name="timeTo">查询结束时间（UTC）；null 表示连接所有归档。</param>
         /// <param name="archiveType">归档类型，默认快速+慢速。</param>
         /// <returns>0 = 成功；1 = 已连接或无备份（视为正常）；其余 = 错误。</returns>
-
         public static int ConnectBackup(
             string         sourcePath,
             DateTime?      timeFrom    = null,
@@ -65,7 +64,10 @@ namespace TestProj
         /// <summary>
         /// 连接成功后，扫描文件夹记录每个被连接的归档条目，供断开时使用。
         /// </summary>
-        private static void RecordConnected(string sourcePath, DateTime? timeFrom, DateTime? timeTo)
+        private static void RecordConnected(
+            string sourcePath, 
+            DateTime? timeFrom, 
+            DateTime? timeTo)
         {
             var files = GetMatchingFiles(sourcePath, timeFrom, timeTo);
             if (files.Count > 0)
@@ -135,20 +137,44 @@ namespace TestProj
         }
 
         #region  自动链接备份
+
         /// <summary>
-        /// 判断指定时间段的备份归档是否尚未连接（需要连接）。
-        /// 用于自动连接流程中决定是否显示进度窗体。
+        /// 判断 [queryStart, queryEnd] 是否已被已连接归档完全覆盖。
+        /// 采用区间合并算法：把与查询段有交叉的条目按起始时间排序后逐段合并，
+        /// 检查合并结果能否无缺口地覆盖整个查询范围。
         /// </summary>
         public static bool NeedsConnection(string backupFolder, DateTime queryStart, DateTime queryEnd)
         {
             if (string.IsNullOrWhiteSpace(backupFolder) || !Directory.Exists(backupFolder))
                 return false;
 
-            bool alreadyCovered = _connectedArchives.Any(e =>
-                (!e.TimeFrom.HasValue || e.TimeFrom.Value < queryEnd) &&
-                (!e.TimeTo.HasValue   || e.TimeTo.Value   > queryStart));
+            // 取出所有与查询时段有交叉的已连接条目
+            var relevant = _connectedArchives
+                .Where(e =>
+                    (!e.TimeFrom.HasValue || e.TimeFrom.Value < queryEnd) &&
+                    (!e.TimeTo.HasValue   || e.TimeTo.Value   > queryStart))
+                .ToList();
 
-            return !alreadyCovered;
+            if (relevant.Count == 0) return true;
+
+            // 无时间范围的条目 = 当时以空时间段连接了整个文件夹，视为完全覆盖
+            if (relevant.Any(e => !e.TimeFrom.HasValue || !e.TimeTo.HasValue))
+                return false;
+
+            // 区间合并：按 TimeFrom 升序排列，依次向右扩展已覆盖边界
+            var sorted  = relevant.OrderBy(e => e.TimeFrom.Value).ToList();
+            DateTime covered = queryStart;
+
+            foreach (var e in sorted)
+            {
+                if (e.TimeFrom.Value > covered)
+                    return true;            // 存在缺口 → 未完全覆盖
+
+                if (e.TimeTo.Value > covered)
+                    covered = e.TimeTo.Value;
+            }
+
+            return covered < queryEnd;      // true = 右侧还有未覆盖部分
         }
 
         #endregion
@@ -174,6 +200,7 @@ namespace TestProj
             return result;
         }
 
+        #region utility
         /// <summary>
         /// 返回文件夹内与时间段重叠的备份文件；timeFrom/timeTo 均为 null 时返回全部。
         /// </summary>
@@ -215,6 +242,8 @@ namespace TestProj
             dt = DateTime.SpecifyKind(dt, DateTimeKind.Utc);
             return true;
         }
+
+        #endregion
     }
 
     /// <summary>已连接的备份归档条目，保存断开时所需的时间范围。</summary>

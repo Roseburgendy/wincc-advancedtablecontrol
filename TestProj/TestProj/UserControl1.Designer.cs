@@ -73,9 +73,9 @@ namespace TestProj
             // 
             // btnConnectBackup
             // 
-            this.btnConnectBackup.Location = new System.Drawing.Point(1004, 32);
+            this.btnConnectBackup.Location = new System.Drawing.Point(500, 125);
             this.btnConnectBackup.Name = "btnConnectBackup";
-            this.btnConnectBackup.Size = new System.Drawing.Size(324, 76);
+            this.btnConnectBackup.Size = new System.Drawing.Size(234, 76);
             this.btnConnectBackup.TabIndex = 40;
             this.btnConnectBackup.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnConnectBackup.Values.Text = "连接备份";
@@ -84,9 +84,9 @@ namespace TestProj
             // 
             // btnDisconnectBackup
             // 
-            this.btnDisconnectBackup.Location = new System.Drawing.Point(1371, 32);
+            this.btnDisconnectBackup.Location = new System.Drawing.Point(757, 125);
             this.btnDisconnectBackup.Name = "btnDisconnectBackup";
-            this.btnDisconnectBackup.Size = new System.Drawing.Size(324, 76);
+            this.btnDisconnectBackup.Size = new System.Drawing.Size(234, 76);
             this.btnDisconnectBackup.TabIndex = 41;
             this.btnDisconnectBackup.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnDisconnectBackup.Values.Text = "断开备份";
@@ -96,9 +96,9 @@ namespace TestProj
             // TimeSelectBtn
             // 
             this.TimeSelectBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.TimeSelectBtn.Location = new System.Drawing.Point(1004, 125);
+            this.TimeSelectBtn.Location = new System.Drawing.Point(1032, 125);
             this.TimeSelectBtn.Name = "TimeSelectBtn";
-            this.TimeSelectBtn.Size = new System.Drawing.Size(324, 76);
+            this.TimeSelectBtn.Size = new System.Drawing.Size(296, 76);
             this.TimeSelectBtn.TabIndex = 33;
             this.TimeSelectBtn.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.TimeSelectBtn.Values.Text = "时间选择";

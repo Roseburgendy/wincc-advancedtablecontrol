@@ -61,7 +61,7 @@ namespace TestProj
 
             if (_files != null)
             {
-                // ── 手动多文件模式 ──────────────────────────────────────────
+                //手动多文件模式 
                 if (_files.Count == 0)
                 {
                     // 未选择具体文件 → 连接文件夹下所有归档
@@ -95,7 +95,7 @@ namespace TestProj
             }
             else
             {
-                // ── 自动连接模式（单次 Restore）──────────────────────────────
+                //自动连接模式（单次 Restore
                 var matchingFiles = BackupManager.GetMatchingFiles(_folder, _timeFrom, _timeTo);
                 int result = await RunOnStaThread(
                     () => BackupManager.ConnectBackup(_folder, _timeFrom, _timeTo));
