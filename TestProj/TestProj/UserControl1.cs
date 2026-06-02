@@ -588,12 +588,8 @@ namespace TestProj
             {
                 if (dlg.ShowDialog() != DialogResult.OK) return;
 
-                // 打开进度/结果对话框，内部异步执行连接并显示每个文件的结果
-                using (var progressDlg = new BackupProgressForm(
-                    dlg.SelectedFolder, dlg.SelectedTimeFrom, dlg.SelectedTimeTo))
-                {
+                using (var progressDlg = new BackupProgressForm(dlg.SelectedFolder, dlg.SelectedFiles))
                     progressDlg.ShowDialog(this);
-                }
             }
         }
 
@@ -610,7 +606,7 @@ namespace TestProj
             {
                 if (dlg.ShowDialog() != DialogResult.OK) return;
 
-                using (var progressDlg = new BackupDisconnectProgressForm(dlg.SelectedEntry))
+                using (var progressDlg = new BackupDisconnectProgressForm(dlg.SelectedEntries))
                     progressDlg.ShowDialog(this);
             }
         }

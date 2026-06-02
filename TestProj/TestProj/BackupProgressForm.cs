@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Threading;
 using System.Threading.Tasks;
@@ -8,22 +9,39 @@ namespace TestProj
 {
     /// <summary>
     /// 连接备份归档的进度与结果对话框。
-    /// 打开时自动在后台 STA 线程上调用 BackupManager.ConnectBackup，
-    /// 通过 Marquee 进度条指示连接中，完成后逐行列出每个文件的连接结果。
+    /// 支持两种模式：
+    ///   1. 手动多文件：传入 folder + List&lt;BackupFileInfo&gt;，逐文件调用 Restore
+    ///   2. 自动连接：传入 folder + timeFrom + timeTo，单次调用 Restore
     /// </summary>
     public partial class BackupProgressForm : Krypton.Toolkit.KryptonForm
     {
-        private readonly string    _folder;
-        private readonly DateTime? _timeFrom;
-        private readonly DateTime? _timeTo;
+        private readonly string               _folder;
+        private readonly List<BackupFileInfo> _files;    // 非 null = 手动多文件模式
+        private readonly DateTime?            _timeFrom; // 自动连接模式
+        private readonly DateTime?            _timeTo;
 
+        /// <summary>手动多文件连接模式（从 BackupConnectForm 调用）。</summary>
+        public BackupProgressForm(string folder, List<BackupFileInfo> files)
+        {
+            InitializeComponent();
+            _folder = folder;
+            _files  = files ?? new List<BackupFileInfo>();
+            Init();
+        }
+
+        /// <summary>自动连接 / 单时间段模式（查询时自动触发）。</summary>
         public BackupProgressForm(string folder, DateTime? timeFrom, DateTime? timeTo)
         {
             InitializeComponent();
             _folder   = folder;
+            _files    = null;
             _timeFrom = timeFrom;
             _timeTo   = timeTo;
+            Init();
+        }
 
+        private void Init()
+        {
             this.Text         = LangHelper.Get("Backup_ConnectProgressTitle");
             btnOK.Values.Text = LangHelper.Get("Msg_OK");
             btnOK.Enabled     = false;
@@ -32,11 +50,8 @@ namespace TestProj
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            // 窗体完全显示后再启动异步任务，确保进度条可见
             BeginInvoke(new Action(async () => await RunConnectAsync()));
         }
-
-        // 后台连接 + UI 更新
 
         private async Task RunConnectAsync()
         {
@@ -44,48 +59,84 @@ namespace TestProj
             progressBar.Visible = true;
             richTextResult.Clear();
 
-            // 预先扫描文件夹，获取将被连接的文件列表（用于结果显示）
-            var files = BackupManager.GetMatchingFiles(_folder, _timeFrom, _timeTo);
-
-            // 在专用 STA 线程上调用 COM API，避免冻结 UI
-            int result = await RunOnStaThread(
-                () => BackupManager.ConnectBackup(_folder, _timeFrom, _timeTo));
-
-            progressBar.Visible = false;
-
-            if (result == 0 || result == 1)
+            if (_files != null)
             {
-                if (files.Count > 0)
+                // ── 手动多文件模式 ──────────────────────────────────────────
+                if (_files.Count == 0)
                 {
-                    foreach (var f in files)
-                    {
-                        AppendLine("✓ ", Color.FromArgb(0, 140, 0));
-                        AppendLine($"\"{f.Name}\" {LangHelper.Get("Backup_ConnectSuccessDetail")}\n",
-                                   richTextResult.ForeColor);
-                    }
+                    // 未选择具体文件 → 连接文件夹下所有归档
+                    int r = await RunOnStaThread(
+                        () => BackupManager.ConnectBackup(_folder, null, null));
+                    AppendGenericResult(r);
                 }
                 else
                 {
-                    // 文件夹内无可识别文件名，显示通用成功信息
-                    AppendLine("✓ ", Color.FromArgb(0, 140, 0));
-                    AppendLine(LangHelper.Get("Backup_ConnectSuccess") + "\n",
-                               richTextResult.ForeColor);
+                    foreach (var file in _files)
+                    {
+                        DateTime? from = file.TimeRange?.Start;
+                        DateTime? to   = file.TimeRange?.End;
+                        int r = await RunOnStaThread(
+                            () => BackupManager.ConnectBackup(_folder, from, to));
+
+                        if (r == 0 || r == 1)
+                        {
+                            AppendLine("✓ ", Color.FromArgb(0, 140, 0));
+                            AppendLine($"\"{file.Name}\" {LangHelper.Get("Backup_ConnectSuccessDetail")}\n",
+                                       richTextResult.ForeColor);
+                        }
+                        else
+                        {
+                            AppendLine("✗ ", Color.Red);
+                            AppendLine($"\"{file.Name}\" {LangHelper.Get("Backup_ConnectFailed")} (code={r})\n",
+                                       Color.Red);
+                        }
+                    }
                 }
+            }
+            else
+            {
+                // ── 自动连接模式（单次 Restore）──────────────────────────────
+                var matchingFiles = BackupManager.GetMatchingFiles(_folder, _timeFrom, _timeTo);
+                int result = await RunOnStaThread(
+                    () => BackupManager.ConnectBackup(_folder, _timeFrom, _timeTo));
+
+                if (result == 0 || result == 1)
+                {
+                    if (matchingFiles.Count > 0)
+                    {
+                        foreach (var f in matchingFiles)
+                        {
+                            AppendLine("✓ ", Color.FromArgb(0, 140, 0));
+                            AppendLine($"\"{f.Name}\" {LangHelper.Get("Backup_ConnectSuccessDetail")}\n",
+                                       richTextResult.ForeColor);
+                        }
+                    }
+                    else
+                        AppendGenericResult(result);
+                }
+                else
+                    AppendGenericResult(result);
+            }
+
+            progressBar.Visible = false;
+            btnOK.Enabled = true;
+            btnOK.Focus();
+        }
+
+        private void AppendGenericResult(int result)
+        {
+            if (result == 0 || result == 1)
+            {
+                AppendLine("✓ ", Color.FromArgb(0, 140, 0));
+                AppendLine(LangHelper.Get("Backup_ConnectSuccess") + "\n", richTextResult.ForeColor);
             }
             else
             {
                 AppendLine("✗ ", Color.Red);
                 AppendLine($"{LangHelper.Get("Backup_ConnectFailed")} (code={result})\n", Color.Red);
             }
-
-            btnOK.Enabled = true;
-            btnOK.Focus();
         }
 
-        /// <summary>
-        /// 在新建的 STA 线程上执行 <paramref name="func"/>，以避免
-        /// WinCC COM 对象（STA）在线程池（MTA）线程上调用时出现封送错误。
-        /// </summary>
         private static Task<T> RunOnStaThread<T>(Func<T> func)
         {
             var tcs = new TaskCompletionSource<T>();

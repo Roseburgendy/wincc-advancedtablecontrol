@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Threading;
 using System.Threading.Tasks;
@@ -7,18 +8,16 @@ using System.Windows.Forms;
 namespace TestProj
 {
     /// <summary>
-    /// 断开备份归档的进度与结果对话框。
-    /// 打开时自动在后台 STA 线程上调用 BackupManager.DisconnectBackup，
-    /// 通过 Marquee 进度条指示断开中，完成后显示结果。
+    /// 断开备份归档的进度与结果对话框，支持一次断开多个归档。
     /// </summary>
     public partial class BackupDisconnectProgressForm : Krypton.Toolkit.KryptonForm
     {
-        private readonly ConnectedArchiveEntry _entry;
+        private readonly List<ConnectedArchiveEntry> _entries;
 
-        public BackupDisconnectProgressForm(ConnectedArchiveEntry entry)
+        public BackupDisconnectProgressForm(List<ConnectedArchiveEntry> entries)
         {
             InitializeComponent();
-            _entry = entry;
+            _entries = entries ?? new List<ConnectedArchiveEntry>();
 
             this.Text         = LangHelper.Get("Backup_DisconnectProgressTitle");
             btnOK.Values.Text = LangHelper.Get("Msg_OK");
@@ -37,23 +36,26 @@ namespace TestProj
             progressBar.Visible = true;
             richTextResult.Clear();
 
-            int result = await RunOnStaThread(
-                () => BackupManager.DisconnectBackup(_entry));
+            foreach (var entry in _entries)
+            {
+                int result = await RunOnStaThread(
+                    () => BackupManager.DisconnectBackup(entry));
+
+                if (result == 0)
+                {
+                    AppendLine("✓ ", Color.FromArgb(0, 140, 0));
+                    AppendLine($"\"{entry.DisplayName}\" {LangHelper.Get("Backup_DisconnectSuccessDetail")}\n",
+                               richTextResult.ForeColor);
+                }
+                else
+                {
+                    AppendLine("✗ ", Color.Red);
+                    AppendLine($"\"{entry.DisplayName}\" {LangHelper.Get("Backup_DisconnectFailed")} (code={result})\n",
+                               Color.Red);
+                }
+            }
 
             progressBar.Visible = false;
-
-            if (result == 0)
-            {
-                AppendLine("✓ ", Color.FromArgb(0, 140, 0));
-                AppendLine($"\"{_entry.DisplayName}\" {LangHelper.Get("Backup_DisconnectSuccessDetail")}\n",
-                           richTextResult.ForeColor);
-            }
-            else
-            {
-                AppendLine("✗ ", Color.Red);
-                AppendLine($"{LangHelper.Get("Backup_DisconnectFailed")} (code={result})\n", Color.Red);
-            }
-
             btnOK.Enabled = true;
             btnOK.Focus();
         }

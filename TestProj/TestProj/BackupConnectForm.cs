@@ -11,16 +11,10 @@ namespace TestProj
         public string SelectedFolder { get; private set; }
 
         /// <summary>
-        /// 若用户选中了具体的备份文件，则为该文件解析出的开始时间（UTC）；
-        /// 否则为 null（表示连接文件夹下所有归档）。
+        /// 用户在列表中选中的备份文件集合，OK 后有效。
+        /// 空列表表示未选中具体文件，BackupProgressForm 会连接文件夹下所有归档。
         /// </summary>
-        public DateTime? SelectedTimeFrom { get; private set; }
-
-        /// <summary>
-        /// 若用户选中了具体的备份文件，则为该文件解析出的结束时间（UTC）；
-        /// 否则为 null。
-        /// </summary>
-        public DateTime? SelectedTimeTo { get; private set; }
+        public List<BackupFileInfo> SelectedFiles { get; private set; } = new List<BackupFileInfo>();
 
         private List<BackupFileInfo> _backupFiles = new List<BackupFileInfo>();
 
@@ -90,18 +84,15 @@ namespace TestProj
 
             SelectedFolder = folder;
 
-            // 若用户选中了某个文件，提取其时间范围（UTC）直接传给 Restore
-            if (lstBackups.SelectedIndex >= 0 &&
-                lstBackups.SelectedIndex < _backupFiles.Count)
+            // 收集所有选中的文件（可多选）
+            SelectedFiles = new List<BackupFileInfo>();
+            foreach (int idx in lstBackups.SelectedIndices)
             {
-                var selected = _backupFiles[lstBackups.SelectedIndex];
-                if (selected.TimeRange.HasValue)
-                {
-                    SelectedTimeFrom = selected.TimeRange.Value.Start;
-                    SelectedTimeTo   = selected.TimeRange.Value.End;
-                }
+                if (idx < _backupFiles.Count)
+                    SelectedFiles.Add(_backupFiles[idx]);
             }
-            // SelectedTimeFrom/To 为 null 时，ConnectBackup 会连接文件夹下所有归档
+            // SelectedFiles 为空时，BackupProgressForm 会连接文件夹下所有归档
+
             DialogResult = DialogResult.OK;
             Close();
         }

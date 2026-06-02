@@ -36,6 +36,7 @@ namespace TestProj
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lstBackups.Location = new System.Drawing.Point(20, 76);
             this.lstBackups.Name = "lstBackups";
+            this.lstBackups.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.lstBackups.Size = new System.Drawing.Size(660, 300);
             this.lstBackups.TabIndex = 1;
             //
