@@ -28,7 +28,7 @@ namespace TestProj
             this.progressBar.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.progressBar.MarqueeAnimationSpeed = 25;
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(1027, 27);
+            this.progressBar.Size = new System.Drawing.Size(1123, 27);
             this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.progressBar.TabIndex = 0;
             this.progressBar.Visible = false;
@@ -45,7 +45,7 @@ namespace TestProj
             this.richTextResult.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.richTextResult.Name = "richTextResult";
             this.richTextResult.ReadOnly = true;
-            this.richTextResult.Size = new System.Drawing.Size(1024, 458);
+            this.richTextResult.Size = new System.Drawing.Size(1120, 458);
             this.richTextResult.TabIndex = 1;
             this.richTextResult.Text = "";
             this.richTextResult.WordWrap = false;
@@ -53,7 +53,7 @@ namespace TestProj
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.Location = new System.Drawing.Point(840, 556);
+            this.btnOK.Location = new System.Drawing.Point(936, 556);
             this.btnOK.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(218, 68);
@@ -66,7 +66,7 @@ namespace TestProj
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1089, 648);
+            this.ClientSize = new System.Drawing.Size(1185, 648);
             this.Controls.Add(this.progressBar);
             this.Controls.Add(this.richTextResult);
             this.Controls.Add(this.btnOK);

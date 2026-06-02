@@ -11,8 +11,6 @@ namespace TestProj.Models
         public string DisplayName { get; set; }       // 中文别名
         public string DisplayNameEn { get; set; }     // 英文别名
         [JsonIgnore] public string DataType { get; set; }
-        public double? NormalMin { get; set; }
-        public double? NormalMax { get; set; }
         public int DecimalPlaces { get; set; } = 2;
     }
 

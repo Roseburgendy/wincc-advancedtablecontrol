@@ -156,7 +156,6 @@ namespace TestProj
                 .ToList();
 
             if (relevant.Count == 0) return true;
-
             // 无时间范围的条目 = 当时以空时间段连接了整个文件夹，视为完全覆盖
             if (relevant.Any(e => !e.TimeFrom.HasValue || !e.TimeTo.HasValue))
                 return false;

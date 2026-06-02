@@ -27,22 +27,16 @@ namespace TestProj
             this.txtDecimalPlaces = new Krypton.Toolkit.KryptonTextBox();
             this.label1 = new Krypton.Toolkit.KryptonLabel();
             this.txtOrder = new Krypton.Toolkit.KryptonTextBox();
-            this.label7 = new Krypton.Toolkit.KryptonLabel();
-            this.txtMin = new Krypton.Toolkit.KryptonTextBox();
-            this.label6 = new Krypton.Toolkit.KryptonLabel();
-            this.txtMax = new Krypton.Toolkit.KryptonTextBox();
             this.groupBox1 = new Krypton.Toolkit.KryptonGroupBox();
             this.groupBox2 = new Krypton.Toolkit.KryptonGroupBox();
             this.dgvTags = new Krypton.Toolkit.KryptonDataGridView();
-            this.saveConfigBtn = new Krypton.Toolkit.KryptonButton();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.saveConfigBtn = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupBox1.Panel)).BeginInit();
             this.groupBox1.Panel.SuspendLayout();
@@ -71,7 +65,7 @@ namespace TestProj
             this.txtTagName.Margin = new System.Windows.Forms.Padding(2);
             this.txtTagName.Name = "txtTagName";
             this.txtTagName.ReadOnly = true;
-            this.txtTagName.Size = new System.Drawing.Size(715, 43);
+            this.txtTagName.Size = new System.Drawing.Size(743, 43);
             this.txtTagName.TabIndex = 1;
             // 
             // label4
@@ -90,7 +84,7 @@ namespace TestProj
             this.txtDisplayName.Location = new System.Drawing.Point(208, 106);
             this.txtDisplayName.Margin = new System.Windows.Forms.Padding(2);
             this.txtDisplayName.Name = "txtDisplayName";
-            this.txtDisplayName.Size = new System.Drawing.Size(715, 43);
+            this.txtDisplayName.Size = new System.Drawing.Size(743, 43);
             this.txtDisplayName.TabIndex = 3;
             // 
             // label8
@@ -109,7 +103,7 @@ namespace TestProj
             this.txtDisplayNameEn.Location = new System.Drawing.Point(208, 159);
             this.txtDisplayNameEn.Margin = new System.Windows.Forms.Padding(2);
             this.txtDisplayNameEn.Name = "txtDisplayNameEn";
-            this.txtDisplayNameEn.Size = new System.Drawing.Size(715, 43);
+            this.txtDisplayNameEn.Size = new System.Drawing.Size(743, 43);
             this.txtDisplayNameEn.TabIndex = 5;
             // 
             // label5
@@ -164,47 +158,11 @@ namespace TestProj
             this.txtOrder.Size = new System.Drawing.Size(229, 43);
             this.txtOrder.TabIndex = 11;
             // 
-            // label7
-            // 
-            this.label7.Location = new System.Drawing.Point(41, 375);
-            this.label7.Margin = new System.Windows.Forms.Padding(2);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(103, 42);
-            this.label7.TabIndex = 12;
-            this.label7.Values.Text = "下限值";
-            // 
-            // txtMin
-            // 
-            this.txtMin.Location = new System.Drawing.Point(208, 375);
-            this.txtMin.Margin = new System.Windows.Forms.Padding(2);
-            this.txtMin.Name = "txtMin";
-            this.txtMin.Size = new System.Drawing.Size(229, 43);
-            this.txtMin.TabIndex = 13;
-            // 
-            // label6
-            // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.Location = new System.Drawing.Point(757, 375);
-            this.label6.Margin = new System.Windows.Forms.Padding(2);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(103, 42);
-            this.label6.TabIndex = 14;
-            this.label6.Values.Text = "上限值";
-            // 
-            // txtMax
-            // 
-            this.txtMax.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMax.Location = new System.Drawing.Point(928, 375);
-            this.txtMax.Margin = new System.Windows.Forms.Padding(2);
-            this.txtMax.Name = "txtMax";
-            this.txtMax.Size = new System.Drawing.Size(229, 43);
-            this.txtMax.TabIndex = 15;
-            // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Location = new System.Drawing.Point(10, 465);
+            this.groupBox1.Location = new System.Drawing.Point(10, 584);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             // 
             // groupBox1.Panel
@@ -221,11 +179,7 @@ namespace TestProj
             this.groupBox1.Panel.Controls.Add(this.txtDecimalPlaces);
             this.groupBox1.Panel.Controls.Add(this.label1);
             this.groupBox1.Panel.Controls.Add(this.txtOrder);
-            this.groupBox1.Panel.Controls.Add(this.label7);
-            this.groupBox1.Panel.Controls.Add(this.txtMin);
-            this.groupBox1.Panel.Controls.Add(this.label6);
-            this.groupBox1.Panel.Controls.Add(this.txtMax);
-            this.groupBox1.Size = new System.Drawing.Size(1523, 475);
+            this.groupBox1.Size = new System.Drawing.Size(1551, 488);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.Values.Heading = "变量配置";
             // 
@@ -240,7 +194,7 @@ namespace TestProj
             // groupBox2.Panel
             // 
             this.groupBox2.Panel.Controls.Add(this.dgvTags);
-            this.groupBox2.Size = new System.Drawing.Size(1523, 446);
+            this.groupBox2.Size = new System.Drawing.Size(1551, 565);
             this.groupBox2.TabIndex = 17;
             this.groupBox2.Values.Heading = "变量列表";
             // 
@@ -257,9 +211,7 @@ namespace TestProj
             this.Column8,
             this.Column4,
             this.Column3,
-            this.Column5,
-            this.Column6,
-            this.Column7});
+            this.Column5});
             this.dgvTags.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvTags.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgvTags.Location = new System.Drawing.Point(0, 0);
@@ -268,23 +220,11 @@ namespace TestProj
             this.dgvTags.RowHeadersWidth = 92;
             this.dgvTags.RowTemplate.Height = 50;
             this.dgvTags.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTags.Size = new System.Drawing.Size(1519, 400);
+            this.dgvTags.Size = new System.Drawing.Size(1547, 519);
             this.dgvTags.TabIndex = 0;
             this.dgvTags.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvTags_CellValueChanged);
             this.dgvTags.SelectionChanged += new System.EventHandler(this.DgvTags_SelectionChanged);
             // 
-            // saveConfigBtn
-            // 
-            this.saveConfigBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.saveConfigBtn.Location = new System.Drawing.Point(1221, 972);
-            this.saveConfigBtn.Margin = new System.Windows.Forms.Padding(2);
-            this.saveConfigBtn.Name = "saveConfigBtn";
-            this.saveConfigBtn.Size = new System.Drawing.Size(310, 72);
-            this.saveConfigBtn.TabIndex = 18;
-            this.saveConfigBtn.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.saveConfigBtn.Values.Text = "保存配置";
-            this.saveConfigBtn.Click += new System.EventHandler(this.SaveConfigBtn_Click_1);
-            //
             // Column1
             // 
             this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -294,36 +234,36 @@ namespace TestProj
             this.Column1.MinimumWidth = 80;
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
-            //
+            // 
             // Column2
-            //
+            // 
             this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Column2.DataPropertyName = "DisplayName";
             this.Column2.FillWeight = 18F;
             this.Column2.HeaderText = "中文别名";
             this.Column2.MinimumWidth = 80;
             this.Column2.Name = "Column2";
-            //
+            // 
             // Column8
-            //
+            // 
             this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Column8.DataPropertyName = "DisplayNameEn";
             this.Column8.FillWeight = 18F;
             this.Column8.HeaderText = "英文别名";
             this.Column8.MinimumWidth = 80;
             this.Column8.Name = "Column8";
-            //
+            // 
             // Column4
-            //
+            // 
             this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Column4.DataPropertyName = "Order";
             this.Column4.FillWeight = 6F;
             this.Column4.HeaderText = "顺序";
             this.Column4.MinimumWidth = 50;
             this.Column4.Name = "Column4";
-            //
+            // 
             // Column3
-            //
+            // 
             this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Column3.DataPropertyName = "DataType";
             this.Column3.FillWeight = 10F;
@@ -331,39 +271,33 @@ namespace TestProj
             this.Column3.MinimumWidth = 60;
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
-            //
+            // 
             // Column5
-            //
+            // 
             this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Column5.DataPropertyName = "DecimalPlaces";
             this.Column5.FillWeight = 8F;
             this.Column5.HeaderText = "小数位数";
             this.Column5.MinimumWidth = 60;
             this.Column5.Name = "Column5";
-            //
-            // Column6
-            //
-            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column6.DataPropertyName = "NormalMax";
-            this.Column6.FillWeight = 11F;
-            this.Column6.HeaderText = "最大值";
-            this.Column6.MinimumWidth = 60;
-            this.Column6.Name = "Column6";
-            //
-            // Column7
-            //
-            this.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column7.DataPropertyName = "NormalMin";
-            this.Column7.FillWeight = 11F;
-            this.Column7.HeaderText = "最小值";
-            this.Column7.MinimumWidth = 60;
-            this.Column7.Name = "Column7";
+            // 
+            // saveConfigBtn
+            // 
+            this.saveConfigBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.saveConfigBtn.Location = new System.Drawing.Point(1251, 1095);
+            this.saveConfigBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.saveConfigBtn.Name = "saveConfigBtn";
+            this.saveConfigBtn.Size = new System.Drawing.Size(310, 72);
+            this.saveConfigBtn.TabIndex = 18;
+            this.saveConfigBtn.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.saveConfigBtn.Values.Text = "保存配置";
+            this.saveConfigBtn.Click += new System.EventHandler(this.SaveConfigBtn_Click_1);
             // 
             // TagConfigPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1544, 1072);
+            this.ClientSize = new System.Drawing.Size(1572, 1191);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.saveConfigBtn);
             this.Controls.Add(this.groupBox1);
@@ -400,10 +334,6 @@ namespace TestProj
         private Krypton.Toolkit.KryptonTextBox txtDecimalPlaces;
         private Krypton.Toolkit.KryptonLabel label1;
         private Krypton.Toolkit.KryptonTextBox txtOrder;
-        private Krypton.Toolkit.KryptonLabel label7;
-        private Krypton.Toolkit.KryptonTextBox txtMin;
-        private Krypton.Toolkit.KryptonLabel label6;
-        private Krypton.Toolkit.KryptonTextBox txtMax;
         private Krypton.Toolkit.KryptonGroupBox groupBox1;
         private Krypton.Toolkit.KryptonGroupBox groupBox2;
         private Krypton.Toolkit.KryptonButton saveConfigBtn;
@@ -414,7 +344,5 @@ namespace TestProj
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
     }
 }

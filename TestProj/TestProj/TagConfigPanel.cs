@@ -19,8 +19,6 @@ namespace TestProj
             public string DisplayNameEn { get; set; }
             public string DataType      { get; set; }
             public int    DecimalPlaces { get; set; }
-            public double? NormalMin    { get; set; }
-            public double? NormalMax    { get; set; }
             public int    Order         { get; set; }
         }
 
@@ -46,8 +44,6 @@ namespace TestProj
             txtDisplayNameEn.TextChanged += FormField_Changed;
             txtDecimalPlaces.TextChanged += FormField_Changed;
             txtOrder.TextChanged         += FormField_Changed;
-            txtMax.TextChanged           += FormField_Changed;
-            txtMin.TextChanged           += FormField_Changed;
 
             ApplyLanguage();
             ApplyIcons();
@@ -77,9 +73,6 @@ namespace TestProj
             label5.Values.Text = LangHelper.Get("TCP_DataType");
             label2.Values.Text = LangHelper.Get("TCP_DecimalPlaces");
             label1.Values.Text = LangHelper.Get("TCP_Order");
-            label7.Values.Text = LangHelper.Get("TCP_MinValue");
-            label6.Values.Text = LangHelper.Get("TCP_MaxValue");
-
             // Button
             saveConfigBtn.Values.Text = LangHelper.Get("TCP_BtnSave");
 
@@ -90,8 +83,6 @@ namespace TestProj
             Column5.HeaderText = LangHelper.Get("TCP_ColDecimalPlaces");
             Column3.HeaderText = LangHelper.Get("TCP_ColDataType");
             Column4.HeaderText = LangHelper.Get("TCP_ColOrder");
-            Column6.HeaderText = LangHelper.Get("TCP_ColMaxValue");
-            Column7.HeaderText = LangHelper.Get("TCP_ColMinValue");
         }
 
         /// <summary>隐藏 KryptonDataGridView 自动生成的多余列（如 ValueID）。</summary>
@@ -128,8 +119,6 @@ namespace TestProj
                     DisplayNameEn = meta?.DisplayNameEn ?? "",
                     DataType      = dataType ?? meta?.DataType ?? "",
                     DecimalPlaces = meta?.DecimalPlaces ?? 2,
-                    NormalMin     = meta?.NormalMin,
-                    NormalMax     = meta?.NormalMax,
                     Order         = entry.Order
                 });
             }
@@ -157,8 +146,6 @@ namespace TestProj
                     DisplayName   = row.DisplayName,
                     DisplayNameEn = row.DisplayNameEn,
                     DataType      = row.DataType,
-                    NormalMin     = row.NormalMin,
-                    NormalMax     = row.NormalMax,
                     DecimalPlaces = row.DecimalPlaces,
                     Order         = row.Order
                 };
@@ -179,9 +166,7 @@ namespace TestProj
             _isSyncing = true;
             row.DisplayName   = txtDisplayName.Text.Trim();
             row.DisplayNameEn = txtDisplayNameEn.Text.Trim();
-            row.DecimalPlaces = int.TryParse(txtDecimalPlaces.Text,   out int dp) ? dp : 2;
-            row.NormalMax     = double.TryParse(txtMax.Text, out double mx) ? mx : (double?)null;
-            row.NormalMin     = double.TryParse(txtMin.Text, out double mn) ? mn : (double?)null;
+            row.DecimalPlaces = int.TryParse(txtDecimalPlaces.Text, out int dp) ? dp : 2;
 
             int newOrder = int.TryParse(txtOrder.Text, out int ord) ? ord : 1;
             AdjustOrders(row, newOrder);
@@ -266,8 +251,6 @@ namespace TestProj
             txtDataType.Text      = row.DataType;
             txtDecimalPlaces.Text = row.DecimalPlaces.ToString();
             txtOrder.Text         = row.Order.ToString();
-            txtMax.Text           = row.NormalMax?.ToString() ?? "";
-            txtMin.Text           = row.NormalMin?.ToString() ?? "";
         }
 
         #endregion
@@ -288,8 +271,6 @@ namespace TestProj
                     existing.DisplayName   = row.DisplayName;
                     existing.DisplayNameEn = row.DisplayNameEn;
                     existing.DataType      = row.DataType;
-                    existing.NormalMin     = row.NormalMin;
-                    existing.NormalMax     = row.NormalMax;
                     existing.DecimalPlaces = row.DecimalPlaces;
                 }
                 else
@@ -301,8 +282,6 @@ namespace TestProj
                         DisplayName   = row.DisplayName,
                         DisplayNameEn = row.DisplayNameEn,
                         DataType      = row.DataType,
-                        NormalMin     = row.NormalMin,
-                        NormalMax     = row.NormalMax,
                         DecimalPlaces = row.DecimalPlaces
                     });
                 }
@@ -330,8 +309,6 @@ namespace TestProj
                     row.DisplayName   = backup.Value.DisplayName;
                     row.DisplayNameEn = backup.Value.DisplayNameEn;
                     row.DataType      = backup.Value.DataType;
-                    row.NormalMin     = backup.Value.NormalMin;
-                    row.NormalMax     = backup.Value.NormalMax;
                     row.DecimalPlaces = backup.Value.DecimalPlaces;
                     row.Order         = backup.Value.Order;
 

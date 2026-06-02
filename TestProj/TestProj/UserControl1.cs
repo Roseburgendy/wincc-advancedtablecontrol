@@ -636,6 +636,14 @@ namespace TestProj
 
         private void BindResultTable(DataTable table)
         {
+            // 开双缓冲（DoubleBuffered 是 protected，需反射启用），消除选行/列时的全表闪烁
+            typeof(System.Windows.Forms.DataGridView).InvokeMember(
+                "DoubleBuffered",
+                System.Reflection.BindingFlags.NonPublic |
+                System.Reflection.BindingFlags.Instance  |
+                System.Reflection.BindingFlags.SetProperty,
+                null, dataGridView1, new object[] { true });
+
             // 强制清除旧列
             dataGridView1.DataSource = null;
             dataGridView1.Columns.Clear();
@@ -659,6 +667,9 @@ namespace TestProj
                     col.HeaderText = BuildTagHeader(FindMetaByColName(col.Name), col.Name);
                     col.Width = 200;
                 }
+
+                // 禁用点列头排序（排序会触发 DataTable 重排 → 全表重绘）
+                col.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
 
             dataGridView1.CellFormatting -= DataGridView1_CellFormatting;
@@ -846,16 +857,6 @@ namespace TestProj
                             && double.TryParse(val.ToString(), out double dval))
                         {
                             cell.Style.Numberformat.Format = "0." + new string('0', meta.DecimalPlaces);
-
-                            bool outOfRange =
-                                (meta.NormalMin.HasValue && dval < meta.NormalMin.Value) ||
-                                (meta.NormalMax.HasValue && dval > meta.NormalMax.Value);
-
-                            if (outOfRange)
-                            {
-                                cell.Style.Font.Color.SetColor(Color.Red);
-                                cell.Style.Font.Bold = true;
-                            }
                         }
                     }
                 }

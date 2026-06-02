@@ -276,12 +276,7 @@
   <data name="TCP_Order" xml:space="preserve">
     <value>顺序</value>
   </data>
-  <data name="TCP_MinValue" xml:space="preserve">
-    <value>下限值</value>
-  </data>
-  <data name="TCP_MaxValue" xml:space="preserve">
-    <value>上限值</value>
-  </data>
+
   <data name="TCP_BtnSave" xml:space="preserve">
     <value>保存配置</value>
   </data>
