@@ -532,7 +532,25 @@ namespace TestProj
                 Document = doc,
                 WindowState = FormWindowState.Maximized
             })
+            {
+                // 放大内置工具栏图标和字体，避免高分辨率下显示过小
+                var toolStrip = preview.Controls.OfType<System.Windows.Forms.ToolStrip>().FirstOrDefault();
+                if (toolStrip != null)
+                {
+                    toolStrip.ImageScalingSize = new System.Drawing.Size(56, 56);
+                    toolStrip.AutoSize         = false;
+                    toolStrip.Height           = 80;
+                    toolStrip.Padding          = new System.Windows.Forms.Padding(4, 8, 4, 8);
+                    var bigFont = new System.Drawing.Font("Segoe UI", 14F);
+                    foreach (System.Windows.Forms.ToolStripItem item in toolStrip.Items)
+                    {
+                        item.Font        = bigFont;
+                        item.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+                    }
+                }
+
                 preview.ShowDialog();
+            }
         }
 
         /// <summary>
@@ -1004,7 +1022,7 @@ namespace TestProj
 
                         var rect = new RectangleF(hx, y, scaledW[i], rowH);
                         if (alt) g.FillRectangle(Brushes.WhiteSmoke, rect);
-                        g.DrawRectangle(Pens.Gray, rect.X, rect.Y, rect.Width, rect.Height);
+                        g.DrawRectangle(Pens.Black, rect.X, rect.Y, rect.Width, rect.Height);
                         using (var sf = new StringFormat
                         {
                             Alignment   = StringAlignment.Center,
