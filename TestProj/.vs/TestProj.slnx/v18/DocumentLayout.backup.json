@@ -15,10 +15,6 @@
       "RelativeMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|solutionrelative:testproj\\backupmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\testproj\\backupprogressform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|solutionrelative:testproj\\backupprogressform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\testproj\\backupdisconnectform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|solutionrelative:testproj\\backupdisconnectform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
@@ -54,7 +50,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 996,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
@@ -76,17 +72,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "BackupProgressForm.cs [Design]",
-              "DocumentMoniker": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\BackupProgressForm.cs",
-              "RelativeDocumentMoniker": "TestProj\\BackupProgressForm.cs",
-              "ToolTip": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\BackupProgressForm.cs [Design]",
-              "RelativeToolTip": "TestProj\\BackupProgressForm.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-01T07:48:26.426Z"
             },
             {
               "$type": "Document",
@@ -115,7 +100,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "BackupDisconnectForm.cs [Design]",
               "DocumentMoniker": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\BackupDisconnectForm.cs",
               "RelativeDocumentMoniker": "TestProj\\BackupDisconnectForm.cs",
@@ -126,7 +111,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 4,
               "Title": "BackupDisconnectProgressForm.cs [Design]",
               "DocumentMoniker": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\BackupDisconnectProgressForm.cs",
               "RelativeDocumentMoniker": "TestProj\\BackupDisconnectProgressForm.cs",
@@ -137,7 +122,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 5,
               "Title": "BackupProgressForm.cs",
               "DocumentMoniker": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\BackupProgressForm.cs",
               "RelativeDocumentMoniker": "TestProj\\BackupProgressForm.cs",
@@ -145,11 +130,12 @@
               "RelativeToolTip": "TestProj\\BackupProgressForm.cs",
               "ViewState": "AgIAAAIAAAAAAAAAAAAWwA8AAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-02T02:58:07.869Z"
+              "WhenOpened": "2026-06-02T02:58:07.869Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 6,
               "Title": "TagConfigPanel.cs [Design]",
               "DocumentMoniker": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\TagConfigPanel.cs",
               "RelativeDocumentMoniker": "TestProj\\TagConfigPanel.cs",
@@ -160,7 +146,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 7,
               "Title": "BackupDisconnectProgressForm.cs",
               "DocumentMoniker": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\BackupDisconnectProgressForm.cs",
               "RelativeDocumentMoniker": "TestProj\\BackupDisconnectProgressForm.cs",
@@ -172,7 +158,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 8,
               "Title": "BackupConnectForm.cs",
               "DocumentMoniker": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\BackupConnectForm.cs",
               "RelativeDocumentMoniker": "TestProj\\BackupConnectForm.cs",
@@ -184,7 +170,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 9,
               "Title": "BackupDisconnectForm.cs",
               "DocumentMoniker": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\BackupDisconnectForm.cs",
               "RelativeDocumentMoniker": "TestProj\\BackupDisconnectForm.cs",
