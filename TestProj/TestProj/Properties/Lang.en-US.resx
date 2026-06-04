@@ -481,6 +481,12 @@
   <data name="GCP_LblBackupPath" xml:space="preserve">
     <value>Backup Folder:</value>
   </data>
+  <data name="GCP_GroupAppearance" xml:space="preserve">
+    <value>Appearance</value>
+  </data>
+  <data name="GCP_GroupSystem" xml:space="preserve">
+    <value>System Settings</value>
+  </data>
   <data name="Backup_ConnectTitle" xml:space="preserve">
     <value>Select the backup to connect.</value>
   </data>

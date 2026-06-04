@@ -15,6 +15,7 @@ namespace TestProj
     {
         private readonly BindingList<ReportTemplate> _bindingList;
         private readonly List<TagMeta> _allTags;
+        private readonly Dictionary<long, TagMeta> _tagDict;   // fast ValueID → TagMeta lookup
         private ReportTemplate _editing;
 
         private readonly Krypton.Toolkit.KryptonManager _kryptonManager;
@@ -37,6 +38,8 @@ namespace TestProj
 
             // --- Tab 1: Template Config ---
             _allTags  = allTags  ?? new List<TagMeta>();
+            _tagDict  = _allTags.GroupBy(m => m.ValueID)
+                                .ToDictionary(g => g.Key, g => g.First());
             templates = templates ?? new List<ReportTemplate>();
 
             pnlDetail.Visible = false;
@@ -44,15 +47,17 @@ namespace TestProj
             lstTemplates.DisplayMember = "DisplayName";
             lstTemplates.DataSource    = _bindingList;
 
-            // KryptonListBox 的 DataSource 赋值后 SelectedIndex 已是 0，
-            // 再设一次不会触发 SelectedIndexChanged，直接调用 BindDetail 确保右侧面板显示
-            if (_bindingList.Count > 0)
+            // Defer initial detail load to Shown event so the Krypton navigator
+            // has finished its own layout pass before we make the panel visible.
+            Shown += (s, e) =>
             {
-                lstTemplates.SelectedIndex = 0;
-                _editing = Newtonsoft.Json.JsonConvert.DeserializeObject<ReportTemplate>(
-                           Newtonsoft.Json.JsonConvert.SerializeObject(_bindingList[0]));
-                BindDetail();
-            }
+                if (_bindingList.Count > 0)
+                {
+                    lstTemplates.SelectedIndex = 0;
+                    _editing = CloneTemplate(_bindingList[0]);
+                    BindDetail();
+                }
+            };
 
             // --- Tab 2: General Settings ---
             cmbLanguage.Items.AddRange(new object[] { "中文 (zh-CN)", "English (en-US)" });
@@ -105,7 +110,10 @@ namespace TestProj
             btnConfigTag.Values.Text       = LangHelper.Get("GCP_BtnConfigVars");
             lblTemplateExportPath.Values.Text      = LangHelper.Get("GCP_LblTemplateExportPath");
 
-            // Tab 2 — General Settings
+            // Tab 2 — General Settings: GroupBox headings
+            kryptonGroupBox1.Values.Heading = LangHelper.Get("GCP_GroupAppearance");
+            kryptonGroupBox2.Values.Heading = LangHelper.Get("GCP_GroupSystem");
+
             lblLanguage.Values.Text       = LangHelper.Get("GCP_LblLanguage");
             lblTheme.Values.Text          = LangHelper.Get("GCP_LblTheme");
             btnSaveGeneral.Values.Text    = LangHelper.Get("GCP_BtnSave");
@@ -127,11 +135,26 @@ namespace TestProj
         {
             if (lstTemplates.SelectedItem is ReportTemplate t)
             {
-                _editing = JsonConvert.DeserializeObject<ReportTemplate>(
-                           JsonConvert.SerializeObject(t));
+                _editing = CloneTemplate(t);
                 BindDetail();
             }
         }
+
+        /// <summary>
+        /// Fast manual deep-copy of a ReportTemplate — avoids JSON serialization overhead
+        /// on every selection change.
+        /// </summary>
+        private static ReportTemplate CloneTemplate(ReportTemplate src) =>
+            new ReportTemplate
+            {
+                Id          = src.Id,
+                DisplayName = src.DisplayName,
+                Description = src.Description,
+                ExportPath  = src.ExportPath ?? "",
+                SelectedTags = src.SelectedTags
+                    .Select(e => new TemplateTagEntry { ValueID = e.ValueID, Order = e.Order })
+                    .ToList()
+            };
 
         private void BtnAdd_Click(object sender, EventArgs e)
         {
@@ -320,7 +343,7 @@ namespace TestProj
                 .OrderBy(entry => entry.Order)
                 .Select(entry =>
                 {
-                    var meta = _allTags.FirstOrDefault(m => m.ValueID == entry.ValueID);
+                    _tagDict.TryGetValue(entry.ValueID, out var meta);
                     return meta?.DisplayName ?? meta?.TagName ?? entry.ValueID.ToString();
                 })
                 .ToList();

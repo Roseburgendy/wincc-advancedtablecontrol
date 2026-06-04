@@ -13,6 +13,7 @@ namespace TestProj.Tests
     /// excluded because they require a live HMIRuntime instance.
     /// </summary>
     [TestFixture]
+
     public class BackupManagerTests
     {
         private string _tempFolder;
