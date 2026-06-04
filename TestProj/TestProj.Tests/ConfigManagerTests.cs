@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using NUnit.Framework;
-using NUnit.Framework.Legacy;
 using TestProj.Models;
+using Assert = NUnit.Framework.Legacy.ClassicAssert;
 
 namespace TestProj.Tests
 {

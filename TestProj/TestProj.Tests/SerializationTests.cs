@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using NUnit.Framework;
-using NUnit.Framework.Legacy;
 using TestProj.Models;
+using Assert = NUnit.Framework.Legacy.ClassicAssert;
 
 namespace TestProj.Tests
 {
