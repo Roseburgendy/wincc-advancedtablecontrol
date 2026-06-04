@@ -481,6 +481,12 @@
   <data name="GCP_LblBackupPath" xml:space="preserve">
     <value>备份文件夹：</value>
   </data>
+  <data name="GCP_GroupAppearance" xml:space="preserve">
+    <value>外观</value>
+  </data>
+  <data name="GCP_GroupSystem" xml:space="preserve">
+    <value>系统设置</value>
+  </data>
   <data name="Backup_ConnectTitle" xml:space="preserve">
     <value>选择想要连接的备份。</value>
   </data>
