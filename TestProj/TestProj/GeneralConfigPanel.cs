@@ -39,14 +39,20 @@ namespace TestProj
             _allTags  = allTags  ?? new List<TagMeta>();
             templates = templates ?? new List<ReportTemplate>();
 
-            pnlDetail.Visible = false;   // 先隐藏，待 DataSource 触发选中事件后再显示
+            pnlDetail.Visible = false;
             _bindingList = new BindingList<ReportTemplate>(templates);
             lstTemplates.DisplayMember = "DisplayName";
             lstTemplates.DataSource    = _bindingList;
 
-            // DataSource 赋值不一定触发 SelectedIndexChanged，手动选中第一项确保右侧面板显示
+            // KryptonListBox 的 DataSource 赋值后 SelectedIndex 已是 0，
+            // 再设一次不会触发 SelectedIndexChanged，直接调用 BindDetail 确保右侧面板显示
             if (_bindingList.Count > 0)
+            {
                 lstTemplates.SelectedIndex = 0;
+                _editing = Newtonsoft.Json.JsonConvert.DeserializeObject<ReportTemplate>(
+                           Newtonsoft.Json.JsonConvert.SerializeObject(_bindingList[0]));
+                BindDetail();
+            }
 
             // --- Tab 2: General Settings ---
             cmbLanguage.Items.AddRange(new object[] { "中文 (zh-CN)", "English (en-US)" });
