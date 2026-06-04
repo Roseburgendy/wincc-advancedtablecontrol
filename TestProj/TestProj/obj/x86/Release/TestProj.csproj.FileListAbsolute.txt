@@ -43,3 +43,12 @@ E:\WinCCReporter_Dev\TestProj\TestProj\obj\x86\Release\TestProj.Properties.Lang.
 E:\WinCCReporter_Dev\TestProj\TestProj\obj\x86\Release\TestProj.Properties.Resources.resources
 E:\WinCCReporter_Dev\TestProj\TestProj\obj\x86\Release\TestProj.Properties.Lang.en-US.resources
 E:\WinCCReporter_Dev\TestProj\TestProj\obj\x86\Release\en-US\TestProj.resources.dll
+D:\WinCCReport_Dev\wincc-advancedtablecontrol\TestProj\TestProj\obj\x86\Release\TestProj.BackupConnectForm.resources
+D:\WinCCReport_Dev\wincc-advancedtablecontrol\TestProj\TestProj\obj\x86\Release\TestProj.BackupDisconnectForm.resources
+D:\WinCCReport_Dev\wincc-advancedtablecontrol\TestProj\TestProj\obj\x86\Release\TestProj.BackupDisconnectProgressForm.resources
+D:\WinCCReport_Dev\wincc-advancedtablecontrol\TestProj\TestProj\obj\x86\Release\TestProj.BackupProgressForm.resources
+D:\WinCCReport_Dev\wincc-advancedtablecontrol\TestProj\TestProj\obj\x86\Release\TestProj.BatchDecimalForm.resources
+D:\WinCCReport_Dev\wincc-advancedtablecontrol\TestProj\TestProj\obj\x86\Release\TestProj.GeneralConfigPanel.resources
+D:\WinCCReport_Dev\wincc-advancedtablecontrol\TestProj\TestProj\obj\x86\Release\TestProj.Properties.Lang.resources
+D:\WinCCReport_Dev\wincc-advancedtablecontrol\TestProj\TestProj\obj\x86\Release\TestProj.Properties.Resources.resources
+D:\WinCCReport_Dev\wincc-advancedtablecontrol\TestProj\TestProj\obj\x86\Release\TestProj.Properties.Lang.en-US.resources

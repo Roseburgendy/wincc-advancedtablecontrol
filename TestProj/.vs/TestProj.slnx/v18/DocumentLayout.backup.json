@@ -3,24 +3,48 @@
   "WorkspaceRootPath": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|d:\\winccreport_dev\\wincc-advancedtablecontrol\\testproj\\testproj\\backupconnectform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|solutionrelative:testproj\\backupconnectform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\testproj\\usercontrol1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|solutionrelative:testproj\\usercontrol1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|d:\\winccreport_dev\\wincc-advancedtablecontrol\\testproj\\testproj\\backupdisconnectform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|solutionrelative:testproj\\backupdisconnectform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|d:\\winccreport_dev\\wincc-advancedtablecontrol\\testproj\\testproj\\usercontrol1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|solutionrelative:testproj\\usercontrol1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|d:\\winccreport_dev\\wincc-advancedtablecontrol\\testproj\\testproj\\backupmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\testproj\\backupmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|solutionrelative:testproj\\backupmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\testproj\\backupprogressform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|solutionrelative:testproj\\backupprogressform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\testproj\\backupdisconnectform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|solutionrelative:testproj\\backupdisconnectform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\testproj\\backupdisconnectprogressform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|solutionrelative:testproj\\backupdisconnectprogressform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\testproj\\backupprogressform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|solutionrelative:testproj\\backupprogressform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\testproj\\tagconfigpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|solutionrelative:testproj\\tagconfigpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\testproj\\backupdisconnectprogressform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|solutionrelative:testproj\\backupdisconnectprogressform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\testproj\\backupconnectform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|solutionrelative:testproj\\backupconnectform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\testproj\\backupprogressform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|solutionrelative:testproj\\backupprogressform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\testproj\\backupdisconnectform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF2960B4-D547-49DE-B8AA-889069084923}|TestProj\\TestProj.csproj|solutionrelative:testproj\\backupdisconnectform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -29,9 +53,22 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 1246,
-          "SelectedChildIndex": 3,
+          "DockedWidth": 996,
+          "SelectedChildIndex": 4,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BackupManager.cs",
+              "DocumentMoniker": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\BackupManager.cs",
+              "RelativeDocumentMoniker": "TestProj\\BackupManager.cs",
+              "ToolTip": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\BackupManager.cs",
+              "RelativeToolTip": "TestProj\\BackupManager.cs",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAIwEoAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-01T03:51:03.67Z",
+              "IsPinned": true
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
@@ -42,72 +79,125 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "BackupDisconnectForm.Designer.cs",
-              "DocumentMoniker": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\BackupDisconnectForm.Designer.cs",
-              "RelativeDocumentMoniker": "TestProj\\BackupDisconnectForm.Designer.cs",
-              "ToolTip": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\BackupDisconnectForm.Designer.cs",
-              "RelativeToolTip": "TestProj\\BackupDisconnectForm.Designer.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAADwvzIAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "BackupProgressForm.cs [Design]",
+              "DocumentMoniker": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\BackupProgressForm.cs",
+              "RelativeDocumentMoniker": "TestProj\\BackupProgressForm.cs",
+              "ToolTip": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\BackupProgressForm.cs [Design]",
+              "RelativeToolTip": "TestProj\\BackupProgressForm.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-01T05:27:34.278Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-01T07:48:26.426Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "BackupConnectForm.cs [Design]",
-              "DocumentMoniker": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\BackupConnectForm.cs",
-              "RelativeDocumentMoniker": "TestProj\\BackupConnectForm.cs",
-              "ToolTip": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\BackupConnectForm.cs [Design]",
-              "RelativeToolTip": "TestProj\\BackupConnectForm.cs [Design]",
+              "Title": "UserControl1.cs [Design]",
+              "DocumentMoniker": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\UserControl1.cs",
+              "RelativeDocumentMoniker": "TestProj\\UserControl1.cs",
+              "ToolTip": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\UserControl1.cs [Design]",
+              "RelativeToolTip": "TestProj\\UserControl1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-01T05:27:29.848Z",
+              "WhenOpened": "2026-06-01T05:37:41.549Z",
               "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "BackupManager.cs",
-              "DocumentMoniker": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\BackupManager.cs",
-              "RelativeDocumentMoniker": "TestProj\\BackupManager.cs",
-              "ToolTip": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\BackupManager.cs",
-              "RelativeToolTip": "TestProj\\BackupManager.cs",
-              "ViewState": "AgIAAOsAAAAAAAAAAAAAwAMAAAALAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "UserControl1.cs",
+              "DocumentMoniker": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\UserControl1.cs",
+              "RelativeDocumentMoniker": "TestProj\\UserControl1.cs",
+              "ToolTip": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\UserControl1.cs",
+              "RelativeToolTip": "TestProj\\UserControl1.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAqwCoAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-01T03:51:03.67Z",
+              "WhenOpened": "2026-06-01T07:26:28.647Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "BackupDisconnectForm.cs [Design]",
+              "DocumentMoniker": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\BackupDisconnectForm.cs",
+              "RelativeDocumentMoniker": "TestProj\\BackupDisconnectForm.cs",
+              "ToolTip": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\BackupDisconnectForm.cs [Design]",
+              "RelativeToolTip": "TestProj\\BackupDisconnectForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-02T07:15:30.972Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "BackupDisconnectProgressForm.cs [Design]",
+              "DocumentMoniker": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\BackupDisconnectProgressForm.cs",
+              "RelativeDocumentMoniker": "TestProj\\BackupDisconnectProgressForm.cs",
+              "ToolTip": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\BackupDisconnectProgressForm.cs [Design]",
+              "RelativeToolTip": "TestProj\\BackupDisconnectProgressForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-02T07:15:31.726Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "BackupProgressForm.cs",
               "DocumentMoniker": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\BackupProgressForm.cs",
               "RelativeDocumentMoniker": "TestProj\\BackupProgressForm.cs",
               "ToolTip": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\BackupProgressForm.cs",
               "RelativeToolTip": "TestProj\\BackupProgressForm.cs",
-              "ViewState": "AgIAAGEAAAAAAAAAAAAUwA0AAAAZAAAAAAAAAA==",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAWwA8AAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-01T03:51:03.659Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-02T02:58:07.869Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
+              "Title": "TagConfigPanel.cs [Design]",
+              "DocumentMoniker": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\TagConfigPanel.cs",
+              "RelativeDocumentMoniker": "TestProj\\TagConfigPanel.cs",
+              "ToolTip": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\TagConfigPanel.cs [Design]",
+              "RelativeToolTip": "TestProj\\TagConfigPanel.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-02T07:35:09.896Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "BackupDisconnectProgressForm.cs",
+              "DocumentMoniker": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\BackupDisconnectProgressForm.cs",
+              "RelativeDocumentMoniker": "TestProj\\BackupDisconnectProgressForm.cs",
+              "ToolTip": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\BackupDisconnectProgressForm.cs",
+              "RelativeToolTip": "TestProj\\BackupDisconnectProgressForm.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAqwBAAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-02T02:57:21.855Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "BackupConnectForm.cs",
               "DocumentMoniker": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\BackupConnectForm.cs",
               "RelativeDocumentMoniker": "TestProj\\BackupConnectForm.cs",
               "ToolTip": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\BackupConnectForm.cs",
               "RelativeToolTip": "TestProj\\BackupConnectForm.cs",
-              "ViewState": "AgIAAGcAAAAAAAAAAAAgwC4AAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAD8AAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-01T03:51:03.661Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-02T02:56:51.932Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "BackupDisconnectForm.cs",
+              "DocumentMoniker": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\BackupDisconnectForm.cs",
+              "RelativeDocumentMoniker": "TestProj\\BackupDisconnectForm.cs",
+              "ToolTip": "D:\\WinCCReport_Dev\\wincc-advancedtablecontrol\\TestProj\\TestProj\\BackupDisconnectForm.cs",
+              "RelativeToolTip": "TestProj\\BackupDisconnectForm.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-01T05:29:58.5Z"
             }
           ]
         },
         {
-          "DockedWidth": 478,
+          "DockedWidth": 728,
           "SelectedChildIndex": -1,
           "Children": [
             {

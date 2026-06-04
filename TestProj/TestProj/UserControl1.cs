@@ -16,7 +16,6 @@ namespace TestProj
     {
         private List<TagMeta> _tagMetaList = new List<TagMeta>(); // 变量信息
         private ReportTemplate _currentTemplate; // 模板对应选中变量名称和顺序
-
         public UserControl1()
         {
             InitializeComponent();
@@ -217,7 +216,7 @@ namespace TestProj
             {
                 var cfg = ConfigManager.Config;
 
-                // ── 安全检查：数据点数上限 ───────────────────────────────────
+                // 安全检查：数据点数上限
                 int maxPts = cfg?.MaxDataPoints ?? 50000;
                 if (maxPts > 0 && count > maxPts)
                 {
@@ -229,7 +228,7 @@ namespace TestProj
                     count = maxPts;
                 }
 
-                // ── 自动连接备份（FetchByCount 只有 start 时间，按1年窗口匹配）────
+                // 自动连接备份（FetchByCount 只有 start 时间，按1年窗口匹配
                 if (cfg?.AutoConnectBackup == true)
                 {
                     string   bkFolder = cfg.BackupPath ?? "";
@@ -533,21 +532,25 @@ namespace TestProj
                 WindowState = FormWindowState.Maximized
             })
             {
-                // 放大内置工具栏图标和字体，避免高分辨率下显示过小
-                var toolStrip = preview.Controls.OfType<System.Windows.Forms.ToolStrip>().FirstOrDefault();
-                if (toolStrip != null)
+                // 挂 Load 事件：PrintPreviewDialog 在 Load 后才完成工具栏布局，
+                // 必须在此之后修改，否则会被内部初始化代码覆盖
+                preview.Load += (s, args) =>
                 {
-                    toolStrip.ImageScalingSize = new System.Drawing.Size(56, 56);
+                    var toolStrip = preview.Controls.OfType<System.Windows.Forms.ToolStrip>().FirstOrDefault();
+                    if (toolStrip == null) return;
+
+                    toolStrip.ImageScalingSize = new System.Drawing.Size(48, 48);
                     toolStrip.AutoSize         = false;
-                    toolStrip.Height           = 80;
-                    toolStrip.Padding          = new System.Windows.Forms.Padding(4, 8, 4, 8);
-                    var bigFont = new System.Drawing.Font("Segoe UI", 14F);
+                    toolStrip.Height           = 72;
+                    toolStrip.Padding          = new System.Windows.Forms.Padding(4, 6, 4, 6);
+
+                    var bigFont = new System.Drawing.Font("Segoe UI", 13F);
                     foreach (System.Windows.Forms.ToolStripItem item in toolStrip.Items)
                     {
-                        item.Font        = bigFont;
-                        item.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+                        item.Font         = bigFont;
+                        item.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.SizeToFit;
                     }
-                }
+                };
 
                 preview.ShowDialog();
             }

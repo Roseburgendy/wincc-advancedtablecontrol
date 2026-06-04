@@ -39,10 +39,14 @@ namespace TestProj
             _allTags  = allTags  ?? new List<TagMeta>();
             templates = templates ?? new List<ReportTemplate>();
 
+            pnlDetail.Visible = false;   // 先隐藏，待 DataSource 触发选中事件后再显示
             _bindingList = new BindingList<ReportTemplate>(templates);
             lstTemplates.DisplayMember = "DisplayName";
             lstTemplates.DataSource    = _bindingList;
-            pnlDetail.Visible = false;
+
+            // DataSource 赋值不一定触发 SelectedIndexChanged，手动选中第一项确保右侧面板显示
+            if (_bindingList.Count > 0)
+                lstTemplates.SelectedIndex = 0;
 
             // --- Tab 2: General Settings ---
             cmbLanguage.Items.AddRange(new object[] { "中文 (zh-CN)", "English (en-US)" });
