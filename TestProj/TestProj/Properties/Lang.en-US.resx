@@ -475,6 +475,15 @@
   <data name="UC_DisconnectBackup" xml:space="preserve">
     <value>Disconnect Backup</value>
   </data>
+  <data name="UC_TodayQuery" xml:space="preserve">
+    <value>Today's Query</value>
+  </data>
+  <data name="UC_PrevDay" xml:space="preserve">
+    <value>Prev Day</value>
+  </data>
+  <data name="UC_NextDay" xml:space="preserve">
+    <value>Next Day</value>
+  </data>
   <data name="GCP_ChkAutoConnectBackup" xml:space="preserve">
     <value>Auto-connect Backup</value>
   </data>

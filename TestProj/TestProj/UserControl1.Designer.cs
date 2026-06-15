@@ -22,6 +22,9 @@ namespace TestProj
             this.kryptonLabel1 = new Krypton.Toolkit.KryptonLabel();
             this.btnConnectBackup = new Krypton.Toolkit.KryptonButton();
             this.btnDisconnectBackup = new Krypton.Toolkit.KryptonButton();
+            this.btnTodayQuery = new Krypton.Toolkit.KryptonButton();
+            this.btnPrevDay = new Krypton.Toolkit.KryptonButton();
+            this.btnNextDay = new Krypton.Toolkit.KryptonButton();
             this.TimeSelectBtn = new Krypton.Toolkit.KryptonButton();
             this.label3 = new Krypton.Toolkit.KryptonLabel();
             this.cmbTemplate = new Krypton.Toolkit.KryptonComboBox();
@@ -47,6 +50,9 @@ namespace TestProj
             this.kryptonPanel1.Controls.Add(this.kryptonLabel1);
             this.kryptonPanel1.Controls.Add(this.btnConnectBackup);
             this.kryptonPanel1.Controls.Add(this.btnDisconnectBackup);
+            this.kryptonPanel1.Controls.Add(this.btnTodayQuery);
+            this.kryptonPanel1.Controls.Add(this.btnPrevDay);
+            this.kryptonPanel1.Controls.Add(this.btnNextDay);
             this.kryptonPanel1.Controls.Add(this.TimeSelectBtn);
             this.kryptonPanel1.Controls.Add(this.label3);
             this.kryptonPanel1.Controls.Add(this.cmbTemplate);
@@ -92,9 +98,42 @@ namespace TestProj
             this.btnDisconnectBackup.Values.Text = "断开备份";
             this.btnDisconnectBackup.Visible = false;
             this.btnDisconnectBackup.Click += new System.EventHandler(this.BtnDisconnectBackup_Click);
-            // 
+            //
+            // btnTodayQuery
+            //
+            this.btnTodayQuery.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnTodayQuery.Location = new System.Drawing.Point(500, 32);
+            this.btnTodayQuery.Name = "btnTodayQuery";
+            this.btnTodayQuery.Size = new System.Drawing.Size(260, 76);
+            this.btnTodayQuery.TabIndex = 42;
+            this.btnTodayQuery.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnTodayQuery.Values.Text = "今日查询";
+            this.btnTodayQuery.Click += new System.EventHandler(this.BtnTodayQuery_Click);
+            //
+            // btnPrevDay
+            //
+            this.btnPrevDay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnPrevDay.Location = new System.Drawing.Point(783, 32);
+            this.btnPrevDay.Name = "btnPrevDay";
+            this.btnPrevDay.Size = new System.Drawing.Size(186, 76);
+            this.btnPrevDay.TabIndex = 43;
+            this.btnPrevDay.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnPrevDay.Values.Text = "前一天";
+            this.btnPrevDay.Click += new System.EventHandler(this.BtnPrevDay_Click);
+            //
+            // btnNextDay
+            //
+            this.btnNextDay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnNextDay.Location = new System.Drawing.Point(992, 32);
+            this.btnNextDay.Name = "btnNextDay";
+            this.btnNextDay.Size = new System.Drawing.Size(186, 76);
+            this.btnNextDay.TabIndex = 44;
+            this.btnNextDay.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnNextDay.Values.Text = "后一天";
+            this.btnNextDay.Click += new System.EventHandler(this.BtnNextDay_Click);
+            //
             // TimeSelectBtn
-            // 
+            //
             this.TimeSelectBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.TimeSelectBtn.Location = new System.Drawing.Point(1032, 125);
             this.TimeSelectBtn.Name = "TimeSelectBtn";
@@ -221,6 +260,9 @@ namespace TestProj
         private Krypton.Toolkit.KryptonPanel kryptonPanel1;
         private Krypton.Toolkit.KryptonButton btnConnectBackup;
         private Krypton.Toolkit.KryptonButton btnDisconnectBackup;
+        private Krypton.Toolkit.KryptonButton btnTodayQuery;
+        private Krypton.Toolkit.KryptonButton btnPrevDay;
+        private Krypton.Toolkit.KryptonButton btnNextDay;
         private Krypton.Toolkit.KryptonButton TimeSelectBtn;
         private Krypton.Toolkit.KryptonLabel label3;
         private Krypton.Toolkit.KryptonComboBox cmbTemplate;

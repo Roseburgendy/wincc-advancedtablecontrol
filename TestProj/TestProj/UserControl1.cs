@@ -16,6 +16,7 @@ namespace TestProj
     {
         private List<TagMeta> _tagMetaList = new List<TagMeta>(); // 变量信息
         private ReportTemplate _currentTemplate; // 模板对应选中变量名称和顺序
+        private DateTime _quickQueryDate = DateTime.Today; // 快捷日期查询的当前日期
         public UserControl1()
         {
             InitializeComponent();
@@ -78,6 +79,9 @@ namespace TestProj
             ExportExcelBtn.Values.Text       = LangHelper.Get("UC_ExportExcel");
             btnConnectBackup.Values.Text    = LangHelper.Get("UC_ConnectBackup");
             btnDisconnectBackup.Values.Text = LangHelper.Get("UC_DisconnectBackup");
+            btnTodayQuery.Values.Text       = LangHelper.Get("UC_TodayQuery");
+            btnPrevDay.Values.Text          = LangHelper.Get("UC_PrevDay");
+            btnNextDay.Values.Text          = LangHelper.Get("UC_NextDay");
 
             // 若表格已有数据，实时刷新列标题（语言切换后 DisplayName 行同步更新）
             if (dataGridView1.DataSource != null)
@@ -102,6 +106,9 @@ namespace TestProj
             ExportExcelBtn.Values.Image      = IconManager.Make(IconChar.FileExcel,     mode, 40);
             btnConnectBackup.Values.Image    = IconManager.Make(IconChar.HardDrive,    mode, 40);
             btnDisconnectBackup.Values.Image = IconManager.Make(IconChar.TimesCircle,  mode, 40);
+            btnTodayQuery.Values.Image       = IconManager.Make(IconChar.CalendarCheck, mode, 40);
+            btnPrevDay.Values.Image          = IconManager.Make(IconChar.ChevronLeft,   mode, 40);
+            btnNextDay.Values.Image          = IconManager.Make(IconChar.ChevronRight,  mode, 40);
         }
 
         #endregion
@@ -118,6 +125,9 @@ namespace TestProj
             btnImportExcel.Enabled       = !running;
             btnConnectBackup.Enabled    = !running;
             btnDisconnectBackup.Enabled = !running;
+            btnTodayQuery.Enabled       = !running;
+            btnPrevDay.Enabled          = !running;
+            btnNextDay.Enabled          = !running;
         }
 
         private async Task RunQueryAsync(List<TemplateTagEntry> entries, DateTime start, DateTime end, int timeStep)
@@ -325,6 +335,55 @@ namespace TestProj
                 };
                 panel.ShowDialog();
             }
+        }
+
+        // ── 快捷日期查询（今日 / 前一天 / 后一天）────────────────────────────
+
+        private void BtnTodayQuery_Click(object sender, EventArgs e)
+        {
+            _quickQueryDate = DateTime.Today;
+            _ = ExecuteDayQueryAsync(_quickQueryDate);
+        }
+
+        private void BtnPrevDay_Click(object sender, EventArgs e)
+        {
+            _quickQueryDate = _quickQueryDate.AddDays(-1);
+            _ = ExecuteDayQueryAsync(_quickQueryDate);
+        }
+
+        private void BtnNextDay_Click(object sender, EventArgs e)
+        {
+            _quickQueryDate = _quickQueryDate.AddDays(1);
+            _ = ExecuteDayQueryAsync(_quickQueryDate);
+        }
+
+        /// <summary>
+        /// 查询指定日期的整点记录（步长 1 小时，00:00 ~ 23:59）。
+        /// </summary>
+        private async Task ExecuteDayQueryAsync(DateTime date)
+        {
+            if (_currentTemplate == null)
+            {
+                MessageBox.Show("请先选择报表模板", "提示",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            var sortedEntries = _currentTemplate.SelectedTags
+                .OrderBy(entry => entry.Order)
+                .ToList();
+
+            if (sortedEntries.Count == 0)
+            {
+                MessageBox.Show("当前模板没有配置变量", "提示",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // 当天 00:00:00 ~ 23:59:59（本地时间），整点步长 3600 秒
+            var startLocal = new DateTime(date.Year, date.Month, date.Day, 0, 0, 0, DateTimeKind.Local);
+            var endLocal   = new DateTime(date.Year, date.Month, date.Day, 23, 59, 59, DateTimeKind.Local);
+            await RunQueryAsync(sortedEntries, startLocal.ToUniversalTime(), endLocal.ToUniversalTime(), 3600);
         }
 
         /// <summary>

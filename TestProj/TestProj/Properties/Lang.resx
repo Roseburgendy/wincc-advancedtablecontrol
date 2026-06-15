@@ -475,6 +475,15 @@
   <data name="UC_DisconnectBackup" xml:space="preserve">
     <value>断开备份</value>
   </data>
+  <data name="UC_TodayQuery" xml:space="preserve">
+    <value>今日查询</value>
+  </data>
+  <data name="UC_PrevDay" xml:space="preserve">
+    <value>前一天</value>
+  </data>
+  <data name="UC_NextDay" xml:space="preserve">
+    <value>后一天</value>
+  </data>
   <data name="GCP_ChkAutoConnectBackup" xml:space="preserve">
     <value>自动链接备份</value>
   </data>
