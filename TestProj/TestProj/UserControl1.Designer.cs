@@ -98,42 +98,39 @@ namespace TestProj
             this.btnDisconnectBackup.Values.Text = "断开备份";
             this.btnDisconnectBackup.Visible = false;
             this.btnDisconnectBackup.Click += new System.EventHandler(this.BtnDisconnectBackup_Click);
-            //
+            // 
             // btnTodayQuery
-            //
-            this.btnTodayQuery.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnTodayQuery.Location = new System.Drawing.Point(500, 32);
+            // 
+            this.btnTodayQuery.Location = new System.Drawing.Point(1371, 32);
             this.btnTodayQuery.Name = "btnTodayQuery";
             this.btnTodayQuery.Size = new System.Drawing.Size(260, 76);
             this.btnTodayQuery.TabIndex = 42;
             this.btnTodayQuery.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnTodayQuery.Values.Text = "今日查询";
             this.btnTodayQuery.Click += new System.EventHandler(this.BtnTodayQuery_Click);
-            //
+            // 
             // btnPrevDay
-            //
-            this.btnPrevDay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnPrevDay.Location = new System.Drawing.Point(783, 32);
+            // 
+            this.btnPrevDay.Location = new System.Drawing.Point(1142, 32);
             this.btnPrevDay.Name = "btnPrevDay";
             this.btnPrevDay.Size = new System.Drawing.Size(186, 76);
             this.btnPrevDay.TabIndex = 43;
             this.btnPrevDay.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnPrevDay.Values.Text = "前一天";
             this.btnPrevDay.Click += new System.EventHandler(this.BtnPrevDay_Click);
-            //
+            // 
             // btnNextDay
-            //
-            this.btnNextDay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnNextDay.Location = new System.Drawing.Point(992, 32);
+            // 
+            this.btnNextDay.Location = new System.Drawing.Point(1668, 32);
             this.btnNextDay.Name = "btnNextDay";
             this.btnNextDay.Size = new System.Drawing.Size(186, 76);
             this.btnNextDay.TabIndex = 44;
             this.btnNextDay.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnNextDay.Values.Text = "后一天";
             this.btnNextDay.Click += new System.EventHandler(this.BtnNextDay_Click);
-            //
+            // 
             // TimeSelectBtn
-            //
+            // 
             this.TimeSelectBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.TimeSelectBtn.Location = new System.Drawing.Point(1032, 125);
             this.TimeSelectBtn.Name = "TimeSelectBtn";
