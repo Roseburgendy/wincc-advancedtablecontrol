@@ -100,7 +100,14 @@ namespace TestProj
                 int result = await RunOnStaThread(
                     () => BackupManager.ConnectBackup(_folder, _timeFrom, _timeTo));
 
-                if (result == 0 || result == 1)
+                // 已连接（code=1）→ 静默关闭，无需用户确认
+                if (result == 1)
+                {
+                    Close();
+                    return;
+                }
+
+                if (result == 0)
                 {
                     if (matchingFiles.Count > 0)
                     {

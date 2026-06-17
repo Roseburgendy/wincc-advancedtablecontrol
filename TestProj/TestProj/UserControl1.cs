@@ -151,21 +151,23 @@ namespace TestProj
             btnNextDay.Enabled           = !running;
             btnLogin.Enabled             = !running;
             // Admin-only controls: also require IsAdmin
-            btnConfig.Enabled           = !running && AuthManager.IsAdmin;
-            btnImportExcel.Enabled      = !running && AuthManager.IsAdmin;
-            btnConnectBackup.Enabled    = !running && AuthManager.IsAdmin;
-            btnDisconnectBackup.Enabled = !running && AuthManager.IsAdmin;
+            btnConfig.Enabled      = !running && AuthManager.IsAdmin;
+            btnImportExcel.Enabled = !running && AuthManager.IsAdmin;
+            RefreshBackupButtons();
             if (running) _lblNoData.Visible = false;
         }
 
-        /// <summary>根据当前登录状态刷新管理员专属按钮的可用性与登录按钮文字。</summary>
+        /// <summary>根据当前登录状态刷新管理员专属按钮的可见性/可用性与登录按钮文字。</summary>
         private void RefreshPermissions()
         {
             bool isAdmin = AuthManager.IsAdmin;
-            btnConfig.Enabled           = isAdmin && !_queryRunning;
-            btnImportExcel.Enabled      = isAdmin && !_queryRunning;
-            btnConnectBackup.Enabled    = isAdmin && !_queryRunning;
-            btnDisconnectBackup.Enabled = isAdmin && !_queryRunning;
+            // 非管理员时直接隐藏，管理员时可见但查询中禁用
+            btnConfig.Visible      = isAdmin;
+            btnConfig.Enabled      = isAdmin && !_queryRunning;
+            btnImportExcel.Visible = isAdmin;
+            btnImportExcel.Enabled = isAdmin && !_queryRunning;
+            // 备份按钮可见性同时受 isAdmin 和 AutoConnectBackup 控制，统一由 RefreshBackupButtons 处理
+            RefreshBackupButtons();
             btnLogin.Values.Text  = isAdmin ? LangHelper.Get("UC_Logout") : LangHelper.Get("UC_AdminLogin");
             btnLogin.Values.Image = isAdmin
                 ? IconManager.Make(IconChar.LockOpen, kryptonManager.GlobalPaletteMode, 40)
@@ -707,9 +709,12 @@ namespace TestProj
         /// </summary>
         private void RefreshBackupButtons()
         {
+            bool isAdmin     = AuthManager.IsAdmin;
             bool autoConnect = ConfigManager.Config?.AutoConnectBackup ?? false;
-            btnConnectBackup.Visible    = !autoConnect;
-            btnDisconnectBackup.Visible = !autoConnect;
+            btnConnectBackup.Visible    = isAdmin && !autoConnect;
+            btnDisconnectBackup.Visible = isAdmin && !autoConnect;
+            btnConnectBackup.Enabled    = isAdmin && !_queryRunning;
+            btnDisconnectBackup.Enabled = isAdmin && !_queryRunning;
         }
 
         /// <summary>连接备份按钮点击事件。</summary>
