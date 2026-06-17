@@ -408,50 +408,36 @@ namespace TestProj
         // 快捷日期查询（今日 / 前一天 / 后一天)
         private async void BtnTodayQuery_Click(object sender, EventArgs e)
         {
+            if (_currentTemplate == null) { MessageBox.Show("请先选择报表模板", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information); return; }
+            var sortedEntries = _currentTemplate.SelectedTags.OrderBy(entry => entry.Order).ToList();
+            if (sortedEntries.Count == 0) { MessageBox.Show("当前模板没有配置变量", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
             _quickQueryDate = DateTime.Today;
-            await ExecuteDayQueryAsync(_quickQueryDate);
+            var startLocal = new DateTime(_quickQueryDate.Year, _quickQueryDate.Month, _quickQueryDate.Day, 0, 0, 0, DateTimeKind.Local);
+            await RunQueryAsync(sortedEntries, startLocal.ToUniversalTime(), DateTime.UtcNow, 3600);
         }
 
         private async void BtnPrevDay_Click(object sender, EventArgs e)
         {
+            if (_currentTemplate == null) { MessageBox.Show("请先选择报表模板", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information); return; }
+            var sortedEntries = _currentTemplate.SelectedTags.OrderBy(entry => entry.Order).ToList();
+            if (sortedEntries.Count == 0) { MessageBox.Show("当前模板没有配置变量", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
             _quickQueryDate = _quickQueryDate.AddDays(-1);
-            await ExecuteDayQueryAsync(_quickQueryDate);
+            var startLocal = new DateTime(_quickQueryDate.Year, _quickQueryDate.Month, _quickQueryDate.Day, 0, 0, 0, DateTimeKind.Local);
+            var endLocal   = new DateTime(_quickQueryDate.Year, _quickQueryDate.Month, _quickQueryDate.Day, 23, 59, 59, DateTimeKind.Local);
+            if (_quickQueryDate.Date == DateTime.Today && endLocal > DateTime.Now)
+                endLocal = DateTime.Now;
+            await RunQueryAsync(sortedEntries, startLocal.ToUniversalTime(), endLocal.ToUniversalTime(), 3600);
         }
 
         private async void BtnNextDay_Click(object sender, EventArgs e)
         {
+            if (_currentTemplate == null) { MessageBox.Show("请先选择报表模板", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information); return; }
+            var sortedEntries = _currentTemplate.SelectedTags.OrderBy(entry => entry.Order).ToList();
+            if (sortedEntries.Count == 0) { MessageBox.Show("当前模板没有配置变量", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
             _quickQueryDate = _quickQueryDate.AddDays(1);
-            await ExecuteDayQueryAsync(_quickQueryDate);
-        }
-
-        /// <summary>
-        /// 查询指定日期的整点记录（步长 1 小时，00:00 ~ 23:59）。
-        /// </summary>
-        private async Task ExecuteDayQueryAsync(DateTime date)
-        {
-            if (_currentTemplate == null)
-            {
-                MessageBox.Show("请先选择报表模板", "提示",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            var sortedEntries = _currentTemplate.SelectedTags
-                .OrderBy(entry => entry.Order)
-                .ToList();
-
-            if (sortedEntries.Count == 0)
-            {
-                MessageBox.Show("当前模板没有配置变量", "提示",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            // 当天 00:00:00 ~ 23:59:59（本地时间），整点步长 3600 秒
-            var startLocal = new DateTime(date.Year, date.Month, date.Day, 0, 0, 0, DateTimeKind.Local);
-            var endLocal   = new DateTime(date.Year, date.Month, date.Day, 23, 59, 59, DateTimeKind.Local);
-            // 今天查询时把结束时间截到当前时刻，避免查询未来时间段导致 WinCC OleDb 在开放归档段上扫描缓慢
-            if (date.Date == DateTime.Today && endLocal > DateTime.Now)
+            var startLocal = new DateTime(_quickQueryDate.Year, _quickQueryDate.Month, _quickQueryDate.Day, 0, 0, 0, DateTimeKind.Local);
+            var endLocal   = new DateTime(_quickQueryDate.Year, _quickQueryDate.Month, _quickQueryDate.Day, 23, 59, 59, DateTimeKind.Local);
+            if (_quickQueryDate.Date == DateTime.Today && endLocal > DateTime.Now)
                 endLocal = DateTime.Now;
             await RunQueryAsync(sortedEntries, startLocal.ToUniversalTime(), endLocal.ToUniversalTime(), 3600);
         }
