@@ -20,6 +20,7 @@ namespace TestProj
             this.kryptonManager = new Krypton.Toolkit.KryptonManager(this.components);
             this.kryptonPanel1 = new Krypton.Toolkit.KryptonPanel();
             this.kryptonLabel1 = new Krypton.Toolkit.KryptonLabel();
+            this.lblQueryRange = new Krypton.Toolkit.KryptonLabel();
             this.btnConnectBackup = new Krypton.Toolkit.KryptonButton();
             this.btnDisconnectBackup = new Krypton.Toolkit.KryptonButton();
             this.btnTodayQuery = new Krypton.Toolkit.KryptonButton();
@@ -49,6 +50,7 @@ namespace TestProj
             // kryptonPanel1
             // 
             this.kryptonPanel1.Controls.Add(this.kryptonLabel1);
+            this.kryptonPanel1.Controls.Add(this.lblQueryRange);
             this.kryptonPanel1.Controls.Add(this.btnConnectBackup);
             this.kryptonPanel1.Controls.Add(this.btnDisconnectBackup);
             this.kryptonPanel1.Controls.Add(this.btnTodayQuery);
@@ -79,9 +81,17 @@ namespace TestProj
             this.kryptonLabel1.Values.Image = ((System.Drawing.Image)(resources.GetObject("kryptonLabel1.Values.Image")));
             this.kryptonLabel1.Values.Text = "中源技术";
             // 
+            // lblQueryRange
+            // 
+            this.lblQueryRange.Location = new System.Drawing.Point(983, 19);
+            this.lblQueryRange.Name = "lblQueryRange";
+            this.lblQueryRange.Size = new System.Drawing.Size(712, 38);
+            this.lblQueryRange.TabIndex = 46;
+            this.lblQueryRange.Values.Text = "";
+            // 
             // btnConnectBackup
             // 
-            this.btnConnectBackup.Location = new System.Drawing.Point(500, 125);
+            this.btnConnectBackup.Location = new System.Drawing.Point(500, 153);
             this.btnConnectBackup.Name = "btnConnectBackup";
             this.btnConnectBackup.Size = new System.Drawing.Size(234, 76);
             this.btnConnectBackup.TabIndex = 40;
@@ -92,7 +102,7 @@ namespace TestProj
             // 
             // btnDisconnectBackup
             // 
-            this.btnDisconnectBackup.Location = new System.Drawing.Point(757, 125);
+            this.btnDisconnectBackup.Location = new System.Drawing.Point(757, 153);
             this.btnDisconnectBackup.Name = "btnDisconnectBackup";
             this.btnDisconnectBackup.Size = new System.Drawing.Size(234, 76);
             this.btnDisconnectBackup.TabIndex = 41;
@@ -103,7 +113,7 @@ namespace TestProj
             // 
             // btnTodayQuery
             // 
-            this.btnTodayQuery.Location = new System.Drawing.Point(1212, 32);
+            this.btnTodayQuery.Location = new System.Drawing.Point(1212, 63);
             this.btnTodayQuery.Name = "btnTodayQuery";
             this.btnTodayQuery.Size = new System.Drawing.Size(260, 76);
             this.btnTodayQuery.TabIndex = 42;
@@ -113,7 +123,7 @@ namespace TestProj
             // 
             // btnPrevDay
             // 
-            this.btnPrevDay.Location = new System.Drawing.Point(983, 32);
+            this.btnPrevDay.Location = new System.Drawing.Point(983, 63);
             this.btnPrevDay.Name = "btnPrevDay";
             this.btnPrevDay.Size = new System.Drawing.Size(186, 76);
             this.btnPrevDay.TabIndex = 43;
@@ -123,7 +133,7 @@ namespace TestProj
             // 
             // btnNextDay
             // 
-            this.btnNextDay.Location = new System.Drawing.Point(1509, 32);
+            this.btnNextDay.Location = new System.Drawing.Point(1509, 63);
             this.btnNextDay.Name = "btnNextDay";
             this.btnNextDay.Size = new System.Drawing.Size(186, 76);
             this.btnNextDay.TabIndex = 44;
@@ -144,7 +154,7 @@ namespace TestProj
             // TimeSelectBtn
             // 
             this.TimeSelectBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.TimeSelectBtn.Location = new System.Drawing.Point(1032, 125);
+            this.TimeSelectBtn.Location = new System.Drawing.Point(1032, 153);
             this.TimeSelectBtn.Name = "TimeSelectBtn";
             this.TimeSelectBtn.Size = new System.Drawing.Size(296, 76);
             this.TimeSelectBtn.TabIndex = 33;
@@ -173,7 +183,7 @@ namespace TestProj
             // btnImportExcel
             // 
             this.btnImportExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnImportExcel.Location = new System.Drawing.Point(1371, 125);
+            this.btnImportExcel.Location = new System.Drawing.Point(1371, 153);
             this.btnImportExcel.Name = "btnImportExcel";
             this.btnImportExcel.Size = new System.Drawing.Size(324, 76);
             this.btnImportExcel.TabIndex = 31;
@@ -184,7 +194,7 @@ namespace TestProj
             // PrintBtn
             // 
             this.PrintBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.PrintBtn.Location = new System.Drawing.Point(1935, 125);
+            this.PrintBtn.Location = new System.Drawing.Point(1935, 153);
             this.PrintBtn.Name = "PrintBtn";
             this.PrintBtn.Size = new System.Drawing.Size(213, 76);
             this.PrintBtn.TabIndex = 32;
@@ -195,7 +205,7 @@ namespace TestProj
             // btnConfig
             // 
             this.btnConfig.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnConfig.Location = new System.Drawing.Point(1732, 125);
+            this.btnConfig.Location = new System.Drawing.Point(1732, 153);
             this.btnConfig.Name = "btnConfig";
             this.btnConfig.Size = new System.Drawing.Size(176, 76);
             this.btnConfig.TabIndex = 16;
@@ -206,7 +216,7 @@ namespace TestProj
             // ExportExcelBtn
             // 
             this.ExportExcelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ExportExcelBtn.Location = new System.Drawing.Point(2180, 125);
+            this.ExportExcelBtn.Location = new System.Drawing.Point(2180, 153);
             this.ExportExcelBtn.Name = "ExportExcelBtn";
             this.ExportExcelBtn.Size = new System.Drawing.Size(290, 76);
             this.ExportExcelBtn.TabIndex = 15;
@@ -283,5 +293,6 @@ namespace TestProj
         private Krypton.Toolkit.KryptonDataGridView dataGridView1;
         private System.Windows.Forms.ProgressBar progressBar1;
         private Krypton.Toolkit.KryptonLabel kryptonLabel1;
+        private Krypton.Toolkit.KryptonLabel lblQueryRange;
     }
 }
