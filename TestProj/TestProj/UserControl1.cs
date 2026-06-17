@@ -238,6 +238,7 @@ namespace TestProj
                 {
                     dataGridView1.DataSource = null;
                     dataGridView1.Columns.Clear();
+                    _lblNoData.ForeColor = System.Drawing.Color.Gray;
                     _lblNoData.Text    = $"{start.ToLocalTime():yyyy-MM-dd HH:mm} ~ {end.ToLocalTime():yyyy-MM-dd HH:mm}\n{LangHelper.Get("Msg_NoData")}";
                     _lblNoData.Visible = true;
                     _lblNoData.BringToFront();
@@ -266,7 +267,12 @@ namespace TestProj
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"查询失败: {ex.Message}", "错误");
+                dataGridView1.DataSource = null;
+                dataGridView1.Columns.Clear();
+                _lblNoData.Text    = $"查询失败\n{ex.Message}";
+                _lblNoData.ForeColor = System.Drawing.Color.Red;
+                _lblNoData.Visible = true;
+                _lblNoData.BringToFront();
             }
             finally
             {
@@ -325,6 +331,7 @@ namespace TestProj
                 {
                     dataGridView1.DataSource = null;
                     dataGridView1.Columns.Clear();
+                    _lblNoData.ForeColor = System.Drawing.Color.Gray;
                     _lblNoData.Text    = $"{startUTC.ToLocalTime():yyyy-MM-dd HH:mm} 起 {count} 条\n{LangHelper.Get("Msg_NoData")}";
                     _lblNoData.Visible = true;
                     _lblNoData.BringToFront();
@@ -336,7 +343,12 @@ namespace TestProj
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"查询失败: {ex.Message}", "错误");
+                dataGridView1.DataSource = null;
+                dataGridView1.Columns.Clear();
+                _lblNoData.Text    = $"查询失败\n{ex.Message}";
+                _lblNoData.ForeColor = System.Drawing.Color.Red;
+                _lblNoData.Visible = true;
+                _lblNoData.BringToFront();
             }
             finally
             {
@@ -393,8 +405,7 @@ namespace TestProj
             }
         }
 
-        // ── 快捷日期查询（今日 / 前一天 / 后一天）────────────────────────────
-
+        // 快捷日期查询（今日 / 前一天 / 后一天)
         private void BtnTodayQuery_Click(object sender, EventArgs e)
         {
             _quickQueryDate = DateTime.Today;

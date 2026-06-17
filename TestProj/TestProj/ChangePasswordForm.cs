@@ -23,8 +23,10 @@ namespace TestProj
 
             if (newPwd != confirmPwd)
             {
-                MessageBox.Show(this, LangHelper.Get("Auth_PasswordMismatch"), LangHelper.Get("Msg_Info"),
+                MessageBox.Show(this, LangHelper.Get("Auth_PasswordMismatch"), 
+                    LangHelper.Get("Msg_Info"),
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
                 txtConfirm.Clear();
                 txtConfirm.Focus();
                 return;
