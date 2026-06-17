@@ -484,6 +484,48 @@
   <data name="UC_NextDay" xml:space="preserve">
     <value>Next Day</value>
   </data>
+  <data name="UC_AdminLogin" xml:space="preserve">
+    <value>Admin Login</value>
+  </data>
+  <data name="UC_Logout" xml:space="preserve">
+    <value>Logout Admin</value>
+  </data>
+  <data name="Auth_LoginTitle" xml:space="preserve">
+    <value>Admin Login</value>
+  </data>
+  <data name="Auth_LoginPrompt" xml:space="preserve">
+    <value>Enter admin password:</value>
+  </data>
+  <data name="Auth_NoPasswordHint" xml:space="preserve">
+    <value>(No password set — click OK to proceed)</value>
+  </data>
+  <data name="Auth_LoginFailed" xml:space="preserve">
+    <value>Incorrect password. Please try again.</value>
+  </data>
+  <data name="Auth_ChangePasswordTitle" xml:space="preserve">
+    <value>Set Admin Password</value>
+  </data>
+  <data name="Auth_NewPassword" xml:space="preserve">
+    <value>New Password:</value>
+  </data>
+  <data name="Auth_ConfirmPassword" xml:space="preserve">
+    <value>Confirm Password:</value>
+  </data>
+  <data name="Auth_PasswordNote" xml:space="preserve">
+    <value>(Leave blank to clear the password)</value>
+  </data>
+  <data name="Auth_PasswordMismatch" xml:space="preserve">
+    <value>Passwords do not match.</value>
+  </data>
+  <data name="Auth_PasswordChanged" xml:space="preserve">
+    <value>Password updated.</value>
+  </data>
+  <data name="Auth_PasswordCleared" xml:space="preserve">
+    <value>Password cleared (no password required for admin login).</value>
+  </data>
+  <data name="GCP_BtnChangePassword" xml:space="preserve">
+    <value>Set Admin Password</value>
+  </data>
   <data name="GCP_ChkAutoConnectBackup" xml:space="preserve">
     <value>Auto-connect Backup</value>
   </data>

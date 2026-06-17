@@ -25,6 +25,7 @@ namespace TestProj
             this.btnTodayQuery = new Krypton.Toolkit.KryptonButton();
             this.btnPrevDay = new Krypton.Toolkit.KryptonButton();
             this.btnNextDay = new Krypton.Toolkit.KryptonButton();
+            this.btnLogin = new Krypton.Toolkit.KryptonButton();
             this.TimeSelectBtn = new Krypton.Toolkit.KryptonButton();
             this.label3 = new Krypton.Toolkit.KryptonLabel();
             this.cmbTemplate = new Krypton.Toolkit.KryptonComboBox();
@@ -53,6 +54,7 @@ namespace TestProj
             this.kryptonPanel1.Controls.Add(this.btnTodayQuery);
             this.kryptonPanel1.Controls.Add(this.btnPrevDay);
             this.kryptonPanel1.Controls.Add(this.btnNextDay);
+            this.kryptonPanel1.Controls.Add(this.btnLogin);
             this.kryptonPanel1.Controls.Add(this.TimeSelectBtn);
             this.kryptonPanel1.Controls.Add(this.label3);
             this.kryptonPanel1.Controls.Add(this.cmbTemplate);
@@ -128,9 +130,20 @@ namespace TestProj
             this.btnNextDay.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnNextDay.Values.Text = "后一天";
             this.btnNextDay.Click += new System.EventHandler(this.BtnNextDay_Click);
-            // 
+            //
+            // btnLogin
+            //
+            this.btnLogin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnLogin.Location = new System.Drawing.Point(1201, 32);
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Size = new System.Drawing.Size(220, 76);
+            this.btnLogin.TabIndex = 45;
+            this.btnLogin.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnLogin.Values.Text = "管理员登录";
+            this.btnLogin.Click += new System.EventHandler(this.BtnLogin_Click);
+            //
             // TimeSelectBtn
-            // 
+            //
             this.TimeSelectBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.TimeSelectBtn.Location = new System.Drawing.Point(1032, 125);
             this.TimeSelectBtn.Name = "TimeSelectBtn";
@@ -260,6 +273,7 @@ namespace TestProj
         private Krypton.Toolkit.KryptonButton btnTodayQuery;
         private Krypton.Toolkit.KryptonButton btnPrevDay;
         private Krypton.Toolkit.KryptonButton btnNextDay;
+        private Krypton.Toolkit.KryptonButton btnLogin;
         private Krypton.Toolkit.KryptonButton TimeSelectBtn;
         private Krypton.Toolkit.KryptonLabel label3;
         private Krypton.Toolkit.KryptonComboBox cmbTemplate;
