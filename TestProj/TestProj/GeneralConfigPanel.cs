@@ -86,6 +86,7 @@ namespace TestProj
             btnSaveGeneral.Values.Image      = IconManager.Make(IconChar.FloppyDisk, mode, 32);
             btnBatchDecimal.Values.Image     = IconManager.Make(IconChar.Bolt,       mode, 32);
             btnBrowseBackupPath.Values.Image = IconManager.Make(IconChar.FolderOpen, mode, 22);
+            btnChangePassword.Values.Image   = IconManager.Make(IconChar.Key,        mode, 32);
         }
 
         /// <summary>刷新整个窗体的 UI 文字为当前语言。</summary>
@@ -125,6 +126,7 @@ namespace TestProj
             lblQueryLimitsHint.Values.Text     = LangHelper.Get("GCP_HintQueryLimits");
             chkAutoConnectBackup.Values.Text   = LangHelper.Get("GCP_ChkAutoConnectBackup");
             lblBackupPath.Values.Text          = LangHelper.Get("GCP_LblBackupPath");
+            btnChangePassword.Values.Text      = LangHelper.Get("GCP_BtnChangePassword");
             // Refresh tag summary text (it may contain a localised separator)
             UpdateTagSummary();
         }
@@ -449,6 +451,21 @@ namespace TestProj
             using (var form = new BatchDecimalForm())
                 form.ShowDialog(this);
             // No DGV to refresh here — changes are persisted in config immediately
+        }
+
+        private void BtnChangePassword_Click(object sender, EventArgs e)
+        {
+            using (var dlg = new ChangePasswordForm())
+            {
+                if (dlg.ShowDialog(this) == DialogResult.OK)
+                {
+                    string msg = AuthManager.HasPassword
+                        ? LangHelper.Get("Auth_PasswordChanged")
+                        : LangHelper.Get("Auth_PasswordCleared");
+                    MessageBox.Show(this, msg, LangHelper.Get("Msg_Info"),
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
         }
 
         #endregion

@@ -65,6 +65,7 @@ namespace TestProj
             this.pnlGeneralFooter = new Krypton.Toolkit.KryptonPanel();
             this.btnSaveGeneral = new Krypton.Toolkit.KryptonButton();
             this.btnBatchDecimal = new Krypton.Toolkit.KryptonButton();
+            this.btnChangePassword = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonNavigator1)).BeginInit();
             this.kryptonNavigator1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPage1)).BeginInit();
@@ -668,6 +669,7 @@ namespace TestProj
             // 
             this.pnlGeneralFooter.Controls.Add(this.btnSaveGeneral);
             this.pnlGeneralFooter.Controls.Add(this.btnBatchDecimal);
+            this.pnlGeneralFooter.Controls.Add(this.btnChangePassword);
             this.pnlGeneralFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlGeneralFooter.Location = new System.Drawing.Point(0, 857);
             this.pnlGeneralFooter.Margin = new System.Windows.Forms.Padding(2);
@@ -696,6 +698,17 @@ namespace TestProj
             this.btnBatchDecimal.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnBatchDecimal.Values.Text = "批量精确位数…";
             this.btnBatchDecimal.Click += new System.EventHandler(this.BtnBatchDecimal_Click);
+            //
+            // btnChangePassword
+            //
+            this.btnChangePassword.Location = new System.Drawing.Point(370, 9);
+            this.btnChangePassword.Margin = new System.Windows.Forms.Padding(2);
+            this.btnChangePassword.Name = "btnChangePassword";
+            this.btnChangePassword.Size = new System.Drawing.Size(270, 65);
+            this.btnChangePassword.TabIndex = 3;
+            this.btnChangePassword.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnChangePassword.Values.Text = "设置管理员密码";
+            this.btnChangePassword.Click += new System.EventHandler(this.BtnChangePassword_Click);
             // 
             // GeneralConfigPanel
             // 
@@ -799,6 +812,7 @@ namespace TestProj
         private Krypton.Toolkit.KryptonPanel panel5;
         private Krypton.Toolkit.KryptonButton btnBrowseExportPath;
         private Krypton.Toolkit.KryptonButton btnBatchDecimal;
+        private Krypton.Toolkit.KryptonButton btnChangePassword;
         private Krypton.Toolkit.KryptonNumericUpDown numMaxQueryDays;
         private Krypton.Toolkit.KryptonNumericUpDown numMaxDataPoints;
         private Krypton.Toolkit.KryptonCheckBox chkAutoConnectBackup;

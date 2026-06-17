@@ -17,6 +17,8 @@ namespace TestProj
         private List<TagMeta> _tagMetaList = new List<TagMeta>(); // 变量信息
         private ReportTemplate _currentTemplate; // 模板对应选中变量名称和顺序
         private DateTime _quickQueryDate = DateTime.Today; // 快捷日期查询的当前日期
+        private Label _lblNoData;    // 无数据时的叠加提示标签
+        private bool _queryRunning;  // 标记查询进行中（用于权限刷新）
         public UserControl1()
         {
             InitializeComponent();
@@ -46,6 +48,19 @@ namespace TestProj
             ApplyLanguage();
             ApplyIcons(kryptonManager.GlobalPaletteMode);
             RefreshBackupButtons();
+            RefreshPermissions();
+
+            // 无数据叠加标签：浮在 DataGridView 上方，查询无结果时显示
+            _lblNoData = new Label
+            {
+                TextAlign  = ContentAlignment.MiddleCenter,
+                Font       = new System.Drawing.Font("Segoe UI", 16F),
+                ForeColor  = System.Drawing.Color.Gray,
+                BackColor  = System.Drawing.Color.Transparent,
+                Dock       = DockStyle.Fill,
+                Visible    = false
+            };
+            dataGridView1.Controls.Add(_lblNoData);
         }
 
         public void InitializeTemplateList()
@@ -82,6 +97,8 @@ namespace TestProj
             btnTodayQuery.Values.Text       = LangHelper.Get("UC_TodayQuery");
             btnPrevDay.Values.Text          = LangHelper.Get("UC_PrevDay");
             btnNextDay.Values.Text          = LangHelper.Get("UC_NextDay");
+            // btnLogin text is managed by RefreshPermissions()
+            RefreshPermissions();
 
             // 若表格已有数据，实时刷新列标题（语言切换后 DisplayName 行同步更新）
             if (dataGridView1.DataSource != null)
@@ -109,6 +126,9 @@ namespace TestProj
             btnTodayQuery.Values.Image       = IconManager.Make(IconChar.CalendarCheck, mode, 40);
             btnPrevDay.Values.Image          = IconManager.Make(IconChar.ChevronLeft,   mode, 40);
             btnNextDay.Values.Image          = IconManager.Make(IconChar.ChevronRight,  mode, 40);
+            btnLogin.Values.Image            = AuthManager.IsAdmin
+                ? IconManager.Make(IconChar.LockOpen, mode, 40)
+                : IconManager.Make(IconChar.Lock,     mode, 40);
         }
 
         #endregion
@@ -118,16 +138,50 @@ namespace TestProj
         /// <summary>显示/隐藏进度条并切换查询按钮的可用状态。</summary>
         private void SetQueryRunning(bool running)
         {
+            _queryRunning                = running;
             progressBar1.Visible         = running;
+            // Operator-accessible controls
             TimeSelectBtn.Enabled        = !running;
             ExportExcelBtn.Enabled       = !running;
             PrintBtn.Enabled             = !running;
-            btnImportExcel.Enabled       = !running;
-            btnConnectBackup.Enabled    = !running;
-            btnDisconnectBackup.Enabled = !running;
-            btnTodayQuery.Enabled       = !running;
-            btnPrevDay.Enabled          = !running;
-            btnNextDay.Enabled          = !running;
+            btnTodayQuery.Enabled        = !running;
+            btnPrevDay.Enabled           = !running;
+            btnNextDay.Enabled           = !running;
+            btnLogin.Enabled             = !running;
+            // Admin-only controls: also require IsAdmin
+            btnConfig.Enabled           = !running && AuthManager.IsAdmin;
+            btnImportExcel.Enabled      = !running && AuthManager.IsAdmin;
+            btnConnectBackup.Enabled    = !running && AuthManager.IsAdmin;
+            btnDisconnectBackup.Enabled = !running && AuthManager.IsAdmin;
+            if (running) _lblNoData.Visible = false;
+        }
+
+        /// <summary>根据当前登录状态刷新管理员专属按钮的可用性与登录按钮文字。</summary>
+        private void RefreshPermissions()
+        {
+            bool isAdmin = AuthManager.IsAdmin;
+            btnConfig.Enabled           = isAdmin && !_queryRunning;
+            btnImportExcel.Enabled      = isAdmin && !_queryRunning;
+            btnConnectBackup.Enabled    = isAdmin && !_queryRunning;
+            btnDisconnectBackup.Enabled = isAdmin && !_queryRunning;
+            btnLogin.Values.Text  = isAdmin ? LangHelper.Get("UC_Logout") : LangHelper.Get("UC_AdminLogin");
+            btnLogin.Values.Image = isAdmin
+                ? IconManager.Make(IconChar.LockOpen, kryptonManager.GlobalPaletteMode, 40)
+                : IconManager.Make(IconChar.Lock,     kryptonManager.GlobalPaletteMode, 40);
+        }
+
+        private void BtnLogin_Click(object sender, EventArgs e)
+        {
+            if (AuthManager.IsAdmin)
+            {
+                AuthManager.Logout();
+            }
+            else
+            {
+                using (var dlg = new LoginForm())
+                    dlg.ShowDialog(this);
+            }
+            RefreshPermissions();
         }
 
         private async Task RunQueryAsync(List<TemplateTagEntry> entries, DateTime start, DateTime end, int timeStep)
@@ -184,8 +238,9 @@ namespace TestProj
                 {
                     dataGridView1.DataSource = null;
                     dataGridView1.Columns.Clear();
-                    MessageBox.Show(LangHelper.Get("Msg_NoData"), LangHelper.Get("Msg_Info"),
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    _lblNoData.Text    = $"{start.ToLocalTime():yyyy-MM-dd HH:mm} ~ {end.ToLocalTime():yyyy-MM-dd HH:mm}\n{LangHelper.Get("Msg_NoData")}";
+                    _lblNoData.Visible = true;
+                    _lblNoData.BringToFront();
                     return;
                 }
 
@@ -270,8 +325,9 @@ namespace TestProj
                 {
                     dataGridView1.DataSource = null;
                     dataGridView1.Columns.Clear();
-                    MessageBox.Show(LangHelper.Get("Msg_NoData"), LangHelper.Get("Msg_Info"),
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    _lblNoData.Text    = $"{startUTC.ToLocalTime():yyyy-MM-dd HH:mm} 起 {count} 条\n{LangHelper.Get("Msg_NoData")}";
+                    _lblNoData.Visible = true;
+                    _lblNoData.BringToFront();
                     return;
                 }
 
@@ -724,7 +780,8 @@ namespace TestProj
                 System.Reflection.BindingFlags.SetProperty,
                 null, dataGridView1, new object[] { true });
 
-            // 强制清除旧列
+            // 强制清除旧列，隐藏无数据提示
+            _lblNoData.Visible = false;
             dataGridView1.DataSource = null;
             dataGridView1.Columns.Clear();
             dataGridView1.DataSource = table;

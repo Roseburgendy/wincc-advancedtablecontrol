@@ -36,5 +36,8 @@ namespace TestProj.Models
         public bool AutoConnectBackup { get; set; } = false;
         /// <summary>WinCC 备份归档文件所在文件夹路径。</summary>
         public string BackupPath { get; set; } = "";
+
+        /// <summary>管理员密码的 SHA-256 哈希值；空字符串表示未设置密码。</summary>
+        public string AdminPasswordHash { get; set; } = "";
     }
 }
