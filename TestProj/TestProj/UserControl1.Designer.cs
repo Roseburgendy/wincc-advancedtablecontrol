@@ -83,7 +83,7 @@ namespace TestProj
             // 
             // lblQueryRange
             // 
-            this.lblQueryRange.Location = new System.Drawing.Point(983, 19);
+            this.lblQueryRange.Location = new System.Drawing.Point(1758, 101);
             this.lblQueryRange.Name = "lblQueryRange";
             this.lblQueryRange.Size = new System.Drawing.Size(712, 38);
             this.lblQueryRange.TabIndex = 46;
@@ -91,7 +91,7 @@ namespace TestProj
             // 
             // btnConnectBackup
             // 
-            this.btnConnectBackup.Location = new System.Drawing.Point(500, 153);
+            this.btnConnectBackup.Location = new System.Drawing.Point(558, 50);
             this.btnConnectBackup.Name = "btnConnectBackup";
             this.btnConnectBackup.Size = new System.Drawing.Size(234, 76);
             this.btnConnectBackup.TabIndex = 40;
@@ -102,7 +102,7 @@ namespace TestProj
             // 
             // btnDisconnectBackup
             // 
-            this.btnDisconnectBackup.Location = new System.Drawing.Point(757, 153);
+            this.btnDisconnectBackup.Location = new System.Drawing.Point(815, 50);
             this.btnDisconnectBackup.Name = "btnDisconnectBackup";
             this.btnDisconnectBackup.Size = new System.Drawing.Size(234, 76);
             this.btnDisconnectBackup.TabIndex = 41;
@@ -113,7 +113,7 @@ namespace TestProj
             // 
             // btnTodayQuery
             // 
-            this.btnTodayQuery.Location = new System.Drawing.Point(1212, 63);
+            this.btnTodayQuery.Location = new System.Drawing.Point(1082, 153);
             this.btnTodayQuery.Name = "btnTodayQuery";
             this.btnTodayQuery.Size = new System.Drawing.Size(260, 76);
             this.btnTodayQuery.TabIndex = 42;
@@ -123,7 +123,7 @@ namespace TestProj
             // 
             // btnPrevDay
             // 
-            this.btnPrevDay.Location = new System.Drawing.Point(983, 63);
+            this.btnPrevDay.Location = new System.Drawing.Point(863, 153);
             this.btnPrevDay.Name = "btnPrevDay";
             this.btnPrevDay.Size = new System.Drawing.Size(186, 76);
             this.btnPrevDay.TabIndex = 43;
@@ -133,7 +133,7 @@ namespace TestProj
             // 
             // btnNextDay
             // 
-            this.btnNextDay.Location = new System.Drawing.Point(1509, 63);
+            this.btnNextDay.Location = new System.Drawing.Point(1379, 153);
             this.btnNextDay.Name = "btnNextDay";
             this.btnNextDay.Size = new System.Drawing.Size(186, 76);
             this.btnNextDay.TabIndex = 44;
@@ -143,7 +143,7 @@ namespace TestProj
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(500, 63);
+            this.btnLogin.Location = new System.Drawing.Point(556, 153);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(220, 76);
             this.btnLogin.TabIndex = 45;
@@ -154,7 +154,7 @@ namespace TestProj
             // TimeSelectBtn
             // 
             this.TimeSelectBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.TimeSelectBtn.Location = new System.Drawing.Point(1032, 153);
+            this.TimeSelectBtn.Location = new System.Drawing.Point(1618, 153);
             this.TimeSelectBtn.Name = "TimeSelectBtn";
             this.TimeSelectBtn.Size = new System.Drawing.Size(296, 76);
             this.TimeSelectBtn.TabIndex = 33;
@@ -183,7 +183,7 @@ namespace TestProj
             // btnImportExcel
             // 
             this.btnImportExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnImportExcel.Location = new System.Drawing.Point(1371, 153);
+            this.btnImportExcel.Location = new System.Drawing.Point(1082, 50);
             this.btnImportExcel.Name = "btnImportExcel";
             this.btnImportExcel.Size = new System.Drawing.Size(324, 76);
             this.btnImportExcel.TabIndex = 31;
@@ -205,7 +205,7 @@ namespace TestProj
             // btnConfig
             // 
             this.btnConfig.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnConfig.Location = new System.Drawing.Point(1732, 153);
+            this.btnConfig.Location = new System.Drawing.Point(1443, 50);
             this.btnConfig.Name = "btnConfig";
             this.btnConfig.Size = new System.Drawing.Size(176, 76);
             this.btnConfig.TabIndex = 16;

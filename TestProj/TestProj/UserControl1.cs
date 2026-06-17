@@ -392,9 +392,15 @@ namespace TestProj
                     var endUTC = end.ToUniversalTime();
 
                     if (mode == 2)
+                    {
+                        lblQueryRange.Values.Text = $"{start:yyyy-MM-dd HH:mm} 起 {panel.SelectedCount} 条";
                         RunQueryByCount(sortedEntries, startUTC, panel.SelectedCount);
+                    }
                     else
+                    {
+                        lblQueryRange.Values.Text = $"{start:yyyy-MM-dd HH:mm} ~ {end:yyyy-MM-dd HH:mm}";
                         RunQuery(sortedEntries, startUTC, endUTC, timeStep);
+                    }
                 };
                 panel.ShowDialog();
             }
