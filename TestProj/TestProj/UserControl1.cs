@@ -406,22 +406,22 @@ namespace TestProj
         }
 
         // 快捷日期查询（今日 / 前一天 / 后一天)
-        private void BtnTodayQuery_Click(object sender, EventArgs e)
+        private async void BtnTodayQuery_Click(object sender, EventArgs e)
         {
             _quickQueryDate = DateTime.Today;
-            _ = ExecuteDayQueryAsync(_quickQueryDate);
+            await ExecuteDayQueryAsync(_quickQueryDate);
         }
 
-        private void BtnPrevDay_Click(object sender, EventArgs e)
+        private async void BtnPrevDay_Click(object sender, EventArgs e)
         {
             _quickQueryDate = _quickQueryDate.AddDays(-1);
-            _ = ExecuteDayQueryAsync(_quickQueryDate);
+            await ExecuteDayQueryAsync(_quickQueryDate);
         }
 
-        private void BtnNextDay_Click(object sender, EventArgs e)
+        private async void BtnNextDay_Click(object sender, EventArgs e)
         {
             _quickQueryDate = _quickQueryDate.AddDays(1);
-            _ = ExecuteDayQueryAsync(_quickQueryDate);
+            await ExecuteDayQueryAsync(_quickQueryDate);
         }
 
         /// <summary>
@@ -450,6 +450,9 @@ namespace TestProj
             // 当天 00:00:00 ~ 23:59:59（本地时间），整点步长 3600 秒
             var startLocal = new DateTime(date.Year, date.Month, date.Day, 0, 0, 0, DateTimeKind.Local);
             var endLocal   = new DateTime(date.Year, date.Month, date.Day, 23, 59, 59, DateTimeKind.Local);
+            // 今天查询时把结束时间截到当前时刻，避免查询未来时间段导致 WinCC OleDb 在开放归档段上扫描缓慢
+            if (date.Date == DateTime.Today && endLocal > DateTime.Now)
+                endLocal = DateTime.Now;
             await RunQueryAsync(sortedEntries, startLocal.ToUniversalTime(), endLocal.ToUniversalTime(), 3600);
         }
 
