@@ -6,7 +6,6 @@ using System.Drawing;
 using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using FontAwesome.Sharp;
 using TestProj.Models;
@@ -187,7 +186,7 @@ namespace TestProj
             RefreshPermissions();
         }
 
-        private async Task RunQueryAsync(List<TemplateTagEntry> entries, DateTime start, DateTime end, int timeStep)
+        private void RunQuery(List<TemplateTagEntry> entries, DateTime start, DateTime end, int timeStep)
         {
             SetQueryRunning(true);
             try
@@ -222,20 +221,18 @@ namespace TestProj
 
                 var valueIds = entries.Select(e => e.ValueID).ToList();
 
-                // 把耗时的 DB 查询 + 数据转换移到后台线程
-                DataTable wide = await Task.Run(() =>
-                {
-                    var raw = DbManager.FetchData(valueIds, start, end, timeStep);
-                    if (raw == null || raw.Rows.Count == 0) return null;
+                var raw = DbManager.FetchData(valueIds, start, end, timeStep);
 
+                DataTable wide = null;
+                if (raw != null && raw.Rows.Count > 0)
+                {
                     foreach (DataRow row in raw.Rows)
                         if (raw.Columns.Contains("Timestamp") && row["Timestamp"] != DBNull.Value)
                             row["Timestamp"] = ((DateTime)row["Timestamp"]).ToLocalTime();
 
-                    var w = PivotToWide(raw, entries);
-                    CleanUnusedColumns(w, new[] { "Quality", "Flags", "ValueID" });
-                    return w;
-                });
+                    wide = PivotToWide(raw, entries);
+                    CleanUnusedColumns(wide, new[] { "Quality", "Flags", "ValueID" });
+                }
 
                 if (wide == null)
                 {
@@ -248,7 +245,7 @@ namespace TestProj
                     return;
                 }
 
-                // ── 安全检查 2：数据行数上限 ────────────────────────────────
+                // 安全检查 2：数据行数上限
                 int maxPts = cfg?.MaxDataPoints ?? 50000;
                 bool truncated = false;
                 if (maxPts > 0 && wide.Rows.Count > maxPts)
@@ -283,7 +280,7 @@ namespace TestProj
             }
         }
 
-        private async Task RunQueryByCountAsync(List<TemplateTagEntry> entries, DateTime startUTC, int count)
+        private void RunQueryByCount(List<TemplateTagEntry> entries, DateTime startUTC, int count)
         {
             SetQueryRunning(true);
             try
@@ -316,19 +313,17 @@ namespace TestProj
 
                 var valueIds = entries.Select(e => e.ValueID).ToList();
 
-                DataTable wide = await Task.Run(() =>
+                var raw  = DbManager.FetchDataByCount(valueIds, startUTC, count);
+                DataTable wide = null;
+                if (raw != null && raw.Rows.Count > 0)
                 {
-                    var raw = DbManager.FetchDataByCount(valueIds, startUTC, count);
-                    if (raw == null || raw.Rows.Count == 0) return null;
-
                     foreach (DataRow row in raw.Rows)
                         if (raw.Columns.Contains("Timestamp") && row["Timestamp"] != DBNull.Value)
                             row["Timestamp"] = ((DateTime)row["Timestamp"]).ToLocalTime();
 
-                    var w = PivotToWide(raw, entries);
-                    CleanUnusedColumns(w, new[] { "Quality", "Flags", "ValueID" });
-                    return w;
-                });
+                    wide = PivotToWide(raw, entries);
+                    CleanUnusedColumns(wide, new[] { "Quality", "Flags", "ValueID" });
+                }
 
                 if (wide == null)
                 {
@@ -389,27 +384,22 @@ namespace TestProj
             using (var panel = new TimeRangeSelectorPanel())
             {
                 // 必须在 ShowDialog 之前订阅，否则事件永远不触发
-                panel.Applied += async (start, end, mode, timeStep) =>
+                panel.Applied += (start, end, mode, timeStep) =>
                 {
                     var startUTC = start.ToUniversalTime();
                     var endUTC = end.ToUniversalTime();
 
-                    switch (mode)
-                    {
-                        case 2: // 测量点数量：从 start 取前 N 条原始点
-                            await RunQueryByCountAsync(sortedEntries, startUTC, panel.SelectedCount);
-                            break;
-                        default: // 0-时间范围 / 1-开始到结束 / 3-自定义聚类
-                            await RunQueryAsync(sortedEntries, startUTC, endUTC, timeStep);
-                            break;
-                    }
+                    if (mode == 2)
+                        RunQueryByCount(sortedEntries, startUTC, panel.SelectedCount);
+                    else
+                        RunQuery(sortedEntries, startUTC, endUTC, timeStep);
                 };
                 panel.ShowDialog();
             }
         }
 
         // 快捷日期查询（今日 / 前一天 / 后一天)
-        private async void BtnTodayQuery_Click(object sender, EventArgs e)
+        private void BtnTodayQuery_Click(object sender, EventArgs e)
         {
             if (_currentTemplate == null) { MessageBox.Show("请先选择报表模板", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information); return; }
             var sortedEntries = _currentTemplate.SelectedTags.OrderBy(entry => entry.Order).ToList();
@@ -418,10 +408,10 @@ namespace TestProj
             var startLocal = new DateTime(_quickQueryDate.Year, _quickQueryDate.Month, _quickQueryDate.Day, 0, 0, 0, DateTimeKind.Local);
             var endLocal   = DateTime.Now;
             lblQueryRange.Values.Text = $"{startLocal:yyyy-MM-dd HH:mm} ~ {endLocal:yyyy-MM-dd HH:mm}";
-            await RunQueryAsync(sortedEntries, startLocal.ToUniversalTime(), endLocal.ToUniversalTime(), 3600);
+            RunQuery(sortedEntries, startLocal.ToUniversalTime(), endLocal.ToUniversalTime(), 3600);
         }
 
-        private async void BtnPrevDay_Click(object sender, EventArgs e)
+        private void BtnPrevDay_Click(object sender, EventArgs e)
         {
             if (_currentTemplate == null) { MessageBox.Show("请先选择报表模板", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information); return; }
             var sortedEntries = _currentTemplate.SelectedTags.OrderBy(entry => entry.Order).ToList();
@@ -432,10 +422,10 @@ namespace TestProj
             if (_quickQueryDate.Date == DateTime.Today && endLocal > DateTime.Now)
                 endLocal = DateTime.Now;
             lblQueryRange.Values.Text = $"{startLocal:yyyy-MM-dd HH:mm} ~ {endLocal:yyyy-MM-dd HH:mm}";
-            await RunQueryAsync(sortedEntries, startLocal.ToUniversalTime(), endLocal.ToUniversalTime(), 3600);
+            RunQuery(sortedEntries, startLocal.ToUniversalTime(), endLocal.ToUniversalTime(), 3600);
         }
 
-        private async void BtnNextDay_Click(object sender, EventArgs e)
+        private void BtnNextDay_Click(object sender, EventArgs e)
         {
             if (_currentTemplate == null) { MessageBox.Show("请先选择报表模板", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information); return; }
             var sortedEntries = _currentTemplate.SelectedTags.OrderBy(entry => entry.Order).ToList();
@@ -446,7 +436,7 @@ namespace TestProj
             if (_quickQueryDate.Date == DateTime.Today && endLocal > DateTime.Now)
                 endLocal = DateTime.Now;
             lblQueryRange.Values.Text = $"{startLocal:yyyy-MM-dd HH:mm} ~ {endLocal:yyyy-MM-dd HH:mm}";
-            await RunQueryAsync(sortedEntries, startLocal.ToUniversalTime(), endLocal.ToUniversalTime(), 3600);
+            RunQuery(sortedEntries, startLocal.ToUniversalTime(), endLocal.ToUniversalTime(), 3600);
         }
 
         /// <summary>

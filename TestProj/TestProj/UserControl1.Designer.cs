@@ -143,7 +143,7 @@ namespace TestProj
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(500, 32);
+            this.btnLogin.Location = new System.Drawing.Point(500, 63);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(220, 76);
             this.btnLogin.TabIndex = 45;
