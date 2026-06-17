@@ -50,17 +50,20 @@ namespace TestProj
             RefreshBackupButtons();
             RefreshPermissions();
 
-            // 无数据叠加标签：浮在 DataGridView 上方，查询无结果时显示
+            // 无数据叠加标签：不能放进 KryptonDataGridView.Controls（会导致红叉），
+            // 改为挂在 UserControl1 自身并跟随 DataGridView 的 Bounds。
             _lblNoData = new Label
             {
-                TextAlign  = ContentAlignment.MiddleCenter,
-                Font       = new System.Drawing.Font("Segoe UI", 16F),
-                ForeColor  = System.Drawing.Color.Gray,
-                BackColor  = System.Drawing.Color.Transparent,
-                Dock       = DockStyle.Fill,
-                Visible    = false
+                TextAlign = ContentAlignment.MiddleCenter,
+                Font      = new System.Drawing.Font("Segoe UI", 16F),
+                ForeColor = System.Drawing.Color.Gray,
+                BackColor = System.Drawing.Color.White,
+                Visible   = false
             };
-            dataGridView1.Controls.Add(_lblNoData);
+            this.Controls.Add(_lblNoData);
+            _lblNoData.BringToFront();
+            dataGridView1.LocationChanged += (s, ev) => _lblNoData.Bounds = dataGridView1.Bounds;
+            dataGridView1.Resize          += (s, ev) => _lblNoData.Bounds = dataGridView1.Bounds;
         }
 
         public void InitializeTemplateList()
@@ -413,7 +416,9 @@ namespace TestProj
             if (sortedEntries.Count == 0) { MessageBox.Show("当前模板没有配置变量", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
             _quickQueryDate = DateTime.Today;
             var startLocal = new DateTime(_quickQueryDate.Year, _quickQueryDate.Month, _quickQueryDate.Day, 0, 0, 0, DateTimeKind.Local);
-            await RunQueryAsync(sortedEntries, startLocal.ToUniversalTime(), DateTime.UtcNow, 3600);
+            var endLocal   = DateTime.Now;
+            lblQueryRange.Values.Text = $"{startLocal:yyyy-MM-dd HH:mm} ~ {endLocal:yyyy-MM-dd HH:mm}";
+            await RunQueryAsync(sortedEntries, startLocal.ToUniversalTime(), endLocal.ToUniversalTime(), 3600);
         }
 
         private async void BtnPrevDay_Click(object sender, EventArgs e)
@@ -426,6 +431,7 @@ namespace TestProj
             var endLocal   = new DateTime(_quickQueryDate.Year, _quickQueryDate.Month, _quickQueryDate.Day, 23, 59, 59, DateTimeKind.Local);
             if (_quickQueryDate.Date == DateTime.Today && endLocal > DateTime.Now)
                 endLocal = DateTime.Now;
+            lblQueryRange.Values.Text = $"{startLocal:yyyy-MM-dd HH:mm} ~ {endLocal:yyyy-MM-dd HH:mm}";
             await RunQueryAsync(sortedEntries, startLocal.ToUniversalTime(), endLocal.ToUniversalTime(), 3600);
         }
 
@@ -439,6 +445,7 @@ namespace TestProj
             var endLocal   = new DateTime(_quickQueryDate.Year, _quickQueryDate.Month, _quickQueryDate.Day, 23, 59, 59, DateTimeKind.Local);
             if (_quickQueryDate.Date == DateTime.Today && endLocal > DateTime.Now)
                 endLocal = DateTime.Now;
+            lblQueryRange.Values.Text = $"{startLocal:yyyy-MM-dd HH:mm} ~ {endLocal:yyyy-MM-dd HH:mm}";
             await RunQueryAsync(sortedEntries, startLocal.ToUniversalTime(), endLocal.ToUniversalTime(), 3600);
         }
 
