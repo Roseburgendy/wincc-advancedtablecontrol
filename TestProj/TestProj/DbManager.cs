@@ -138,7 +138,9 @@ namespace TestProj
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"查询数据失败: {ex.Message}", "错误");
+                // 不能在 Task.Run 的线程池线程上调用 MessageBox — 会死锁 WinCC 的消息泵。
+                // 将异常向上抛给调用方（RunQueryAsync），在 UI 线程的 catch 块中处理。
+                throw new Exception($"查询数据失败: {ex.Message}", ex);
             }
 
             return result;

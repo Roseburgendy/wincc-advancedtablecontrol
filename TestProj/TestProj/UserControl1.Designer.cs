@@ -103,7 +103,7 @@ namespace TestProj
             // 
             // btnTodayQuery
             // 
-            this.btnTodayQuery.Location = new System.Drawing.Point(1371, 32);
+            this.btnTodayQuery.Location = new System.Drawing.Point(1212, 32);
             this.btnTodayQuery.Name = "btnTodayQuery";
             this.btnTodayQuery.Size = new System.Drawing.Size(260, 76);
             this.btnTodayQuery.TabIndex = 42;
@@ -113,7 +113,7 @@ namespace TestProj
             // 
             // btnPrevDay
             // 
-            this.btnPrevDay.Location = new System.Drawing.Point(1142, 32);
+            this.btnPrevDay.Location = new System.Drawing.Point(983, 32);
             this.btnPrevDay.Name = "btnPrevDay";
             this.btnPrevDay.Size = new System.Drawing.Size(186, 76);
             this.btnPrevDay.TabIndex = 43;
@@ -123,27 +123,26 @@ namespace TestProj
             // 
             // btnNextDay
             // 
-            this.btnNextDay.Location = new System.Drawing.Point(1668, 32);
+            this.btnNextDay.Location = new System.Drawing.Point(1509, 32);
             this.btnNextDay.Name = "btnNextDay";
             this.btnNextDay.Size = new System.Drawing.Size(186, 76);
             this.btnNextDay.TabIndex = 44;
             this.btnNextDay.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnNextDay.Values.Text = "后一天";
             this.btnNextDay.Click += new System.EventHandler(this.BtnNextDay_Click);
-            //
+            // 
             // btnLogin
-            //
-            this.btnLogin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnLogin.Location = new System.Drawing.Point(1201, 32);
+            // 
+            this.btnLogin.Location = new System.Drawing.Point(500, 32);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(220, 76);
             this.btnLogin.TabIndex = 45;
             this.btnLogin.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnLogin.Values.Text = "管理员登录";
             this.btnLogin.Click += new System.EventHandler(this.BtnLogin_Click);
-            //
+            // 
             // TimeSelectBtn
-            //
+            // 
             this.TimeSelectBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.TimeSelectBtn.Location = new System.Drawing.Point(1032, 125);
             this.TimeSelectBtn.Name = "TimeSelectBtn";
