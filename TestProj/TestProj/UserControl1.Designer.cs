@@ -81,7 +81,7 @@ namespace TestProj
             this.kryptonPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.kryptonPanel1.Location = new System.Drawing.Point(0, 0);
             this.kryptonPanel1.Name = "kryptonPanel1";
-            this.kryptonPanel1.Size = new System.Drawing.Size(3840, 275);
+            this.kryptonPanel1.Size = new System.Drawing.Size(3840, 260);
             this.kryptonPanel1.TabIndex = 0;
             // 
             // kryptonGroupBox2
@@ -271,7 +271,7 @@ namespace TestProj
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 283);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 268);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -283,7 +283,7 @@ namespace TestProj
             // progressBar1
             // 
             this.progressBar1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.progressBar1.Location = new System.Drawing.Point(0, 275);
+            this.progressBar1.Location = new System.Drawing.Point(0, 260);
             this.progressBar1.MarqueeAnimationSpeed = 30;
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(3840, 8);
@@ -322,6 +322,7 @@ namespace TestProj
             this.Controls.Add(this.kryptonPanel1);
             this.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.Padding = new System.Windows.Forms.Padding(0, 0, 0, 20);
             this.Name = "UserControl1";
             this.Size = new System.Drawing.Size(3840, 2400);
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).EndInit();
