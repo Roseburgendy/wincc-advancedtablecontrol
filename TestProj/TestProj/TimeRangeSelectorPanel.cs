@@ -81,6 +81,19 @@ namespace TestProj
             UpdateEnabledState();
             if (cmbMode.SelectedIndex == 0)
                 RecalcEndFromRange();
+            else if (cmbMode.SelectedIndex == 3)
+                SnapToHour();
+        }
+
+        private void SnapToHour()
+        {
+            var start = GetStart();
+            var startH = new DateTime(start.Year, start.Month, start.Day, start.Hour, 0, 0);
+            var endH   = startH.AddHours(1);
+            dtpStartDate.Value = startH.Date;
+            dtpStartTime.Value = startH;
+            dtpEndDate.Value   = endH.Date;
+            dtpEndTime.Value   = endH;
         }
 
         private void UpdateEnabledState()
