@@ -86,7 +86,7 @@ namespace TestProj
             // 
             // kryptonGroupBox4
             // 
-            this.kryptonGroupBox4.Location = new System.Drawing.Point(973, 3);
+            this.kryptonGroupBox4.Location = new System.Drawing.Point(1412, 3);
             // 
             // kryptonGroupBox4.Panel
             // 
@@ -119,7 +119,7 @@ namespace TestProj
             // 
             // kryptonGroupBox3
             // 
-            this.kryptonGroupBox3.Location = new System.Drawing.Point(1453, 3);
+            this.kryptonGroupBox3.Location = new System.Drawing.Point(988, 3);
             // 
             // kryptonGroupBox3.Panel
             // 

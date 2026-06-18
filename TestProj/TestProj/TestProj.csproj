@@ -218,11 +218,17 @@
     <EmbeddedResource Include="BatchDecimalForm.resx">
       <DependentUpon>BatchDecimalForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ChangePasswordForm.resx">
+      <DependentUpon>ChangePasswordForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ExcelImportConfigForm.resx">
       <DependentUpon>ExcelImportConfigForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GeneralConfigPanel.resx">
       <DependentUpon>GeneralConfigPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Lang.resx">
       <SubType>Designer</SubType>

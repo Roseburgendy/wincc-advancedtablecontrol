@@ -29,10 +29,10 @@ namespace TestProj
             // 
             this.lblHint.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblHint.Location = new System.Drawing.Point(15, 15);
+            this.lblHint.Location = new System.Drawing.Point(15, 11);
             this.lblHint.Margin = new System.Windows.Forms.Padding(2);
             this.lblHint.Name = "lblHint";
-            this.lblHint.Size = new System.Drawing.Size(1078, 56);
+            this.lblHint.Size = new System.Drawing.Size(1300, 56);
             this.lblHint.TabIndex = 0;
             this.lblHint.Values.Text = "按 TagName 前缀批量设置精确位数。规则从上到下依次匹配，命中第一条即生效。";
             // 
@@ -51,7 +51,7 @@ namespace TestProj
             this.dgvRules.Name = "dgvRules";
             this.dgvRules.RowHeadersWidth = 40;
             this.dgvRules.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRules.Size = new System.Drawing.Size(1094, 466);
+            this.dgvRules.Size = new System.Drawing.Size(1345, 466);
             this.dgvRules.TabIndex = 1;
             // 
             // btnAddRule
@@ -60,7 +60,7 @@ namespace TestProj
             this.btnAddRule.Location = new System.Drawing.Point(15, 559);
             this.btnAddRule.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddRule.Name = "btnAddRule";
-            this.btnAddRule.Size = new System.Drawing.Size(185, 56);
+            this.btnAddRule.Size = new System.Drawing.Size(235, 56);
             this.btnAddRule.TabIndex = 2;
             this.btnAddRule.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnAddRule.Values.Text = "+ 新增规则";
@@ -69,10 +69,10 @@ namespace TestProj
             // btnDeleteRule
             // 
             this.btnDeleteRule.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnDeleteRule.Location = new System.Drawing.Point(210, 559);
+            this.btnDeleteRule.Location = new System.Drawing.Point(299, 559);
             this.btnDeleteRule.Margin = new System.Windows.Forms.Padding(2);
             this.btnDeleteRule.Name = "btnDeleteRule";
-            this.btnDeleteRule.Size = new System.Drawing.Size(185, 56);
+            this.btnDeleteRule.Size = new System.Drawing.Size(235, 56);
             this.btnDeleteRule.TabIndex = 3;
             this.btnDeleteRule.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnDeleteRule.Values.Text = "- 删除选中";
@@ -81,18 +81,18 @@ namespace TestProj
             // lblApplyResult
             // 
             this.lblApplyResult.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblApplyResult.Location = new System.Drawing.Point(671, 571);
+            this.lblApplyResult.Location = new System.Drawing.Point(922, 571);
             this.lblApplyResult.Margin = new System.Windows.Forms.Padding(2);
             this.lblApplyResult.Name = "lblApplyResult";
             this.lblApplyResult.Size = new System.Drawing.Size(438, 44);
             this.lblApplyResult.TabIndex = 4;
             this.lblApplyResult.Values.Text = "";
             this.lblApplyResult.Visible = false;
-            //
-            // btnOK  (Save & Apply)
-            //
+            // 
+            // btnOK
+            // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.Location = new System.Drawing.Point(724, 629);
+            this.btnOK.Location = new System.Drawing.Point(975, 629);
             this.btnOK.Margin = new System.Windows.Forms.Padding(2);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(195, 60);
@@ -105,7 +105,7 @@ namespace TestProj
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(934, 629);
+            this.btnCancel.Location = new System.Drawing.Point(1185, 629);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(175, 60);
@@ -120,7 +120,7 @@ namespace TestProj
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(1124, 706);
+            this.ClientSize = new System.Drawing.Size(1375, 706);
             this.Controls.Add(this.lblHint);
             this.Controls.Add(this.dgvRules);
             this.Controls.Add(this.btnAddRule);

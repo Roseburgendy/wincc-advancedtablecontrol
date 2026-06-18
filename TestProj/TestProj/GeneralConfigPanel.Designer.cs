@@ -113,7 +113,7 @@ namespace TestProj
             this.kryptonNavigator1.Pages.AddRange(new Krypton.Navigator.KryptonPage[] {
             this.kryptonPage1,
             this.kryptonPage2});
-            this.kryptonNavigator1.SelectedIndex = 0;
+            this.kryptonNavigator1.SelectedIndex = 1;
             this.kryptonNavigator1.Size = new System.Drawing.Size(1728, 989);
             this.kryptonNavigator1.TabIndex = 0;
             // 
@@ -177,10 +177,10 @@ namespace TestProj
             // btnAdd
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd.Location = new System.Drawing.Point(198, 22);
+            this.btnAdd.Location = new System.Drawing.Point(257, 22);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(196, 56);
+            this.btnAdd.Size = new System.Drawing.Size(142, 56);
             this.btnAdd.TabIndex = 1;
             this.btnAdd.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnAdd.Values.Text = "新建";
@@ -532,7 +532,7 @@ namespace TestProj
             // 
             // lblCompanyName
             // 
-            this.lblCompanyName.Location = new System.Drawing.Point(41, 124);
+            this.lblCompanyName.Location = new System.Drawing.Point(29, 123);
             this.lblCompanyName.Name = "lblCompanyName";
             this.lblCompanyName.Size = new System.Drawing.Size(180, 44);
             this.lblCompanyName.TabIndex = 9;
