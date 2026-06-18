@@ -145,7 +145,6 @@ namespace TestProj
         private void SetQueryRunning(bool running)
         {
             _queryRunning                = running;
-            progressBar1.Visible         = running;
             // Operator-accessible controls
             TimeSelectBtn.Enabled        = !running;
             ExportExcelBtn.Enabled       = !running;
