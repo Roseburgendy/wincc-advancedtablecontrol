@@ -276,7 +276,6 @@
   <data name="TCP_Order" xml:space="preserve">
     <value>Order</value>
   </data>
-
   <data name="TCP_BtnSave" xml:space="preserve">
     <value>Save Config</value>
   </data>
@@ -296,16 +295,13 @@
     <value>Decimal Places</value>
   </data>
   <data name="BDF_ColMatchCount" xml:space="preserve">
-    <value>Matching Tags (Preview)</value>
+    <value>Matching Tags</value>
   </data>
   <data name="BDF_BtnAdd" xml:space="preserve">
     <value>+ Add Rule</value>
   </data>
   <data name="BDF_BtnDelete" xml:space="preserve">
     <value>- Delete Selected</value>
-  </data>
-  <data name="BDF_BtnSaveApply" xml:space="preserve">
-    <value>Save &amp; Apply</value>
   </data>
   <data name="BDF_ApplyResult" xml:space="preserve">
     <value>✔ Updated {0} tag(s)</value>
@@ -315,24 +311,6 @@
   </data>
   <data name="BDF_InvalidDecimal" xml:space="preserve">
     <value>Decimal places cannot be negative</value>
-  </data>
-  <data name="GCP_LblMaxQueryDays" xml:space="preserve">
-    <value>Max Query Days:</value>
-  </data>
-  <data name="GCP_LblMaxDataPoints" xml:space="preserve">
-    <value>Max Data Points:</value>
-  </data>
-  <data name="GCP_HintQueryLimits" xml:space="preserve">
-    <value>(0 = unlimited)</value>
-  </data>
-  <data name="Msg_RangeExceedWarning" xml:space="preserve">
-    <value>Query span of {0} days exceeds the {1}-day limit. Please narrow the time range or increase the limit in General Settings.</value>
-  </data>
-  <data name="Msg_CountExceedWarning" xml:space="preserve">
-    <value>Requested {0} data points exceeds the limit of {1}. Only the first {1} points will be loaded. Continue?</value>
-  </data>
-  <data name="Msg_DataTruncated" xml:space="preserve">
-    <value>Result exceeds the row limit and has been truncated to {0} rows. Narrow the time range for complete data.</value>
   </data>
   <data name="TCP_ColTagName" xml:space="preserve">
     <value>Tag Name</value>
@@ -462,6 +440,27 @@
   </data>
   <data name="Msg_NoData" xml:space="preserve">
     <value>No data found for the selected range</value>
+  </data>
+  <data name="BDF_BtnSaveApply" xml:space="preserve">
+    <value>Save &amp; Apply</value>
+  </data>
+  <data name="GCP_LblMaxQueryDays" xml:space="preserve">
+    <value>Max Query Days:</value>
+  </data>
+  <data name="GCP_LblMaxDataPoints" xml:space="preserve">
+    <value>Max Data Points:</value>
+  </data>
+  <data name="GCP_HintQueryLimits" xml:space="preserve">
+    <value>(0 = unlimited)</value>
+  </data>
+  <data name="Msg_RangeExceedWarning" xml:space="preserve">
+    <value>Query span of {0} days exceeds the {1}-day limit. Please narrow the time range or increase the limit in General Settings.</value>
+  </data>
+  <data name="Msg_CountExceedWarning" xml:space="preserve">
+    <value>Requested {0} data points exceeds the limit of {1}. Only the first {1} points will be loaded. Continue?</value>
+  </data>
+  <data name="Msg_DataTruncated" xml:space="preserve">
+    <value>Result exceeds the row limit and has been truncated to {0} rows. Narrow the time range for complete data.</value>
   </data>
   <data name="Msg_OK" xml:space="preserve">
     <value>OK</value>

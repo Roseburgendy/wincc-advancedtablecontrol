@@ -276,7 +276,6 @@
   <data name="TCP_Order" xml:space="preserve">
     <value>顺序</value>
   </data>
-
   <data name="TCP_BtnSave" xml:space="preserve">
     <value>保存配置</value>
   </data>
@@ -287,16 +286,16 @@
     <value>批量精确位数规则</value>
   </data>
   <data name="BDF_Hint" xml:space="preserve">
-    <value>按 TagName 前缀批量设置精确位数。规则从上到下依次匹配，命中第一条即生效。</value>
+    <value>批量按照变量前缀批量设置精确位数。规则从上到下依次匹配，命中第一条即生效。</value>
   </data>
   <data name="BDF_ColPrefix" xml:space="preserve">
-    <value>TagName 前缀</value>
+    <value>变量前缀</value>
   </data>
   <data name="BDF_ColDecimal" xml:space="preserve">
     <value>精确位数</value>
   </data>
   <data name="BDF_ColMatchCount" xml:space="preserve">
-    <value>匹配变量数（预览）</value>
+    <value>匹配变量数</value>
   </data>
   <data name="BDF_BtnAdd" xml:space="preserve">
     <value>+ 新增规则</value>

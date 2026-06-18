@@ -248,13 +248,13 @@ namespace TestProj
             this.cmbMode.Location = new System.Drawing.Point(19, 96);
             this.cmbMode.Margin = new System.Windows.Forms.Padding(2);
             this.cmbMode.Name = "cmbMode";
-            this.cmbMode.Size = new System.Drawing.Size(245, 42);
+            this.cmbMode.Size = new System.Drawing.Size(298, 42);
             this.cmbMode.TabIndex = 1;
             this.cmbMode.SelectedIndexChanged += new System.EventHandler(this.CmbMode_SelectedIndexChanged);
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(19, 56);
+            this.label1.Location = new System.Drawing.Point(19, 40);
             this.label1.Margin = new System.Windows.Forms.Padding(2);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(103, 42);
