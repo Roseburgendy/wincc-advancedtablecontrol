@@ -244,6 +244,7 @@ namespace TestProj
                 {
                     dataGridView1.DataSource = null;
                     dataGridView1.Columns.Clear();
+                    lblRowCount.Values.Text = "";
                     _lblNoData.ForeColor = System.Drawing.Color.Gray;
                     _lblNoData.Text    = $"{start.ToLocalTime():yyyy-MM-dd HH:mm} ~ {end.ToLocalTime():yyyy-MM-dd HH:mm}\n{LangHelper.Get("Msg_NoData")}";
                     _lblNoData.Visible = true;
@@ -335,6 +336,7 @@ namespace TestProj
                 {
                     dataGridView1.DataSource = null;
                     dataGridView1.Columns.Clear();
+                    lblRowCount.Values.Text = "";
                     _lblNoData.ForeColor = System.Drawing.Color.Gray;
                     _lblNoData.Text    = $"{startUTC.ToLocalTime():yyyy-MM-dd HH:mm} 起 {count} 条\n{LangHelper.Get("Msg_NoData")}";
                     _lblNoData.Visible = true;
@@ -799,6 +801,7 @@ namespace TestProj
             dataGridView1.DataSource = null;
             dataGridView1.Columns.Clear();
             dataGridView1.DataSource = table;
+            lblRowCount.Values.Text = $"共 {table.Rows.Count} 条记录";
 
             // 列头换行 + 高度自适应（同时显示 TagName 和 DisplayName）
             dataGridView1.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.True;

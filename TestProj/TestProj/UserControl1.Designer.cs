@@ -35,6 +35,7 @@ namespace TestProj
             this.TimeSelectBtn = new Krypton.Toolkit.KryptonButton();
             this.kryptonLabel1 = new Krypton.Toolkit.KryptonLabel();
             this.lblQueryRange = new Krypton.Toolkit.KryptonLabel();
+            this.lblRowCount = new Krypton.Toolkit.KryptonLabel();
             this.btnLogin = new Krypton.Toolkit.KryptonButton();
             this.label3 = new Krypton.Toolkit.KryptonLabel();
             this.cmbTemplate = new Krypton.Toolkit.KryptonComboBox();
@@ -75,6 +76,7 @@ namespace TestProj
             this.kryptonPanel1.Controls.Add(this.kryptonGroupBox1);
             this.kryptonPanel1.Controls.Add(this.kryptonLabel1);
             this.kryptonPanel1.Controls.Add(this.lblQueryRange);
+            this.kryptonPanel1.Controls.Add(this.lblRowCount);
             this.kryptonPanel1.Controls.Add(this.btnLogin);
             this.kryptonPanel1.Controls.Add(this.label3);
             this.kryptonPanel1.Controls.Add(this.cmbTemplate);
@@ -255,7 +257,15 @@ namespace TestProj
             this.lblQueryRange.Size = new System.Drawing.Size(600, 50);
             this.lblQueryRange.TabIndex = 46;
             this.lblQueryRange.Values.Text = "";
-            // 
+            //
+            // lblRowCount
+            //
+            this.lblRowCount.Location = new System.Drawing.Point(3214, 182);
+            this.lblRowCount.Name = "lblRowCount";
+            this.lblRowCount.Size = new System.Drawing.Size(600, 50);
+            this.lblRowCount.TabIndex = 47;
+            this.lblRowCount.Values.Text = "";
+            //
             // btnLogin
             // 
             this.btnLogin.Location = new System.Drawing.Point(554, 113);
@@ -371,6 +381,7 @@ namespace TestProj
         private System.Windows.Forms.ProgressBar progressBar1;
         private Krypton.Toolkit.KryptonLabel kryptonLabel1;
         private Krypton.Toolkit.KryptonLabel lblQueryRange;
+        private Krypton.Toolkit.KryptonLabel lblRowCount;
         private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox2;
         private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox1;
         private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox3;
