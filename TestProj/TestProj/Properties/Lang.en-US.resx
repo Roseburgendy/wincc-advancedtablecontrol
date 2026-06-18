@@ -490,6 +490,18 @@
   <data name="UC_Logout" xml:space="preserve">
     <value>Logout Admin</value>
   </data>
+  <data name="UC_GrpAdmin" xml:space="preserve">
+    <value>Admin Operations</value>
+  </data>
+  <data name="UC_GrpArchive" xml:space="preserve">
+    <value>Archive Management</value>
+  </data>
+  <data name="UC_GrpExport" xml:space="preserve">
+    <value>Report Export</value>
+  </data>
+  <data name="UC_GrpQuery" xml:space="preserve">
+    <value>Report Query</value>
+  </data>
   <data name="Auth_LoginTitle" xml:space="preserve">
     <value>Admin Login</value>
   </data>

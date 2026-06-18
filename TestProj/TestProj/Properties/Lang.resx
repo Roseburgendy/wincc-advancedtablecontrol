@@ -490,6 +490,18 @@
   <data name="UC_Logout" xml:space="preserve">
     <value>退出管理</value>
   </data>
+  <data name="UC_GrpAdmin" xml:space="preserve">
+    <value>管理员操作</value>
+  </data>
+  <data name="UC_GrpArchive" xml:space="preserve">
+    <value>归档管理</value>
+  </data>
+  <data name="UC_GrpExport" xml:space="preserve">
+    <value>报表导出</value>
+  </data>
+  <data name="UC_GrpQuery" xml:space="preserve">
+    <value>报表查询</value>
+  </data>
   <data name="Auth_LoginTitle" xml:space="preserve">
     <value>管理员登录</value>
   </data>
