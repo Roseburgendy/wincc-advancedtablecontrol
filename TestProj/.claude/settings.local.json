@@ -7,7 +7,20 @@
       "Bash(Get-Content \"D:\\\\WinCCReport_Dev\\\\wincc-advancedtablecontrol\\\\TestProj\\\\GeneralConfigPanel.cs\")",
       "PowerShell(Select-String -Path \"D:\\\\WinCCReport_Dev\\\\wincc-advancedtablecontrol\\\\TestProj\\\\TestProj\\\\UserControl1.cs\" -Pattern \"GeneralConfigPanel|ApplyLanguage|onThemeChanged|_onThemeChanged|language\" -CaseSensitive:$false)",
       "mcp__Claude_in_Chrome__tabs_context_mcp",
-      "Bash(dotnet build *)"
+      "Bash(dotnet build *)",
+      "Bash(npm install *)",
+      "Bash(node gen_docs.js)",
+      "Bash(npm init *)",
+      "Bash(python \"C:\\\\Users\\\\ROSEWONG\\\\AppData\\\\Roaming\\\\Claude\\\\local-agent-mode-sessions\\\\skills-plugin\\\\070a0fbb-5bcd-4542-a7e7-a5c5d28fb28e\\\\b7f667da-4219-43ee-a0b1-9bb5090ab13e\\\\skills\\\\docx\\\\scripts\\\\office\\\\validate.py\" \"D:\\\\WinCCReport_Dev\\\\wincc-advancedtablecontrol\\\\TestProj\\\\WinCC_AdvancedTableControl_UserGuide_EN.docx\")",
+      "Bash(python \"C:\\\\Users\\\\ROSEWONG\\\\AppData\\\\Roaming\\\\Claude\\\\local-agent-mode-sessions\\\\skills-plugin\\\\070a0fbb-5bcd-4542-a7e7-a5c5d28fb28e\\\\b7f667da-4219-43ee-a0b1-9bb5090ab13e\\\\skills\\\\docx\\\\scripts\\\\office\\\\validate.py\" \"D:\\\\WinCCReport_Dev\\\\wincc-advancedtablecontrol\\\\TestProj\\\\WinCC_AdvancedTableControl_UserGuide_ZH.docx\")",
+      "Bash(python3 \"C:\\\\Users\\\\ROSEWONG\\\\AppData\\\\Roaming\\\\Claude\\\\local-agent-mode-sessions\\\\skills-plugin\\\\070a0fbb-5bcd-4542-a7e7-a5c5d28fb28e\\\\b7f667da-4219-43ee-a0b1-9bb5090ab13e\\\\skills\\\\docx\\\\scripts\\\\office\\\\validate.py\" \"D:\\\\WinCCReport_Dev\\\\wincc-advancedtablecontrol\\\\TestProj\\\\WinCC_AdvancedTableControl_UserGuide_EN.docx\")",
+      "Bash(python3 \"C:\\\\Users\\\\ROSEWONG\\\\AppData\\\\Roaming\\\\Claude\\\\local-agent-mode-sessions\\\\skills-plugin\\\\070a0fbb-5bcd-4542-a7e7-a5c5d28fb28e\\\\b7f667da-4219-43ee-a0b1-9bb5090ab13e\\\\skills\\\\docx\\\\scripts\\\\office\\\\validate.py\" \"D:\\\\WinCCReport_Dev\\\\wincc-advancedtablecontrol\\\\TestProj\\\\WinCC_AdvancedTableControl_UserGuide_ZH.docx\")",
+      "Bash(pip install *)",
+      "Bash(py -3 -m pip install defusedxml -q)",
+      "Bash(py -3 \"C:\\\\Users\\\\ROSEWONG\\\\AppData\\\\Roaming\\\\Claude\\\\local-agent-mode-sessions\\\\skills-plugin\\\\070a0fbb-5bcd-4542-a7e7-a5c5d28fb28e\\\\b7f667da-4219-43ee-a0b1-9bb5090ab13e\\\\skills\\\\docx\\\\scripts\\\\office\\\\validate.py\" \"D:\\\\WinCCReport_Dev\\\\wincc-advancedtablecontrol\\\\TestProj\\\\WinCC_AdvancedTableControl_UserGuide_EN.docx\")",
+      "Bash(py -3 \"C:\\\\Users\\\\ROSEWONG\\\\AppData\\\\Roaming\\\\Claude\\\\local-agent-mode-sessions\\\\skills-plugin\\\\070a0fbb-5bcd-4542-a7e7-a5c5d28fb28e\\\\b7f667da-4219-43ee-a0b1-9bb5090ab13e\\\\skills\\\\docx\\\\scripts\\\\office\\\\validate.py\" \"D:\\\\WinCCReport_Dev\\\\wincc-advancedtablecontrol\\\\TestProj\\\\WinCC_AdvancedTableControl_UserGuide_ZH.docx\")",
+      "Bash(py -3 -m pip install lxml defusedxml -q)",
+      "Bash(node -e ' *)"
     ]
   }
 }

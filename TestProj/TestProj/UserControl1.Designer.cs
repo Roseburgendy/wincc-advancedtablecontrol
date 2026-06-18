@@ -86,19 +86,19 @@ namespace TestProj
             // 
             // kryptonGroupBox4
             // 
-            this.kryptonGroupBox4.Location = new System.Drawing.Point(893, 3);
+            this.kryptonGroupBox4.Location = new System.Drawing.Point(973, 3);
             // 
             // kryptonGroupBox4.Panel
             // 
             this.kryptonGroupBox4.Panel.Controls.Add(this.btnImportExcel);
             this.kryptonGroupBox4.Panel.Controls.Add(this.btnConfig);
-            this.kryptonGroupBox4.Size = new System.Drawing.Size(496, 241);
+            this.kryptonGroupBox4.Size = new System.Drawing.Size(408, 241);
             this.kryptonGroupBox4.TabIndex = 51;
             // 
             // btnImportExcel
             // 
             this.btnImportExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnImportExcel.Location = new System.Drawing.Point(53, 15);
+            this.btnImportExcel.Location = new System.Drawing.Point(18, 15);
             this.btnImportExcel.Name = "btnImportExcel";
             this.btnImportExcel.Size = new System.Drawing.Size(358, 76);
             this.btnImportExcel.TabIndex = 31;
@@ -109,7 +109,7 @@ namespace TestProj
             // btnConfig
             // 
             this.btnConfig.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnConfig.Location = new System.Drawing.Point(53, 109);
+            this.btnConfig.Location = new System.Drawing.Point(18, 109);
             this.btnConfig.Name = "btnConfig";
             this.btnConfig.Size = new System.Drawing.Size(358, 76);
             this.btnConfig.TabIndex = 16;
