@@ -19,6 +19,12 @@ namespace TestProj
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserControl1));
             this.kryptonManager = new Krypton.Toolkit.KryptonManager(this.components);
             this.kryptonPanel1 = new Krypton.Toolkit.KryptonPanel();
+            this.kryptonGroupBox4 = new Krypton.Toolkit.KryptonGroupBox();
+            this.btnImportExcel = new Krypton.Toolkit.KryptonButton();
+            this.btnConfig = new Krypton.Toolkit.KryptonButton();
+            this.kryptonGroupBox3 = new Krypton.Toolkit.KryptonGroupBox();
+            this.btnConnectBackup = new Krypton.Toolkit.KryptonButton();
+            this.btnDisconnectBackup = new Krypton.Toolkit.KryptonButton();
             this.kryptonGroupBox2 = new Krypton.Toolkit.KryptonGroupBox();
             this.PrintBtn = new Krypton.Toolkit.KryptonButton();
             this.ExportExcelBtn = new Krypton.Toolkit.KryptonButton();
@@ -29,19 +35,21 @@ namespace TestProj
             this.TimeSelectBtn = new Krypton.Toolkit.KryptonButton();
             this.kryptonLabel1 = new Krypton.Toolkit.KryptonLabel();
             this.lblQueryRange = new Krypton.Toolkit.KryptonLabel();
-            this.btnConnectBackup = new Krypton.Toolkit.KryptonButton();
-            this.btnDisconnectBackup = new Krypton.Toolkit.KryptonButton();
             this.btnLogin = new Krypton.Toolkit.KryptonButton();
             this.label3 = new Krypton.Toolkit.KryptonLabel();
             this.cmbTemplate = new Krypton.Toolkit.KryptonComboBox();
-            this.btnImportExcel = new Krypton.Toolkit.KryptonButton();
-            this.btnConfig = new Krypton.Toolkit.KryptonButton();
             this.dataGridView1 = new Krypton.Toolkit.KryptonDataGridView();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.kryptonGroupBox3 = new Krypton.Toolkit.KryptonGroupBox();
-            this.kryptonGroupBox4 = new Krypton.Toolkit.KryptonGroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).BeginInit();
             this.kryptonPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox4.Panel)).BeginInit();
+            this.kryptonGroupBox4.Panel.SuspendLayout();
+            this.kryptonGroupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox3.Panel)).BeginInit();
+            this.kryptonGroupBox3.Panel.SuspendLayout();
+            this.kryptonGroupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox2.Panel)).BeginInit();
             this.kryptonGroupBox2.Panel.SuspendLayout();
@@ -52,14 +60,6 @@ namespace TestProj
             this.kryptonGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox3.Panel)).BeginInit();
-            this.kryptonGroupBox3.Panel.SuspendLayout();
-            this.kryptonGroupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox4.Panel)).BeginInit();
-            this.kryptonGroupBox4.Panel.SuspendLayout();
-            this.kryptonGroupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // kryptonManager
@@ -84,9 +84,75 @@ namespace TestProj
             this.kryptonPanel1.Size = new System.Drawing.Size(3840, 260);
             this.kryptonPanel1.TabIndex = 0;
             // 
+            // kryptonGroupBox4
+            // 
+            this.kryptonGroupBox4.Location = new System.Drawing.Point(893, 3);
+            // 
+            // kryptonGroupBox4.Panel
+            // 
+            this.kryptonGroupBox4.Panel.Controls.Add(this.btnImportExcel);
+            this.kryptonGroupBox4.Panel.Controls.Add(this.btnConfig);
+            this.kryptonGroupBox4.Size = new System.Drawing.Size(496, 241);
+            this.kryptonGroupBox4.TabIndex = 51;
+            // 
+            // btnImportExcel
+            // 
+            this.btnImportExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnImportExcel.Location = new System.Drawing.Point(53, 15);
+            this.btnImportExcel.Name = "btnImportExcel";
+            this.btnImportExcel.Size = new System.Drawing.Size(358, 76);
+            this.btnImportExcel.TabIndex = 31;
+            this.btnImportExcel.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnImportExcel.Values.Text = "批量导入模板";
+            this.btnImportExcel.Click += new System.EventHandler(this.BtnImportFromExcel_Click);
+            // 
+            // btnConfig
+            // 
+            this.btnConfig.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnConfig.Location = new System.Drawing.Point(53, 109);
+            this.btnConfig.Name = "btnConfig";
+            this.btnConfig.Size = new System.Drawing.Size(358, 76);
+            this.btnConfig.TabIndex = 16;
+            this.btnConfig.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnConfig.Values.Text = "配置";
+            this.btnConfig.Click += new System.EventHandler(this.BtnConfig_Click);
+            // 
+            // kryptonGroupBox3
+            // 
+            this.kryptonGroupBox3.Location = new System.Drawing.Point(1453, 3);
+            // 
+            // kryptonGroupBox3.Panel
+            // 
+            this.kryptonGroupBox3.Panel.Controls.Add(this.btnConnectBackup);
+            this.kryptonGroupBox3.Panel.Controls.Add(this.btnDisconnectBackup);
+            this.kryptonGroupBox3.Size = new System.Drawing.Size(361, 241);
+            this.kryptonGroupBox3.TabIndex = 50;
+            // 
+            // btnConnectBackup
+            // 
+            this.btnConnectBackup.Location = new System.Drawing.Point(29, 15);
+            this.btnConnectBackup.Name = "btnConnectBackup";
+            this.btnConnectBackup.Size = new System.Drawing.Size(304, 76);
+            this.btnConnectBackup.TabIndex = 40;
+            this.btnConnectBackup.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnConnectBackup.Values.Text = "连接备份";
+            this.btnConnectBackup.Visible = false;
+            this.btnConnectBackup.Click += new System.EventHandler(this.BtnConnectBackup_Click);
+            // 
+            // btnDisconnectBackup
+            // 
+            this.btnDisconnectBackup.Location = new System.Drawing.Point(29, 109);
+            this.btnDisconnectBackup.Name = "btnDisconnectBackup";
+            this.btnDisconnectBackup.Size = new System.Drawing.Size(304, 76);
+            this.btnDisconnectBackup.TabIndex = 41;
+            this.btnDisconnectBackup.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnDisconnectBackup.Values.Text = "断开备份";
+            this.btnDisconnectBackup.Visible = false;
+            this.btnDisconnectBackup.Click += new System.EventHandler(this.BtnDisconnectBackup_Click);
+            // 
             // kryptonGroupBox2
             // 
-            this.kryptonGroupBox2.Location = new System.Drawing.Point(1865, 15);
+            this.kryptonGroupBox2.Location = new System.Drawing.Point(1870, 3);
             // 
             // kryptonGroupBox2.Panel
             // 
@@ -119,7 +185,7 @@ namespace TestProj
             // 
             // kryptonGroupBox1
             // 
-            this.kryptonGroupBox1.Location = new System.Drawing.Point(2351, 15);
+            this.kryptonGroupBox1.Location = new System.Drawing.Point(2349, 3);
             // 
             // kryptonGroupBox1.Panel
             // 
@@ -190,28 +256,6 @@ namespace TestProj
             this.lblQueryRange.TabIndex = 46;
             this.lblQueryRange.Values.Text = "";
             // 
-            // btnConnectBackup
-            // 
-            this.btnConnectBackup.Location = new System.Drawing.Point(29, 15);
-            this.btnConnectBackup.Name = "btnConnectBackup";
-            this.btnConnectBackup.Size = new System.Drawing.Size(234, 76);
-            this.btnConnectBackup.TabIndex = 40;
-            this.btnConnectBackup.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.btnConnectBackup.Values.Text = "连接备份";
-            this.btnConnectBackup.Visible = false;
-            this.btnConnectBackup.Click += new System.EventHandler(this.BtnConnectBackup_Click);
-            // 
-            // btnDisconnectBackup
-            // 
-            this.btnDisconnectBackup.Location = new System.Drawing.Point(29, 109);
-            this.btnDisconnectBackup.Name = "btnDisconnectBackup";
-            this.btnDisconnectBackup.Size = new System.Drawing.Size(234, 76);
-            this.btnDisconnectBackup.TabIndex = 41;
-            this.btnDisconnectBackup.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.btnDisconnectBackup.Values.Text = "断开备份";
-            this.btnDisconnectBackup.Visible = false;
-            this.btnDisconnectBackup.Click += new System.EventHandler(this.BtnDisconnectBackup_Click);
-            // 
             // btnLogin
             // 
             this.btnLogin.Location = new System.Drawing.Point(554, 113);
@@ -240,28 +284,6 @@ namespace TestProj
             this.cmbTemplate.TabIndex = 18;
             this.cmbTemplate.SelectedIndexChanged += new System.EventHandler(this.CmbTemplate_SelectedIndexChanged);
             // 
-            // btnImportExcel
-            // 
-            this.btnImportExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnImportExcel.Location = new System.Drawing.Point(53, 15);
-            this.btnImportExcel.Name = "btnImportExcel";
-            this.btnImportExcel.Size = new System.Drawing.Size(358, 76);
-            this.btnImportExcel.TabIndex = 31;
-            this.btnImportExcel.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.btnImportExcel.Values.Text = "批量导入模板";
-            this.btnImportExcel.Click += new System.EventHandler(this.BtnImportFromExcel_Click);
-            // 
-            // btnConfig
-            // 
-            this.btnConfig.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnConfig.Location = new System.Drawing.Point(53, 109);
-            this.btnConfig.Name = "btnConfig";
-            this.btnConfig.Size = new System.Drawing.Size(358, 76);
-            this.btnConfig.TabIndex = 16;
-            this.btnConfig.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.btnConfig.Values.Text = "配置";
-            this.btnConfig.Click += new System.EventHandler(this.BtnConfig_Click);
-            // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
@@ -277,7 +299,7 @@ namespace TestProj
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 72;
             this.dataGridView1.RowTemplate.Height = 50;
-            this.dataGridView1.Size = new System.Drawing.Size(3840, 2117);
+            this.dataGridView1.Size = new System.Drawing.Size(3840, 2112);
             this.dataGridView1.TabIndex = 1;
             // 
             // progressBar1
@@ -291,28 +313,6 @@ namespace TestProj
             this.progressBar1.TabIndex = 2;
             this.progressBar1.Visible = false;
             // 
-            // kryptonGroupBox3
-            // 
-            this.kryptonGroupBox3.Location = new System.Drawing.Point(1484, 15);
-            // 
-            // kryptonGroupBox3.Panel
-            // 
-            this.kryptonGroupBox3.Panel.Controls.Add(this.btnConnectBackup);
-            this.kryptonGroupBox3.Panel.Controls.Add(this.btnDisconnectBackup);
-            this.kryptonGroupBox3.Size = new System.Drawing.Size(306, 241);
-            this.kryptonGroupBox3.TabIndex = 50;
-            // 
-            // kryptonGroupBox4
-            // 
-            this.kryptonGroupBox4.Location = new System.Drawing.Point(892, 15);
-            // 
-            // kryptonGroupBox4.Panel
-            // 
-            this.kryptonGroupBox4.Panel.Controls.Add(this.btnImportExcel);
-            this.kryptonGroupBox4.Panel.Controls.Add(this.btnConfig);
-            this.kryptonGroupBox4.Size = new System.Drawing.Size(496, 241);
-            this.kryptonGroupBox4.TabIndex = 51;
-            // 
             // UserControl1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(18F, 45F);
@@ -322,12 +322,20 @@ namespace TestProj
             this.Controls.Add(this.kryptonPanel1);
             this.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Padding = new System.Windows.Forms.Padding(0, 0, 0, 20);
             this.Name = "UserControl1";
+            this.Padding = new System.Windows.Forms.Padding(0, 0, 0, 20);
             this.Size = new System.Drawing.Size(3840, 2400);
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).EndInit();
             this.kryptonPanel1.ResumeLayout(false);
             this.kryptonPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox4.Panel)).EndInit();
+            this.kryptonGroupBox4.Panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox4)).EndInit();
+            this.kryptonGroupBox4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox3.Panel)).EndInit();
+            this.kryptonGroupBox3.Panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox3)).EndInit();
+            this.kryptonGroupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox2.Panel)).EndInit();
             this.kryptonGroupBox2.Panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox2)).EndInit();
@@ -338,14 +346,6 @@ namespace TestProj
             this.kryptonGroupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.cmbTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox3.Panel)).EndInit();
-            this.kryptonGroupBox3.Panel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox3)).EndInit();
-            this.kryptonGroupBox3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox4.Panel)).EndInit();
-            this.kryptonGroupBox4.Panel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox4)).EndInit();
-            this.kryptonGroupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

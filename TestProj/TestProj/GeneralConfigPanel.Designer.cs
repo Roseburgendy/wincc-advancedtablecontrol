@@ -113,7 +113,7 @@ namespace TestProj
             this.kryptonNavigator1.Pages.AddRange(new Krypton.Navigator.KryptonPage[] {
             this.kryptonPage1,
             this.kryptonPage2});
-            this.kryptonNavigator1.SelectedIndex = 1;
+            this.kryptonNavigator1.SelectedIndex = 0;
             this.kryptonNavigator1.Size = new System.Drawing.Size(1728, 989);
             this.kryptonNavigator1.TabIndex = 0;
             // 
@@ -169,6 +169,7 @@ namespace TestProj
             this.pnlLeftHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlLeftHeader.Location = new System.Drawing.Point(0, 0);
             this.pnlLeftHeader.Margin = new System.Windows.Forms.Padding(2);
+            this.pnlLeftHeader.MinimumSize = new System.Drawing.Size(410, 91);
             this.pnlLeftHeader.Name = "pnlLeftHeader";
             this.pnlLeftHeader.Size = new System.Drawing.Size(410, 91);
             this.pnlLeftHeader.TabIndex = 0;
@@ -176,10 +177,10 @@ namespace TestProj
             // btnAdd
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd.Location = new System.Drawing.Point(234, 17);
+            this.btnAdd.Location = new System.Drawing.Point(198, 22);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(176, 56);
+            this.btnAdd.Size = new System.Drawing.Size(196, 56);
             this.btnAdd.TabIndex = 1;
             this.btnAdd.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnAdd.Values.Text = "新建";
@@ -187,7 +188,7 @@ namespace TestProj
             // 
             // lblTemplatesHeader
             // 
-            this.lblTemplatesHeader.Location = new System.Drawing.Point(19, 23);
+            this.lblTemplatesHeader.Location = new System.Drawing.Point(23, 22);
             this.lblTemplatesHeader.Margin = new System.Windows.Forms.Padding(2);
             this.lblTemplatesHeader.Name = "lblTemplatesHeader";
             this.lblTemplatesHeader.Size = new System.Drawing.Size(132, 42);
@@ -693,18 +694,18 @@ namespace TestProj
             this.btnBatchDecimal.Location = new System.Drawing.Point(15, 9);
             this.btnBatchDecimal.Margin = new System.Windows.Forms.Padding(2);
             this.btnBatchDecimal.Name = "btnBatchDecimal";
-            this.btnBatchDecimal.Size = new System.Drawing.Size(310, 65);
+            this.btnBatchDecimal.Size = new System.Drawing.Size(368, 65);
             this.btnBatchDecimal.TabIndex = 1;
             this.btnBatchDecimal.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnBatchDecimal.Values.Text = "批量精确位数…";
             this.btnBatchDecimal.Click += new System.EventHandler(this.BtnBatchDecimal_Click);
-            //
+            // 
             // btnChangePassword
-            //
-            this.btnChangePassword.Location = new System.Drawing.Point(370, 9);
+            // 
+            this.btnChangePassword.Location = new System.Drawing.Point(445, 9);
             this.btnChangePassword.Margin = new System.Windows.Forms.Padding(2);
             this.btnChangePassword.Name = "btnChangePassword";
-            this.btnChangePassword.Size = new System.Drawing.Size(270, 65);
+            this.btnChangePassword.Size = new System.Drawing.Size(376, 65);
             this.btnChangePassword.TabIndex = 3;
             this.btnChangePassword.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnChangePassword.Values.Text = "设置管理员密码";
