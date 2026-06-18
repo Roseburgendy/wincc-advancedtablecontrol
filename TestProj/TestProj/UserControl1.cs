@@ -99,6 +99,10 @@ namespace TestProj
             btnTodayQuery.Values.Text       = LangHelper.Get("UC_TodayQuery");
             btnPrevDay.Values.Text          = LangHelper.Get("UC_PrevDay");
             btnNextDay.Values.Text          = LangHelper.Get("UC_NextDay");
+            kryptonGroupBox4.Values.Heading = LangHelper.Get("UC_GrpAdmin");
+            kryptonGroupBox3.Values.Heading = LangHelper.Get("UC_GrpArchive");
+            kryptonGroupBox2.Values.Heading = LangHelper.Get("UC_GrpExport");
+            kryptonGroupBox1.Values.Heading = LangHelper.Get("UC_GrpQuery");
             // btnLogin text is managed by RefreshPermissions()
             RefreshPermissions();
 
@@ -162,10 +166,11 @@ namespace TestProj
         {
             bool isAdmin = AuthManager.IsAdmin;
             // 非管理员时直接隐藏，管理员时可见但查询中禁用
-            btnConfig.Visible      = isAdmin;
-            btnConfig.Enabled      = isAdmin && !_queryRunning;
-            btnImportExcel.Visible = isAdmin;
-            btnImportExcel.Enabled = isAdmin && !_queryRunning;
+            btnConfig.Visible           = isAdmin;
+            btnConfig.Enabled           = isAdmin && !_queryRunning;
+            btnImportExcel.Visible      = isAdmin;
+            btnImportExcel.Enabled      = isAdmin && !_queryRunning;
+            kryptonGroupBox4.Visible    = isAdmin;
             // 备份按钮可见性同时受 isAdmin 和 AutoConnectBackup 控制，统一由 RefreshBackupButtons 处理
             RefreshBackupButtons();
             btnLogin.Values.Text  = isAdmin ? LangHelper.Get("UC_Logout") : LangHelper.Get("UC_AdminLogin");
@@ -717,10 +722,12 @@ namespace TestProj
         {
             bool isAdmin     = AuthManager.IsAdmin;
             bool autoConnect = ConfigManager.Config?.AutoConnectBackup ?? false;
-            btnConnectBackup.Visible    = isAdmin && !autoConnect;
-            btnDisconnectBackup.Visible = isAdmin && !autoConnect;
+            bool showBackup  = isAdmin && !autoConnect;
+            btnConnectBackup.Visible    = showBackup;
+            btnDisconnectBackup.Visible = showBackup;
             btnConnectBackup.Enabled    = isAdmin && !_queryRunning;
             btnDisconnectBackup.Enabled = isAdmin && !_queryRunning;
+            kryptonGroupBox3.Visible    = showBackup;
         }
 
         /// <summary>连接备份按钮点击事件。</summary>
