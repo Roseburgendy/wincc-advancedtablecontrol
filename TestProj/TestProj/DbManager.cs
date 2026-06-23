@@ -26,14 +26,23 @@ namespace TestProj
                 return _conn;
 
             HMIRuntime hmirt = new HMIRuntime();
-            string catalog = hmirt.Tags["@DatasourceNameRT"].Read().ToString();
-            string pcName = hmirt.Tags["@LocalMachineName"].Read().ToString();
+
+            object catalogRaw = hmirt.Tags["@DatasourceNameRT"].Read();
+            if (catalogRaw == null)
+                throw new Exception("WinCC 项目未激活，请先启动 WinCC 运行时并打开项目后再加载控件。");
+            string catalog = catalogRaw.ToString();
+
+            object pcNameRaw = hmirt.Tags["@LocalMachineName"].Read();
+            if (pcNameRaw == null)
+                throw new Exception("无法读取本机名称，请确认 WinCC 运行时已正常启动。");
+            string pcName = pcNameRaw.ToString();
 
             if (ConfigManager.Config == null)
             {
-                string dtname      = hmirt.Tags["@DatasourceNameRT"].Read().ToString();
+                if (hmirt.ActiveProject == null)
+                    throw new Exception("WinCC 活动项目为空，请先在 WinCC 中打开一个项目。");
                 string projectPath = hmirt.ActiveProject.Path;
-                ConfigManager.Init(projectPath, dtname);
+                ConfigManager.Init(projectPath, catalog);
             }
             string connStr = $"Provider=WinCCOLEDBProvider.1;" +
                              $"Catalog={catalog};" +
@@ -65,8 +74,12 @@ namespace TestProj
             try
             {
                 HMIRuntime hmirt = new HMIRuntime();
-                string pcName = hmirt.Tags["@LocalMachineName"].Read().ToString();
-                string catalog = hmirt.Tags["@DatasourceNameRT"].Read().ToString();
+                object pcNameRaw2  = hmirt.Tags["@LocalMachineName"].Read();
+                object catalogRaw2 = hmirt.Tags["@DatasourceNameRT"].Read();
+                if (pcNameRaw2 == null || catalogRaw2 == null)
+                    throw new Exception("WinCC 运行时标签不可读，请确认项目已激活。");
+                string pcName  = pcNameRaw2.ToString();
+                string catalog = catalogRaw2.ToString();
 
                 string sqlConnStr = $"Server={pcName}\\WINCC;" +
                                     $"Database={catalog};" +

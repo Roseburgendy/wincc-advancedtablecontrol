@@ -25,9 +25,10 @@ namespace TestProj
             {
                 DbManager.GetConnection(); // 内部会触发 ConfigManager.Init
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show($"初始化连接失败: {ex.Message}", "错误");
+                // 设计时（WinCC 画面编辑器放置控件）WinCC 未激活，连接必然失败，静默退出。
+                // 运行时激活后画面重新加载，届时连接正常。
                 return;
             }
 
