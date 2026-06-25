@@ -1,4 +1,4 @@
-namespace TestProj
+﻿namespace WINCCReporter
 {
     partial class BackupProgressForm
     {

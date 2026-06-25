@@ -1,7 +1,7 @@
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace TestProj
+namespace WINCCReporter
 {
     internal static class AuthManager
     {

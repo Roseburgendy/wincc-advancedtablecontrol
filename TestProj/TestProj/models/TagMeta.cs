@@ -1,7 +1,7 @@
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace TestProj.Models
+namespace WINCCReporter.Models
 {
     // JSON 里 tagMeta 数组的单项
     public class TagMeta

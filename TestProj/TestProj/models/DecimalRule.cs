@@ -1,4 +1,4 @@
-namespace TestProj.Models
+﻿namespace WINCCReporter.Models
 {
     /// <summary>
     /// 一条批量精确位数规则：TagName 以 Prefix 开头的变量统一设为 DecimalPlaces 位。

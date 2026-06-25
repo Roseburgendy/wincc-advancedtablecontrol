@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TestProj.Properties {
+namespace WINCCReporter.Properties {
     using System;
     
     

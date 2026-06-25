@@ -1,11 +1,11 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TestProj
+namespace WINCCReporter
 {
     /// <summary>
     /// 连接备份归档的进度与结果对话框。

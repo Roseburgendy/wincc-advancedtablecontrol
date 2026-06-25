@@ -1,13 +1,13 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using FontAwesome.Sharp;
-using TestProj.Models;
+using WINCCReporter.Models;
 
-namespace TestProj
+namespace WINCCReporter
 {
     public partial class TagConfigPanel : Krypton.Toolkit.KryptonForm
     {

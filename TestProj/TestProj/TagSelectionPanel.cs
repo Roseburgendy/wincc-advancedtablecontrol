@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using TestProj.Models;
+using WINCCReporter.Models;
 
-namespace TestProj
+namespace WINCCReporter
 {
     public partial class TagSelectionPanel : Krypton.Toolkit.KryptonForm
     {

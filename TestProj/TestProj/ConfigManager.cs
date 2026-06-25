@@ -2,9 +2,9 @@
 using System.IO;
 using System.Text;
 using Newtonsoft.Json;
-using TestProj.Models;
+using WINCCReporter.Models;
 
-namespace TestProj
+namespace WINCCReporter
 {
     internal class ConfigManager
     {

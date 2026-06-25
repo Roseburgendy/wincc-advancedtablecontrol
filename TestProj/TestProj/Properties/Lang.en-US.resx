@@ -600,4 +600,7 @@
   <data name="Backup_DisconnectSuccessDetail" xml:space="preserve">
     <value>has been successfully disconnected.</value>
   </data>
+  <data name="UC_RowCount" xml:space="preserve">
+    <value>{0} records</value>
+  </data>
 </root>

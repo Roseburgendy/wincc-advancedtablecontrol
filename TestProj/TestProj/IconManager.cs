@@ -1,9 +1,9 @@
-using System;
+﻿using System;
 using System.Drawing;
 using FontAwesome.Sharp;
 using Krypton.Toolkit;
 
-namespace TestProj
+namespace WINCCReporter
 {
     /// <summary>
     /// Generates theme-aware button icons using FontAwesome.Sharp.

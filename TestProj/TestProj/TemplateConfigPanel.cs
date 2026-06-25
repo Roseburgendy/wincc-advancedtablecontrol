@@ -4,9 +4,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 using Newtonsoft.Json;
-using TestProj.Models;
+using WINCCReporter.Models;
 using AutoScaleHelper;
-namespace TestProj
+namespace WINCCReporter
 {
     public partial class TemplateConfigPanel : Krypton.Toolkit.KryptonForm
     {

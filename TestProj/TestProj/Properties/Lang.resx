@@ -600,4 +600,7 @@
   <data name="Backup_DisconnectSuccessDetail" xml:space="preserve">
     <value>已成功断开连接。</value>
   </data>
+  <data name="UC_RowCount" xml:space="preserve">
+    <value>共 {0} 条记录</value>
+  </data>
 </root>

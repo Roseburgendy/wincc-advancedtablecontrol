@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace TestProj
+namespace WINCCReporter
 {
     public partial class ExcelImportConfigForm : Krypton.Toolkit.KryptonForm
     {

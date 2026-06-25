@@ -7,8 +7,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{EF2960B4-D547-49DE-B8AA-889069084923}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>TestProj</RootNamespace>
-    <AssemblyName>TestProj</AssemblyName>
+    <RootNamespace>WINCCReporter</RootNamespace>
+    <AssemblyName>WINCCReporter</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

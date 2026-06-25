@@ -8,8 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>TestProj.Tests</RootNamespace>
-    <AssemblyName>TestProj.Tests</AssemblyName>
+    <RootNamespace>WINCCReporter.Tests</RootNamespace>
+    <AssemblyName>WINCCReporter.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -85,9 +85,9 @@
   </ItemGroup>
   <!-- Reference the main control project -->
   <ItemGroup>
-    <ProjectReference Include="..\TestProj\TestProj.csproj">
+    <ProjectReference Include="..\TestProj\WINCCReporter.csproj">
       <Project>{EF2960B4-D547-49DE-B8AA-889069084923}</Project>
-      <Name>TestProj</Name>
+      <Name>WINCCReporter</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

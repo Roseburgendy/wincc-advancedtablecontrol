@@ -1,9 +1,9 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 
-namespace TestProj
+namespace WINCCReporter
 {
     public partial class BackupConnectForm : Krypton.Toolkit.KryptonForm
     {

@@ -8,8 +8,8 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using FontAwesome.Sharp;
-using TestProj.Models;
-namespace TestProj
+using WINCCReporter.Models;
+namespace WINCCReporter
 {
     public partial class UserControl1: UserControl
     {
@@ -802,7 +802,7 @@ namespace TestProj
             dataGridView1.DataSource = null;
             dataGridView1.Columns.Clear();
             dataGridView1.DataSource = table;
-            lblRowCount.Values.Text = $"共 {table.Rows.Count} 条记录";
+            lblRowCount.Values.Text = string.Format(LangHelper.Get("UC_RowCount"), table.Rows.Count);
 
             // 列头换行 + 高度自适应（同时显示 TagName 和 DisplayName）
             dataGridView1.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.True;

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -7,9 +7,9 @@ using System.Linq;
 using System.Windows.Forms;
 using FontAwesome.Sharp;
 using Newtonsoft.Json;
-using TestProj.Models;
+using WINCCReporter.Models;
 
-namespace TestProj
+namespace WINCCReporter
 {
     public partial class GeneralConfigPanel : Krypton.Toolkit.KryptonForm
     {

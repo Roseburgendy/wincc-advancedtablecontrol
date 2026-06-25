@@ -1,11 +1,11 @@
-using CCHMIRUNTIME;
+﻿using CCHMIRUNTIME;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace TestProj
+namespace WINCCReporter
 {
     /// <summary>
     /// 管理 WinCC 备份归档的连接与断开

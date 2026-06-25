@@ -1,8 +1,8 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace TestProj
+namespace WINCCReporter
 {
     /// <summary>
     /// 选择并断开 WinCC 备份归档的对话框。
