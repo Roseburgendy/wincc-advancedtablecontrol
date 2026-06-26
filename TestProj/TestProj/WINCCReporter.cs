@@ -11,14 +11,14 @@ using FontAwesome.Sharp;
 using WINCCReporter.Models;
 namespace WINCCReporter
 {
-    public partial class UserControl1: UserControl
+    public partial class WINCCReporter: UserControl
     {
         private List<TagMeta> _tagMetaList = new List<TagMeta>(); // 变量信息
         private ReportTemplate _currentTemplate; // 模板对应选中变量名称和顺序
         private DateTime _quickQueryDate = DateTime.Today; // 快捷日期查询的当前日期
         private Label _lblNoData;    // 无数据时的叠加提示标签
         private bool _queryRunning;  // 标记查询进行中（用于权限刷新）
-        public UserControl1()
+        public WINCCReporter()
         {
             InitializeComponent();
             try

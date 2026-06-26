@@ -1,6 +1,6 @@
-﻿namespace WINCCReporter
+namespace WINCCReporter
 {
-    partial class UserControl1
+    partial class WINCCReporter
     {
         private System.ComponentModel.IContainer components = null;
 
@@ -16,7 +16,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserControl1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WINCCReporter));
             this.kryptonManager = new Krypton.Toolkit.KryptonManager(this.components);
             this.kryptonPanel1 = new Krypton.Toolkit.KryptonPanel();
             this.kryptonGroupBox4 = new Krypton.Toolkit.KryptonGroupBox();
@@ -83,26 +83,26 @@
             this.kryptonPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.kryptonPanel1.Location = new System.Drawing.Point(0, 0);
             this.kryptonPanel1.Name = "kryptonPanel1";
-            this.kryptonPanel1.Size = new System.Drawing.Size(3840, 260);
+            this.kryptonPanel1.Size = new System.Drawing.Size(2560, 174);
             this.kryptonPanel1.TabIndex = 0;
             // 
             // kryptonGroupBox4
             // 
-            this.kryptonGroupBox4.Location = new System.Drawing.Point(1412, 3);
+            this.kryptonGroupBox4.Location = new System.Drawing.Point(941, 2);
             // 
             // kryptonGroupBox4.Panel
             // 
             this.kryptonGroupBox4.Panel.Controls.Add(this.btnImportExcel);
             this.kryptonGroupBox4.Panel.Controls.Add(this.btnConfig);
-            this.kryptonGroupBox4.Size = new System.Drawing.Size(408, 241);
+            this.kryptonGroupBox4.Size = new System.Drawing.Size(272, 171);
             this.kryptonGroupBox4.TabIndex = 51;
             // 
             // btnImportExcel
             // 
             this.btnImportExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnImportExcel.Location = new System.Drawing.Point(18, 15);
+            this.btnImportExcel.Location = new System.Drawing.Point(12, 10);
             this.btnImportExcel.Name = "btnImportExcel";
-            this.btnImportExcel.Size = new System.Drawing.Size(358, 76);
+            this.btnImportExcel.Size = new System.Drawing.Size(239, 51);
             this.btnImportExcel.TabIndex = 31;
             this.btnImportExcel.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnImportExcel.Values.Text = "批量导入模板";
@@ -111,9 +111,9 @@
             // btnConfig
             // 
             this.btnConfig.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnConfig.Location = new System.Drawing.Point(18, 109);
+            this.btnConfig.Location = new System.Drawing.Point(12, 73);
             this.btnConfig.Name = "btnConfig";
-            this.btnConfig.Size = new System.Drawing.Size(358, 76);
+            this.btnConfig.Size = new System.Drawing.Size(239, 51);
             this.btnConfig.TabIndex = 16;
             this.btnConfig.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnConfig.Values.Text = "配置";
@@ -121,20 +121,20 @@
             // 
             // kryptonGroupBox3
             // 
-            this.kryptonGroupBox3.Location = new System.Drawing.Point(988, 3);
+            this.kryptonGroupBox3.Location = new System.Drawing.Point(659, 2);
             // 
             // kryptonGroupBox3.Panel
             // 
             this.kryptonGroupBox3.Panel.Controls.Add(this.btnConnectBackup);
             this.kryptonGroupBox3.Panel.Controls.Add(this.btnDisconnectBackup);
-            this.kryptonGroupBox3.Size = new System.Drawing.Size(361, 241);
+            this.kryptonGroupBox3.Size = new System.Drawing.Size(241, 172);
             this.kryptonGroupBox3.TabIndex = 50;
             // 
             // btnConnectBackup
             // 
-            this.btnConnectBackup.Location = new System.Drawing.Point(29, 15);
+            this.btnConnectBackup.Location = new System.Drawing.Point(19, 10);
             this.btnConnectBackup.Name = "btnConnectBackup";
-            this.btnConnectBackup.Size = new System.Drawing.Size(304, 76);
+            this.btnConnectBackup.Size = new System.Drawing.Size(203, 51);
             this.btnConnectBackup.TabIndex = 40;
             this.btnConnectBackup.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnConnectBackup.Values.Text = "连接备份";
@@ -143,9 +143,9 @@
             // 
             // btnDisconnectBackup
             // 
-            this.btnDisconnectBackup.Location = new System.Drawing.Point(29, 109);
+            this.btnDisconnectBackup.Location = new System.Drawing.Point(19, 73);
             this.btnDisconnectBackup.Name = "btnDisconnectBackup";
-            this.btnDisconnectBackup.Size = new System.Drawing.Size(304, 76);
+            this.btnDisconnectBackup.Size = new System.Drawing.Size(203, 51);
             this.btnDisconnectBackup.TabIndex = 41;
             this.btnDisconnectBackup.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnDisconnectBackup.Values.Text = "断开备份";
@@ -154,21 +154,21 @@
             // 
             // kryptonGroupBox2
             // 
-            this.kryptonGroupBox2.Location = new System.Drawing.Point(1870, 3);
+            this.kryptonGroupBox2.Location = new System.Drawing.Point(1241, 2);
             // 
             // kryptonGroupBox2.Panel
             // 
             this.kryptonGroupBox2.Panel.Controls.Add(this.PrintBtn);
             this.kryptonGroupBox2.Panel.Controls.Add(this.ExportExcelBtn);
-            this.kryptonGroupBox2.Size = new System.Drawing.Size(413, 241);
+            this.kryptonGroupBox2.Size = new System.Drawing.Size(276, 178);
             this.kryptonGroupBox2.TabIndex = 49;
             // 
             // PrintBtn
             // 
             this.PrintBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.PrintBtn.Location = new System.Drawing.Point(56, 112);
+            this.PrintBtn.Location = new System.Drawing.Point(23, 74);
             this.PrintBtn.Name = "PrintBtn";
-            this.PrintBtn.Size = new System.Drawing.Size(290, 76);
+            this.PrintBtn.Size = new System.Drawing.Size(230, 51);
             this.PrintBtn.TabIndex = 32;
             this.PrintBtn.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.PrintBtn.Values.Text = "打印";
@@ -177,9 +177,9 @@
             // ExportExcelBtn
             // 
             this.ExportExcelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ExportExcelBtn.Location = new System.Drawing.Point(56, 18);
+            this.ExportExcelBtn.Location = new System.Drawing.Point(23, 13);
             this.ExportExcelBtn.Name = "ExportExcelBtn";
-            this.ExportExcelBtn.Size = new System.Drawing.Size(290, 76);
+            this.ExportExcelBtn.Size = new System.Drawing.Size(230, 51);
             this.ExportExcelBtn.TabIndex = 15;
             this.ExportExcelBtn.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.ExportExcelBtn.Values.Text = "导出到EXCEL";
@@ -187,7 +187,7 @@
             // 
             // kryptonGroupBox1
             // 
-            this.kryptonGroupBox1.Location = new System.Drawing.Point(2349, 3);
+            this.kryptonGroupBox1.Location = new System.Drawing.Point(1560, 3);
             // 
             // kryptonGroupBox1.Panel
             // 
@@ -195,14 +195,14 @@
             this.kryptonGroupBox1.Panel.Controls.Add(this.btnTodayQuery);
             this.kryptonGroupBox1.Panel.Controls.Add(this.btnNextDay);
             this.kryptonGroupBox1.Panel.Controls.Add(this.TimeSelectBtn);
-            this.kryptonGroupBox1.Size = new System.Drawing.Size(773, 241);
+            this.kryptonGroupBox1.Size = new System.Drawing.Size(548, 177);
             this.kryptonGroupBox1.TabIndex = 48;
             // 
             // btnPrevDay
             // 
-            this.btnPrevDay.Location = new System.Drawing.Point(41, 18);
+            this.btnPrevDay.Location = new System.Drawing.Point(19, 12);
             this.btnPrevDay.Name = "btnPrevDay";
-            this.btnPrevDay.Size = new System.Drawing.Size(186, 76);
+            this.btnPrevDay.Size = new System.Drawing.Size(132, 51);
             this.btnPrevDay.TabIndex = 43;
             this.btnPrevDay.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnPrevDay.Values.Text = "前一天";
@@ -210,9 +210,9 @@
             // 
             // btnTodayQuery
             // 
-            this.btnTodayQuery.Location = new System.Drawing.Point(257, 18);
+            this.btnTodayQuery.Location = new System.Drawing.Point(171, 12);
             this.btnTodayQuery.Name = "btnTodayQuery";
-            this.btnTodayQuery.Size = new System.Drawing.Size(260, 76);
+            this.btnTodayQuery.Size = new System.Drawing.Size(190, 51);
             this.btnTodayQuery.TabIndex = 42;
             this.btnTodayQuery.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnTodayQuery.Values.Text = "今日查询";
@@ -220,9 +220,9 @@
             // 
             // btnNextDay
             // 
-            this.btnNextDay.Location = new System.Drawing.Point(551, 18);
+            this.btnNextDay.Location = new System.Drawing.Point(367, 12);
             this.btnNextDay.Name = "btnNextDay";
-            this.btnNextDay.Size = new System.Drawing.Size(186, 76);
+            this.btnNextDay.Size = new System.Drawing.Size(156, 51);
             this.btnNextDay.TabIndex = 44;
             this.btnNextDay.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnNextDay.Values.Text = "后一天";
@@ -231,9 +231,9 @@
             // TimeSelectBtn
             // 
             this.TimeSelectBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.TimeSelectBtn.Location = new System.Drawing.Point(41, 109);
+            this.TimeSelectBtn.Location = new System.Drawing.Point(19, 75);
             this.TimeSelectBtn.Name = "TimeSelectBtn";
-            this.TimeSelectBtn.Size = new System.Drawing.Size(696, 76);
+            this.TimeSelectBtn.Size = new System.Drawing.Size(504, 51);
             this.TimeSelectBtn.TabIndex = 33;
             this.TimeSelectBtn.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.TimeSelectBtn.Values.Text = "时间选择";
@@ -242,35 +242,35 @@
             // kryptonLabel1
             // 
             this.kryptonLabel1.LabelStyle = Krypton.Toolkit.LabelStyle.NormalControl;
-            this.kryptonLabel1.Location = new System.Drawing.Point(47, 77);
+            this.kryptonLabel1.Location = new System.Drawing.Point(31, 51);
             this.kryptonLabel1.Name = "kryptonLabel1";
-            this.kryptonLabel1.Size = new System.Drawing.Size(428, 128);
-            this.kryptonLabel1.StateCommon.ShortText.Font = new System.Drawing.Font("DengXian", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.kryptonLabel1.Size = new System.Drawing.Size(321, 102);
+            this.kryptonLabel1.StateCommon.ShortText.Font = new System.Drawing.Font("DengXian", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.kryptonLabel1.TabIndex = 39;
             this.kryptonLabel1.Values.Image = ((System.Drawing.Image)(resources.GetObject("kryptonLabel1.Values.Image")));
             this.kryptonLabel1.Values.Text = "中源技术";
             // 
             // lblQueryRange
             // 
-            this.lblQueryRange.Location = new System.Drawing.Point(3214, 125);
+            this.lblQueryRange.Location = new System.Drawing.Point(2143, 83);
             this.lblQueryRange.Name = "lblQueryRange";
-            this.lblQueryRange.Size = new System.Drawing.Size(600, 50);
+            this.lblQueryRange.Size = new System.Drawing.Size(400, 34);
             this.lblQueryRange.TabIndex = 46;
             this.lblQueryRange.Values.Text = "";
-            //
+            // 
             // lblRowCount
-            //
-            this.lblRowCount.Location = new System.Drawing.Point(3214, 182);
+            // 
+            this.lblRowCount.Location = new System.Drawing.Point(2143, 122);
             this.lblRowCount.Name = "lblRowCount";
-            this.lblRowCount.Size = new System.Drawing.Size(600, 50);
+            this.lblRowCount.Size = new System.Drawing.Size(400, 34);
             this.lblRowCount.TabIndex = 47;
             this.lblRowCount.Values.Text = "";
-            //
+            // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(554, 113);
+            this.btnLogin.Location = new System.Drawing.Point(369, 75);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(234, 76);
+            this.btnLogin.Size = new System.Drawing.Size(247, 51);
             this.btnLogin.TabIndex = 45;
             this.btnLogin.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnLogin.Values.Text = "管理员登录";
@@ -279,7 +279,7 @@
             // label3
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.Location = new System.Drawing.Point(3237, 50);
+            this.label3.Location = new System.Drawing.Point(2114, 33);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(132, 42);
             this.label3.TabIndex = 10;
@@ -288,9 +288,9 @@
             // cmbTemplate
             // 
             this.cmbTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbTemplate.Location = new System.Drawing.Point(3375, 50);
+            this.cmbTemplate.Location = new System.Drawing.Point(2251, 33);
             this.cmbTemplate.Name = "cmbTemplate";
-            this.cmbTemplate.Size = new System.Drawing.Size(439, 42);
+            this.cmbTemplate.Size = new System.Drawing.Size(293, 42);
             this.cmbTemplate.TabIndex = 18;
             this.cmbTemplate.SelectedIndexChanged += new System.EventHandler(this.CmbTemplate_SelectedIndexChanged);
             // 
@@ -303,38 +303,38 @@
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 268);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 180);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersWidth = 72;
-            this.dataGridView1.RowTemplate.Height = 50;
-            this.dataGridView1.Size = new System.Drawing.Size(3840, 2112);
+            this.dataGridView1.RowHeadersWidth = 48;
+            this.dataGridView1.RowTemplate.Height = 33;
+            this.dataGridView1.Size = new System.Drawing.Size(2560, 1070);
             this.dataGridView1.TabIndex = 1;
             // 
             // progressBar1
             // 
             this.progressBar1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.progressBar1.Location = new System.Drawing.Point(0, 260);
+            this.progressBar1.Location = new System.Drawing.Point(0, 174);
             this.progressBar1.MarqueeAnimationSpeed = 30;
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(3840, 8);
+            this.progressBar1.Size = new System.Drawing.Size(2560, 6);
             this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.progressBar1.TabIndex = 2;
             this.progressBar1.Visible = false;
             // 
-            // UserControl1
+            // WINCCReporter
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(18F, 45F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.kryptonPanel1);
-            this.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "UserControl1";
+            this.Name = "WINCCReporter";
             this.Padding = new System.Windows.Forms.Padding(0, 0, 0, 20);
-            this.Size = new System.Drawing.Size(3840, 2400);
+            this.Size = new System.Drawing.Size(2560, 1270);
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).EndInit();
             this.kryptonPanel1.ResumeLayout(false);
             this.kryptonPanel1.PerformLayout();
