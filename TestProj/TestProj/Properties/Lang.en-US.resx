@@ -133,7 +133,7 @@
     <value>Language:</value>
   </data>
   <data name="UC_SelectTemplate" xml:space="preserve">
-    <value>Select Template</value>
+    <value>Template</value>
   </data>
   <data name="UC_ImportExcel" xml:space="preserve">
     <value>Batch Import</value>
@@ -472,7 +472,7 @@
     <value>Connect Backup</value>
   </data>
   <data name="UC_DisconnectBackup" xml:space="preserve">
-    <value>Disconnect Backup</value>
+    <value>Disconnect</value>
   </data>
   <data name="UC_TodayQuery" xml:space="preserve">
     <value>Today's Query</value>
