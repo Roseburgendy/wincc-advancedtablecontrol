@@ -134,8 +134,8 @@ namespace WINCCReporter
             btnPrevDay.Values.Image          = IconManager.Make(IconChar.ChevronLeft,   mode, 32);
             btnNextDay.Values.Image          = IconManager.Make(IconChar.ChevronRight,  mode, 32);
             btnLogin.Values.Image            = AuthManager.IsAdmin
-                ? IconManager.Make(IconChar.LockOpen, mode, 32)
-                : IconManager.Make(IconChar.Lock,     mode, 32);
+                ? IconManager.Make(IconChar.LockOpen, mode, 44)
+                : IconManager.Make(IconChar.Lock,     mode, 44);
         }
 
         #endregion
@@ -175,8 +175,8 @@ namespace WINCCReporter
             RefreshBackupButtons();
             btnLogin.Values.Text  = isAdmin ? LangHelper.Get("UC_Logout") : LangHelper.Get("UC_AdminLogin");
             btnLogin.Values.Image = isAdmin
-                ? IconManager.Make(IconChar.LockOpen, kryptonManager.GlobalPaletteMode, 40)
-                : IconManager.Make(IconChar.Lock,     kryptonManager.GlobalPaletteMode, 40);
+                ? IconManager.Make(IconChar.LockOpen, kryptonManager.GlobalPaletteMode, 44)
+                : IconManager.Make(IconChar.Lock,     kryptonManager.GlobalPaletteMode, 44);
         }
 
         private void BtnLogin_Click(object sender, EventArgs e)
