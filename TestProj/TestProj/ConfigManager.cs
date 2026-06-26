@@ -18,12 +18,12 @@ namespace WINCCReporter
 
         /// <summary>
         /// 根据 WinCC 项目目录和项目名称初始化，配置文件位于
-        /// {projectPath}\WinCCReporter\{projectName}.json。
+        /// {projectPath}\GraCS\WINCCReporterJSON\{projectName}.json。
         /// 路径完全由 WinCC 运行时标签决定，无需额外存储。
         /// </summary>
         public static void Init(string projectPath, string projectName)
         {
-            string dir  = Path.Combine(projectPath, "WinCCReporter");
+            string dir  = Path.Combine(projectPath, "GraCS", "WINCCReporterJSON");
             _configPath = Path.Combine(dir, $"{projectName}.json");
             LoadConfig();
         }
