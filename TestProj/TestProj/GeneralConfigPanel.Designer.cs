@@ -114,7 +114,7 @@
             this.kryptonPage1,
             this.kryptonPage2});
             this.kryptonNavigator1.SelectedIndex = 1;
-            this.kryptonNavigator1.Size = new System.Drawing.Size(1668, 1009);
+            this.kryptonNavigator1.Size = new System.Drawing.Size(1672, 1013);
             this.kryptonNavigator1.TabIndex = 0;
             // 
             // kryptonPage1
@@ -442,7 +442,7 @@
             this.kryptonPage2.Margin = new System.Windows.Forms.Padding(2);
             this.kryptonPage2.MinimumSize = new System.Drawing.Size(28, 28);
             this.kryptonPage2.Name = "kryptonPage2";
-            this.kryptonPage2.Size = new System.Drawing.Size(1666, 960);
+            this.kryptonPage2.Size = new System.Drawing.Size(1670, 964);
             this.kryptonPage2.Text = "通用设置";
             this.kryptonPage2.ToolTipTitle = "Page ToolTip";
             this.kryptonPage2.UniqueName = "page_general_001";
@@ -613,7 +613,7 @@
             // 
             // kryptonGroupBox1
             // 
-            this.kryptonGroupBox1.Location = new System.Drawing.Point(19, 23);
+            this.kryptonGroupBox1.Location = new System.Drawing.Point(19, 3);
             // 
             // kryptonGroupBox1.Panel
             // 
@@ -621,14 +621,13 @@
             this.kryptonGroupBox1.Panel.Controls.Add(this.cmbTheme);
             this.kryptonGroupBox1.Panel.Controls.Add(this.lblTheme);
             this.kryptonGroupBox1.Panel.Controls.Add(this.lblLanguage);
-            this.kryptonGroupBox1.Size = new System.Drawing.Size(1642, 250);
+            this.kryptonGroupBox1.Size = new System.Drawing.Size(1642, 270);
             this.kryptonGroupBox1.TabIndex = 6;
             // 
             // cmbLanguage
             // 
-            this.cmbLanguage.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cmbLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbLanguage.Location = new System.Drawing.Point(331, 50);
+            this.cmbLanguage.Location = new System.Drawing.Point(331, 41);
             this.cmbLanguage.Margin = new System.Windows.Forms.Padding(2);
             this.cmbLanguage.Name = "cmbLanguage";
             this.cmbLanguage.Size = new System.Drawing.Size(450, 42);
@@ -637,9 +636,8 @@
             // 
             // cmbTheme
             // 
-            this.cmbTheme.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cmbTheme.DefaultPalette = Krypton.Toolkit.PaletteMode.Microsoft365Blue;
-            this.cmbTheme.Location = new System.Drawing.Point(331, 136);
+            this.cmbTheme.Location = new System.Drawing.Point(331, 127);
             this.cmbTheme.Margin = new System.Windows.Forms.Padding(2);
             this.cmbTheme.Name = "cmbTheme";
             this.cmbTheme.Size = new System.Drawing.Size(450, 42);
@@ -648,8 +646,7 @@
             // 
             // lblTheme
             // 
-            this.lblTheme.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lblTheme.Location = new System.Drawing.Point(27, 136);
+            this.lblTheme.Location = new System.Drawing.Point(27, 127);
             this.lblTheme.Margin = new System.Windows.Forms.Padding(2);
             this.lblTheme.Name = "lblTheme";
             this.lblTheme.Size = new System.Drawing.Size(161, 42);
@@ -658,8 +655,7 @@
             // 
             // lblLanguage
             // 
-            this.lblLanguage.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lblLanguage.Location = new System.Drawing.Point(27, 50);
+            this.lblLanguage.Location = new System.Drawing.Point(27, 41);
             this.lblLanguage.Margin = new System.Windows.Forms.Padding(2);
             this.lblLanguage.Name = "lblLanguage";
             this.lblLanguage.Size = new System.Drawing.Size(161, 42);
@@ -672,10 +668,10 @@
             this.pnlGeneralFooter.Controls.Add(this.btnBatchDecimal);
             this.pnlGeneralFooter.Controls.Add(this.btnChangePassword);
             this.pnlGeneralFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlGeneralFooter.Location = new System.Drawing.Point(0, 877);
+            this.pnlGeneralFooter.Location = new System.Drawing.Point(0, 881);
             this.pnlGeneralFooter.Margin = new System.Windows.Forms.Padding(2);
             this.pnlGeneralFooter.Name = "pnlGeneralFooter";
-            this.pnlGeneralFooter.Size = new System.Drawing.Size(1666, 83);
+            this.pnlGeneralFooter.Size = new System.Drawing.Size(1670, 83);
             this.pnlGeneralFooter.TabIndex = 1;
             // 
             // btnSaveGeneral
