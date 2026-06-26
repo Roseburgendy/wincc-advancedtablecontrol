@@ -88,7 +88,7 @@ namespace WINCCReporter
             // 
             // kryptonGroupBox4
             // 
-            this.kryptonGroupBox4.Location = new System.Drawing.Point(664, 12);
+            this.kryptonGroupBox4.Location = new System.Drawing.Point(718, 19);
             // 
             // kryptonGroupBox4.Panel
             // 
@@ -121,7 +121,7 @@ namespace WINCCReporter
             // 
             // kryptonGroupBox3
             // 
-            this.kryptonGroupBox3.Location = new System.Drawing.Point(345, 15);
+            this.kryptonGroupBox3.Location = new System.Drawing.Point(399, 22);
             // 
             // kryptonGroupBox3.Panel
             // 
@@ -154,7 +154,7 @@ namespace WINCCReporter
             // 
             // kryptonGroupBox2
             // 
-            this.kryptonGroupBox2.Location = new System.Drawing.Point(1007, 9);
+            this.kryptonGroupBox2.Location = new System.Drawing.Point(1061, 16);
             // 
             // kryptonGroupBox2.Panel
             // 
@@ -187,7 +187,7 @@ namespace WINCCReporter
             // 
             // kryptonGroupBox1
             // 
-            this.kryptonGroupBox1.Location = new System.Drawing.Point(1340, 9);
+            this.kryptonGroupBox1.Location = new System.Drawing.Point(1394, 16);
             // 
             // kryptonGroupBox1.Panel
             // 
@@ -268,9 +268,9 @@ namespace WINCCReporter
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(39, 127);
+            this.btnLogin.Location = new System.Drawing.Point(44, 143);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(261, 51);
+            this.btnLogin.Size = new System.Drawing.Size(253, 51);
             this.btnLogin.TabIndex = 45;
             this.btnLogin.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnLogin.Values.Text = "管理员登录";
@@ -325,7 +325,7 @@ namespace WINCCReporter
             // 
             // WINCCReporter
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 37F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(20F, 48F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.progressBar1);

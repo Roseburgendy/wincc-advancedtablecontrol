@@ -133,9 +133,7 @@ namespace WINCCReporter
             btnTodayQuery.Values.Image       = IconManager.Make(IconChar.CalendarCheck, mode, 32);
             btnPrevDay.Values.Image          = IconManager.Make(IconChar.ChevronLeft,   mode, 32);
             btnNextDay.Values.Image          = IconManager.Make(IconChar.ChevronRight,  mode, 32);
-            btnLogin.Values.Image            = AuthManager.IsAdmin
-                ? IconManager.Make(IconChar.LockOpen, mode, 44)
-                : IconManager.Make(IconChar.Lock,     mode, 44);
+            btnLogin.Values.Image            = null;
         }
 
         #endregion
@@ -174,9 +172,7 @@ namespace WINCCReporter
             // 备份按钮可见性同时受 isAdmin 和 AutoConnectBackup 控制，统一由 RefreshBackupButtons 处理
             RefreshBackupButtons();
             btnLogin.Values.Text  = isAdmin ? LangHelper.Get("UC_Logout") : LangHelper.Get("UC_AdminLogin");
-            btnLogin.Values.Image = isAdmin
-                ? IconManager.Make(IconChar.LockOpen, kryptonManager.GlobalPaletteMode, 44)
-                : IconManager.Make(IconChar.Lock,     kryptonManager.GlobalPaletteMode, 44);
+            btnLogin.Values.Image = null;
         }
 
         private void BtnLogin_Click(object sender, EventArgs e)

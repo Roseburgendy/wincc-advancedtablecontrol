@@ -621,7 +621,7 @@
             this.kryptonGroupBox1.Panel.Controls.Add(this.cmbTheme);
             this.kryptonGroupBox1.Panel.Controls.Add(this.lblTheme);
             this.kryptonGroupBox1.Panel.Controls.Add(this.lblLanguage);
-            this.kryptonGroupBox1.Size = new System.Drawing.Size(1642, 270);
+            this.kryptonGroupBox1.Size = new System.Drawing.Size(1642, 274);
             this.kryptonGroupBox1.TabIndex = 6;
             // 
             // cmbLanguage
