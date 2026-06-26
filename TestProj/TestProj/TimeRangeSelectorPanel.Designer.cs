@@ -72,7 +72,6 @@
             // 
             // numCount
             // 
-            this.numCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.numCount.Increment = new decimal(new int[] {
             1,
             0,
@@ -101,7 +100,6 @@
             // 
             // numValue
             // 
-            this.numValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.numValue.Increment = new decimal(new int[] {
             1,
             0,
@@ -131,7 +129,6 @@
             // 
             // label6
             // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.Location = new System.Drawing.Point(338, 386);
             this.label6.Margin = new System.Windows.Forms.Padding(2);
             this.label6.Name = "label6";
@@ -141,7 +138,6 @@
             // 
             // label5
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.Location = new System.Drawing.Point(481, 303);
             this.label5.Margin = new System.Windows.Forms.Padding(2);
             this.label5.Name = "label5";
@@ -151,7 +147,6 @@
             // 
             // cmbUnit
             // 
-            this.cmbUnit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbUnit.Items.AddRange(new object[] {
             "1秒",
             "1分钟",
@@ -166,7 +161,6 @@
             // 
             // label4
             // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.Location = new System.Drawing.Point(337, 257);
             this.label4.Margin = new System.Windows.Forms.Padding(2);
             this.label4.Name = "label4";
@@ -176,7 +170,6 @@
             // 
             // label3
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.Location = new System.Drawing.Point(337, 158);
             this.label3.Margin = new System.Windows.Forms.Padding(2);
             this.label3.Name = "label3";
@@ -186,7 +179,6 @@
             // 
             // dtpEndTime
             // 
-            this.dtpEndTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dtpEndTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dtpEndTime.Location = new System.Drawing.Point(556, 204);
             this.dtpEndTime.Margin = new System.Windows.Forms.Padding(2);
@@ -197,7 +189,6 @@
             // 
             // dtpEndDate
             // 
-            this.dtpEndDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dtpEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpEndDate.Location = new System.Drawing.Point(337, 204);
             this.dtpEndDate.Margin = new System.Windows.Forms.Padding(2);
@@ -207,7 +198,6 @@
             // 
             // label2
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.Location = new System.Drawing.Point(337, 53);
             this.label2.Margin = new System.Windows.Forms.Padding(2);
             this.label2.Name = "label2";
@@ -217,7 +207,6 @@
             // 
             // dtpStartTime
             // 
-            this.dtpStartTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dtpStartTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dtpStartTime.Location = new System.Drawing.Point(556, 96);
             this.dtpStartTime.Margin = new System.Windows.Forms.Padding(2);
@@ -229,7 +218,6 @@
             // 
             // dtpStartDate
             // 
-            this.dtpStartDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dtpStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpStartDate.Location = new System.Drawing.Point(337, 96);
             this.dtpStartDate.Margin = new System.Windows.Forms.Padding(2);
@@ -307,6 +295,7 @@
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.groupBox1);
             this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximumSize = new System.Drawing.Size(1100, 900);
             this.MinimumSize = new System.Drawing.Size(1000, 800);
             this.Name = "TimeRangeSelectorPanel";
             this.Text = "TimeRangeSelectorPanel";

@@ -21,8 +21,6 @@
             this.txtDisplayName = new Krypton.Toolkit.KryptonTextBox();
             this.label8 = new Krypton.Toolkit.KryptonLabel();
             this.txtDisplayNameEn = new Krypton.Toolkit.KryptonTextBox();
-            this.label5 = new Krypton.Toolkit.KryptonLabel();
-            this.txtDataType = new Krypton.Toolkit.KryptonTextBox();
             this.label2 = new Krypton.Toolkit.KryptonLabel();
             this.txtDecimalPlaces = new Krypton.Toolkit.KryptonTextBox();
             this.label1 = new Krypton.Toolkit.KryptonLabel();
@@ -34,7 +32,6 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.saveConfigBtn = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupBox1)).BeginInit();
@@ -105,25 +102,7 @@
             this.txtDisplayNameEn.Name = "txtDisplayNameEn";
             this.txtDisplayNameEn.Size = new System.Drawing.Size(743, 43);
             this.txtDisplayNameEn.TabIndex = 5;
-            // 
-            // label5
-            // 
-            this.label5.Location = new System.Drawing.Point(28, 211);
-            this.label5.Margin = new System.Windows.Forms.Padding(2);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(132, 42);
-            this.label5.TabIndex = 6;
-            this.label5.Values.Text = "数据类型";
-            // 
-            // txtDataType
-            // 
-            this.txtDataType.Location = new System.Drawing.Point(208, 211);
-            this.txtDataType.Margin = new System.Windows.Forms.Padding(2);
-            this.txtDataType.Name = "txtDataType";
-            this.txtDataType.ReadOnly = true;
-            this.txtDataType.Size = new System.Drawing.Size(229, 43);
-            this.txtDataType.TabIndex = 7;
-            // 
+            //
             // label2
             // 
             this.label2.Location = new System.Drawing.Point(28, 263);
@@ -173,8 +152,6 @@
             this.groupBox1.Panel.Controls.Add(this.txtDisplayName);
             this.groupBox1.Panel.Controls.Add(this.label8);
             this.groupBox1.Panel.Controls.Add(this.txtDisplayNameEn);
-            this.groupBox1.Panel.Controls.Add(this.label5);
-            this.groupBox1.Panel.Controls.Add(this.txtDataType);
             this.groupBox1.Panel.Controls.Add(this.label2);
             this.groupBox1.Panel.Controls.Add(this.txtDecimalPlaces);
             this.groupBox1.Panel.Controls.Add(this.label1);
@@ -210,7 +187,6 @@
             this.Column2,
             this.Column8,
             this.Column4,
-            this.Column3,
             this.Column5});
             this.dgvTags.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvTags.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
@@ -261,17 +237,7 @@
             this.Column4.HeaderText = "顺序";
             this.Column4.MinimumWidth = 50;
             this.Column4.Name = "Column4";
-            // 
-            // Column3
-            // 
-            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column3.DataPropertyName = "DataType";
-            this.Column3.FillWeight = 10F;
-            this.Column3.HeaderText = "数据类型";
-            this.Column3.MinimumWidth = 60;
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
+            //
             // Column5
             // 
             this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -328,8 +294,6 @@
         private Krypton.Toolkit.KryptonTextBox txtDisplayName;
         private Krypton.Toolkit.KryptonLabel label8;
         private Krypton.Toolkit.KryptonTextBox txtDisplayNameEn;
-        private Krypton.Toolkit.KryptonLabel label5;
-        private Krypton.Toolkit.KryptonTextBox txtDataType;
         private Krypton.Toolkit.KryptonLabel label2;
         private Krypton.Toolkit.KryptonTextBox txtDecimalPlaces;
         private Krypton.Toolkit.KryptonLabel label1;
@@ -342,7 +306,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
     }
 }

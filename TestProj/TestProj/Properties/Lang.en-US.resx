@@ -469,7 +469,7 @@
     <value>Cancel</value>
   </data>
   <data name="UC_ConnectBackup" xml:space="preserve">
-    <value>Connect Backup</value>
+    <value>Connect</value>
   </data>
   <data name="UC_DisconnectBackup" xml:space="preserve">
     <value>Disconnect</value>

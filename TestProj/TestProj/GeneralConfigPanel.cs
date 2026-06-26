@@ -5,7 +5,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using FontAwesome.Sharp;
 using Newtonsoft.Json;
 using WINCCReporter.Models;
 
@@ -73,20 +72,6 @@ namespace WINCCReporter
         /// <summary>根据当前主题重新生成并赋值所有按钮的图标。</summary>
         public void ApplyIcons(Krypton.Toolkit.PaletteMode mode)
         {
-            // Tab 1 — Template Config
-            btnAdd.Values.Image    = IconManager.Make(IconChar.Plus,       mode, 32);
-            btnSave.Values.Image   = IconManager.Make(IconChar.FloppyDisk, mode, 32);
-            btnCancel.Values.Image = IconManager.Make(IconChar.Xmark,      mode, 32);
-            btnClone.Values.Image  = IconManager.Make(IconChar.Copy,       mode, 32);
-            btnDelete.Values.Image = IconManager.Make(IconChar.Trash,      mode, 32);
-            btnSelectTags.Values.Image       = IconManager.Make(IconChar.Tags,       mode, 32);
-            btnConfigTag.Values.Image        = IconManager.Make(IconChar.Wrench,     mode, 32);
-
-            // Tab 2 — General Settings
-            btnSaveGeneral.Values.Image      = IconManager.Make(IconChar.FloppyDisk, mode, 32);
-            btnBatchDecimal.Values.Image     = IconManager.Make(IconChar.Bolt,       mode, 32);
-            btnBrowseBackupPath.Values.Image = IconManager.Make(IconChar.FolderOpen, mode, 22);
-            btnChangePassword.Values.Image   = IconManager.Make(IconChar.Key,        mode, 32);
         }
 
         /// <summary>刷新整个窗体的 UI 文字为当前语言。</summary>

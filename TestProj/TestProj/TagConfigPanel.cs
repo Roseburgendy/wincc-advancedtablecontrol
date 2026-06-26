@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using FontAwesome.Sharp;
 using WINCCReporter.Models;
 
 namespace WINCCReporter
@@ -17,7 +16,6 @@ namespace WINCCReporter
             public string TagName       { get; set; }
             public string DisplayName   { get; set; }
             public string DisplayNameEn { get; set; }
-            public string DataType      { get; set; }
             public int    DecimalPlaces { get; set; }
             public int    Order         { get; set; }
         }
@@ -52,9 +50,6 @@ namespace WINCCReporter
         /// <summary>根据 config 中保存的主题为按钮赋予对应颜色的图标。</summary>
         public void ApplyIcons()
         {
-            string saved = ConfigManager.Config?.Theme ?? "Microsoft365Blue";
-            Enum.TryParse<Krypton.Toolkit.PaletteMode>(saved, out var mode);
-            saveConfigBtn.Values.Image = IconManager.Make(IconChar.FloppyDisk, mode, 32);
         }
 
         /// <summary>刷新窗体所有 UI 文字为当前语言。</summary>
@@ -70,7 +65,6 @@ namespace WINCCReporter
             label3.Values.Text = LangHelper.Get("TCP_TagName");
             label4.Values.Text = LangHelper.Get("TCP_DisplayName");
             label8.Values.Text = LangHelper.Get("TCP_DisplayNameEn");
-            label5.Values.Text = LangHelper.Get("TCP_DataType");
             label2.Values.Text = LangHelper.Get("TCP_DecimalPlaces");
             label1.Values.Text = LangHelper.Get("TCP_Order");
             // Button
@@ -81,7 +75,6 @@ namespace WINCCReporter
             Column2.HeaderText = LangHelper.Get("TCP_ColDisplayName");
             Column8.HeaderText = LangHelper.Get("TCP_ColDisplayNameEn");
             Column5.HeaderText = LangHelper.Get("TCP_ColDecimalPlaces");
-            Column3.HeaderText = LangHelper.Get("TCP_ColDataType");
             Column4.HeaderText = LangHelper.Get("TCP_ColOrder");
         }
 
@@ -99,16 +92,12 @@ namespace WINCCReporter
 
         public void LoadData()
         {
-            var allMeta      = ConfigManager.Config?.TagMeta ?? new List<TagMeta>();
-            var dbTags       = DbManager.FetchAllTags();
-            var idToDataType = dbTags.ToDictionary(t => t.ValueID, t => t.DataType);
+            var allMeta = ConfigManager.Config?.TagMeta ?? new List<TagMeta>();
 
             var toShow = new List<TagRow>();
             foreach (var entry in _templateEntries)
             {
                 var meta = allMeta.FirstOrDefault(m => m.ValueID == entry.ValueID);
-                idToDataType.TryGetValue(entry.ValueID, out string dataType);
-
                 string tagName = meta?.TagName ?? entry.ValueID.ToString();
 
                 toShow.Add(new TagRow
@@ -117,7 +106,6 @@ namespace WINCCReporter
                     TagName       = tagName,
                     DisplayName   = meta?.DisplayName   ?? tagName,
                     DisplayNameEn = meta?.DisplayNameEn ?? "",
-                    DataType      = dataType ?? meta?.DataType ?? "",
                     DecimalPlaces = meta?.DecimalPlaces ?? 2,
                     Order         = entry.Order
                 });
@@ -145,7 +133,6 @@ namespace WINCCReporter
                     TagName       = row.TagName,
                     DisplayName   = row.DisplayName,
                     DisplayNameEn = row.DisplayNameEn,
-                    DataType      = row.DataType,
                     DecimalPlaces = row.DecimalPlaces,
                     Order         = row.Order
                 };
@@ -248,7 +235,6 @@ namespace WINCCReporter
             txtTagName.Text       = row.TagName;
             txtDisplayName.Text   = row.DisplayName;
             txtDisplayNameEn.Text = row.DisplayNameEn;
-            txtDataType.Text      = row.DataType;
             txtDecimalPlaces.Text = row.DecimalPlaces.ToString();
             txtOrder.Text         = row.Order.ToString();
         }
@@ -270,7 +256,6 @@ namespace WINCCReporter
                 {
                     existing.DisplayName   = row.DisplayName;
                     existing.DisplayNameEn = row.DisplayNameEn;
-                    existing.DataType      = row.DataType;
                     existing.DecimalPlaces = row.DecimalPlaces;
                 }
                 else
@@ -281,7 +266,6 @@ namespace WINCCReporter
                         TagName       = row.TagName,
                         DisplayName   = row.DisplayName,
                         DisplayNameEn = row.DisplayNameEn,
-                        DataType      = row.DataType,
                         DecimalPlaces = row.DecimalPlaces
                     });
                 }
@@ -308,7 +292,6 @@ namespace WINCCReporter
                 {
                     row.DisplayName   = backup.Value.DisplayName;
                     row.DisplayNameEn = backup.Value.DisplayNameEn;
-                    row.DataType      = backup.Value.DataType;
                     row.DecimalPlaces = backup.Value.DecimalPlaces;
                     row.Order         = backup.Value.Order;
 

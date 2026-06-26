@@ -114,7 +114,7 @@
             this.kryptonPage1,
             this.kryptonPage2});
             this.kryptonNavigator1.SelectedIndex = 1;
-            this.kryptonNavigator1.Size = new System.Drawing.Size(1728, 989);
+            this.kryptonNavigator1.Size = new System.Drawing.Size(1672, 1013);
             this.kryptonNavigator1.TabIndex = 0;
             // 
             // kryptonPage1
@@ -126,7 +126,7 @@
             this.kryptonPage1.Margin = new System.Windows.Forms.Padding(2);
             this.kryptonPage1.MinimumSize = new System.Drawing.Size(28, 28);
             this.kryptonPage1.Name = "kryptonPage1";
-            this.kryptonPage1.Size = new System.Drawing.Size(1726, 940);
+            this.kryptonPage1.Size = new System.Drawing.Size(1670, 964);
             this.kryptonPage1.Text = "模板配置";
             this.kryptonPage1.ToolTipTitle = "Page ToolTip";
             this.kryptonPage1.UniqueName = "page_templates_001";
@@ -147,8 +147,8 @@
             // 
             this.splitMain.Panel2.Controls.Add(this.pnlFooter);
             this.splitMain.Panel2.Controls.Add(this.pnlDetail);
-            this.splitMain.Size = new System.Drawing.Size(1726, 940);
-            this.splitMain.SplitterDistance = 410;
+            this.splitMain.Size = new System.Drawing.Size(1670, 964);
+            this.splitMain.SplitterDistance = 396;
             this.splitMain.SplitterWidth = 2;
             this.splitMain.TabIndex = 0;
             // 
@@ -158,7 +158,7 @@
             this.lstTemplates.Location = new System.Drawing.Point(0, 91);
             this.lstTemplates.Margin = new System.Windows.Forms.Padding(2);
             this.lstTemplates.Name = "lstTemplates";
-            this.lstTemplates.Size = new System.Drawing.Size(410, 849);
+            this.lstTemplates.Size = new System.Drawing.Size(396, 873);
             this.lstTemplates.TabIndex = 1;
             this.lstTemplates.SelectedIndexChanged += new System.EventHandler(this.LstTemplates_SelectedIndexChanged);
             // 
@@ -202,16 +202,16 @@
             this.pnlFooter.Controls.Add(this.btnClone);
             this.pnlFooter.Controls.Add(this.btnDelete);
             this.pnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlFooter.Location = new System.Drawing.Point(0, 837);
+            this.pnlFooter.Location = new System.Drawing.Point(0, 861);
             this.pnlFooter.Margin = new System.Windows.Forms.Padding(2);
             this.pnlFooter.Name = "pnlFooter";
-            this.pnlFooter.Size = new System.Drawing.Size(1314, 103);
+            this.pnlFooter.Size = new System.Drawing.Size(1272, 103);
             this.pnlFooter.TabIndex = 1;
             // 
             // btnSave
             // 
             this.btnSave.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnSave.Location = new System.Drawing.Point(79, 28);
+            this.btnSave.Location = new System.Drawing.Point(37, 28);
             this.btnSave.Margin = new System.Windows.Forms.Padding(2);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(255, 59);
@@ -223,7 +223,7 @@
             // btnCancel
             // 
             this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnCancel.Location = new System.Drawing.Point(372, 28);
+            this.btnCancel.Location = new System.Drawing.Point(330, 28);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(255, 59);
@@ -235,7 +235,7 @@
             // btnClone
             // 
             this.btnClone.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnClone.Location = new System.Drawing.Point(669, 28);
+            this.btnClone.Location = new System.Drawing.Point(627, 28);
             this.btnClone.Margin = new System.Windows.Forms.Padding(2);
             this.btnClone.Name = "btnClone";
             this.btnClone.Size = new System.Drawing.Size(336, 59);
@@ -247,7 +247,7 @@
             // btnDelete
             // 
             this.btnDelete.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnDelete.Location = new System.Drawing.Point(1035, 28);
+            this.btnDelete.Location = new System.Drawing.Point(993, 28);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(255, 59);
@@ -263,7 +263,7 @@
             this.pnlDetail.Location = new System.Drawing.Point(0, 0);
             this.pnlDetail.Margin = new System.Windows.Forms.Padding(2);
             this.pnlDetail.Name = "pnlDetail";
-            this.pnlDetail.Size = new System.Drawing.Size(1314, 940);
+            this.pnlDetail.Size = new System.Drawing.Size(1272, 964);
             this.pnlDetail.TabIndex = 9;
             // 
             // tlpFields
@@ -291,7 +291,7 @@
             this.tlpFields.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpFields.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 268F));
             this.tlpFields.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpFields.Size = new System.Drawing.Size(1314, 833);
+            this.tlpFields.Size = new System.Drawing.Size(1272, 833);
             this.tlpFields.TabIndex = 8;
             // 
             // label2
@@ -310,7 +310,7 @@
             this.txtName.Location = new System.Drawing.Point(311, 35);
             this.txtName.Margin = new System.Windows.Forms.Padding(2);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(994, 43);
+            this.txtName.Size = new System.Drawing.Size(952, 43);
             this.txtName.TabIndex = 1;
             // 
             // labelDesc
@@ -329,7 +329,7 @@
             this.txtDesc.Location = new System.Drawing.Point(311, 134);
             this.txtDesc.Margin = new System.Windows.Forms.Padding(2);
             this.txtDesc.Name = "txtDesc";
-            this.txtDesc.Size = new System.Drawing.Size(994, 43);
+            this.txtDesc.Size = new System.Drawing.Size(952, 43);
             this.txtDesc.TabIndex = 3;
             // 
             // panel4
@@ -341,7 +341,7 @@
             this.panel4.Location = new System.Drawing.Point(311, 206);
             this.panel4.Margin = new System.Windows.Forms.Padding(2);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(994, 355);
+            this.panel4.Size = new System.Drawing.Size(952, 355);
             this.panel4.TabIndex = 5;
             // 
             // txtTagSummary
@@ -352,13 +352,13 @@
             this.txtTagSummary.Multiline = true;
             this.txtTagSummary.Name = "txtTagSummary";
             this.txtTagSummary.ReadOnly = true;
-            this.txtTagSummary.Size = new System.Drawing.Size(696, 294);
+            this.txtTagSummary.Size = new System.Drawing.Size(654, 294);
             this.txtTagSummary.TabIndex = 0;
             // 
             // btnSelectTags
             // 
             this.btnSelectTags.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnSelectTags.Location = new System.Drawing.Point(718, 114);
+            this.btnSelectTags.Location = new System.Drawing.Point(676, 114);
             this.btnSelectTags.Margin = new System.Windows.Forms.Padding(2);
             this.btnSelectTags.Name = "btnSelectTags";
             this.btnSelectTags.Size = new System.Drawing.Size(261, 61);
@@ -371,7 +371,7 @@
             // btnConfigTag
             // 
             this.btnConfigTag.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnConfigTag.Location = new System.Drawing.Point(718, 212);
+            this.btnConfigTag.Location = new System.Drawing.Point(676, 212);
             this.btnConfigTag.Margin = new System.Windows.Forms.Padding(2);
             this.btnConfigTag.Name = "btnConfigTag";
             this.btnConfigTag.Size = new System.Drawing.Size(261, 61);
@@ -406,7 +406,7 @@
             this.panel5.Location = new System.Drawing.Point(311, 565);
             this.panel5.Margin = new System.Windows.Forms.Padding(2);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(994, 264);
+            this.panel5.Size = new System.Drawing.Size(952, 264);
             this.panel5.TabIndex = 8;
             // 
             // kryptonTextBox3
@@ -416,13 +416,13 @@
             this.kryptonTextBox3.Location = new System.Drawing.Point(2, 8);
             this.kryptonTextBox3.Margin = new System.Windows.Forms.Padding(2);
             this.kryptonTextBox3.Name = "kryptonTextBox3";
-            this.kryptonTextBox3.Size = new System.Drawing.Size(780, 43);
+            this.kryptonTextBox3.Size = new System.Drawing.Size(738, 43);
             this.kryptonTextBox3.TabIndex = 7;
             // 
             // btnBrowseExportPath
             // 
             this.btnBrowseExportPath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBrowseExportPath.Location = new System.Drawing.Point(807, 8);
+            this.btnBrowseExportPath.Location = new System.Drawing.Point(765, 8);
             this.btnBrowseExportPath.Margin = new System.Windows.Forms.Padding(2);
             this.btnBrowseExportPath.Name = "btnBrowseExportPath";
             this.btnBrowseExportPath.Size = new System.Drawing.Size(140, 44);
@@ -442,7 +442,7 @@
             this.kryptonPage2.Margin = new System.Windows.Forms.Padding(2);
             this.kryptonPage2.MinimumSize = new System.Drawing.Size(28, 28);
             this.kryptonPage2.Name = "kryptonPage2";
-            this.kryptonPage2.Size = new System.Drawing.Size(1726, 940);
+            this.kryptonPage2.Size = new System.Drawing.Size(1670, 964);
             this.kryptonPage2.Text = "通用设置";
             this.kryptonPage2.ToolTipTitle = "Page ToolTip";
             this.kryptonPage2.UniqueName = "page_general_001";
@@ -672,10 +672,10 @@
             this.pnlGeneralFooter.Controls.Add(this.btnBatchDecimal);
             this.pnlGeneralFooter.Controls.Add(this.btnChangePassword);
             this.pnlGeneralFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlGeneralFooter.Location = new System.Drawing.Point(0, 857);
+            this.pnlGeneralFooter.Location = new System.Drawing.Point(0, 881);
             this.pnlGeneralFooter.Margin = new System.Windows.Forms.Padding(2);
             this.pnlGeneralFooter.Name = "pnlGeneralFooter";
-            this.pnlGeneralFooter.Size = new System.Drawing.Size(1726, 83);
+            this.pnlGeneralFooter.Size = new System.Drawing.Size(1670, 83);
             this.pnlGeneralFooter.TabIndex = 1;
             // 
             // btnSaveGeneral
@@ -715,10 +715,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1728, 989);
+            this.ClientSize = new System.Drawing.Size(1672, 1013);
             this.Controls.Add(this.kryptonNavigator1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MinimumSize = new System.Drawing.Size(1700, 730);
+            this.MaximumSize = new System.Drawing.Size(1700, 1100);
             this.Name = "GeneralConfigPanel";
             this.Text = "系统配置";
             ((System.ComponentModel.ISupportInitialize)(this.kryptonNavigator1)).EndInit();
