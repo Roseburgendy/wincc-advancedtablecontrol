@@ -475,7 +475,7 @@
     <value>Disconnect</value>
   </data>
   <data name="UC_TodayQuery" xml:space="preserve">
-    <value>Today's Query</value>
+    <value>Today</value>
   </data>
   <data name="UC_PrevDay" xml:space="preserve">
     <value>Prev Day</value>

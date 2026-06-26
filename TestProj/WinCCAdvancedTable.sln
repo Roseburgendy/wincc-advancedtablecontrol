@@ -1,10 +1,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.6.11822.322 stable
+VisualStudioVersion = 18.6.11822.322
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WINCCReporter", "TestProj\WINCCReporter.csproj", "{EF2960B4-D547-49DE-B8AA-889069084923}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WINCCReporter.Tests", "TestProj.Tests\WINCCReporter.Tests.csproj", "{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,22 +12,14 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EF2960B4-D547-49DE-B8AA-889069084923}.Debug|Any CPU.ActiveCfg = Debug|AnyCPU
-		{EF2960B4-D547-49DE-B8AA-889069084923}.Debug|Any CPU.Build.0 = Debug|AnyCPU
+		{EF2960B4-D547-49DE-B8AA-889069084923}.Debug|Any CPU.ActiveCfg = Release|x86
+		{EF2960B4-D547-49DE-B8AA-889069084923}.Debug|Any CPU.Build.0 = Release|x86
 		{EF2960B4-D547-49DE-B8AA-889069084923}.Debug|x86.ActiveCfg = Debug|x86
 		{EF2960B4-D547-49DE-B8AA-889069084923}.Debug|x86.Build.0 = Debug|x86
 		{EF2960B4-D547-49DE-B8AA-889069084923}.Release|Any CPU.ActiveCfg = Release|AnyCPU
 		{EF2960B4-D547-49DE-B8AA-889069084923}.Release|Any CPU.Build.0 = Release|AnyCPU
 		{EF2960B4-D547-49DE-B8AA-889069084923}.Release|x86.ActiveCfg = Release|x86
 		{EF2960B4-D547-49DE-B8AA-889069084923}.Release|x86.Build.0 = Release|x86
-		{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}.Debug|Any CPU.ActiveCfg = Debug|AnyCPU
-		{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}.Debug|Any CPU.Build.0 = Debug|AnyCPU
-		{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}.Debug|x86.ActiveCfg = Debug|x86
-		{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}.Debug|x86.Build.0 = Debug|x86
-		{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}.Release|Any CPU.ActiveCfg = Release|AnyCPU
-		{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}.Release|Any CPU.Build.0 = Release|AnyCPU
-		{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}.Release|x86.ActiveCfg = Release|AnyCPU
-		{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}.Release|x86.Build.0 = Release|AnyCPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

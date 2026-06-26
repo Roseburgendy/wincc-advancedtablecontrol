@@ -114,7 +114,7 @@
             this.kryptonPage1,
             this.kryptonPage2});
             this.kryptonNavigator1.SelectedIndex = 1;
-            this.kryptonNavigator1.Size = new System.Drawing.Size(1672, 1013);
+            this.kryptonNavigator1.Size = new System.Drawing.Size(1668, 1009);
             this.kryptonNavigator1.TabIndex = 0;
             // 
             // kryptonPage1
@@ -442,7 +442,7 @@
             this.kryptonPage2.Margin = new System.Windows.Forms.Padding(2);
             this.kryptonPage2.MinimumSize = new System.Drawing.Size(28, 28);
             this.kryptonPage2.Name = "kryptonPage2";
-            this.kryptonPage2.Size = new System.Drawing.Size(1670, 964);
+            this.kryptonPage2.Size = new System.Drawing.Size(1666, 960);
             this.kryptonPage2.Text = "通用设置";
             this.kryptonPage2.ToolTipTitle = "Page ToolTip";
             this.kryptonPage2.UniqueName = "page_general_001";
@@ -672,10 +672,10 @@
             this.pnlGeneralFooter.Controls.Add(this.btnBatchDecimal);
             this.pnlGeneralFooter.Controls.Add(this.btnChangePassword);
             this.pnlGeneralFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlGeneralFooter.Location = new System.Drawing.Point(0, 881);
+            this.pnlGeneralFooter.Location = new System.Drawing.Point(0, 877);
             this.pnlGeneralFooter.Margin = new System.Windows.Forms.Padding(2);
             this.pnlGeneralFooter.Name = "pnlGeneralFooter";
-            this.pnlGeneralFooter.Size = new System.Drawing.Size(1670, 83);
+            this.pnlGeneralFooter.Size = new System.Drawing.Size(1666, 83);
             this.pnlGeneralFooter.TabIndex = 1;
             // 
             // btnSaveGeneral
@@ -717,9 +717,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1672, 1013);
             this.Controls.Add(this.kryptonNavigator1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.MinimumSize = new System.Drawing.Size(1700, 730);
-            this.MaximumSize = new System.Drawing.Size(1700, 1100);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(1700, 1092);
+            this.MinimumSize = new System.Drawing.Size(1700, 1092);
             this.Name = "GeneralConfigPanel";
             this.Text = "系统配置";
             ((System.ComponentModel.ISupportInitialize)(this.kryptonNavigator1)).EndInit();

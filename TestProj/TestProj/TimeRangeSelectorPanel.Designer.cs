@@ -294,9 +294,11 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1100, 900);
-            this.MinimumSize = new System.Drawing.Size(1000, 800);
+            this.MinimumSize = new System.Drawing.Size(1082, 820);
             this.Name = "TimeRangeSelectorPanel";
             this.Text = "TimeRangeSelectorPanel";
             ((System.ComponentModel.ISupportInitialize)(this.groupBox1.Panel)).EndInit();

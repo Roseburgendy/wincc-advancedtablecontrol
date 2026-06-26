@@ -102,10 +102,10 @@
             this.txtDisplayNameEn.Name = "txtDisplayNameEn";
             this.txtDisplayNameEn.Size = new System.Drawing.Size(743, 43);
             this.txtDisplayNameEn.TabIndex = 5;
-            //
+            // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(28, 263);
+            this.label2.Location = new System.Drawing.Point(28, 219);
             this.label2.Margin = new System.Windows.Forms.Padding(2);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(132, 42);
@@ -114,7 +114,7 @@
             // 
             // txtDecimalPlaces
             // 
-            this.txtDecimalPlaces.Location = new System.Drawing.Point(208, 263);
+            this.txtDecimalPlaces.Location = new System.Drawing.Point(208, 219);
             this.txtDecimalPlaces.Margin = new System.Windows.Forms.Padding(2);
             this.txtDecimalPlaces.Name = "txtDecimalPlaces";
             this.txtDecimalPlaces.Size = new System.Drawing.Size(229, 43);
@@ -122,7 +122,7 @@
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(72, 317);
+            this.label1.Location = new System.Drawing.Point(72, 273);
             this.label1.Margin = new System.Windows.Forms.Padding(2);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(74, 42);
@@ -131,7 +131,7 @@
             // 
             // txtOrder
             // 
-            this.txtOrder.Location = new System.Drawing.Point(208, 317);
+            this.txtOrder.Location = new System.Drawing.Point(208, 273);
             this.txtOrder.Margin = new System.Windows.Forms.Padding(2);
             this.txtOrder.Name = "txtOrder";
             this.txtOrder.Size = new System.Drawing.Size(229, 43);
@@ -237,7 +237,7 @@
             this.Column4.HeaderText = "顺序";
             this.Column4.MinimumWidth = 50;
             this.Column4.Name = "Column4";
-            //
+            // 
             // Column5
             // 
             this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
