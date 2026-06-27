@@ -252,7 +252,7 @@ namespace WINCCReporter
             // 
             // lblQueryRange
             // 
-            this.lblQueryRange.Location = new System.Drawing.Point(2065, 107);
+            this.lblQueryRange.Location = new System.Drawing.Point(2065, 105);
             this.lblQueryRange.Name = "lblQueryRange";
             this.lblQueryRange.Size = new System.Drawing.Size(400, 34);
             this.lblQueryRange.TabIndex = 46;
@@ -260,7 +260,7 @@ namespace WINCCReporter
             // 
             // lblRowCount
             // 
-            this.lblRowCount.Location = new System.Drawing.Point(2065, 146);
+            this.lblRowCount.Location = new System.Drawing.Point(2065, 144);
             this.lblRowCount.Name = "lblRowCount";
             this.lblRowCount.Size = new System.Drawing.Size(400, 34);
             this.lblRowCount.TabIndex = 47;
@@ -268,7 +268,7 @@ namespace WINCCReporter
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(44, 143);
+            this.btnLogin.Location = new System.Drawing.Point(29, 143);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(253, 51);
             this.btnLogin.TabIndex = 45;
@@ -279,18 +279,18 @@ namespace WINCCReporter
             // label3
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.Location = new System.Drawing.Point(2065, 31);
+            this.label3.Location = new System.Drawing.Point(2065, 41);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(132, 42);
+            this.label3.Size = new System.Drawing.Size(100, 42);
             this.label3.TabIndex = 10;
             this.label3.Values.Text = "选择模板";
             // 
             // cmbTemplate
             // 
             this.cmbTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbTemplate.Location = new System.Drawing.Point(2205, 31);
+            this.cmbTemplate.Location = new System.Drawing.Point(2174, 50);
             this.cmbTemplate.Name = "cmbTemplate";
-            this.cmbTemplate.Size = new System.Drawing.Size(352, 42);
+            this.cmbTemplate.Size = new System.Drawing.Size(352, 22);
             this.cmbTemplate.TabIndex = 18;
             this.cmbTemplate.SelectedIndexChanged += new System.EventHandler(this.CmbTemplate_SelectedIndexChanged);
             // 
@@ -325,7 +325,7 @@ namespace WINCCReporter
             // 
             // WINCCReporter
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(27F, 65F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 30F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.progressBar1);
