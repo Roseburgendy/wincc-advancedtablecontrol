@@ -348,6 +348,31 @@ namespace WINCCReporter
         #endregion
 
         #region General Settings Panel Logic
+        private void BtnLoadConfig_Click(object sender, EventArgs e)
+        {
+            using (var dlg = new OpenFileDialog())
+            {
+                dlg.Filter = "配置文件|*.json";
+                dlg.Title  = "选择配置文件";
+                string dir = System.IO.Path.GetDirectoryName(ConfigManager.ConfigPath ?? "");
+                if (System.IO.Directory.Exists(dir))
+                    dlg.InitialDirectory = dir;
+
+                if (dlg.ShowDialog() != DialogResult.OK) return;
+
+                try
+                {
+                    ConfigManager.LoadFromPath(dlg.FileName);
+                    kryptonTextBox1.Text = dlg.FileName;
+                    MessageBox.Show($"已加载：\n{dlg.FileName}", LangHelper.Get("Msg_Info"));
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"加载失败：{ex.Message}", "错误");
+                }
+            }
+        }
+
         private void LoadGeneralSettings()
         {
             var cfg = ConfigManager.Config;
@@ -456,6 +481,11 @@ namespace WINCCReporter
         #endregion
 
         private void kryptonNumericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void kryptonGroupBox2_Panel_Paint(object sender, PaintEventArgs e)
         {
 
         }

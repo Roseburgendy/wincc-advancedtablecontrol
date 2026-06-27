@@ -118,9 +118,9 @@ namespace WINCCReporter
             this.btnConfig.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnConfig.Values.Text = "配置";
             this.btnConfig.Click += new System.EventHandler(this.BtnConfig_Click);
-            // 
+            //
             // kryptonGroupBox3
-            // 
+            //
             this.kryptonGroupBox3.Location = new System.Drawing.Point(399, 22);
             // 
             // kryptonGroupBox3.Panel

@@ -28,6 +28,12 @@ namespace WINCCReporter
             LoadConfig();
         }
 
+        public static void LoadFromPath(string path)
+        {
+            _configPath = path;
+            LoadConfig();
+        }
+
         public static void LoadConfig()
         {
             if (!File.Exists(_configPath))

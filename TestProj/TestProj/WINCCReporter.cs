@@ -510,8 +510,8 @@ namespace WINCCReporter
                                     .FirstOrDefault(m =>
                                     {
                                         string shortName = m.TagName.Contains("\\")
-                                            ? m.TagName.Split('\\')[1] : m.TagName;
-                                        return shortName == tagName;
+                                            ? m.TagName.Split('\\').Last() : m.TagName;
+                                        return string.Equals(shortName, tagName, StringComparison.OrdinalIgnoreCase);
                                     });
 
                                 // 更新 TagMeta DisplayName / DisplayNameEn（中英显示名）if have
