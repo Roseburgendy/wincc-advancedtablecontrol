@@ -1,0 +1,327 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AutoScaleHelper</name>
+    </assembly>
+    <members>
+        <member name="E:AutoScaleHelper.AutoScale.OnScale">
+            <summary>
+            在缩放区域大小调整后发生。designerInfos记录了在界面设计器中缩放区域内的所有控件的信息，
+            比如location，size，font等，以控件名作为键。
+            </summary>
+        </member>
+        <member name="P:AutoScaleHelper.AutoScale.AutoFont">
+            <summary>
+            使缩放区域内的所有控件，其文本内容自适应其自身大小
+            </summary>
+        </member>
+        <member name="P:AutoScaleHelper.AutoScale.ScaleMode">
+            <summary>
+            缩放模式。默认AdaptToContainer。
+            </summary>
+        </member>
+        <member name="M:AutoScaleHelper.AutoScale.#ctor(System.Windows.Forms.Control,System.Boolean)">
+            <summary>
+            创建时设置缩放区域（容器）。该构造函数内部会调用SetContainer。
+            </summary>
+            <param name="container">缩放区域（容器）</param>
+        </member>
+        <member name="M:AutoScaleHelper.AutoScale.SetContainer(System.Windows.Forms.Control)">
+            <summary>
+            设置缩放区域（容器）。在SizeChanged事件中调用UpdateControlsLayout()时，
+            缩放区域内的所有非特殊控件均会自适应缩放。
+            </summary>
+            <param name="container">缩放区域（容器）</param>
+        </member>
+        <member name="M:AutoScaleHelper.AutoScale.UpdateControlsLayout(System.Boolean)">
+            <summary>
+            对缩放区域的子控件进行缩放，包括位置，大小，字体等属性的调整。
+            如果缩放容器的布局是多层次的，则可以通过recursive参数设置是否对每个层次进行缩放
+            </summary>
+            <param name="recursive"></param>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:AutoScaleHelper.AutoScale.SetControlFontSize(System.Windows.Forms.Control,AutoScaleHelper.CtrlInfo)">
+            <summary>
+            控件的字体缩放算法，可被重写。缩放容器内的所有控件均采用该算法进行字体缩放。
+            </summary>
+            <param name="curCtrl">缩放容器内的任一控件</param>
+            <param name="ctrlInfo">该控件在设计器时期记录的一些信息</param>
+        </member>
+        <member name="M:AutoScaleHelper.AutoScale.AddControl(System.Windows.Forms.Control,AutoScaleHelper.NoScaleMode)">
+            <summary>
+            在缩放区域内动态添加一个控件，使得该控件在缩放区域大小改变时，也能具有缩放自适应的功能。
+            </summary>
+            <param name="ctrl">要动态添加的控件</param>
+            <param name="noScaleMode">不缩放模式</param>
+        </member>
+        <member name="M:AutoScaleHelper.AutoScale.RemoveControl(System.Windows.Forms.Control)">
+            <summary>
+            在缩放区域内动态删除一个已具有缩放自适应功能的控件，
+            使得该控件在缩放区域大小改变时，不再具有缩放自适应的功能。
+            </summary>
+            <param name="ctrl">要动态删除的控件</param>
+        </member>
+        <member name="M:AutoScaleHelper.AutoScale.FontDependOn(System.Windows.Forms.Control,System.Windows.Forms.Control)">
+            <summary>
+            指定一个控件的字体依赖于另一个目标控件，目标控件必须在缩放区域内才有效。
+            只有在每次容器大小发生变化时才发生更新字体操作。
+            </summary>
+            <param name="ctrl">需要依赖的控件</param>
+            <param name="target">目标控件</param>
+        </member>
+        <member name="M:AutoScaleHelper.AutoScale.FontDependOn(System.Windows.Forms.Control,System.Windows.Forms.Control[])">
+            <summary>
+            指定多个控件的字体依赖于另一个目标控件，目标控件必须在缩放区域内才有效。
+            </summary>
+            <param name="target">目标控件</param>
+            <param name="ctrls">需要依赖的一组控件</param>
+        </member>
+        <member name="M:AutoScaleHelper.AutoScale.RelieveFontDependency(System.Windows.Forms.Control,System.Windows.Forms.Control)">
+            <summary>
+            解除一个控件对目标控件的字体依赖。
+            </summary>
+            <param name="ctrl">依赖控件</param>
+            <param name="target">目标控件</param>
+        </member>
+        <member name="M:AutoScaleHelper.AutoScale.RelieveFontDependency(System.Windows.Forms.Control)">
+            <summary>
+            删除所有与该目标控件相关的字体依赖。
+            </summary>
+            <param name="target">目标控件</param>
+        </member>
+        <member name="M:AutoScaleHelper.AutoScale.SetControlNoScale(System.String,AutoScaleHelper.NoScaleMode)">
+            <summary>
+            设置某个控件不缩放，可以指定不缩放形式，默认自身不缩放
+            </summary>
+            <param name="ctrlName">控件名</param>
+            <param name="noScale">不缩放形式</param>
+        </member>
+        <member name="M:AutoScaleHelper.ControlExtension.SetAnchorNone(System.Windows.Forms.Control)">
+            <summary>
+            设置该控件及其内部子控件的默认Anchor(Left + Top)为None。
+            </summary>
+            <param name="ctrl"></param>
+        </member>
+        <member name="M:AutoScaleHelper.ControlExtension.SetAnchorNoneExcept(System.Windows.Forms.Control,System.Windows.Forms.Control[])">
+            <summary>
+            设置该控件及其内部子控件的默认Anchor(Left + Top)为None。
+            可以保留一些内部子控件的的默认Anchor不受该方法的影响。
+            </summary>
+            <param name="ctrl">要设置的控件</param>
+            <param name="excludes">不受该方法影响的内部子控件</param>
+        </member>
+        <member name="M:AutoScaleHelper.ControlExtension.SetAnchorNoneExcept(System.Windows.Forms.Control,System.Collections.Generic.IEnumerable{System.Windows.Forms.Control})">
+            <summary>
+            设置该控件及其内部子控件的默认Anchor(Left + Top)为None。
+            可以保留一些内部子控件的的默认Anchor不受该方法的影响。
+            </summary>
+            <param name="ctrl">要设置的控件</param>
+            <param name="excludes">不受该方法影响的内部子控件</param>
+        </member>
+        <member name="M:AutoScaleHelper.ControlExtension.SetAutoSizeColumnsMode(System.Windows.Forms.ListView,AutoScaleHelper.ListViewAutoSizeColumnsMode)">
+            <summary>
+            设置ListView的列头的缩放模式。
+            </summary>
+            <param name="lv"></param>
+            <param name="mode"></param>
+        </member>
+        <member name="M:AutoScaleHelper.ControlExtension.MountAutoScale(System.Windows.Forms.UserControl,AutoScaleHelper.ControlScaleAction)">
+            <summary>
+            给一个自定义控件挂载一个AutoScale实例（自动创建）
+            </summary>
+            <param name="ctrl"></param>
+            <param name="action"></param>
+        </member>
+        <member name="T:AutoScaleHelper.ListViewAutoSizeColumnsMode">
+             <summary>
+            对 ListView列宽度的缩放模式的扩展（请优先考虑AutoResizeColumns方法，如果没有找到合适的，再来考虑使用该方法）
+             </summary>
+        </member>
+        <member name="F:AutoScaleHelper.ListViewAutoSizeColumnsMode.Fill">
+            <summary>
+            自适应容器宽度，其宽度缩放比例为原宽度比所有列宽度之和
+            </summary>
+        </member>
+        <member name="T:AutoScaleHelper.CtrlInfo">
+            <summary>
+            设计器时期记录到的控件信息
+            </summary>
+        </member>
+        <member name="F:AutoScaleHelper.CtrlInfo.Anchors">
+            <summary>
+            各边的定位。如left表示该控件左侧到父容器的左边界的距离保持固定
+            </summary>
+        </member>
+        <member name="F:AutoScaleHelper.CtrlInfo.Rect">
+            <summary>
+            (x:控件位置的x坐标,y:控件位置的y坐标,,width:控件宽度,height:控件高度)
+            </summary>
+        </member>
+        <member name="F:AutoScaleHelper.CtrlInfo.Font">
+            <summary>
+            字体
+            </summary>
+        </member>
+        <member name="F:AutoScaleHelper.CtrlInfo.FontSizeType">
+            <summary>
+            字号类型
+            </summary>
+        </member>
+        <member name="F:AutoScaleHelper.CtrlInfo.NoScale">
+            <summary>
+            是否启用缩放自适应
+            </summary>
+        </member>
+        <member name="F:AutoScaleHelper.CtrlInfo.AspectRatio">
+            <summary>
+            宽高比(宽(width)/高(height))
+            </summary>
+        </member>
+        <member name="F:AutoScaleHelper.CtrlInfo.parentName">
+            <summary>
+            父容器的控件名称
+            </summary>
+        </member>
+        <member name="T:AutoScaleHelper.ScaleMode">
+            <summary>
+            缩放模式
+            </summary>
+        </member>
+        <member name="F:AutoScaleHelper.ScaleMode.AdaptToContainer">
+            <summary>
+            缩放时，控件的缩放大小只与其容器大小成比例，即控件的宽度按照其所在容器宽度的占比进行缩放，同理对于高度。
+            注意，该缩放模式对于TextScale无效。
+            </summary>
+        </member>
+        <member name="F:AutoScaleHelper.ScaleMode.MaintainSelfRatioH">
+            <summary>
+            缩放时，控件仍保持自身的宽高比，缩放多少只取决于其容器的水平方向上的缩放比例
+            </summary>
+        </member>
+        <member name="F:AutoScaleHelper.ScaleMode.MaintainSelfRatioV">
+            <summary>
+            缩放时，控件仍保持自身的宽高比，缩放多少取决于其容器的垂直方向上的缩放比例
+            </summary>
+        </member>
+        <member name="T:AutoScaleHelper.NoScaleMode">
+             <summary>
+            不缩放模式
+             </summary>
+        </member>
+        <member name="F:AutoScaleHelper.NoScaleMode.None">
+            <summary>
+            正常缩放
+            </summary>
+        </member>
+        <member name="F:AutoScaleHelper.NoScaleMode.Self">
+            <summary>
+            只缩放自身而不缩放其内部子控件
+            </summary>
+        </member>
+        <member name="F:AutoScaleHelper.NoScaleMode.Inner">
+            <summary>
+            只缩放其内部子控件而不缩放自身
+            </summary>
+        </member>
+        <member name="F:AutoScaleHelper.NoScaleMode.Font">
+            <summary>
+            只缩放字体
+            </summary>
+        </member>
+        <member name="M:AutoScaleHelper.FontInfos.GetFontInfo(System.String)">
+            <summary>
+            获取该类型的字体信息，如果没有则进行初始化。
+            </summary>
+            <param name="fontName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AutoScaleHelper.FontInfo.GetFloorFontSizeByHeight(System.Int32,AutoScaleHelper.FontSizeType)">
+            <summary>
+            根据像素高度和字号类型获取合适的字体大小。
+            如选用19磅的字体和中文字号，那么会返回18磅字体的字体大小
+            </summary>
+            <param name="height">字体高度（以像素为单位）</param>
+            <param name="fontSizeType">字号类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:AutoScaleHelper.FontInfo.GetFontSizeType(System.Single)">
+            <summary>
+            获取当前字体大小属于什么字号类型（如果大小在中文字号和国际字号中均能找到，那么优先选取中文）
+            </summary>
+            <param name="fontSize">字体大小</param>
+            <returns>字号类型</returns>
+        </member>
+        <member name="T:AutoScaleHelper.FontSizeType">
+            <summary>
+            字号类型
+            </summary>
+        </member>
+        <member name="F:AutoScaleHelper.FontSizeType.Common">
+            <summary>
+            通用类型，如8，9，10
+            </summary>
+        </member>
+        <member name="F:AutoScaleHelper.FontSizeType.Chinese">
+            <summary>
+            中文类型，如五号，小五
+            </summary>
+        </member>
+        <member name="T:AutoScaleHelper.TextScale">
+            <summary>
+            文本缩放自适应类。用于对某一区域或某一控件的文本进行缩放。
+            </summary>
+        </member>
+        <member name="M:AutoScaleHelper.TextScale.#ctor(System.Windows.Forms.Control)">
+            <summary>
+            构造时设置缩放文本区域
+            </summary>
+            <param name="container"></param>
+        </member>
+        <member name="M:AutoScaleHelper.TextScale.SetContainer(System.Windows.Forms.Control)">
+            <summary>
+            设置容器。当该容器大小改变时，可控制其内部控件的字体大小自适应。
+            </summary>
+            <param name="container"></param>
+        </member>
+        <member name="M:AutoScaleHelper.TextScale.ScaleSingle(System.Windows.Forms.Control)">
+            <summary>
+            缩放（在该容器内部的）指定控件的文本字体大小
+            </summary>
+            <param name="ctrl"></param>
+        </member>
+        <member name="M:AutoScaleHelper.TextScale.ScaleArea(System.Windows.Forms.Control)">
+            <summary>
+            缩放容器内的所有子控件的字体大小
+            </summary>
+            <param name="area"></param>
+        </member>
+        <member name="M:AutoScaleHelper.TextScale.SetControlFontSize(System.Windows.Forms.Control,AutoScaleHelper.CtrlInfo)">
+            <summary>
+            控件的字体缩放算法，可被重写。缩放容器内的所有控件均采用该算法进行字体缩放。
+            </summary>
+            <param name="curCtrl">缩放容器内的任一控件</param>
+            <param name="ctrlInfo">该控件在设计器时期记录的一些信息</param>
+        </member>
+        <member name="M:AutoScaleHelper.TextScale.FontDependOn(System.Windows.Forms.Control,System.Windows.Forms.Control[])">
+            <summary>
+            指定多个控件的字体依赖于另一个目标控件，目标控件必须在容器内才有效。
+            </summary>
+            <param name="target">目标控件</param>
+            <param name="ctrls">需要依赖的一组控件</param>
+        </member>
+        <member name="M:AutoScaleHelper.TextScale.RelieveFontDependency(System.Windows.Forms.Control,System.Windows.Forms.Control)">
+            <summary>
+            解除一个控件对目标控件的字体依赖。
+            </summary>
+            <param name="ctrl">依赖控件</param>
+            <param name="target">目标控件</param>
+        </member>
+        <member name="M:AutoScaleHelper.TextScale.RelieveFontDependency(System.Windows.Forms.Control)">
+            <summary>
+            删除所有与该目标控件相关的字体依赖。
+            </summary>
+            <param name="target">目标控件</param>
+        </member>
+    </members>
+</doc>

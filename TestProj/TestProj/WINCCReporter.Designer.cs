@@ -118,9 +118,9 @@ namespace WINCCReporter
             this.btnConfig.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnConfig.Values.Text = "配置";
             this.btnConfig.Click += new System.EventHandler(this.BtnConfig_Click);
-            //
+            // 
             // kryptonGroupBox3
-            //
+            // 
             this.kryptonGroupBox3.Location = new System.Drawing.Point(399, 22);
             // 
             // kryptonGroupBox3.Panel
@@ -290,7 +290,7 @@ namespace WINCCReporter
             this.cmbTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbTemplate.Location = new System.Drawing.Point(2205, 31);
             this.cmbTemplate.Name = "cmbTemplate";
-            this.cmbTemplate.Size = new System.Drawing.Size(352, 42);
+            this.cmbTemplate.Size = new System.Drawing.Size(352, 26);
             this.cmbTemplate.TabIndex = 18;
             this.cmbTemplate.SelectedIndexChanged += new System.EventHandler(this.CmbTemplate_SelectedIndexChanged);
             // 
@@ -309,7 +309,7 @@ namespace WINCCReporter
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 48;
             this.dataGridView1.RowTemplate.Height = 33;
-            this.dataGridView1.Size = new System.Drawing.Size(2560, 1040);
+            this.dataGridView1.Size = new System.Drawing.Size(2560, 1060);
             this.dataGridView1.TabIndex = 1;
             // 
             // progressBar1
@@ -325,7 +325,7 @@ namespace WINCCReporter
             // 
             // WINCCReporter
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(20F, 48F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.progressBar1);
@@ -333,7 +333,6 @@ namespace WINCCReporter
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "WINCCReporter";
-            this.Padding = new System.Windows.Forms.Padding(0, 0, 0, 20);
             this.Size = new System.Drawing.Size(2560, 1270);
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).EndInit();
             this.kryptonPanel1.ResumeLayout(false);
