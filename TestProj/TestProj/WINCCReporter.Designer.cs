@@ -252,7 +252,7 @@ namespace WINCCReporter
             // 
             // lblQueryRange
             // 
-            this.lblQueryRange.Location = new System.Drawing.Point(2067, 87);
+            this.lblQueryRange.Location = new System.Drawing.Point(2079, 113);
             this.lblQueryRange.Name = "lblQueryRange";
             this.lblQueryRange.Size = new System.Drawing.Size(400, 34);
             this.lblQueryRange.TabIndex = 46;
@@ -260,7 +260,7 @@ namespace WINCCReporter
             // 
             // lblRowCount
             // 
-            this.lblRowCount.Location = new System.Drawing.Point(2067, 126);
+            this.lblRowCount.Location = new System.Drawing.Point(2079, 152);
             this.lblRowCount.Name = "lblRowCount";
             this.lblRowCount.Size = new System.Drawing.Size(400, 34);
             this.lblRowCount.TabIndex = 47;
@@ -279,7 +279,7 @@ namespace WINCCReporter
             // label3
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.Location = new System.Drawing.Point(2067, 22);
+            this.label3.Location = new System.Drawing.Point(2067, 31);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(132, 42);
             this.label3.TabIndex = 10;
@@ -290,7 +290,7 @@ namespace WINCCReporter
             this.cmbTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbTemplate.Location = new System.Drawing.Point(2205, 31);
             this.cmbTemplate.Name = "cmbTemplate";
-            this.cmbTemplate.Size = new System.Drawing.Size(352, 22);
+            this.cmbTemplate.Size = new System.Drawing.Size(352, 42);
             this.cmbTemplate.TabIndex = 18;
             this.cmbTemplate.SelectedIndexChanged += new System.EventHandler(this.CmbTemplate_SelectedIndexChanged);
             // 
@@ -325,12 +325,12 @@ namespace WINCCReporter
             // 
             // WINCCReporter
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(23F, 57F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.kryptonPanel1);
-            this.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "WINCCReporter";
             this.Size = new System.Drawing.Size(2560, 1270);

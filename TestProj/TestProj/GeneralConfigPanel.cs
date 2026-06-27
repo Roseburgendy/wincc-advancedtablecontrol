@@ -250,7 +250,17 @@ namespace WINCCReporter
             }
 
             ConfigManager.Config.Template = _bindingList.ToList();
-            ConfigManager.SaveConfig();
+            try
+            {
+                ConfigManager.SaveConfig();
+                MessageBox.Show(LangHelper.Get("GCP_TemplateSaved"), LangHelper.Get("Msg_Info"),
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{LangHelper.Get("GCP_SaveFailed")}\n{ex.Message}", LangHelper.Get("Msg_Error"),
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void BtnCancel_Click(object sender, EventArgs e)
@@ -363,7 +373,9 @@ namespace WINCCReporter
                 try
                 {
                     ConfigManager.LoadFromPath(dlg.FileName);
-                    kryptonTextBox1.Text = dlg.FileName;
+                    LoadGeneralSettings();
+                    ApplyLanguage();
+                    _onLanguageChanged?.Invoke();
                     MessageBox.Show($"已加载：\n{dlg.FileName}", LangHelper.Get("Msg_Info"));
                 }
                 catch (Exception ex)

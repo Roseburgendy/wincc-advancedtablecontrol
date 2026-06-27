@@ -240,6 +240,12 @@
   <data name="GCP_DeleteTitle" xml:space="preserve">
     <value>删除确认</value>
   </data>
+  <data name="GCP_TemplateSaved" xml:space="preserve">
+    <value>模板已保存</value>
+  </data>
+  <data name="GCP_SaveFailed" xml:space="preserve">
+    <value>保存失败</value>
+  </data>
   <data name="GCP_GeneralSaved" xml:space="preserve">
     <value>通用设置已保存</value>
   </data>

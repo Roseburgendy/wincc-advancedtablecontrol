@@ -30,7 +30,7 @@ namespace WINCCReporter
         public TagConfigPanel(List<TemplateTagEntry> templateEntries)
         {
             InitializeComponent();
-            this.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, (byte)134);
+            this.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, (byte)134);
             _templateEntries = templateEntries;
 
             LoadData();

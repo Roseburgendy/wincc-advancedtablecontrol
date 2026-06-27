@@ -240,6 +240,12 @@
   <data name="GCP_DeleteTitle" xml:space="preserve">
     <value>Confirm Delete</value>
   </data>
+  <data name="GCP_TemplateSaved" xml:space="preserve">
+    <value>Template saved</value>
+  </data>
+  <data name="GCP_SaveFailed" xml:space="preserve">
+    <value>Save failed</value>
+  </data>
   <data name="GCP_GeneralSaved" xml:space="preserve">
     <value>General settings saved</value>
   </data>

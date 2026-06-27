@@ -112,8 +112,8 @@
             this.kryptonNavigator1.Owner = null;
             this.kryptonNavigator1.PageBackStyle = Krypton.Toolkit.PaletteBackStyle.PanelClient;
             this.kryptonNavigator1.Pages.AddRange(new Krypton.Navigator.KryptonPage[] {
-            this.kryptonPage2,
-            this.kryptonPage1});
+            this.kryptonPage1,
+            this.kryptonPage2});
             this.kryptonNavigator1.SelectedIndex = 0;
             this.kryptonNavigator1.Size = new System.Drawing.Size(1701, 988);
             this.kryptonNavigator1.TabIndex = 0;
@@ -595,7 +595,7 @@
             this.tlpFields.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 101F));
             this.tlpFields.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 97F));
             this.tlpFields.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpFields.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 268F));
+            this.tlpFields.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 159F));
             this.tlpFields.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpFields.Size = new System.Drawing.Size(1295, 833);
             this.tlpFields.TabIndex = 8;
@@ -647,24 +647,24 @@
             this.panel4.Location = new System.Drawing.Point(312, 207);
             this.panel4.Margin = new System.Windows.Forms.Padding(2);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(974, 354);
+            this.panel4.Size = new System.Drawing.Size(974, 463);
             this.panel4.TabIndex = 5;
             // 
             // txtTagSummary
             // 
             this.txtTagSummary.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTagSummary.Location = new System.Drawing.Point(2, 40);
+            this.txtTagSummary.Location = new System.Drawing.Point(2, 68);
             this.txtTagSummary.Margin = new System.Windows.Forms.Padding(2);
             this.txtTagSummary.Multiline = true;
             this.txtTagSummary.Name = "txtTagSummary";
             this.txtTagSummary.ReadOnly = true;
-            this.txtTagSummary.Size = new System.Drawing.Size(676, 293);
+            this.txtTagSummary.Size = new System.Drawing.Size(676, 335);
             this.txtTagSummary.TabIndex = 0;
             // 
             // btnSelectTags
             // 
             this.btnSelectTags.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnSelectTags.Location = new System.Drawing.Point(698, 113);
+            this.btnSelectTags.Location = new System.Drawing.Point(698, 167);
             this.btnSelectTags.Margin = new System.Windows.Forms.Padding(2);
             this.btnSelectTags.Name = "btnSelectTags";
             this.btnSelectTags.Size = new System.Drawing.Size(261, 61);
@@ -677,7 +677,7 @@
             // btnConfigTag
             // 
             this.btnConfigTag.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnConfigTag.Location = new System.Drawing.Point(698, 212);
+            this.btnConfigTag.Location = new System.Drawing.Point(698, 266);
             this.btnConfigTag.Margin = new System.Windows.Forms.Padding(2);
             this.btnConfigTag.Name = "btnConfigTag";
             this.btnConfigTag.Size = new System.Drawing.Size(261, 61);
@@ -689,7 +689,7 @@
             // labelTags
             // 
             this.labelTags.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.labelTags.Location = new System.Drawing.Point(9, 346);
+            this.labelTags.Location = new System.Drawing.Point(9, 400);
             this.labelTags.Margin = new System.Windows.Forms.Padding(2);
             this.labelTags.Name = "labelTags";
             this.labelTags.Size = new System.Drawing.Size(231, 76);
@@ -701,10 +701,10 @@
             this.panel5.Controls.Add(this.kryptonTextBox3);
             this.panel5.Controls.Add(this.btnBrowseExportPath);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(312, 565);
+            this.panel5.Location = new System.Drawing.Point(312, 674);
             this.panel5.Margin = new System.Windows.Forms.Padding(2);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(974, 264);
+            this.panel5.Size = new System.Drawing.Size(974, 155);
             this.panel5.TabIndex = 8;
             // 
             // kryptonTextBox3
@@ -731,7 +731,7 @@
             // 
             // lblTemplateExportPath
             // 
-            this.lblTemplateExportPath.Location = new System.Drawing.Point(11, 567);
+            this.lblTemplateExportPath.Location = new System.Drawing.Point(11, 676);
             this.lblTemplateExportPath.Margin = new System.Windows.Forms.Padding(4);
             this.lblTemplateExportPath.Name = "lblTemplateExportPath";
             this.lblTemplateExportPath.Size = new System.Drawing.Size(295, 76);
@@ -749,6 +749,7 @@
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1729, 1067);
             this.MinimumSize = new System.Drawing.Size(1729, 1067);
+            this.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Name = "GeneralConfigPanel";
             this.Text = "系统配置";
             ((System.ComponentModel.ISupportInitialize)(this.kryptonNavigator1)).EndInit();
