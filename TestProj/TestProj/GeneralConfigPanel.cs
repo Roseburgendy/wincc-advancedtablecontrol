@@ -330,6 +330,7 @@ namespace WINCCReporter
             kryptonTextBox3.Text = _editing.ExportPath ?? "";
             UpdateTagSummary();
             pnlDetail.Visible = true;
+            pnlDetail.PerformLayout();
         }
 
         private void UpdateTagSummary()
