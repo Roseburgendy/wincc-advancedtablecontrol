@@ -86,6 +86,23 @@ namespace WINCCReporter
                 kryptonManager.GlobalPaletteMode = mode;
         }
 
+        /// <summary>
+        /// 供 WinCC 内部脚本读写的语言索引。
+        /// 0 = 中文 (zh-CN)，1 = 英文 (en-US)。
+        /// 赋值后立即刷新界面文字。
+        /// </summary>
+        public int LanguageIndex
+        {
+            get => (ConfigManager.Config?.Language ?? "zh-CN") == "en-US" ? 1 : 0;
+            set
+            {
+                if (ConfigManager.Config == null) return;
+                ConfigManager.Config.Language = value == 1 ? "en-US" : "zh-CN";
+                ConfigManager.SaveConfig();
+                ApplyLanguage();
+            }
+        }
+
         /// <summary>根据当前语言刷新工具栏所有控件的文字。</summary>
         public void ApplyLanguage()
         {
