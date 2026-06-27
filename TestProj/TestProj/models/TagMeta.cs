@@ -28,9 +28,9 @@ namespace WINCCReporter.Models
         public List<DecimalRule> DecimalRules { get; set; } = new List<DecimalRule>();
 
         /// <summary>单次查询允许的最大时间跨度（天）。0 表示不限制。默认 31 天。</summary>
-        public int MaxQueryDays { get; set; } = 31;
-        /// <summary>单次查询允许的最大数据行数。超出时截断并提示。0 表示不限制。默认 50000。</summary>
-        public int MaxDataPoints { get; set; } = 50000;
+        public int MaxQueryDays { get; set; } = 7;
+        /// <summary>单次查询允许的最大数据行数。超出时截断并提示。0 表示不限制。默认 3000。</summary>
+        public int MaxDataPoints { get; set; } = 3000;
 
         /// <summary>是否在查询时自动连接对应时间段的备份归档。</summary>
         public bool AutoConnectBackup { get; set; } = false;

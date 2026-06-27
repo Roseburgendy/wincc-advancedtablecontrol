@@ -114,7 +114,7 @@
             this.kryptonNavigator1.Pages.AddRange(new Krypton.Navigator.KryptonPage[] {
             this.kryptonPage1,
             this.kryptonPage2});
-            this.kryptonNavigator1.SelectedIndex = 1;
+            this.kryptonNavigator1.SelectedIndex = 0;
             this.kryptonNavigator1.Size = new System.Drawing.Size(1701, 988);
             this.kryptonNavigator1.TabIndex = 0;
             // 
@@ -348,19 +348,21 @@
             // 
             // txtTagSummary
             // 
-            this.txtTagSummary.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTagSummary.Location = new System.Drawing.Point(2, 68);
+            this.txtTagSummary.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTagSummary.Location = new System.Drawing.Point(2, 2);
             this.txtTagSummary.Margin = new System.Windows.Forms.Padding(2);
             this.txtTagSummary.Multiline = true;
             this.txtTagSummary.Name = "txtTagSummary";
             this.txtTagSummary.ReadOnly = true;
-            this.txtTagSummary.Size = new System.Drawing.Size(676, 335);
+            this.txtTagSummary.Size = new System.Drawing.Size(970, 320);
             this.txtTagSummary.TabIndex = 0;
             // 
             // btnSelectTags
             // 
-            this.btnSelectTags.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnSelectTags.Location = new System.Drawing.Point(698, 167);
+            this.btnSelectTags.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSelectTags.Location = new System.Drawing.Point(200, 365);
             this.btnSelectTags.Margin = new System.Windows.Forms.Padding(2);
             this.btnSelectTags.Name = "btnSelectTags";
             this.btnSelectTags.Size = new System.Drawing.Size(261, 61);
@@ -372,8 +374,8 @@
             // 
             // btnConfigTag
             // 
-            this.btnConfigTag.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnConfigTag.Location = new System.Drawing.Point(698, 266);
+            this.btnConfigTag.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnConfigTag.Location = new System.Drawing.Point(531, 365);
             this.btnConfigTag.Margin = new System.Windows.Forms.Padding(2);
             this.btnConfigTag.Name = "btnConfigTag";
             this.btnConfigTag.Size = new System.Drawing.Size(261, 61);
