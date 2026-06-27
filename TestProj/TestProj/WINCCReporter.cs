@@ -140,19 +140,19 @@ namespace WINCCReporter
         /// <summary>根据当前主题重新生成并赋值工具栏各按钮的图标。</summary>
         public void ApplyIcons(Krypton.Toolkit.PaletteMode mode)
         {
-            TimeSelectBtn.Values.Image       = IconManager.Make(IconChar.CalendarDay,   mode, 32);
-            btnImportExcel.Values.Image      = IconManager.Make(IconChar.FileImport,    mode, 32);
-            PrintBtn.Values.Image            = IconManager.Make(IconChar.Print,         mode, 32);
-            btnConfig.Values.Image           = IconManager.Make(IconChar.Sliders,       mode, 32);
-            ExportExcelBtn.Values.Image      = IconManager.Make(IconChar.FileExcel,     mode, 32);
-            btnConnectBackup.Values.Image    = IconManager.Make(IconChar.HardDrive,    mode, 32);
-            btnDisconnectBackup.Values.Image = IconManager.Make(IconChar.TimesCircle,  mode, 32);
-            btnTodayQuery.Values.Image       = IconManager.Make(IconChar.CalendarCheck, mode, 32);
-            btnPrevDay.Values.Image          = IconManager.Make(IconChar.ChevronLeft,   mode, 32);
-            btnNextDay.Values.Image          = IconManager.Make(IconChar.ChevronRight,  mode, 32);
+            TimeSelectBtn.Values.Image       = IconManager.Make(IconChar.CalendarDay,   mode, 24);
+            btnImportExcel.Values.Image      = IconManager.Make(IconChar.FileImport,    mode, 24);
+            PrintBtn.Values.Image            = IconManager.Make(IconChar.Print,         mode, 24);
+            btnConfig.Values.Image           = IconManager.Make(IconChar.Sliders,       mode, 24);
+            ExportExcelBtn.Values.Image      = IconManager.Make(IconChar.FileExcel,     mode, 24);
+            btnConnectBackup.Values.Image    = IconManager.Make(IconChar.HardDrive,    mode, 24);
+            btnDisconnectBackup.Values.Image = IconManager.Make(IconChar.TimesCircle,  mode, 24);
+            btnTodayQuery.Values.Image       = IconManager.Make(IconChar.CalendarCheck, mode, 24);
+            btnPrevDay.Values.Image          = IconManager.Make(IconChar.ChevronLeft,   mode, 24);
+            btnNextDay.Values.Image          = IconManager.Make(IconChar.ChevronRight,  mode, 24);
             btnLogin.Values.Image            = AuthManager.IsAdmin
-                ? IconManager.Make(IconChar.LockOpen, mode, 44)
-                : IconManager.Make(IconChar.Lock,     mode, 44);
+                ? IconManager.Make(IconChar.LockOpen, mode, 36)
+                : IconManager.Make(IconChar.Lock,     mode, 36);
         }
 
         #endregion

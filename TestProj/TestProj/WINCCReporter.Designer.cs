@@ -330,7 +330,7 @@ namespace WINCCReporter
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.kryptonPanel1);
-            this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "WINCCReporter";
             this.Size = new System.Drawing.Size(2560, 1270);
