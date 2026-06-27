@@ -56,13 +56,12 @@
             // 
             // txtTagName
             // 
-            this.txtTagName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTagName.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left;
             this.txtTagName.Location = new System.Drawing.Point(208, 54);
             this.txtTagName.Margin = new System.Windows.Forms.Padding(2);
             this.txtTagName.Name = "txtTagName";
             this.txtTagName.ReadOnly = true;
-            this.txtTagName.Size = new System.Drawing.Size(743, 43);
+            this.txtTagName.Size = new System.Drawing.Size(500, 43);
             this.txtTagName.TabIndex = 1;
             // 
             // label4
@@ -76,12 +75,11 @@
             // 
             // txtDisplayName
             // 
-            this.txtDisplayName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDisplayName.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left;
             this.txtDisplayName.Location = new System.Drawing.Point(208, 106);
             this.txtDisplayName.Margin = new System.Windows.Forms.Padding(2);
             this.txtDisplayName.Name = "txtDisplayName";
-            this.txtDisplayName.Size = new System.Drawing.Size(743, 43);
+            this.txtDisplayName.Size = new System.Drawing.Size(500, 43);
             this.txtDisplayName.TabIndex = 3;
             // 
             // label8
@@ -95,12 +93,11 @@
             // 
             // txtDisplayNameEn
             // 
-            this.txtDisplayNameEn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDisplayNameEn.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left;
             this.txtDisplayNameEn.Location = new System.Drawing.Point(208, 159);
             this.txtDisplayNameEn.Margin = new System.Windows.Forms.Padding(2);
             this.txtDisplayNameEn.Name = "txtDisplayNameEn";
-            this.txtDisplayNameEn.Size = new System.Drawing.Size(743, 43);
+            this.txtDisplayNameEn.Size = new System.Drawing.Size(500, 43);
             this.txtDisplayNameEn.TabIndex = 5;
             // 
             // label2
@@ -122,7 +119,7 @@
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(72, 273);
+            this.label1.Location = new System.Drawing.Point(28, 273);
             this.label1.Margin = new System.Windows.Forms.Padding(2);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(74, 42);

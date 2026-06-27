@@ -252,7 +252,7 @@ namespace WINCCReporter
             // 
             // lblQueryRange
             // 
-            this.lblQueryRange.Location = new System.Drawing.Point(2079, 113);
+            this.lblQueryRange.Location = new System.Drawing.Point(2065, 107);
             this.lblQueryRange.Name = "lblQueryRange";
             this.lblQueryRange.Size = new System.Drawing.Size(400, 34);
             this.lblQueryRange.TabIndex = 46;
@@ -260,7 +260,7 @@ namespace WINCCReporter
             // 
             // lblRowCount
             // 
-            this.lblRowCount.Location = new System.Drawing.Point(2079, 152);
+            this.lblRowCount.Location = new System.Drawing.Point(2065, 146);
             this.lblRowCount.Name = "lblRowCount";
             this.lblRowCount.Size = new System.Drawing.Size(400, 34);
             this.lblRowCount.TabIndex = 47;
@@ -279,7 +279,7 @@ namespace WINCCReporter
             // label3
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.Location = new System.Drawing.Point(2067, 31);
+            this.label3.Location = new System.Drawing.Point(2065, 31);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(132, 42);
             this.label3.TabIndex = 10;
@@ -325,7 +325,7 @@ namespace WINCCReporter
             // 
             // WINCCReporter
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(23F, 57F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(27F, 65F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.progressBar1);

@@ -105,6 +105,7 @@ namespace WINCCReporter
             btnSaveGeneral.Values.Text    = LangHelper.Get("GCP_BtnSave");
             lblCompanyName.Values.Text    = LangHelper.Get("GCP_LblCompanyName");
             lblConfigPath.Values.Text     = LangHelper.Get("GCP_LblConfigPath");
+            btnLoadConfig.Values.Text     = LangHelper.Get("GCP_BtnLoadConfig");
             btnBatchDecimal.Values.Text   = LangHelper.Get("TCP_BtnBatchDecimal");
             lblMaxQueryDays.Values.Text        = LangHelper.Get("GCP_LblMaxQueryDays");
             lblMaxDataPoints.Values.Text       = LangHelper.Get("GCP_LblMaxDataPoints");

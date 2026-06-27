@@ -122,10 +122,6 @@ namespace WINCCReporter
 
         public void ApplyIcons()
         {
-            string saved = ConfigManager.Config?.Theme ?? "Microsoft365Blue";
-            Enum.TryParse<Krypton.Toolkit.PaletteMode>(saved, out var mode);
-            btnOK.Values.Image     = IconManager.Make(IconChar.FloppyDisk, mode, 28);
-            btnCancel.Values.Image = IconManager.Make(IconChar.Xmark,      mode, 28);
         }
 
         public void ApplyLanguage()

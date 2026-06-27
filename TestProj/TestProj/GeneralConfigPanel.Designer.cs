@@ -16,31 +16,6 @@
         private void InitializeComponent()
         {
             this.kryptonNavigator1 = new Krypton.Navigator.KryptonNavigator();
-            this.kryptonPage2 = new Krypton.Navigator.KryptonPage();
-            this.kryptonGroupBox2 = new Krypton.Toolkit.KryptonGroupBox();
-            this.numMaxDataPoints = new Krypton.Toolkit.KryptonNumericUpDown();
-            this.numMaxQueryDays = new Krypton.Toolkit.KryptonNumericUpDown();
-            this.kryptonTextBox2 = new Krypton.Toolkit.KryptonTextBox();
-            this.lblCompanyName = new Krypton.Toolkit.KryptonLabel();
-            this.kryptonTextBox1 = new Krypton.Toolkit.KryptonTextBox();
-            this.lblConfigPath = new Krypton.Toolkit.KryptonLabel();
-            this.btnLoadConfig = new Krypton.Toolkit.KryptonButton();
-            this.lblMaxQueryDays = new Krypton.Toolkit.KryptonLabel();
-            this.lblMaxDataPoints = new Krypton.Toolkit.KryptonLabel();
-            this.lblQueryLimitsHint = new Krypton.Toolkit.KryptonLabel();
-            this.chkAutoConnectBackup = new Krypton.Toolkit.KryptonCheckBox();
-            this.lblBackupPath = new Krypton.Toolkit.KryptonLabel();
-            this.txtBackupPath = new Krypton.Toolkit.KryptonTextBox();
-            this.btnBrowseBackupPath = new Krypton.Toolkit.KryptonButton();
-            this.kryptonGroupBox1 = new Krypton.Toolkit.KryptonGroupBox();
-            this.cmbLanguage = new Krypton.Toolkit.KryptonComboBox();
-            this.cmbTheme = new Krypton.Toolkit.KryptonThemeComboBox();
-            this.lblTheme = new Krypton.Toolkit.KryptonLabel();
-            this.lblLanguage = new Krypton.Toolkit.KryptonLabel();
-            this.pnlGeneralFooter = new Krypton.Toolkit.KryptonPanel();
-            this.btnSaveGeneral = new Krypton.Toolkit.KryptonButton();
-            this.btnBatchDecimal = new Krypton.Toolkit.KryptonButton();
-            this.btnChangePassword = new Krypton.Toolkit.KryptonButton();
             this.kryptonPage1 = new Krypton.Navigator.KryptonPage();
             this.splitMain = new System.Windows.Forms.SplitContainer();
             this.lstTemplates = new Krypton.Toolkit.KryptonListBox();
@@ -67,22 +42,33 @@
             this.kryptonTextBox3 = new Krypton.Toolkit.KryptonTextBox();
             this.btnBrowseExportPath = new Krypton.Toolkit.KryptonButton();
             this.lblTemplateExportPath = new Krypton.Toolkit.KryptonLabel();
+            this.kryptonPage2 = new Krypton.Navigator.KryptonPage();
+            this.kryptonGroupBox2 = new Krypton.Toolkit.KryptonGroupBox();
+            this.numMaxDataPoints = new Krypton.Toolkit.KryptonNumericUpDown();
+            this.numMaxQueryDays = new Krypton.Toolkit.KryptonNumericUpDown();
+            this.kryptonTextBox2 = new Krypton.Toolkit.KryptonTextBox();
+            this.lblCompanyName = new Krypton.Toolkit.KryptonLabel();
+            this.kryptonTextBox1 = new Krypton.Toolkit.KryptonTextBox();
+            this.lblConfigPath = new Krypton.Toolkit.KryptonLabel();
+            this.btnLoadConfig = new Krypton.Toolkit.KryptonButton();
+            this.lblMaxQueryDays = new Krypton.Toolkit.KryptonLabel();
+            this.lblMaxDataPoints = new Krypton.Toolkit.KryptonLabel();
+            this.lblQueryLimitsHint = new Krypton.Toolkit.KryptonLabel();
+            this.chkAutoConnectBackup = new Krypton.Toolkit.KryptonCheckBox();
+            this.lblBackupPath = new Krypton.Toolkit.KryptonLabel();
+            this.txtBackupPath = new Krypton.Toolkit.KryptonTextBox();
+            this.btnBrowseBackupPath = new Krypton.Toolkit.KryptonButton();
+            this.kryptonGroupBox1 = new Krypton.Toolkit.KryptonGroupBox();
+            this.cmbLanguage = new Krypton.Toolkit.KryptonComboBox();
+            this.cmbTheme = new Krypton.Toolkit.KryptonThemeComboBox();
+            this.lblTheme = new Krypton.Toolkit.KryptonLabel();
+            this.lblLanguage = new Krypton.Toolkit.KryptonLabel();
+            this.pnlGeneralFooter = new Krypton.Toolkit.KryptonPanel();
+            this.btnSaveGeneral = new Krypton.Toolkit.KryptonButton();
+            this.btnBatchDecimal = new Krypton.Toolkit.KryptonButton();
+            this.btnChangePassword = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonNavigator1)).BeginInit();
             this.kryptonNavigator1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonPage2)).BeginInit();
-            this.kryptonPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox2.Panel)).BeginInit();
-            this.kryptonGroupBox2.Panel.SuspendLayout();
-            this.kryptonGroupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox1.Panel)).BeginInit();
-            this.kryptonGroupBox1.Panel.SuspendLayout();
-            this.kryptonGroupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbLanguage)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbTheme)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pnlGeneralFooter)).BeginInit();
-            this.pnlGeneralFooter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPage1)).BeginInit();
             this.kryptonPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitMain)).BeginInit();
@@ -100,6 +86,20 @@
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panel5)).BeginInit();
             this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonPage2)).BeginInit();
+            this.kryptonPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox2.Panel)).BeginInit();
+            this.kryptonGroupBox2.Panel.SuspendLayout();
+            this.kryptonGroupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox1.Panel)).BeginInit();
+            this.kryptonGroupBox1.Panel.SuspendLayout();
+            this.kryptonGroupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbLanguage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbTheme)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlGeneralFooter)).BeginInit();
+            this.pnlGeneralFooter.SuspendLayout();
             this.SuspendLayout();
             // 
             // kryptonNavigator1
@@ -114,313 +114,9 @@
             this.kryptonNavigator1.Pages.AddRange(new Krypton.Navigator.KryptonPage[] {
             this.kryptonPage1,
             this.kryptonPage2});
-            this.kryptonNavigator1.SelectedIndex = 0;
+            this.kryptonNavigator1.SelectedIndex = 1;
             this.kryptonNavigator1.Size = new System.Drawing.Size(1701, 988);
             this.kryptonNavigator1.TabIndex = 0;
-            // 
-            // kryptonPage2
-            // 
-            this.kryptonPage2.AutoHiddenSlideSize = new System.Drawing.Size(200, 200);
-            this.kryptonPage2.Controls.Add(this.kryptonGroupBox2);
-            this.kryptonPage2.Controls.Add(this.kryptonGroupBox1);
-            this.kryptonPage2.Controls.Add(this.pnlGeneralFooter);
-            this.kryptonPage2.Flags = 65534;
-            this.kryptonPage2.LastVisibleSet = true;
-            this.kryptonPage2.Margin = new System.Windows.Forms.Padding(2);
-            this.kryptonPage2.MinimumSize = new System.Drawing.Size(28, 29);
-            this.kryptonPage2.Name = "kryptonPage2";
-            this.kryptonPage2.Size = new System.Drawing.Size(1699, 939);
-            this.kryptonPage2.Text = "通用设置";
-            this.kryptonPage2.ToolTipTitle = "Page ToolTip";
-            this.kryptonPage2.UniqueName = "page_general_001";
-            // 
-            // kryptonGroupBox2
-            // 
-            this.kryptonGroupBox2.Location = new System.Drawing.Point(18, 277);
-            this.kryptonGroupBox2.Margin = new System.Windows.Forms.Padding(4);
-            // 
-            // kryptonGroupBox2.Panel
-            // 
-            this.kryptonGroupBox2.Panel.Controls.Add(this.numMaxDataPoints);
-            this.kryptonGroupBox2.Panel.Controls.Add(this.numMaxQueryDays);
-            this.kryptonGroupBox2.Panel.Controls.Add(this.kryptonTextBox2);
-            this.kryptonGroupBox2.Panel.Controls.Add(this.lblCompanyName);
-            this.kryptonGroupBox2.Panel.Controls.Add(this.kryptonTextBox1);
-            this.kryptonGroupBox2.Panel.Controls.Add(this.lblConfigPath);
-            this.kryptonGroupBox2.Panel.Controls.Add(this.btnLoadConfig);
-            this.kryptonGroupBox2.Panel.Controls.Add(this.lblMaxQueryDays);
-            this.kryptonGroupBox2.Panel.Controls.Add(this.lblMaxDataPoints);
-            this.kryptonGroupBox2.Panel.Controls.Add(this.lblQueryLimitsHint);
-            this.kryptonGroupBox2.Panel.Controls.Add(this.chkAutoConnectBackup);
-            this.kryptonGroupBox2.Panel.Controls.Add(this.lblBackupPath);
-            this.kryptonGroupBox2.Panel.Controls.Add(this.txtBackupPath);
-            this.kryptonGroupBox2.Panel.Controls.Add(this.btnBrowseBackupPath);
-            this.kryptonGroupBox2.Panel.Paint += new System.Windows.Forms.PaintEventHandler(this.kryptonGroupBox2_Panel_Paint);
-            this.kryptonGroupBox2.Size = new System.Drawing.Size(1642, 572);
-            this.kryptonGroupBox2.TabIndex = 7;
-            // 
-            // numMaxDataPoints
-            // 
-            this.numMaxDataPoints.Increment = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.numMaxDataPoints.Location = new System.Drawing.Point(332, 290);
-            this.numMaxDataPoints.Margin = new System.Windows.Forms.Padding(4);
-            this.numMaxDataPoints.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.numMaxDataPoints.Minimum = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.numMaxDataPoints.Name = "numMaxDataPoints";
-            this.numMaxDataPoints.Size = new System.Drawing.Size(212, 42);
-            this.numMaxDataPoints.TabIndex = 17;
-            this.numMaxDataPoints.Value = new decimal(new int[] {
-            50000,
-            0,
-            0,
-            0});
-            // 
-            // numMaxQueryDays
-            // 
-            this.numMaxQueryDays.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numMaxQueryDays.Location = new System.Drawing.Point(332, 207);
-            this.numMaxQueryDays.Margin = new System.Windows.Forms.Padding(4);
-            this.numMaxQueryDays.Maximum = new decimal(new int[] {
-            3650,
-            0,
-            0,
-            0});
-            this.numMaxQueryDays.Minimum = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.numMaxQueryDays.Name = "numMaxQueryDays";
-            this.numMaxQueryDays.Size = new System.Drawing.Size(212, 42);
-            this.numMaxQueryDays.TabIndex = 16;
-            this.numMaxQueryDays.Value = new decimal(new int[] {
-            31,
-            0,
-            0,
-            0});
-            // 
-            // kryptonTextBox2
-            // 
-            this.kryptonTextBox2.Location = new System.Drawing.Point(332, 124);
-            this.kryptonTextBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.kryptonTextBox2.Name = "kryptonTextBox2";
-            this.kryptonTextBox2.Size = new System.Drawing.Size(1083, 43);
-            this.kryptonTextBox2.TabIndex = 10;
-            // 
-            // lblCompanyName
-            // 
-            this.lblCompanyName.Location = new System.Drawing.Point(27, 106);
-            this.lblCompanyName.Margin = new System.Windows.Forms.Padding(4);
-            this.lblCompanyName.Name = "lblCompanyName";
-            this.lblCompanyName.Size = new System.Drawing.Size(282, 76);
-            this.lblCompanyName.TabIndex = 9;
-            this.lblCompanyName.Values.Text = "公司抬头：";
-            // 
-            // kryptonTextBox1
-            // 
-            this.kryptonTextBox1.Location = new System.Drawing.Point(332, 41);
-            this.kryptonTextBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.kryptonTextBox1.Name = "kryptonTextBox1";
-            this.kryptonTextBox1.ReadOnly = true;
-            this.kryptonTextBox1.Size = new System.Drawing.Size(525, 43);
-            this.kryptonTextBox1.TabIndex = 7;
-            // 
-            // lblConfigPath
-            // 
-            this.lblConfigPath.Location = new System.Drawing.Point(27, 25);
-            this.lblConfigPath.Margin = new System.Windows.Forms.Padding(4);
-            this.lblConfigPath.Name = "lblConfigPath";
-            this.lblConfigPath.Size = new System.Drawing.Size(282, 76);
-            this.lblConfigPath.TabIndex = 6;
-            this.lblConfigPath.Values.Text = "配置文件路径：";
-            // 
-            // btnLoadConfig
-            // 
-            this.btnLoadConfig.Location = new System.Drawing.Point(872, 36);
-            this.btnLoadConfig.Margin = new System.Windows.Forms.Padding(4);
-            this.btnLoadConfig.Name = "btnLoadConfig";
-            this.btnLoadConfig.Size = new System.Drawing.Size(320, 49);
-            this.btnLoadConfig.TabIndex = 50;
-            this.btnLoadConfig.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.btnLoadConfig.Values.Text = "加载配置文件";
-            this.btnLoadConfig.Click += new System.EventHandler(this.BtnLoadConfig_Click);
-            // 
-            // lblMaxQueryDays
-            // 
-            this.lblMaxQueryDays.Location = new System.Drawing.Point(27, 191);
-            this.lblMaxQueryDays.Margin = new System.Windows.Forms.Padding(4);
-            this.lblMaxQueryDays.Name = "lblMaxQueryDays";
-            this.lblMaxQueryDays.Size = new System.Drawing.Size(282, 76);
-            this.lblMaxQueryDays.TabIndex = 11;
-            this.lblMaxQueryDays.Values.Text = "最大查询天数：";
-            // 
-            // lblMaxDataPoints
-            // 
-            this.lblMaxDataPoints.Location = new System.Drawing.Point(27, 274);
-            this.lblMaxDataPoints.Margin = new System.Windows.Forms.Padding(4);
-            this.lblMaxDataPoints.Name = "lblMaxDataPoints";
-            this.lblMaxDataPoints.Size = new System.Drawing.Size(282, 76);
-            this.lblMaxDataPoints.TabIndex = 13;
-            this.lblMaxDataPoints.Values.Text = "最大数据点数：";
-            // 
-            // lblQueryLimitsHint
-            // 
-            this.lblQueryLimitsHint.Location = new System.Drawing.Point(550, 295);
-            this.lblQueryLimitsHint.Margin = new System.Windows.Forms.Padding(4);
-            this.lblQueryLimitsHint.Name = "lblQueryLimitsHint";
-            this.lblQueryLimitsHint.Size = new System.Drawing.Size(368, 76);
-            this.lblQueryLimitsHint.TabIndex = 15;
-            this.lblQueryLimitsHint.Values.Text = "（0 = 不限制）";
-            // 
-            // chkAutoConnectBackup
-            // 
-            this.chkAutoConnectBackup.Location = new System.Drawing.Point(27, 357);
-            this.chkAutoConnectBackup.Margin = new System.Windows.Forms.Padding(4);
-            this.chkAutoConnectBackup.Name = "chkAutoConnectBackup";
-            this.chkAutoConnectBackup.Size = new System.Drawing.Size(439, 76);
-            this.chkAutoConnectBackup.TabIndex = 18;
-            this.chkAutoConnectBackup.Values.Text = "自动链接备份";
-            // 
-            // lblBackupPath
-            // 
-            this.lblBackupPath.Location = new System.Drawing.Point(27, 439);
-            this.lblBackupPath.Margin = new System.Windows.Forms.Padding(4);
-            this.lblBackupPath.Name = "lblBackupPath";
-            this.lblBackupPath.Size = new System.Drawing.Size(282, 76);
-            this.lblBackupPath.TabIndex = 19;
-            this.lblBackupPath.Values.Text = "备份文件夹：";
-            // 
-            // txtBackupPath
-            // 
-            this.txtBackupPath.Location = new System.Drawing.Point(332, 455);
-            this.txtBackupPath.Margin = new System.Windows.Forms.Padding(4);
-            this.txtBackupPath.Name = "txtBackupPath";
-            this.txtBackupPath.Size = new System.Drawing.Size(1050, 43);
-            this.txtBackupPath.TabIndex = 20;
-            // 
-            // btnBrowseBackupPath
-            // 
-            this.btnBrowseBackupPath.Location = new System.Drawing.Point(1396, 455);
-            this.btnBrowseBackupPath.Margin = new System.Windows.Forms.Padding(4);
-            this.btnBrowseBackupPath.Name = "btnBrowseBackupPath";
-            this.btnBrowseBackupPath.Size = new System.Drawing.Size(140, 47);
-            this.btnBrowseBackupPath.TabIndex = 21;
-            this.btnBrowseBackupPath.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.btnBrowseBackupPath.Values.Text = "...";
-            this.btnBrowseBackupPath.Click += new System.EventHandler(this.BtnBrowseBackupPath_Click);
-            // 
-            // kryptonGroupBox1
-            // 
-            this.kryptonGroupBox1.Location = new System.Drawing.Point(19, 4);
-            this.kryptonGroupBox1.Margin = new System.Windows.Forms.Padding(4);
-            // 
-            // kryptonGroupBox1.Panel
-            // 
-            this.kryptonGroupBox1.Panel.Controls.Add(this.cmbLanguage);
-            this.kryptonGroupBox1.Panel.Controls.Add(this.cmbTheme);
-            this.kryptonGroupBox1.Panel.Controls.Add(this.lblTheme);
-            this.kryptonGroupBox1.Panel.Controls.Add(this.lblLanguage);
-            this.kryptonGroupBox1.Size = new System.Drawing.Size(1642, 274);
-            this.kryptonGroupBox1.TabIndex = 6;
-            // 
-            // cmbLanguage
-            // 
-            this.cmbLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbLanguage.Location = new System.Drawing.Point(331, 51);
-            this.cmbLanguage.Margin = new System.Windows.Forms.Padding(2);
-            this.cmbLanguage.Name = "cmbLanguage";
-            this.cmbLanguage.Size = new System.Drawing.Size(450, 42);
-            this.cmbLanguage.TabIndex = 3;
-            this.cmbLanguage.SelectedIndexChanged += new System.EventHandler(this.CmbLanguage_SelectedIndexChanged);
-            // 
-            // cmbTheme
-            // 
-            this.cmbTheme.DefaultPalette = Krypton.Toolkit.PaletteMode.Microsoft365Blue;
-            this.cmbTheme.Location = new System.Drawing.Point(331, 134);
-            this.cmbTheme.Margin = new System.Windows.Forms.Padding(2);
-            this.cmbTheme.Name = "cmbTheme";
-            this.cmbTheme.Size = new System.Drawing.Size(450, 42);
-            this.cmbTheme.TabIndex = 5;
-            this.cmbTheme.SelectedIndexChanged += new System.EventHandler(this.CmbTheme_SelectedIndexChanged);
-            // 
-            // lblTheme
-            // 
-            this.lblTheme.Location = new System.Drawing.Point(26, 117);
-            this.lblTheme.Margin = new System.Windows.Forms.Padding(2);
-            this.lblTheme.Name = "lblTheme";
-            this.lblTheme.Size = new System.Drawing.Size(282, 76);
-            this.lblTheme.TabIndex = 4;
-            this.lblTheme.Values.Text = "界面主题：";
-            // 
-            // lblLanguage
-            // 
-            this.lblLanguage.Location = new System.Drawing.Point(26, 34);
-            this.lblLanguage.Margin = new System.Windows.Forms.Padding(2);
-            this.lblLanguage.Name = "lblLanguage";
-            this.lblLanguage.Size = new System.Drawing.Size(282, 76);
-            this.lblLanguage.TabIndex = 2;
-            this.lblLanguage.Values.Text = "显示语言：";
-            // 
-            // pnlGeneralFooter
-            // 
-            this.pnlGeneralFooter.Controls.Add(this.btnSaveGeneral);
-            this.pnlGeneralFooter.Controls.Add(this.btnBatchDecimal);
-            this.pnlGeneralFooter.Controls.Add(this.btnChangePassword);
-            this.pnlGeneralFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlGeneralFooter.Location = new System.Drawing.Point(0, 856);
-            this.pnlGeneralFooter.Margin = new System.Windows.Forms.Padding(2);
-            this.pnlGeneralFooter.Name = "pnlGeneralFooter";
-            this.pnlGeneralFooter.Size = new System.Drawing.Size(1699, 83);
-            this.pnlGeneralFooter.TabIndex = 1;
-            // 
-            // btnSaveGeneral
-            // 
-            this.btnSaveGeneral.Location = new System.Drawing.Point(1440, 5);
-            this.btnSaveGeneral.Margin = new System.Windows.Forms.Padding(2);
-            this.btnSaveGeneral.Name = "btnSaveGeneral";
-            this.btnSaveGeneral.Size = new System.Drawing.Size(205, 65);
-            this.btnSaveGeneral.TabIndex = 0;
-            this.btnSaveGeneral.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.btnSaveGeneral.Values.Text = "保存";
-            this.btnSaveGeneral.Click += new System.EventHandler(this.BtnSaveGeneral_Click);
-            // 
-            // btnBatchDecimal
-            // 
-            this.btnBatchDecimal.Location = new System.Drawing.Point(16, 9);
-            this.btnBatchDecimal.Margin = new System.Windows.Forms.Padding(2);
-            this.btnBatchDecimal.Name = "btnBatchDecimal";
-            this.btnBatchDecimal.Size = new System.Drawing.Size(368, 65);
-            this.btnBatchDecimal.TabIndex = 1;
-            this.btnBatchDecimal.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.btnBatchDecimal.Values.Text = "批量精确位数…";
-            this.btnBatchDecimal.Click += new System.EventHandler(this.BtnBatchDecimal_Click);
-            // 
-            // btnChangePassword
-            // 
-            this.btnChangePassword.Location = new System.Drawing.Point(444, 9);
-            this.btnChangePassword.Margin = new System.Windows.Forms.Padding(2);
-            this.btnChangePassword.Name = "btnChangePassword";
-            this.btnChangePassword.Size = new System.Drawing.Size(376, 65);
-            this.btnChangePassword.TabIndex = 3;
-            this.btnChangePassword.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.btnChangePassword.Values.Text = "设置管理员密码";
-            this.btnChangePassword.Click += new System.EventHandler(this.BtnChangePassword_Click);
             // 
             // kryptonPage1
             // 
@@ -738,6 +434,310 @@
             this.lblTemplateExportPath.TabIndex = 6;
             this.lblTemplateExportPath.Values.Text = "模板导出路径：";
             // 
+            // kryptonPage2
+            // 
+            this.kryptonPage2.AutoHiddenSlideSize = new System.Drawing.Size(200, 200);
+            this.kryptonPage2.Controls.Add(this.kryptonGroupBox2);
+            this.kryptonPage2.Controls.Add(this.kryptonGroupBox1);
+            this.kryptonPage2.Controls.Add(this.pnlGeneralFooter);
+            this.kryptonPage2.Flags = 65534;
+            this.kryptonPage2.LastVisibleSet = true;
+            this.kryptonPage2.Margin = new System.Windows.Forms.Padding(2);
+            this.kryptonPage2.MinimumSize = new System.Drawing.Size(28, 29);
+            this.kryptonPage2.Name = "kryptonPage2";
+            this.kryptonPage2.Size = new System.Drawing.Size(1699, 939);
+            this.kryptonPage2.Text = "通用设置";
+            this.kryptonPage2.ToolTipTitle = "Page ToolTip";
+            this.kryptonPage2.UniqueName = "page_general_001";
+            // 
+            // kryptonGroupBox2
+            // 
+            this.kryptonGroupBox2.Location = new System.Drawing.Point(18, 277);
+            this.kryptonGroupBox2.Margin = new System.Windows.Forms.Padding(4);
+            // 
+            // kryptonGroupBox2.Panel
+            // 
+            this.kryptonGroupBox2.Panel.Controls.Add(this.numMaxDataPoints);
+            this.kryptonGroupBox2.Panel.Controls.Add(this.numMaxQueryDays);
+            this.kryptonGroupBox2.Panel.Controls.Add(this.kryptonTextBox2);
+            this.kryptonGroupBox2.Panel.Controls.Add(this.lblCompanyName);
+            this.kryptonGroupBox2.Panel.Controls.Add(this.kryptonTextBox1);
+            this.kryptonGroupBox2.Panel.Controls.Add(this.lblConfigPath);
+            this.kryptonGroupBox2.Panel.Controls.Add(this.btnLoadConfig);
+            this.kryptonGroupBox2.Panel.Controls.Add(this.lblMaxQueryDays);
+            this.kryptonGroupBox2.Panel.Controls.Add(this.lblMaxDataPoints);
+            this.kryptonGroupBox2.Panel.Controls.Add(this.lblQueryLimitsHint);
+            this.kryptonGroupBox2.Panel.Controls.Add(this.chkAutoConnectBackup);
+            this.kryptonGroupBox2.Panel.Controls.Add(this.lblBackupPath);
+            this.kryptonGroupBox2.Panel.Controls.Add(this.txtBackupPath);
+            this.kryptonGroupBox2.Panel.Controls.Add(this.btnBrowseBackupPath);
+            this.kryptonGroupBox2.Panel.Paint += new System.Windows.Forms.PaintEventHandler(this.kryptonGroupBox2_Panel_Paint);
+            this.kryptonGroupBox2.Size = new System.Drawing.Size(1642, 572);
+            this.kryptonGroupBox2.TabIndex = 7;
+            // 
+            // numMaxDataPoints
+            // 
+            this.numMaxDataPoints.Increment = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numMaxDataPoints.Location = new System.Drawing.Point(332, 290);
+            this.numMaxDataPoints.Margin = new System.Windows.Forms.Padding(4);
+            this.numMaxDataPoints.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.numMaxDataPoints.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.numMaxDataPoints.Name = "numMaxDataPoints";
+            this.numMaxDataPoints.Size = new System.Drawing.Size(212, 42);
+            this.numMaxDataPoints.TabIndex = 17;
+            this.numMaxDataPoints.Value = new decimal(new int[] {
+            50000,
+            0,
+            0,
+            0});
+            // 
+            // numMaxQueryDays
+            // 
+            this.numMaxQueryDays.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numMaxQueryDays.Location = new System.Drawing.Point(332, 207);
+            this.numMaxQueryDays.Margin = new System.Windows.Forms.Padding(4);
+            this.numMaxQueryDays.Maximum = new decimal(new int[] {
+            3650,
+            0,
+            0,
+            0});
+            this.numMaxQueryDays.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.numMaxQueryDays.Name = "numMaxQueryDays";
+            this.numMaxQueryDays.Size = new System.Drawing.Size(212, 42);
+            this.numMaxQueryDays.TabIndex = 16;
+            this.numMaxQueryDays.Value = new decimal(new int[] {
+            31,
+            0,
+            0,
+            0});
+            // 
+            // kryptonTextBox2
+            // 
+            this.kryptonTextBox2.Location = new System.Drawing.Point(332, 124);
+            this.kryptonTextBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.kryptonTextBox2.Name = "kryptonTextBox2";
+            this.kryptonTextBox2.Size = new System.Drawing.Size(1083, 43);
+            this.kryptonTextBox2.TabIndex = 10;
+            // 
+            // lblCompanyName
+            // 
+            this.lblCompanyName.Location = new System.Drawing.Point(27, 106);
+            this.lblCompanyName.Margin = new System.Windows.Forms.Padding(4);
+            this.lblCompanyName.Name = "lblCompanyName";
+            this.lblCompanyName.Size = new System.Drawing.Size(282, 76);
+            this.lblCompanyName.TabIndex = 9;
+            this.lblCompanyName.Values.Text = "公司抬头：";
+            // 
+            // kryptonTextBox1
+            // 
+            this.kryptonTextBox1.Location = new System.Drawing.Point(332, 41);
+            this.kryptonTextBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.kryptonTextBox1.Name = "kryptonTextBox1";
+            this.kryptonTextBox1.ReadOnly = true;
+            this.kryptonTextBox1.Size = new System.Drawing.Size(525, 43);
+            this.kryptonTextBox1.TabIndex = 7;
+            // 
+            // lblConfigPath
+            // 
+            this.lblConfigPath.Location = new System.Drawing.Point(27, 25);
+            this.lblConfigPath.Margin = new System.Windows.Forms.Padding(4);
+            this.lblConfigPath.Name = "lblConfigPath";
+            this.lblConfigPath.Size = new System.Drawing.Size(282, 76);
+            this.lblConfigPath.TabIndex = 6;
+            this.lblConfigPath.Values.Text = "配置文件路径：";
+            // 
+            // btnLoadConfig
+            // 
+            this.btnLoadConfig.Location = new System.Drawing.Point(872, 36);
+            this.btnLoadConfig.Margin = new System.Windows.Forms.Padding(4);
+            this.btnLoadConfig.Name = "btnLoadConfig";
+            this.btnLoadConfig.Size = new System.Drawing.Size(320, 49);
+            this.btnLoadConfig.TabIndex = 50;
+            this.btnLoadConfig.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnLoadConfig.Values.Text = "加载配置文件";
+            this.btnLoadConfig.Click += new System.EventHandler(this.BtnLoadConfig_Click);
+            // 
+            // lblMaxQueryDays
+            // 
+            this.lblMaxQueryDays.Location = new System.Drawing.Point(27, 191);
+            this.lblMaxQueryDays.Margin = new System.Windows.Forms.Padding(4);
+            this.lblMaxQueryDays.Name = "lblMaxQueryDays";
+            this.lblMaxQueryDays.Size = new System.Drawing.Size(282, 76);
+            this.lblMaxQueryDays.TabIndex = 11;
+            this.lblMaxQueryDays.Values.Text = "最大查询天数：";
+            // 
+            // lblMaxDataPoints
+            // 
+            this.lblMaxDataPoints.Location = new System.Drawing.Point(27, 274);
+            this.lblMaxDataPoints.Margin = new System.Windows.Forms.Padding(4);
+            this.lblMaxDataPoints.Name = "lblMaxDataPoints";
+            this.lblMaxDataPoints.Size = new System.Drawing.Size(282, 76);
+            this.lblMaxDataPoints.TabIndex = 13;
+            this.lblMaxDataPoints.Values.Text = "最大数据点数：";
+            // 
+            // lblQueryLimitsHint
+            // 
+            this.lblQueryLimitsHint.Location = new System.Drawing.Point(550, 295);
+            this.lblQueryLimitsHint.Margin = new System.Windows.Forms.Padding(4);
+            this.lblQueryLimitsHint.Name = "lblQueryLimitsHint";
+            this.lblQueryLimitsHint.Size = new System.Drawing.Size(368, 76);
+            this.lblQueryLimitsHint.TabIndex = 15;
+            this.lblQueryLimitsHint.Values.Text = "（0 = 不限制）";
+            // 
+            // chkAutoConnectBackup
+            // 
+            this.chkAutoConnectBackup.Location = new System.Drawing.Point(27, 357);
+            this.chkAutoConnectBackup.Margin = new System.Windows.Forms.Padding(4);
+            this.chkAutoConnectBackup.Name = "chkAutoConnectBackup";
+            this.chkAutoConnectBackup.Size = new System.Drawing.Size(439, 76);
+            this.chkAutoConnectBackup.TabIndex = 18;
+            this.chkAutoConnectBackup.Values.Text = "自动链接备份";
+            // 
+            // lblBackupPath
+            // 
+            this.lblBackupPath.Location = new System.Drawing.Point(27, 439);
+            this.lblBackupPath.Margin = new System.Windows.Forms.Padding(4);
+            this.lblBackupPath.Name = "lblBackupPath";
+            this.lblBackupPath.Size = new System.Drawing.Size(282, 76);
+            this.lblBackupPath.TabIndex = 19;
+            this.lblBackupPath.Values.Text = "备份文件夹：";
+            // 
+            // txtBackupPath
+            // 
+            this.txtBackupPath.Location = new System.Drawing.Point(332, 455);
+            this.txtBackupPath.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBackupPath.Name = "txtBackupPath";
+            this.txtBackupPath.Size = new System.Drawing.Size(1050, 43);
+            this.txtBackupPath.TabIndex = 20;
+            // 
+            // btnBrowseBackupPath
+            // 
+            this.btnBrowseBackupPath.Location = new System.Drawing.Point(1396, 455);
+            this.btnBrowseBackupPath.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBrowseBackupPath.Name = "btnBrowseBackupPath";
+            this.btnBrowseBackupPath.Size = new System.Drawing.Size(140, 47);
+            this.btnBrowseBackupPath.TabIndex = 21;
+            this.btnBrowseBackupPath.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnBrowseBackupPath.Values.Text = "...";
+            this.btnBrowseBackupPath.Click += new System.EventHandler(this.BtnBrowseBackupPath_Click);
+            // 
+            // kryptonGroupBox1
+            // 
+            this.kryptonGroupBox1.Location = new System.Drawing.Point(19, 4);
+            this.kryptonGroupBox1.Margin = new System.Windows.Forms.Padding(4);
+            // 
+            // kryptonGroupBox1.Panel
+            // 
+            this.kryptonGroupBox1.Panel.Controls.Add(this.cmbLanguage);
+            this.kryptonGroupBox1.Panel.Controls.Add(this.cmbTheme);
+            this.kryptonGroupBox1.Panel.Controls.Add(this.lblTheme);
+            this.kryptonGroupBox1.Panel.Controls.Add(this.lblLanguage);
+            this.kryptonGroupBox1.Size = new System.Drawing.Size(1642, 274);
+            this.kryptonGroupBox1.TabIndex = 6;
+            // 
+            // cmbLanguage
+            // 
+            this.cmbLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbLanguage.Location = new System.Drawing.Point(331, 51);
+            this.cmbLanguage.Margin = new System.Windows.Forms.Padding(2);
+            this.cmbLanguage.Name = "cmbLanguage";
+            this.cmbLanguage.Size = new System.Drawing.Size(450, 42);
+            this.cmbLanguage.TabIndex = 3;
+            this.cmbLanguage.SelectedIndexChanged += new System.EventHandler(this.CmbLanguage_SelectedIndexChanged);
+            // 
+            // cmbTheme
+            // 
+            this.cmbTheme.DefaultPalette = Krypton.Toolkit.PaletteMode.Microsoft365Blue;
+            this.cmbTheme.Location = new System.Drawing.Point(331, 134);
+            this.cmbTheme.Margin = new System.Windows.Forms.Padding(2);
+            this.cmbTheme.Name = "cmbTheme";
+            this.cmbTheme.Size = new System.Drawing.Size(450, 42);
+            this.cmbTheme.TabIndex = 5;
+            this.cmbTheme.SelectedIndexChanged += new System.EventHandler(this.CmbTheme_SelectedIndexChanged);
+            // 
+            // lblTheme
+            // 
+            this.lblTheme.Location = new System.Drawing.Point(26, 117);
+            this.lblTheme.Margin = new System.Windows.Forms.Padding(2);
+            this.lblTheme.Name = "lblTheme";
+            this.lblTheme.Size = new System.Drawing.Size(282, 76);
+            this.lblTheme.TabIndex = 4;
+            this.lblTheme.Values.Text = "界面主题：";
+            // 
+            // lblLanguage
+            // 
+            this.lblLanguage.Location = new System.Drawing.Point(26, 34);
+            this.lblLanguage.Margin = new System.Windows.Forms.Padding(2);
+            this.lblLanguage.Name = "lblLanguage";
+            this.lblLanguage.Size = new System.Drawing.Size(282, 76);
+            this.lblLanguage.TabIndex = 2;
+            this.lblLanguage.Values.Text = "显示语言：";
+            // 
+            // pnlGeneralFooter
+            // 
+            this.pnlGeneralFooter.Controls.Add(this.btnSaveGeneral);
+            this.pnlGeneralFooter.Controls.Add(this.btnBatchDecimal);
+            this.pnlGeneralFooter.Controls.Add(this.btnChangePassword);
+            this.pnlGeneralFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlGeneralFooter.Location = new System.Drawing.Point(0, 856);
+            this.pnlGeneralFooter.Margin = new System.Windows.Forms.Padding(2);
+            this.pnlGeneralFooter.Name = "pnlGeneralFooter";
+            this.pnlGeneralFooter.Size = new System.Drawing.Size(1699, 83);
+            this.pnlGeneralFooter.TabIndex = 1;
+            // 
+            // btnSaveGeneral
+            // 
+            this.btnSaveGeneral.Location = new System.Drawing.Point(1440, 5);
+            this.btnSaveGeneral.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSaveGeneral.Name = "btnSaveGeneral";
+            this.btnSaveGeneral.Size = new System.Drawing.Size(205, 65);
+            this.btnSaveGeneral.TabIndex = 0;
+            this.btnSaveGeneral.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnSaveGeneral.Values.Text = "保存";
+            this.btnSaveGeneral.Click += new System.EventHandler(this.BtnSaveGeneral_Click);
+            // 
+            // btnBatchDecimal
+            // 
+            this.btnBatchDecimal.Location = new System.Drawing.Point(16, 9);
+            this.btnBatchDecimal.Margin = new System.Windows.Forms.Padding(2);
+            this.btnBatchDecimal.Name = "btnBatchDecimal";
+            this.btnBatchDecimal.Size = new System.Drawing.Size(368, 65);
+            this.btnBatchDecimal.TabIndex = 1;
+            this.btnBatchDecimal.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnBatchDecimal.Values.Text = "批量精确位数…";
+            this.btnBatchDecimal.Click += new System.EventHandler(this.BtnBatchDecimal_Click);
+            // 
+            // btnChangePassword
+            // 
+            this.btnChangePassword.Location = new System.Drawing.Point(444, 9);
+            this.btnChangePassword.Margin = new System.Windows.Forms.Padding(2);
+            this.btnChangePassword.Name = "btnChangePassword";
+            this.btnChangePassword.Size = new System.Drawing.Size(376, 65);
+            this.btnChangePassword.TabIndex = 3;
+            this.btnChangePassword.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnChangePassword.Values.Text = "设置管理员密码";
+            this.btnChangePassword.Click += new System.EventHandler(this.BtnChangePassword_Click);
+            // 
             // GeneralConfigPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 27F);
@@ -749,27 +749,10 @@
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1729, 1067);
             this.MinimumSize = new System.Drawing.Size(1729, 1067);
-            this.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Name = "GeneralConfigPanel";
             this.Text = "系统配置";
             ((System.ComponentModel.ISupportInitialize)(this.kryptonNavigator1)).EndInit();
             this.kryptonNavigator1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonPage2)).EndInit();
-            this.kryptonPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox2.Panel)).EndInit();
-            this.kryptonGroupBox2.Panel.ResumeLayout(false);
-            this.kryptonGroupBox2.Panel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox2)).EndInit();
-            this.kryptonGroupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox1.Panel)).EndInit();
-            this.kryptonGroupBox1.Panel.ResumeLayout(false);
-            this.kryptonGroupBox1.Panel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox1)).EndInit();
-            this.kryptonGroupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.cmbLanguage)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbTheme)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pnlGeneralFooter)).EndInit();
-            this.pnlGeneralFooter.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPage1)).EndInit();
             this.kryptonPage1.ResumeLayout(false);
             this.splitMain.Panel1.ResumeLayout(false);
@@ -791,6 +774,22 @@
             ((System.ComponentModel.ISupportInitialize)(this.panel5)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonPage2)).EndInit();
+            this.kryptonPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox2.Panel)).EndInit();
+            this.kryptonGroupBox2.Panel.ResumeLayout(false);
+            this.kryptonGroupBox2.Panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox2)).EndInit();
+            this.kryptonGroupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox1.Panel)).EndInit();
+            this.kryptonGroupBox1.Panel.ResumeLayout(false);
+            this.kryptonGroupBox1.Panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox1)).EndInit();
+            this.kryptonGroupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.cmbLanguage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbTheme)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlGeneralFooter)).EndInit();
+            this.pnlGeneralFooter.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

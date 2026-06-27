@@ -438,6 +438,9 @@
   <data name="GCP_LblCompanyName" xml:space="preserve">
     <value>公司抬头：</value>
   </data>
+  <data name="GCP_BtnLoadConfig" xml:space="preserve">
+    <value>加载配置文件</value>
+  </data>
   <data name="GCP_LblConfigPath" xml:space="preserve">
     <value>配置文件路径：</value>
   </data>

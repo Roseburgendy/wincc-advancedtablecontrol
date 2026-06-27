@@ -438,6 +438,9 @@
   <data name="GCP_LblCompanyName" xml:space="preserve">
     <value>CompanyName:</value>
   </data>
+  <data name="GCP_BtnLoadConfig" xml:space="preserve">
+    <value>Load Config</value>
+  </data>
   <data name="GCP_LblConfigPath" xml:space="preserve">
     <value>Config File Path:</value>
   </data>
