@@ -67,7 +67,7 @@
     <Compile Include="DbManager.cs" />
     <Compile Include="Models\TagMeta.cs" />
     <Compile Include="TagConfigPanel.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="TagConfigPanel.Designer.cs">
       <DependentUpon>TagConfigPanel.cs</DependentUpon>

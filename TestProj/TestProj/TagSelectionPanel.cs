@@ -54,7 +54,7 @@ namespace TestProj
                 var parentNode = new TreeNode(group.Key);
 
                 // 该归档下的每个变量作为子节点
-                foreach (var (valueID, valueName) in
+                foreach (var (valueID, valueName, datatype) in
                          group.OrderBy(t => t.ValueName))
                 {
                     // 取 \ 后面的部分作为显示名，例如 "Archive\tag1" → "tag1"
@@ -64,10 +64,10 @@ namespace TestProj
 
                     var childNode = new TreeNode(tagName)
                     {
-                        // Tag 存 ValueID，确认时用于构建查询
-                        Tag = valueID,
+                        // Tag 存 ValueName
+                        Tag = valueName,
                         // 如果上次已选过这个变量，恢复勾选状态
-                        Checked = _previousSelected.Contains(valueID.ToString())
+                        Checked = _previousSelected.Contains(valueName.ToString())
                     };
                     parentNode.Nodes.Add(childNode);
                 }

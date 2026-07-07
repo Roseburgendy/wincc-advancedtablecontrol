@@ -13,7 +13,7 @@ namespace TestProj
     public partial class UserControl1: UserControl
     {
         /// <summary>
-        /// 存储已选择的变量
+        /// 存储已选择的变量,format: <ArchiveName>//<TagName>
         /// </summary>
         private List<string> _selectedTags = new List<string>();
         public UserControl1()
@@ -98,35 +98,28 @@ namespace TestProj
                 MessageBox.Show("请先选择变量", "提示");
                 return;
             }
-
             var panel = new TagConfigPanel(_selectedTags);
-            var form = new Form
-            {
-                Text = "变量配置",
-                Width = 1300,
-                Height = 1200,
-                StartPosition = FormStartPosition.CenterScreen
-            };
-            panel.Dock = DockStyle.Fill;
-            form.Controls.Add(panel);
+            panel.Width = 1021;
+            panel.Height = 933;
+            panel.StartPosition = FormStartPosition.CenterScreen;
 
             // 关闭时检查未保存修改
-            form.FormClosing += (s, args) =>
+            panel.FormClosing += (s, args) =>
             {
                 if (panel.HasUnsavedChanges())
                 {
                     var result = MessageBox.Show(
                         "有未保存的修改，是否保存？",
-                        "提示", MessageBoxButtons.YesNoCancel);
+                        "提示", MessageBoxButtons.OKCancel);
 
-                    if (result == DialogResult.Yes)
+                    if (result == DialogResult.OK)
                         panel.SaveAll();
                     else if (result == DialogResult.Cancel)
                         args.Cancel = true;
                 }
             };
 
-            form.ShowDialog();
+            panel.ShowDialog();
         }
 
         /// <summary>
@@ -134,12 +127,17 @@ namespace TestProj
         /// </summary>
         private void selectTagBtn_Click(object sender, EventArgs e)
         {
-            var form = new TagSelectionPanel(_selectedTags);
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                // 已选变量
-                MessageBox.Show("Selected tags:\n" + string.Join("\n", _selectedTags));
+            var panel = new TagSelectionPanel(_selectedTags);
+            panel.Width = 500;
+            panel.Height = 700;
+            panel.StartPosition = FormStartPosition.CenterScreen;
 
+            if (panel.ShowDialog() == DialogResult.OK)
+            {
+                _selectedTags = panel.SelectedTags;
+                lblSelectedTags.Text = string.Join(";  ",
+                    _selectedTags.Select(t => t.Contains("\\")
+                        ? t.Split('\\').Last() : t));
             }
         }
     }

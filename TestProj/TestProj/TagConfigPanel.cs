@@ -8,7 +8,7 @@ using TestProj.Models;
 
 namespace TestProj
 {
-    public partial class TagConfigPanel : UserControl
+    public partial class TagConfigPanel : Form
     {
         private List<string> _selectedTags;
         private BindingList<TagMeta> _bindingList;
@@ -72,14 +72,14 @@ namespace TestProj
             });
             dgvTags.Columns.Add(new DataGridViewTextBoxColumn
             {
-                HeaderText = "上限值",
-                DataPropertyName = "NormalMax",
+                HeaderText = "下限值",
+                DataPropertyName = "NormalMin",
                 Width = 70
             });
             dgvTags.Columns.Add(new DataGridViewTextBoxColumn
             {
-                HeaderText = "下限值",
-                DataPropertyName = "NormalMin",
+                HeaderText = "上限值",
+                DataPropertyName = "NormalMax",
                 Width = 70
             });
 
@@ -98,17 +98,16 @@ namespace TestProj
                 t => t.ValueName.Contains("\\")
                     ? t.ValueName.Split('\\').Last()
                     : t.ValueName,
-                t => t.ValueName); // tagName → DataType
+                t => t.DataType); // tagName → DataType
 
             var toShow = new List<TagMeta>();
             foreach (var fullName in _selectedTags)
             {
-                // 提出tagname
                 string tagName = fullName.Contains("\\")
-                    ? fullName.Split('\\').Last() : fullName;
+                    ? fullName.Split('\\').Last() : fullName; //to get "tag1" in Archive/tag1
 
                 var existing = allMeta.FirstOrDefault(
-                    t => t.TagName == tagName);
+                    t => t.TagName == tagName); // find existing config in json
 
                 // 取数据库里的 DataType
                 dbDict.TryGetValue(tagName, out string dataType);

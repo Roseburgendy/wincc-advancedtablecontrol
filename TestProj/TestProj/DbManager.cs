@@ -55,9 +55,9 @@ namespace TestProj
         /// <returns>
         /// 返回 含（ValueID, ValueName)的元组列表
         /// </returns>
-        public static List<(long ValueID, string ValueName)> FetchAllTags()
+        public static List<(long ValueID, string ValueName,string DataType)> FetchAllTags()
         {
-            var list = new List<(long,string)>();
+            var list = new List<(long,string,string)>();
             try
             {
                 // Use SQL connection to read tags from WINCC archive database
@@ -76,13 +76,16 @@ namespace TestProj
                     sqlConn.Open();
 
                     var cmd = new SqlCommand(
-                        "SELECT ValueID, ValueName FROM dbo.Archive " +
+                        "SELECT ValueID, ValueName, VarType FROM dbo.Archive " +
                         "WHERE ValueName IS NOT NULL " +
                         "ORDER BY ValueName", sqlConn);
 
                     var reader = cmd.ExecuteReader();
                     while (reader.Read())
-                        list.Add((reader.GetInt64(0), reader.GetString(1)));
+                        list.Add((reader.GetInt64(0),
+                            reader.GetString(1), 
+                            MapVarType(reader.GetInt32(2))
+                        ));
                 }
             }
             catch (Exception ex)
